@@ -122,6 +122,17 @@
 /* Bootstrap gap utility used for pointer-event overlays */
 .pointer-events-none { pointer-events: none; }
 
+/* Eyebrow labels — fee table column headers, tab eyebrows, radio eyebrows */
+[data-name="Column Header"] p,
+[data-name="Tab Text"] p:first-child,
+[data-name="Text + Icon"] [data-name="Text"] p:first-child {
+  font-size: 14px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  color: #80641f !important;
+  margin-bottom: 0 !important;
+}
+
 /* =====================================================
    HOVER STATES — Savers Page + Payroll Integration
    ===================================================== */
