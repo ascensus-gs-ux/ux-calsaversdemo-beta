@@ -125,6 +125,22 @@
 /* Headings — override CalSavers stylesheet gold (#846926) to black */
 h1, h2, h3, h4 { color: #212529 !important; }
 
+/* Tab button border overlays */
+.tab-border-overlay { border: 1px solid rgba(0, 89, 79, 0.5) !important; }
+.tab-border-overlay.tab-active { border-bottom: none !important; }
+
+/* Mobile tab dropdown select */
+.mobile-tab-select { border: 2px solid #00594f !important; }
+
+/* Radio card borders */
+.radio-border-overlay { border: 1px solid rgba(0, 89, 79, 0.25) !important; }
+.radio-border-overlay.radio-selected { border: 2px solid #00594f !important; }
+
+/* Accordion, fees table, and support card borders */
+.accordion-border-overlay { border: 1px solid #00594f !important; }
+.fees-table-border { border: 1px solid rgba(0, 89, 79, 0.5) !important; }
+.support-card-border { border: 1px solid rgba(0, 89, 79, 0.25) !important; }
+
 /* Eyebrow labels — tab eyebrows and radio eyebrows only */
 [data-name="Tab Text"] p:first-child,
 [data-name="Text + Icon"] [data-name="Text"] p:first-child {
