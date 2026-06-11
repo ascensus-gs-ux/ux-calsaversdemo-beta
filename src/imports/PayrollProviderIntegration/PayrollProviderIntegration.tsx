@@ -130,7 +130,7 @@ const PAYROLL_PROVIDERS = [
 function InnerContainer2() {
   return (
     <div className="d-flex flex-fill flex-column gap-3 align-items-center position-relative" data-name="InnerContainer">
-      <p className="fw-medium text-center text-dark w-100 flex-shrink-0">Payroll Provider Integration</p>
+      <h1 className="text-center w-100 flex-shrink-0 mb-0">Payroll Provider Integration</h1>
       <div className="position-relative flex-shrink-0" style={{height: 0, width: '100px'}} data-name="hr">
         <div className="position-absolute" style={{inset: '-2px -2%'}}>
           <svg className="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 104 4">
@@ -164,7 +164,7 @@ function Hero() {
 function Header() {
   return (
     <div className="d-flex flex-column gap-3 align-items-start justify-content-center flex-shrink-0 text-dark text-center w-100" data-name="Header">
-      <p className="fw-medium w-100 flex-shrink-0">Choose an integration type to learn more</p>
+      <h2 className="w-100 flex-shrink-0 mb-0">Choose an integration type to learn more</h2>
       <p className="w-100 flex-shrink-0">
         We provide two integration options depending on what your payroll service offers. Reach out to your payroll provider to find out if they support one of these two integration options.
       </p>
@@ -209,7 +209,7 @@ function Text() {
   return (
     <div className="d-flex flex-fill flex-column gap-1 align-items-start position-relative text-start" data-name="Text">
       <p className="fw-semibold flex-shrink-0 text-uppercase" style={{color: '#80641f'}}>360° Integration</p>
-      <p className="fw-medium text-dark">Automatic payroll sync</p>
+      <h3 className="mb-0">Automatic payroll sync</h3>
     </div>
   );
 }
@@ -272,7 +272,7 @@ function Text1() {
   return (
     <div className="d-flex flex-fill flex-column gap-1 align-items-start position-relative text-start" data-name="Text">
       <p className="fw-semibold flex-shrink-0 text-uppercase" style={{color: '#80641F'}}>180° Integration</p>
-      <p className="fw-medium text-dark">Payroll file upload</p>
+      <h3 className="mb-0">Payroll file upload</h3>
     </div>
   );
 }
@@ -681,7 +681,7 @@ function Tabs({
 function Frame11() {
   return (
     <div className="d-flex flex-column gap-2 align-items-start position-relative flex-shrink-0 w-100">
-      <p className="fw-medium text-dark w-100 flex-shrink-0">Automated Payroll Sync Overview</p>
+      <h3 className="w-100 flex-shrink-0 mb-0">Automated Payroll Sync Overview</h3>
       <p className="w-100 flex-shrink-0" style={{color: '#6b6b6b'}}>
         You can fully integrate your payroll through Payroll Integrations Inc., a third-party service that connects CalSavers with a growing list of participating payroll providers. Paychex and TJH Payroll also offer their own direct 360° integrations with CalSavers.
         <br aria-hidden="true" />
@@ -1116,7 +1116,7 @@ function FeesTable() {
 function Text2() {
   return (
     <div className="d-flex flex-column gap-4 align-items-start position-relative flex-shrink-0 w-100" data-name="Text">
-      <p className="fw-semibold text-dark w-100 flex-shrink-0">Payroll Integrations Inc. Integration Overview</p>
+      <h3 className="w-100 flex-shrink-0 mb-0">Payroll Integrations Inc. Integration Overview</h3>
       <p className="w-100 flex-shrink-0" style={{color: '#6b6b6b'}}>{`Payroll Integrations Inc. is a third-party company that securely connects CalSavers with a wide range of payroll providers through a 360° integration for a monthly fee. The fee for this service is based on the number of active employees making contributions. `}</p>
       <Form />
       <FeesTable />
@@ -1163,7 +1163,7 @@ function AccordionExpanded1() {
 function Text4() {
   return (
     <div className="d-flex flex-fill flex-column gap-3 align-items-start position-relative text-start w-100" data-name="Text">
-      <p className="fw-semibold text-dark w-100 flex-shrink-0">Paychex and TJH Payroll Integration Overview</p>
+      <h3 className="w-100 flex-shrink-0 mb-0">Paychex and TJH Payroll Integration Overview</h3>
       <p className="w-100 flex-shrink-0" style={{color: '#6b6b6b'}}>
         <span>
           Paychex and TJH Payroll offer their own direct 360° integrations with CalSavers, allowing employee contribution information to be securely transmitted automatically between your payroll provider and CalSavers.<br /><br />Pricing and setup support for these services are managed directly by the payroll provider. For pricing details, please contact your provider directly.
@@ -1282,7 +1282,7 @@ function Section({
 function Text5() {
   return (
     <div className="d-flex flex-column gap-3 align-items-start position-relative flex-shrink-0 w-100" data-name="Text">
-      <p className="fw-medium text-dark w-100 flex-shrink-0">{`Learn more about payroll provider integrations options `}</p>
+      <h2 className="w-100 flex-shrink-0 mb-0">{`Learn more about payroll provider integrations options`}</h2>
       <p className="w-100 flex-shrink-0" style={{color: '#6b6b6b'}}>
         To learn more about the benefits and your options, check out our informative video.
       </p>
@@ -1394,7 +1394,7 @@ function Chatbot() {
 function Title() {
   return (
     <div className="d-flex gap-3 align-items-center position-relative align-self-stretch flex-shrink-0" data-name="Title">
-      <p className="flex-fill fw-medium text-dark">{`Need additional support?`}</p>
+      <h2 className="flex-fill mb-0">{`Need additional support?`}</h2>
     </div>
   );
 }
