@@ -30,7 +30,7 @@ function InnerContainer1() {
 function Frame2() {
   return (
     <div className="d-flex flex-column gap-2 align-items-start flex-shrink-0 w-100">
-      <p className="fw-medium text-dark w-100">Payroll File Upload Overview</p>
+      <h3 className="w-100 mb-0">Payroll File Upload Overview</h3>
       <InnerContainer1 />
     </div>
   );
@@ -84,7 +84,7 @@ function Frame() {
 function StepText() {
   return (
     <div className="d-flex gap-2 align-items-start flex-shrink-0 w-100" data-name="StepText">
-      <p className="flex-fill fw-medium text-dark">Setup guide to integrate payroll with a 180° integration</p>
+      <h3 className="flex-fill mb-0">Setup guide to integrate payroll with a 180° integration</h3>
       <Frame />
     </div>
   );
@@ -542,7 +542,7 @@ function Frame1() {
 function StepText1() {
   return (
     <div className="d-flex gap-2 align-items-start flex-shrink-0 w-100" data-name="StepText">
-      <p className="flex-fill fw-medium text-dark">Setup guide to integrate payroll with a 180° integration</p>
+      <h3 className="flex-fill mb-0">Setup guide to integrate payroll with a 180° integration</h3>
       <Frame1 />
     </div>
   );
@@ -569,8 +569,8 @@ function Container17() {
   return (
     <div className="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Container">
       <TextContainer5 />
-      <a className="btn d-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-white text-decoration-none" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank" style={{backgroundColor: '#00594f'}} data-name="Button">
-        <span className="fw-semibold text-center text-white text-nowrap">Account Login</span>
+      <a className="btn btn-primary d-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank" data-name="Button">
+        <span className="fw-semibold text-center text-nowrap">Account Login</span>
       </a>
     </div>
   );

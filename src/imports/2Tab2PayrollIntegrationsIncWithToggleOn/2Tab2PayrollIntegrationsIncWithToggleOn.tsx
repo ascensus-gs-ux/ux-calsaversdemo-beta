@@ -38,7 +38,7 @@ function Frame5() {
 function StepText() {
   return (
     <div className="d-flex flex-column flex-md-row gap-2 align-items-start flex-shrink-0 w-100" data-name="StepText">
-      <p className="flex-fill fw-medium text-dark">Setup guide to integrate with Payroll Integrations Inc.</p>
+      <h3 className="flex-fill mb-0">Setup guide to integrate with Payroll Integrations Inc.</h3>
       <Frame5 />
     </div>
   );
@@ -95,8 +95,8 @@ function Container4() {
   return (
     <div className="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Container">
       <TextContainer1 />
-      <a className="btn d-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-white text-decoration-none" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank" style={{backgroundColor: '#00594f'}} data-name="Button">
-        <span className="fw-semibold text-center text-white text-nowrap">Account Login</span>
+      <a className="btn btn-primary d-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank" data-name="Button">
+        <span className="fw-semibold text-center text-nowrap">Account Login</span>
       </a>
     </div>
   );

@@ -43,7 +43,7 @@ function Frame5() {
 function StepText() {
   return (
     <div className="d-flex flex-column flex-md-row gap-2 align-items-start flex-shrink-0 w-100" data-name="StepText">
-      <p className="flex-fill fw-medium text-dark">Setup guide to integrate Paychex or TJH</p>
+      <h3 className="flex-fill mb-0">Setup guide to integrate Paychex or TJH</h3>
       <Frame5 />
     </div>
   );

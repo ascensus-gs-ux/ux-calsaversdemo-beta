@@ -227,7 +227,7 @@ function Container({ isActive = false }: { isActive?: boolean }) {
   return (
     <div className="d-flex flex-fill flex-column gap-3 align-items-start position-relative" data-name="Container">
       <TextIcon isActive={isActive} />
-      <p className="w-100 text-start text-dark flex-shrink-0">
+      <p className="w-100 text-start text-dark flex-shrink-0 fw-normal">
         CalSavers automatically syncs employee contribution information from your payroll provider and sends savings rate changes back when needed.
       </p>
     </div>
@@ -290,7 +290,7 @@ function Container2({ isActive = false }: { isActive?: boolean }) {
   return (
     <div className="d-flex flex-fill flex-column gap-3 align-items-start position-relative" data-name="Container">
       <TextIcon1 isActive={isActive} />
-      <p className="w-100 text-start text-dark flex-shrink-0">
+      <p className="w-100 text-start text-dark flex-shrink-0 fw-normal">
         Your payroll provider manually uploads contribution rates updated <strong>by you, the employer, every month.</strong> This option is available for those payroll providers who do not currently connect with a 360° integration to CalSavers.
       </p>
     </div>
@@ -525,9 +525,8 @@ function MobileDropdown({
     <div className="d-md-none w-100 mb-4" style={{zIndex: 2}} data-name="Tabs">
       <p className="fw-medium mb-1" style={{fontSize: '12px', color: '#6b6b6b'}}>Choose an integration detail</p>
       <select
-        className="w-100 bg-white rounded px-4 py-3 fw-semibold text-dark border border-2"
+        className="w-100 bg-white rounded px-4 py-3 fw-semibold text-dark mobile-tab-select"
         style={{
-          borderColor: '#00594f',
           backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300594f' d='M6 9L1 4h10z'/%3E%3C/svg%3E\")",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "right 1rem center",
@@ -669,8 +668,8 @@ function Frame11() {
 
 function TextContainer() {
   return (
-    <div className="d-flex flex-fill flex-column fw-semibold gap-1 align-items-start position-relative" data-name="Text Container">
-      <p className="w-100 flex-shrink-0" style={{color: '#00594f'}}>Learn more about Payroll Integrations Inc.</p>
+    <div className="d-flex flex-fill align-items-center fw-semibold position-relative" data-name="Text Container">
+      <p className="w-100 mb-0" style={{color: '#00594f'}}>Learn more about Payroll Integrations Inc.</p>
     </div>
   );
 }
@@ -690,7 +689,7 @@ function AccordionExpanded() {
           </div>
         </div>
       </div>
-      <div aria-hidden="true" className="position-absolute border rounded pointer-events-none" style={{inset: 0, borderColor: '#00594f'}} />
+      <div aria-hidden="true" className="position-absolute rounded pointer-events-none accordion-border-overlay" style={{inset: 0}} />
     </div>
   );
 }
@@ -1079,7 +1078,7 @@ function Table() {
 function FeesTable() {
   return (
     <div className="position-relative rounded flex-shrink-0 w-100" style={{zIndex: 1}} data-name="FeesTable">
-      <div aria-hidden="true" className="position-absolute border rounded pointer-events-none" style={{inset: 0, borderColor: 'rgba(0,89,79,0.5)'}} />
+      <div aria-hidden="true" className="position-absolute rounded pointer-events-none fees-table-border" style={{inset: 0}} />
       <div className="d-flex flex-column gap-4 align-items-start p-3 position-relative w-100 h-100">
         <p className="text-dark w-100 flex-shrink-0">Payroll Integrations Inc. third-party fees:</p>
         <Table />
@@ -1109,8 +1108,8 @@ function Frame10() {
 
 function TextContainer1() {
   return (
-    <div className="d-flex flex-fill flex-column fw-semibold gap-1 align-items-start position-relative" data-name="Text Container">
-      <p className="w-100 flex-shrink-0" style={{color: '#00594f'}}>Learn more about Paychex and TJH Payroll integration</p>
+    <div className="d-flex flex-fill align-items-center fw-semibold position-relative" data-name="Text Container">
+      <p className="w-100 mb-0" style={{color: '#00594f'}}>Learn more about Paychex and TJH Payroll integration</p>
     </div>
   );
 }
@@ -1130,7 +1129,7 @@ function AccordionExpanded1() {
           </div>
         </div>
       </div>
-      <div aria-hidden="true" className="position-absolute border rounded pointer-events-none" style={{inset: 0, borderColor: '#00594f'}} />
+      <div aria-hidden="true" className="position-absolute rounded pointer-events-none accordion-border-overlay" style={{inset: 0}} />
     </div>
   );
 }
@@ -1368,8 +1367,8 @@ function Chatbot() {
 
 function Title() {
   return (
-    <div className="d-flex gap-3 align-items-center position-relative align-self-stretch flex-shrink-0" data-name="Title">
-      <h2 className="flex-fill mb-0">{`Need additional support?`}</h2>
+    <div className="d-flex align-items-center position-relative w-100" data-name="Title">
+      <h2 className="mb-0">{`Need additional support?`}</h2>
     </div>
   );
 }
@@ -1567,7 +1566,7 @@ function Cards() {
   return (
     <div className="d-flex flex-column flex-md-row gap-4 align-items-start position-relative flex-shrink-0 w-100" data-name="Cards">
       <div className="bg-white d-flex flex-column gap-4 align-items-start p-4 position-relative rounded flex-shrink-0 w-100" style={{flex: '1 0 0'}} data-name="SupportCard">
-        <div aria-hidden="true" className="position-absolute border rounded pointer-events-none" style={{inset: 0, borderColor: 'rgba(0,89,79,0.25)'}} />
+        <div aria-hidden="true" className="position-absolute rounded pointer-events-none support-card-border" style={{inset: 0}} />
         <Text6 />
         <Link />
       </div>
@@ -1578,7 +1577,7 @@ function Cards() {
         style={{flex: '1 0 0'}}
         data-name="SupportCard"
       >
-        <div aria-hidden="true" className="position-absolute border rounded pointer-events-none" style={{inset: 0, borderColor: 'rgba(0,89,79,0.25)'}} />
+        <div aria-hidden="true" className="position-absolute rounded pointer-events-none support-card-border" style={{inset: 0}} />
         <Text7 />
         <Link1 />
       </a>
@@ -1588,13 +1587,9 @@ function Cards() {
 
 function InnerContainer5() {
   return (
-    <div className="row g-4 w-100" data-name="InnerContainer">
-      <div className="col-md-3 d-flex align-items-center">
-        <Title />
-      </div>
-      <div className="col-md-9">
-        <Cards />
-      </div>
+    <div className="d-flex flex-column gap-4 w-100" data-name="InnerContainer">
+      <Title />
+      <Cards />
     </div>
   );
 }

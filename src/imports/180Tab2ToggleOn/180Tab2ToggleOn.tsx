@@ -3,16 +3,16 @@ export function Tab180SetupToggleOnBodyContent() {
     <div className="d-flex flex-column gap-5 align-items-start w-100" data-name="Group">
       {/* Header with title and toggle */}
       <div className="d-flex flex-column flex-md-row gap-2 align-items-start flex-shrink-0 w-100" data-name="StepText">
-        <p className="flex-fill fw-medium text-dark">Setup guide to integrate payroll with a 180° integration</p>
+        <h3 className="flex-fill mb-0">Setup guide to integrate payroll with a 180° integration</h3>
         <div className="d-flex flex-column gap-1 align-items-start flex-shrink-0">
           <p className="fst-italic text-secondary w-100">Need a more detailed walk-through?</p>
           <div className="d-flex align-items-start flex-shrink-0 w-100" data-name="QuickViewToggle">
             <div className="d-flex gap-2 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
               <p className="fw-semibold text-dark text-end flex-shrink-0">Toggle Detailed Instructions</p>
-              <button className="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0">
+              <button className="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
                 <div className="bg-light border rounded-pill flex-shrink-0" style={{height: '24px', width: '44px'}} data-name="Background" />
-                <div className="position-absolute" style={{marginLeft: '7px', marginTop: '6px', width: '12px', height: '12px'}} data-name="Switch">
-                  <svg className="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12">
+                <div className="position-absolute" style={{marginLeft: '7px', marginTop: '6px'}}>
+                  <svg className="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12" style={{width: '12px', height: '12px'}}>
                     <g id="Switch">
                       <circle cx="6" cy="6" fill="var(--fill-0, #828282)" id="Ellipse 1" r="5.5" stroke="var(--stroke-0, #828282)" />
                     </g>
@@ -39,8 +39,8 @@ export function Tab180SetupToggleOnBodyContent() {
                     <p className="fw-semibold text-dark w-100">Log into the CalSavers employer dashboard to start the integration set up</p>
                     <p className="text-secondary w-100">Go to payroll provider and select "Add New." Choose "I have a different payroll provider" and search for your payroll provider in the participating vendor list.</p>
                   </div>
-                  <a className="btn d-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-white text-decoration-none" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank" style={{backgroundColor: '#00594f'}} data-name="Button">
-                    <span className="fw-semibold text-center text-white text-nowrap">Account Login</span>
+                  <a className="btn btn-primary d-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank" data-name="Button">
+                    <span className="fw-semibold text-center text-nowrap">Account Login</span>
                   </a>
                 </div>
               </div>
