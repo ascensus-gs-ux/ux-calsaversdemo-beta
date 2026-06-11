@@ -119,6 +119,9 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* Bootstrap gap utility used for pointer-event overlays */
+.pointer-events-none { pointer-events: none; }
+
 /* =====================================================
    HOVER STATES — Savers Page + Payroll Integration
    ===================================================== */
