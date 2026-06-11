@@ -122,8 +122,10 @@
 /* Bootstrap gap utility used for pointer-event overlays */
 .pointer-events-none { pointer-events: none; }
 
-/* Eyebrow labels — fee table column headers, tab eyebrows, radio eyebrows */
-[data-name="Column Header"] p,
+/* Headings — override CalSavers stylesheet gold (#846926) to black */
+h1, h2, h3, h4 { color: #212529 !important; }
+
+/* Eyebrow labels — tab eyebrows and radio eyebrows only */
 [data-name="Tab Text"] p:first-child,
 [data-name="Text + Icon"] [data-name="Text"] p:first-child {
   font-size: 14px !important;
