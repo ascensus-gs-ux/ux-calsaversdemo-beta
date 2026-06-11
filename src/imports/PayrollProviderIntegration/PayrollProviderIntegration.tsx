@@ -324,8 +324,8 @@ function Toggle({
         </div>
         <div
           aria-hidden="true"
-          className={`position-absolute pointer-events-none rounded border ${is360Selected ? 'border-2' : ''}`}
-          style={{inset: 0, borderColor: is360Selected ? '#00594f' : 'rgba(0,89,79,0.25)'}}
+          className={`position-absolute pointer-events-none rounded radio-border-overlay ${is360Selected ? 'radio-selected' : ''}`}
+          style={{inset: 0}}
         />
       </button>
       <button
@@ -334,8 +334,8 @@ function Toggle({
       >
         <div
           aria-hidden="true"
-          className={`position-absolute pointer-events-none rounded border ${is180Selected ? 'border-2' : ''}`}
-          style={{inset: 0, borderColor: is180Selected ? '#00594f' : 'rgba(0,89,79,0.25)'}}
+          className={`position-absolute pointer-events-none rounded radio-border-overlay ${is180Selected ? 'radio-selected' : ''}`}
+          style={{inset: 0}}
         />
         <div className="d-flex gap-3 align-items-start p-4 position-relative w-100 h-100" data-integration-type="180">
           <div className="bg-white d-flex align-items-center justify-content-center position-relative rounded-circle flex-shrink-0" style={{width: '24px', height: '24px'}} data-name="selection">
@@ -403,15 +403,7 @@ function TextIcon2({
 }
 
 function Spacer() {
-  return (
-    <div className="opacity-0 position-relative flex-shrink-0 w-100" style={{height: '1px'}} data-name="Spacer">
-      <div className="d-flex flex-column align-items-center w-100 h-100">
-        <div className="d-flex flex-column align-items-center px-1 position-relative w-100 h-100">
-          <div className="bg-white flex-shrink-0 w-100" style={{height: '2px'}} data-name="Spacer" />
-        </div>
-      </div>
-    </div>
-  );
+  return <div aria-hidden="true" className="position-absolute bottom-0 start-0 end-0" style={{height: '1px'}} data-name="Spacer" />;
 }
 
 function TabText1({
@@ -453,15 +445,7 @@ function TextIcon3({
 }
 
 function Spacer1() {
-  return (
-    <div className="opacity-0 position-relative flex-shrink-0 w-100" style={{height: '1px'}} data-name="Spacer">
-      <div className="d-flex flex-column align-items-center w-100 h-100">
-        <div className="d-flex flex-column align-items-center px-1 position-relative w-100 h-100">
-          <div className="bg-white flex-shrink-0 w-100" style={{height: '2px'}} data-name="Spacer" />
-        </div>
-      </div>
-    </div>
-  );
+  return <div aria-hidden="true" className="position-absolute bottom-0 start-0 end-0" style={{height: '1px'}} data-name="Spacer" />;
 }
 
 function TabText2({ isActive = false }: { isActive?: boolean }) {
@@ -489,15 +473,7 @@ function TextIcon4({ isActive = false }: { isActive?: boolean }) {
 }
 
 function Spacer2() {
-  return (
-    <div className="opacity-0 position-relative flex-shrink-0 w-100" style={{height: '1px'}} data-name="Spacer">
-      <div className="d-flex flex-column align-items-center w-100 h-100">
-        <div className="d-flex flex-column align-items-center px-1 position-relative w-100 h-100">
-          <div className="bg-white flex-shrink-0 w-100" style={{height: '2px'}} data-name="Spacer" />
-        </div>
-      </div>
-    </div>
-  );
+  return <div aria-hidden="true" className="position-absolute bottom-0 start-0 end-0" style={{height: '1px'}} data-name="Spacer" />;
 }
 
 function MobileDropdown({
@@ -519,9 +495,8 @@ function MobileDropdown({
       <div className="d-md-none w-100 mb-4" style={{zIndex: 2}} data-name="Tabs">
         <p className="fw-medium mb-1" style={{fontSize: '12px', color: '#6b6b6b'}}>Choose an integration detail</p>
         <select
-          className="w-100 bg-white rounded px-4 py-3 fw-semibold text-dark border border-2"
+          className="w-100 bg-white rounded px-4 py-3 fw-semibold text-dark mobile-tab-select"
           style={{
-            borderColor: '#00594f',
             backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300594f' d='M6 9L1 4h10z'/%3E%3C/svg%3E\")",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "right 1rem center",
@@ -590,15 +565,15 @@ function Tabs({
         <MobileDropdown integrationMode={integrationMode} activeTab={activeTab} active180Tab={active180Tab} />
         <div className="d-none d-md-flex flex-nowrap gap-2 align-items-start position-relative flex-shrink-0 w-100" style={{zIndex: 2}} data-name="Tabs">
           <div
-            className={`d-flex flex-column align-items-start justify-content-end position-relative rounded-top flex-fill px-3`}
+            className={`d-flex flex-column align-items-start justify-content-center position-relative rounded-top flex-fill px-3`}
             style={{minHeight: '72px', backgroundColor: isTab1Active ? 'white' : '#f2f0e9'}}
             data-name="TabSetup"
             data-tab-active={isTab1Active}
           >
             <div
               aria-hidden="true"
-              className={`position-absolute border rounded-top pointer-events-none ${isTab1Active ? 'border-bottom-0' : ''}`}
-              style={{inset: 0, borderColor: 'rgba(0,89,79,0.5)'}}
+              className={`position-absolute rounded-top pointer-events-none tab-border-overlay ${isTab1Active ? 'tab-active' : ''}`}
+              style={{inset: 0}}
             />
             <TextIcon2 isActive={isTab1Active} integrationMode={integrationMode} />
             <Spacer />
@@ -612,8 +587,8 @@ function Tabs({
           >
             <div
               aria-hidden="true"
-              className={`position-absolute border rounded-top pointer-events-none ${isTab2Active ? 'border-bottom-0' : ''}`}
-              style={{inset: 0, borderColor: 'rgba(0,89,79,0.5)'}}
+              className={`position-absolute rounded-top pointer-events-none tab-border-overlay ${isTab2Active ? 'tab-active' : ''}`}
+              style={{inset: 0}}
             />
             <TextIcon3 integrationMode={integrationMode} isActive={isTab2Active} />
             <Spacer1 />
@@ -632,15 +607,15 @@ function Tabs({
       <MobileDropdown integrationMode={integrationMode} activeTab={activeTab} active180Tab={active180Tab} />
       <div className="d-none d-md-flex flex-nowrap gap-2 align-items-start position-relative flex-shrink-0 w-100" style={{zIndex: 2}} data-name="Tabs">
         <div
-          className="d-flex flex-column align-items-start justify-content-end position-relative rounded-top flex-fill px-3"
+          className="d-flex flex-column align-items-start justify-content-center position-relative rounded-top flex-fill px-3"
           style={{minHeight: '72px', backgroundColor: isTab1Active ? 'white' : '#f2f0e9'}}
           data-name="TabSetup"
           data-tab-active={isTab1Active}
         >
           <div
             aria-hidden="true"
-            className={`position-absolute border rounded-top pointer-events-none ${isTab1Active ? 'border-bottom-0' : ''}`}
-            style={{inset: 0, borderColor: 'rgba(0,89,79,0.5)'}}
+            className={`position-absolute rounded-top pointer-events-none tab-border-overlay ${isTab1Active ? 'tab-active' : ''}`}
+            style={{inset: 0}}
           />
           <TextIcon2 isActive={isTab1Active} integrationMode={integrationMode} />
           <Spacer />
@@ -653,8 +628,8 @@ function Tabs({
         >
           <div
             aria-hidden="true"
-            className={`position-absolute border rounded-top pointer-events-none ${isTab2Active ? 'border-bottom-0' : ''}`}
-            style={{inset: 0, borderColor: 'rgba(0,89,79,0.5)'}}
+            className={`position-absolute rounded-top pointer-events-none tab-border-overlay ${isTab2Active ? 'tab-active' : ''}`}
+            style={{inset: 0}}
           />
           <TextIcon3 integrationMode={integrationMode} isActive={isTab2Active} />
           <Spacer1 />
@@ -667,8 +642,8 @@ function Tabs({
         >
           <div
             aria-hidden="true"
-            className={`position-absolute border rounded-top pointer-events-none ${isTab3Active ? 'border-bottom-0' : ''}`}
-            style={{inset: 0, borderColor: 'rgba(0,89,79,0.5)'}}
+            className={`position-absolute rounded-top pointer-events-none tab-border-overlay ${isTab3Active ? 'tab-active' : ''}`}
+            style={{inset: 0}}
           />
           <TextIcon4 isActive={isTab3Active} />
           <Spacer2 />
@@ -1233,7 +1208,7 @@ function Body({ children }: { children?: React.ReactNode }) {
       <div className="d-flex flex-column align-items-start overflow-hidden px-4 py-5 position-relative rounded-bottom rounded-top-end w-100 h-100">
         {children || <InnerContainer3 />}
       </div>
-      <div aria-hidden="true" className="position-absolute border rounded-bottom rounded-top-end pointer-events-none" style={{inset: 0, borderColor: 'rgba(0,89,79,0.5)'}} />
+      <div aria-hidden="true" className="position-absolute rounded-bottom rounded-top-end pointer-events-none tab-border-overlay" style={{inset: 0}} />
     </div>
   );
 }
@@ -1354,13 +1329,13 @@ function InnerContainer4() {
 
 function Section1() {
   return (
-    <div className="bg-white d-flex flex-column align-items-center justify-content-center flex-shrink-0 w-100 pb-5" data-name="Section">
-      <div className="row g-4 align-items-start w-100 px-4">
+    <div className="bg-white d-flex flex-column align-items-center justify-content-center flex-shrink-0 w-100 py-5 px-4" data-name="Section">
+      <div className="row g-4 align-items-center w-100">
         <div className="col-md-8 d-flex flex-column gap-3" data-name="RightContainer">
           <VideoFrame />
           <VideoDetails />
         </div>
-        <div className="col-md-4 d-flex flex-column gap-4 justify-content-center align-self-stretch" data-name="LeftContainer">
+        <div className="col-md-4 d-flex flex-column gap-4" data-name="LeftContainer">
           <Text5 />
         </div>
       </div>
@@ -1614,7 +1589,7 @@ function Cards() {
 function InnerContainer5() {
   return (
     <div className="row g-4 w-100" data-name="InnerContainer">
-      <div className="col-md-3 align-self-stretch">
+      <div className="col-md-3 d-flex align-items-center">
         <Title />
       </div>
       <div className="col-md-9">
