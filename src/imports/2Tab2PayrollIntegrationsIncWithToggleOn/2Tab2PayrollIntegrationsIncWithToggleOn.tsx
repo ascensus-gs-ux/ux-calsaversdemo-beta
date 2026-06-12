@@ -55,7 +55,7 @@ function NumberContainer() {
 function TextContainer() {
   return (
     <div className="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-      <p className="fw-semibold text-dark w-100 mb-0">Set up deduction line with your provider</p>
+      <p className="fw-semibold text-dark w-100 mb-0" style={{marginTop: '8px'}}>Set up deduction line with your provider</p>
       <p className="text-secondary w-100">{`Reach out to your payroll provider to create the CalSavers deduction line item on your payroll platform.`}</p>
     </div>
   );
@@ -85,7 +85,7 @@ function NumberContainer1() {
 function TextContainer1() {
   return (
     <div className="d-flex flex-fill flex-column gap-1 align-items-start w-100" data-name="Text Container">
-      <p className="fw-semibold text-dark w-100 mb-0">Log in your CalSavers account and go to Payroll Provider</p>
+      <p className="fw-semibold text-dark w-100 mb-0" style={{marginTop: '8px'}}>Log in your CalSavers account and go to Payroll Provider</p>
       <p className="text-secondary w-100">{`Go to payroll provider and select "Add New." Choose "I have a different payroll provider" and search for your payroll vendor in the Payroll Integrations Inc. participating vendor list. `}</p>
     </div>
   );
@@ -135,7 +135,7 @@ function NumberContainer2() {
 function TextContainer2() {
   return (
     <div className="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-      <p className="fw-semibold text-dark w-100 mb-0">Add a bank or select a previously added account</p>
+      <p className="fw-semibold text-dark w-100 mb-0" style={{marginTop: '8px'}}>Add a bank or select a previously added account</p>
       <p className="text-secondary w-100">Select a bank account that your company will use to send employee contributions.</p>
     </div>
   );
@@ -165,7 +165,7 @@ function NumberContainer3() {
 function TextContainer3() {
   return (
     <div className="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-      <p className="fw-semibold text-dark w-100 mb-0">Initiate Payroll Integrations flow to register for the integration</p>
+      <p className="fw-semibold text-dark w-100 mb-0" style={{marginTop: '8px'}}>Initiate Payroll Integrations flow to register for the integration</p>
       <p className="text-secondary w-100">You will then be taken to the Payroll Integrations Inc. connection page to start your payroll integration.</p>
     </div>
   );
@@ -204,7 +204,7 @@ function NumberContainer4() {
 function TextContainer4() {
   return (
     <div className="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-      <p className="fw-semibold text-dark w-100 mb-0">Complete setup and verify connection</p>
+      <p className="fw-semibold text-dark w-100 mb-0" style={{marginTop: '8px'}}>Complete setup and verify connection</p>
       <p className="text-secondary w-100">{"Finish your connection by logging into your payroll provider account and follow on-screen instructions.\n\nOnce setup is complete, you will be re-routed to your CalSavers dashboard. You should see a \"Connected\" badge."}</p>
     </div>
   );

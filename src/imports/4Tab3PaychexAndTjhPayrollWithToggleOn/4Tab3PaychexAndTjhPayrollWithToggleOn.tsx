@@ -57,7 +57,7 @@ function NumberContainer() {
 function TextContainer() {
   return (
     <div className="d-flex flex-column gap-1 align-items-start w-100" data-name="Text Container">
-      <p className="fw-semibold text-dark w-100 mb-0">Go to "Payroll Provider" to begin the integration process</p>
+      <p className="fw-semibold text-dark w-100 mb-0" style={{marginTop: '8px'}}>Go to "Payroll Provider" to begin the integration process</p>
       <p className="text-secondary w-100">{`Select "Add New" and select Paychex or TJH to start the integration.`}</p>
     </div>
   );
@@ -95,7 +95,7 @@ function NumberContainer1() {
 function TextContainer1() {
   return (
     <div className="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-      <p className="fw-semibold text-dark w-100 mb-0">Complete setup and verify connection</p>
+      <p className="fw-semibold text-dark w-100 mb-0" style={{marginTop: '8px'}}>Complete setup and verify connection</p>
       <p className="text-secondary w-100">{"Then you can select Paychex or TJH Payroll from the screen to link up the integration.\n\nOnce setup is complete, you will be re-routed to your CalSavers dashboard. You should see a \"Connected\" badge."}</p>
     </div>
   );
@@ -125,7 +125,7 @@ function NumberContainer2() {
 function TextContainer2() {
   return (
     <div className="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-      <p className="fw-semibold text-dark w-100 mb-0">Log in and add a bank or select a previously added account</p>
+      <p className="fw-semibold text-dark w-100 mb-0" style={{marginTop: '8px'}}>Log in and add a bank or select a previously added account</p>
       <p className="text-secondary w-100">Once logged in, go to "Banking Information" and add a bank account that your company will use to send employee contributions.</p>
     </div>
   );

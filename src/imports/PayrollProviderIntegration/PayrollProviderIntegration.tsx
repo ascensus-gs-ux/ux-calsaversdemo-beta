@@ -577,8 +577,8 @@ function Tabs({
             <Spacer />
           </div>
           <button
-            className={`d-flex align-items-center position-relative rounded-top flex-fill`}
-            style={{minHeight: '72px', backgroundColor: isTab2Active ? 'white' : '#f2f0e9', display: 'none'}}
+            className={`d-none align-items-center position-relative rounded-top flex-fill`}
+            style={{minHeight: '72px', backgroundColor: isTab2Active ? 'white' : '#f2f0e9'}}
             data-name="TabSetup"
             data-tab-active={isTab2Active}
           >
