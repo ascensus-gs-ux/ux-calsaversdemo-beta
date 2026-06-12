@@ -177,7 +177,7 @@ function Step1() {
         <Text3 />
       </div>
       <div className="col-lg-6">
-        <img src="https://cdn.unite529.com/jcdn/files/CAER/images/initiate-payroll-integrations.png" alt="" className="img-fluid" />
+        <img src="https://cdn.unite529.com/jcdn/files/CAER/images/initiate-payroll-integrations.png" alt="" className="img-fluid" style={{border: '1px solid rgba(0, 89, 79, 0.5)'}} />
       </div>
     </div>
   );
@@ -249,7 +249,7 @@ function Step2() {
         <Text4 />
       </div>
       <div className="col-lg-6">
-        <img src="https://cdn.unite529.com/jcdn/files/CAER/images/add-bank-account-preview.png" alt="" className="img-fluid" />
+        <img src="https://cdn.unite529.com/jcdn/files/CAER/images/add-bank-account-preview.png" alt="" className="img-fluid" style={{border: '1px solid rgba(0, 89, 79, 0.5)'}} />
       </div>
     </div>
   );
@@ -318,7 +318,7 @@ function Step3() {
         <Text5 />
       </div>
       <div className="col-lg-6">
-        <img src="https://cdn.unite529.com/jcdn/files/CAER/images/Payroll-Integrations-Inc-registration.png" alt="" className="img-fluid" />
+        <img src="https://cdn.unite529.com/jcdn/files/CAER/images/Payroll-Integrations-Inc-registration.png" alt="" className="img-fluid" style={{border: '1px solid rgba(0, 89, 79, 0.5)'}} />
       </div>
     </div>
   );
@@ -386,7 +386,7 @@ function Step4() {
         <Text6 />
       </div>
       <div className="col-lg-6">
-        <img src="https://cdn.unite529.com/jcdn/files/CAER/images/verify-connection-preview.png" alt="" className="img-fluid" />
+        <img src="https://cdn.unite529.com/jcdn/files/CAER/images/verify-connection-preview.png" alt="" className="img-fluid" style={{border: '1px solid rgba(0, 89, 79, 0.5)'}} />
       </div>
     </div>
   );
