@@ -127,7 +127,7 @@ h1, h2, h3, h4 { color: #212529 !important; }
 
 /* Tab button border overlays */
 .tab-border-overlay { border: 1px solid rgba(0, 89, 79, 0.5) !important; }
-.tab-border-overlay.tab-active { border-bottom: none !important; }
+.tab-border-overlay.tab-active { border-bottom: 2px solid white !important; }
 
 /* Mobile tab dropdown select */
 .mobile-tab-select { border: 2px solid #00594f !important; }
@@ -147,26 +147,49 @@ h1, h2, h3, h4 { color: #212529 !important; }
   box-shadow: none !important;
 }
 
-/* Active tab — white cover at bottom to seamlessly connect with tab panel */
+/* Active tab — overlap body by 1px so white background covers the top border seam */
+[data-name="TabSetup"][data-tab-active="true"] {
+  margin-bottom: -1px;
+  position: relative;
+  z-index: 3;
+}
 [data-name="TabSetup"][data-tab-active="true"]::after {
   content: '';
   position: absolute;
   bottom: -1px;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 3px;
   background-color: white;
-  z-index: 3;
+  z-index: 4;
 }
 
-/* QuickViewToggle — vertically center label + toggle button */
+/* QuickViewToggle — vertically center label + toggle, no wrapping */
 [data-name="QuickViewToggle"] {
   align-items: center !important;
+  flex-wrap: nowrap !important;
 }
 
 /* Remove extra bottom margin from italic text above toggle row */
 div:has(> [data-name="QuickViewToggle"]) > p {
-  margin-bottom: 2px !important;
+  margin-bottom: 4px !important;
+}
+
+/* Toggle label — prevent wrapping and collapse all margins */
+[data-name="Toggle Switch"] > p {
+  white-space: nowrap !important;
+  margin: 0 !important;
+}
+
+/* Tab Text — remove bottom margin on both paragraphs */
+[data-name="Tab Text"] p {
+  margin-bottom: 0 !important;
+}
+
+/* Step cards — vertically center number badge with text content */
+[data-name^="Step "] > div > div,
+[data-name="Step"] {
+  align-items: center !important;
 }
 
 /* Fee table column headers — 14px only */

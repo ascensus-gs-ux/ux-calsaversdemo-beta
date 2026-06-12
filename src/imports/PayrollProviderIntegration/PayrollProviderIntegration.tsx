@@ -374,9 +374,9 @@ function TabText({
   const bottomLabel = integrationMode === "180" ? "Overview" : "Overview and Pricing";
 
   return (
-    <div className="d-flex flex-column fw-semibold align-items-start position-relative flex-shrink-0 text-nowrap" data-name="Tab Text">
-      <p className="flex-shrink-0 text-uppercase" style={{color: '#80641f'}}>{topLabel}</p>
-      <p className={`flex-shrink-0 tab-main-text ${isActive ? 'text-dark' : ''}`} style={isActive ? {} : {color: '#00594f'}}>{bottomLabel}</p>
+    <div className="d-flex flex-column fw-semibold justify-content-center h-100 align-items-start position-relative flex-shrink-0 text-nowrap" data-name="Tab Text">
+      <p className="flex-shrink-0 text-uppercase mb-0" style={{color: '#80641f'}}>{topLabel}</p>
+      <p className={`flex-shrink-0 tab-main-text mb-0 ${isActive ? 'text-dark' : ''}`} style={isActive ? {} : {color: '#00594f'}}>{bottomLabel}</p>
     </div>
   );
 }
@@ -389,7 +389,7 @@ function TextIcon2({
   integrationMode?: "360" | "180";
 }) {
   return (
-    <div className="d-flex flex-fill gap-2 align-items-center px-3 position-relative" data-name="Text + Icon">
+    <div className="d-flex flex-fill gap-2 align-items-center h-100 px-3 position-relative" data-name="Text + Icon">
       <div className="overflow-hidden position-relative flex-shrink-0" style={{width: '32px', height: '32px'}} data-name="Type=Info">
         <div className="position-absolute" style={{inset: '-0.03% 0.02% 0.02% 0.01%'}} data-name="Vector">
           <svg className="position-absolute d-block" style={{inset: 0, width: '100%', height: '100%'}} fill="none" preserveAspectRatio="none" viewBox="0 0 31.9915 32.0058">
@@ -416,8 +416,8 @@ function TabText1({
   const tabLabel = integrationMode === "180" ? "How to integrate your payroll" : "Payroll Integrations Inc.";
 
   return (
-    <div className="d-flex flex-column fw-semibold align-items-start position-relative flex-shrink-0 text-start" data-name="Tab Text">
-      <p className="flex-shrink-0 text-uppercase text-nowrap" style={{color: '#80641f'}}>Setup Guide</p>
+    <div className="d-flex flex-column fw-semibold justify-content-center h-100 align-items-start position-relative flex-shrink-0 text-start" data-name="Tab Text">
+      <p className="flex-shrink-0 text-uppercase text-nowrap mb-0" style={{color: '#80641f'}}>Setup Guide</p>
       <div className={`flex-shrink-0 tab-main-text ${isActive ? 'text-dark' : ''}`} style={isActive ? {} : {color: '#00594f'}}>{tabLabel}</div>
     </div>
   );
@@ -431,7 +431,7 @@ function TextIcon3({
   isActive?: boolean;
 }) {
   return (
-    <div className="d-flex flex-fill gap-2 align-items-center px-3 position-relative" data-name="Text + Icon">
+    <div className="d-flex flex-fill gap-2 align-items-center h-100 px-3 position-relative" data-name="Text + Icon">
       <div className="overflow-hidden position-relative flex-shrink-0" style={{width: '32px', height: '32px'}} data-name="Type=Setup">
         <div className="position-absolute" style={{inset: '-0.01% -0.03% -0.03% -0.03%'}} data-name="Vector">
           <svg className="position-absolute d-block" style={{inset: 0, width: '100%', height: '100%'}} fill="none" preserveAspectRatio="none" viewBox="0 0 32.0215 32.0131">
@@ -450,16 +450,16 @@ function Spacer1() {
 
 function TabText2({ isActive = false }: { isActive?: boolean }) {
   return (
-    <div className="d-flex flex-column fw-semibold align-items-start position-relative flex-shrink-0 text-start text-nowrap" data-name="Tab Text">
-      <p className="flex-shrink-0 text-uppercase" style={{color: '#80641f'}}>Setup Guide</p>
-      <p className={`flex-shrink-0 tab-main-text ${isActive ? 'text-dark' : ''}`} style={isActive ? {} : {color: '#00594f'}}>Paychex or TJH Payroll</p>
+    <div className="d-flex flex-column fw-semibold justify-content-center h-100 align-items-start position-relative flex-shrink-0 text-start text-nowrap" data-name="Tab Text">
+      <p className="flex-shrink-0 text-uppercase mb-0" style={{color: '#80641f'}}>Setup Guide</p>
+      <p className={`flex-shrink-0 tab-main-text mb-0 ${isActive ? 'text-dark' : ''}`} style={isActive ? {} : {color: '#00594f'}}>Paychex or TJH Payroll</p>
     </div>
   );
 }
 
 function TextIcon4({ isActive = false }: { isActive?: boolean }) {
   return (
-    <div className="d-flex flex-fill gap-2 align-items-center px-3 position-relative" data-name="Text + Icon">
+    <div className="d-flex flex-fill gap-2 align-items-center h-100 px-3 position-relative" data-name="Text + Icon">
       <div className="overflow-hidden position-relative flex-shrink-0" style={{width: '32px', height: '32px'}} data-name="Type=Setup">
         <div className="position-absolute" style={{inset: '-0.01% -0.03% -0.03% -0.03%'}} data-name="Vector">
           <svg className="position-absolute d-block" style={{inset: 0, width: '100%', height: '100%'}} fill="none" preserveAspectRatio="none" viewBox="0 0 32.0215 32.0131">
@@ -732,19 +732,17 @@ function TextField({
 }) {
   return (
     <div className="position-relative rounded flex-shrink-0 w-100" style={{height: '48px'}} data-name="text-field">
-      <div className="d-flex flex-row align-items-center overflow-hidden rounded w-100 h-100">
-        <div className="d-flex gap-3 align-items-center px-3 position-relative w-100 h-100">
-          <input
-            type="text"
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            placeholder="Search participating payroll providers"
-            className="flex-fill bg-transparent border-0 shadow-none"
-            style={{outline: 'none', minWidth: 0}}
-          />
-          <div className="overflow-hidden position-relative flex-shrink-0" style={{width: '20px', height: '20px'}} data-name="icon">
-            <Group1 />
-          </div>
+      <div className="d-flex align-items-center h-100 px-3 gap-3">
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder="Search participating payroll providers"
+          className="flex-fill bg-transparent border-0 shadow-none"
+          style={{outline: 'none', minWidth: 0, height: '100%'}}
+        />
+        <div className="overflow-hidden position-relative flex-shrink-0" style={{width: '20px', height: '20px'}} data-name="icon">
+          <Group1 />
         </div>
       </div>
       <div
