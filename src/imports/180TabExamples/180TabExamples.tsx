@@ -83,8 +83,8 @@ function Frame() {
 
 function StepText() {
   return (
-    <div className="d-flex gap-2 align-items-start flex-shrink-0 w-100" data-name="StepText">
-      <h3 className="flex-fill mb-0">Setup guide to integrate payroll with a 180° integration</h3>
+    <div className="d-flex flex-column flex-md-row gap-3 align-items-start align-items-md-center justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
+      <h3 className="mb-0">Setup guide to integrate payroll with a 180° integration</h3>
       <Frame />
     </div>
   );
@@ -541,8 +541,8 @@ function Frame1() {
 
 function StepText1() {
   return (
-    <div className="d-flex gap-2 align-items-start flex-shrink-0 w-100" data-name="StepText">
-      <h3 className="flex-fill mb-0">Setup guide to integrate payroll with a 180° integration</h3>
+    <div className="d-flex flex-column flex-md-row gap-3 align-items-start align-items-md-center justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
+      <h3 className="mb-0">Setup guide to integrate payroll with a 180° integration</h3>
       <Frame1 />
     </div>
   );

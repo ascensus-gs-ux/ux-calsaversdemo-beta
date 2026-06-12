@@ -314,7 +314,7 @@ function Toggle({
         <div className="overflow-hidden rounded w-100 h-100">
           <div className="d-flex gap-3 align-items-start p-4 position-relative w-100 h-100" data-integration-type="360">
             <div className="bg-white d-flex align-items-center justify-content-center position-relative rounded-circle flex-shrink-0" style={{width: '24px', height: '24px'}} data-name="selection">
-              <div aria-hidden="true" className="position-absolute border rounded-circle pointer-events-none" style={{inset: 0, borderColor: '#666'}} />
+              <div aria-hidden="true" className="position-absolute border rounded-circle pointer-events-none" style={{inset: 0, borderColor: '#1a1a1a'}} />
               {is360Selected && (
                 <div className="position-relative rounded flex-shrink-0" style={{backgroundColor: '#1a1a1a', width: '14px', height: '14px'}} data-name="radiocircle" />
               )}
@@ -339,7 +339,7 @@ function Toggle({
         />
         <div className="d-flex gap-3 align-items-start p-4 position-relative w-100 h-100" data-integration-type="180">
           <div className="bg-white d-flex align-items-center justify-content-center position-relative rounded-circle flex-shrink-0" style={{width: '24px', height: '24px'}} data-name="selection">
-            <div aria-hidden="true" className="position-absolute border rounded-circle pointer-events-none" style={{inset: 0, borderColor: '#666'}} />
+            <div aria-hidden="true" className="position-absolute border rounded-circle pointer-events-none" style={{inset: 0, borderColor: '#1a1a1a'}} />
             {is180Selected && (
               <div className="position-relative rounded flex-shrink-0" style={{backgroundColor: '#1a1a1a', width: '14px', height: '14px'}} data-name="radiocircle" />
             )}
@@ -374,7 +374,7 @@ function TabText({
   const bottomLabel = integrationMode === "180" ? "Overview" : "Overview and Pricing";
 
   return (
-    <div className="d-flex flex-column fw-semibold h-100 align-items-start justify-content-center position-relative flex-shrink-0 text-nowrap" data-name="Tab Text">
+    <div className="d-flex flex-column fw-semibold align-items-start position-relative flex-shrink-0 text-nowrap" data-name="Tab Text">
       <p className="flex-shrink-0 text-uppercase" style={{color: '#80641f'}}>{topLabel}</p>
       <p className={`flex-shrink-0 tab-main-text ${isActive ? 'text-dark' : ''}`} style={isActive ? {} : {color: '#00594f'}}>{bottomLabel}</p>
     </div>
@@ -416,7 +416,7 @@ function TabText1({
   const tabLabel = integrationMode === "180" ? "How to integrate your payroll" : "Payroll Integrations Inc.";
 
   return (
-    <div className="d-flex flex-column fw-semibold h-100 align-items-start justify-content-center position-relative flex-shrink-0 text-start" data-name="Tab Text">
+    <div className="d-flex flex-column fw-semibold align-items-start position-relative flex-shrink-0 text-start" data-name="Tab Text">
       <p className="flex-shrink-0 text-uppercase text-nowrap" style={{color: '#80641f'}}>Setup Guide</p>
       <div className={`flex-shrink-0 tab-main-text ${isActive ? 'text-dark' : ''}`} style={isActive ? {} : {color: '#00594f'}}>{tabLabel}</div>
     </div>
@@ -562,9 +562,9 @@ function Tabs({
     return (
       <>
         <MobileDropdown integrationMode={integrationMode} activeTab={activeTab} active180Tab={active180Tab} />
-        <div className="d-none d-md-flex flex-nowrap gap-2 align-items-start position-relative flex-shrink-0 w-100" style={{zIndex: 2}} data-name="Tabs">
+        <div className="d-none d-md-flex flex-nowrap gap-2 align-items-stretch position-relative flex-shrink-0 w-100" style={{zIndex: 2}} data-name="Tabs">
           <div
-            className={`d-flex flex-column align-items-start justify-content-center position-relative rounded-top flex-fill px-3`}
+            className={`d-flex align-items-center position-relative rounded-top flex-fill`}
             style={{minHeight: '72px', backgroundColor: isTab1Active ? 'white' : '#f2f0e9'}}
             data-name="TabSetup"
             data-tab-active={isTab1Active}
@@ -579,7 +579,7 @@ function Tabs({
           </div>
           {/* TODO: Remove 'd-none' below to re-enable the Setup Guide tab when content is ready */}
           <button
-            className={`d-none flex-column align-items-start justify-content-center position-relative rounded-top flex-fill px-3`}
+            className={`d-none align-items-center position-relative rounded-top flex-fill`}
             style={{minHeight: '72px', backgroundColor: isTab2Active ? 'white' : '#f2f0e9'}}
             data-name="TabSetup"
             data-tab-active={isTab2Active}
@@ -604,9 +604,9 @@ function Tabs({
   return (
     <>
       <MobileDropdown integrationMode={integrationMode} activeTab={activeTab} active180Tab={active180Tab} />
-      <div className="d-none d-md-flex flex-nowrap gap-2 align-items-start position-relative flex-shrink-0 w-100" style={{zIndex: 2}} data-name="Tabs">
+      <div className="d-none d-md-flex flex-nowrap gap-2 align-items-stretch position-relative flex-shrink-0 w-100" style={{zIndex: 2}} data-name="Tabs">
         <div
-          className="d-flex flex-column align-items-start justify-content-center position-relative rounded-top flex-fill px-3"
+          className="d-flex align-items-center position-relative rounded-top flex-fill"
           style={{minHeight: '72px', backgroundColor: isTab1Active ? 'white' : '#f2f0e9'}}
           data-name="TabSetup"
           data-tab-active={isTab1Active}
@@ -620,7 +620,7 @@ function Tabs({
           <Spacer />
         </div>
         <button
-          className="d-flex flex-column align-items-start justify-content-center position-relative rounded-top flex-fill px-3"
+          className="d-flex align-items-center position-relative rounded-top flex-fill"
           style={{minHeight: '72px', backgroundColor: isTab2Active ? 'white' : '#f2f0e9'}}
           data-name="TabSetup"
           data-tab-active={isTab2Active}
@@ -634,7 +634,7 @@ function Tabs({
           <Spacer1 />
         </button>
         <button
-          className="d-flex flex-column align-items-start justify-content-center position-relative rounded-top flex-fill px-3"
+          className="d-flex align-items-center position-relative rounded-top flex-fill"
           style={{minHeight: '72px', backgroundColor: isTab3Active ? 'white' : '#f2f0e9'}}
           data-name="TabSetup"
           data-tab-active={isTab3Active}
@@ -741,8 +741,7 @@ function TextField({
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder="Search participating payroll providers"
-            className="flex-fill bg-transparent border-0 outline-0"
-            style={{minWidth: 0}}
+            className="form-control bg-transparent border-0 shadow-none flex-fill p-0"
           />
           <div className="overflow-hidden position-relative flex-shrink-0" style={{width: '20px', height: '20px'}} data-name="icon">
             <Group1 />
@@ -1329,7 +1328,7 @@ function InnerContainer4() {
 function Section1() {
   return (
     <div className="bg-white d-flex flex-column align-items-center justify-content-center flex-shrink-0 w-100 py-5 px-4" data-name="Section">
-      <div className="row g-4 align-items-center w-100">
+      <div className="row g-4 align-items-center w-100 mx-0" style={{maxWidth: '1200px'}}>
         <div className="col-md-8 d-flex flex-column gap-3" data-name="RightContainer">
           <VideoFrame />
           <VideoDetails />
@@ -1587,9 +1586,13 @@ function Cards() {
 
 function InnerContainer5() {
   return (
-    <div className="d-flex flex-column gap-4 w-100" data-name="InnerContainer">
-      <Title />
-      <Cards />
+    <div className="row g-4 align-items-center w-100 m-0" data-name="InnerContainer">
+      <div className="col-12 col-md-4">
+        <Title />
+      </div>
+      <div className="col-12 col-md-8">
+        <Cards />
+      </div>
     </div>
   );
 }
