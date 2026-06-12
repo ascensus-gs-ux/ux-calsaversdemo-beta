@@ -578,7 +578,7 @@ function Tabs({
           </div>
           <button
             className={`d-flex align-items-center position-relative rounded-top flex-fill`}
-            style={{minHeight: '72px', backgroundColor: isTab2Active ? 'white' : '#f2f0e9'}}
+            style={{minHeight: '72px', backgroundColor: isTab2Active ? 'white' : '#f2f0e9', display: 'none'}}
             data-name="TabSetup"
             data-tab-active={isTab2Active}
           >

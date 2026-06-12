@@ -31,7 +31,7 @@ export function Tab180SetupToggleOnBodyContent() {
           <div className="bg-white w-100 rounded" data-name="Step 1">
             <div className="overflow-hidden rounded w-100 h-100">
               <div className="d-flex gap-3 align-items-start p-4 w-100 h-100">
-                <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px'}} data-name="Number Container">
+                <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px', marginTop: '3px'}} data-name="Number Container">
                   <p className="fw-medium text-center text-white w-100 mb-0">1</p>
                 </div>
                 <div className="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Container">
@@ -51,7 +51,7 @@ export function Tab180SetupToggleOnBodyContent() {
           <div className="bg-white w-100 rounded" data-name="Step 2">
             <div className="overflow-hidden rounded w-100 h-100">
               <div className="d-flex gap-3 align-items-start p-4 w-100 h-100">
-                <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px'}} data-name="Number Container">
+                <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px', marginTop: '3px'}} data-name="Number Container">
                   <p className="fw-medium text-center text-white w-100 mb-0">2</p>
                 </div>
                 <div className="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
@@ -72,7 +72,7 @@ export function Tab180SetupToggleOnBodyContent() {
           <div className="bg-white w-100 rounded" data-name="Step 3">
             <div className="overflow-hidden rounded w-100 h-100">
               <div className="d-flex gap-3 align-items-start p-4 w-100 h-100">
-                <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px'}} data-name="Number Container">
+                <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px', marginTop: '3px'}} data-name="Number Container">
                   <p className="fw-medium text-center text-white w-100 mb-0">3</p>
                 </div>
                 <div className="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
@@ -87,7 +87,7 @@ export function Tab180SetupToggleOnBodyContent() {
           <div className="bg-white w-100 rounded" data-name="Step 4">
             <div className="overflow-hidden rounded w-100 h-100">
               <div className="d-flex gap-3 align-items-start p-4 w-100 h-100">
-                <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px'}} data-name="Number Container">
+                <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px', marginTop: '3px'}} data-name="Number Container">
                   <p className="fw-medium text-center text-white w-100 mb-0">4</p>
                 </div>
                 <div className="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">

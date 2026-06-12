@@ -186,12 +186,6 @@ div:has(> [data-name="QuickViewToggle"]) > p {
   margin-bottom: 0 !important;
 }
 
-/* Step cards — vertically center number badge with text content */
-[data-name^="Step "] > div > div,
-[data-name="Step"] {
-  align-items: center !important;
-}
-
 /* Fee table column headers — 14px only */
 [data-name="Column Header"] p {
   font-size: 14px !important;

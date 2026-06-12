@@ -46,7 +46,7 @@ function StepText() {
 
 function NumberContainer() {
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px'}} data-name="Number Container">
+    <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px', marginTop: '3px'}} data-name="Number Container">
       <p className="fw-medium text-center text-white w-100 mb-0">1</p>
     </div>
   );
@@ -76,7 +76,7 @@ function Step1() {
 
 function NumberContainer1() {
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px'}} data-name="Number Container">
+    <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px', marginTop: '3px'}} data-name="Number Container">
       <p className="fw-medium text-center text-white w-100 mb-0">2</p>
     </div>
   );
@@ -126,7 +126,7 @@ function Row() {
 
 function NumberContainer2() {
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px'}} data-name="Number Container">
+    <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px', marginTop: '3px'}} data-name="Number Container">
       <p className="fw-medium text-center text-white w-100 mb-0">3</p>
     </div>
   );
@@ -156,7 +156,7 @@ function Step2() {
 
 function NumberContainer3() {
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px'}} data-name="Number Container">
+    <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px', marginTop: '3px'}} data-name="Number Container">
       <p className="fw-medium text-center text-white w-100 mb-0">4</p>
     </div>
   );
@@ -195,7 +195,7 @@ function Row1() {
 
 function NumberContainer4() {
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px'}} data-name="Number Container">
+    <div className="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style={{backgroundColor: '#80641f', width: '32px', height: '32px', marginTop: '3px'}} data-name="Number Container">
       <p className="fw-medium text-center text-white w-100 mb-0">5</p>
     </div>
   );

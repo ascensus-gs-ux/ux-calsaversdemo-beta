@@ -68,10 +68,12 @@ function TextContainer() {
 function AccordionExpanded() {
   return (
     <div className="bg-white rounded w-100 position-relative" data-name="Accordion/expanded">
-      <div className="d-flex flex-row align-items-center overflow-hidden rounded w-100 h-100">
-        <div className="d-flex gap-3 align-items-center p-4 w-100 h-100">
-          <NumberContainer />
-          <TextContainer />
+      <div className="overflow-hidden rounded w-100 h-100">
+        <div className="d-flex align-items-center justify-content-between p-4 w-100">
+          <div className="d-flex align-items-center gap-3">
+            <NumberContainer />
+            <TextContainer />
+          </div>
           <div className="overflow-hidden flex-shrink-0 position-relative" style={{width: '24px', height: '24px'}} data-name="chevron-up">
             <div className="position-absolute" style={{inset: '28.12% 9.37%'}} data-name="Vector">
               <svg className="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 19.5019 10.5023">
@@ -81,7 +83,7 @@ function AccordionExpanded() {
           </div>
         </div>
       </div>
-      <div aria-hidden="true" className="position-absolute border border-1 rounded pointer-events-none" style={{inset: 0, borderColor: '#00594f'}} />
+      <div aria-hidden="true" className="position-absolute rounded pointer-events-none" style={{inset: 0, border: '2px solid #00594f'}} />
     </div>
   );
 }
@@ -140,10 +142,12 @@ function TextContainer2() {
 function AccordionExpanded2() {
   return (
     <div className="bg-white rounded w-100 position-relative" data-name="Accordion/expanded">
-      <div className="d-flex flex-row align-items-center overflow-hidden rounded w-100 h-100">
-        <div className="d-flex gap-3 align-items-center p-4 w-100 h-100">
-          <NumberContainer2 />
-          <TextContainer2 />
+      <div className="overflow-hidden rounded w-100 h-100">
+        <div className="d-flex align-items-center justify-content-between p-4 w-100">
+          <div className="d-flex align-items-center gap-3">
+            <NumberContainer2 />
+            <TextContainer2 />
+          </div>
           <div className="overflow-hidden flex-shrink-0 position-relative" style={{width: '24px', height: '24px'}} data-name="chevron-up">
             <div className="position-absolute" style={{inset: '28.12% 9.37%'}} data-name="Vector">
               <svg className="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 19.5019 10.5023">
@@ -153,7 +157,7 @@ function AccordionExpanded2() {
           </div>
         </div>
       </div>
-      <div aria-hidden="true" className="position-absolute border border-1 rounded pointer-events-none" style={{inset: 0, borderColor: '#00594f'}} />
+      <div aria-hidden="true" className="position-absolute rounded pointer-events-none" style={{inset: 0, border: '2px solid #00594f'}} />
     </div>
   );
 }
@@ -207,10 +211,12 @@ function TextContainer3() {
 function AccordionExpanded3() {
   return (
     <div className="bg-white rounded w-100 position-relative" data-name="Accordion/expanded">
-      <div className="d-flex flex-row align-items-center overflow-hidden rounded w-100 h-100">
-        <div className="d-flex gap-3 align-items-center p-4 w-100 h-100">
-          <NumberContainer3 />
-          <TextContainer3 />
+      <div className="overflow-hidden rounded w-100 h-100">
+        <div className="d-flex align-items-center justify-content-between p-4 w-100">
+          <div className="d-flex align-items-center gap-3">
+            <NumberContainer3 />
+            <TextContainer3 />
+          </div>
           <div className="overflow-hidden flex-shrink-0 position-relative" style={{width: '24px', height: '24px'}} data-name="chevron-up">
             <div className="position-absolute" style={{inset: '28.12% 9.37%'}} data-name="Vector">
               <svg className="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 19.5019 10.5023">
@@ -220,7 +226,7 @@ function AccordionExpanded3() {
           </div>
         </div>
       </div>
-      <div aria-hidden="true" className="position-absolute border border-1 rounded pointer-events-none" style={{inset: 0, borderColor: '#00594f'}} />
+      <div aria-hidden="true" className="position-absolute rounded pointer-events-none" style={{inset: 0, border: '2px solid #00594f'}} />
     </div>
   );
 }
@@ -270,10 +276,12 @@ function TextContainer4() {
 function AccordionExpanded4() {
   return (
     <div className="bg-white rounded w-100 position-relative" data-name="Accordion/expanded">
-      <div className="d-flex flex-row align-items-center overflow-hidden rounded w-100 h-100">
-        <div className="d-flex gap-3 align-items-center p-4 w-100 h-100">
-          <NumberContainer4 />
-          <TextContainer4 />
+      <div className="overflow-hidden rounded w-100 h-100">
+        <div className="d-flex align-items-center justify-content-between p-4 w-100">
+          <div className="d-flex align-items-center gap-3">
+            <NumberContainer4 />
+            <TextContainer4 />
+          </div>
           <div className="overflow-hidden flex-shrink-0 position-relative" style={{width: '24px', height: '24px'}} data-name="chevron-up">
             <div className="position-absolute" style={{inset: '28.12% 9.37%'}} data-name="Vector">
               <svg className="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 19.5019 10.5023">
@@ -283,7 +291,7 @@ function AccordionExpanded4() {
           </div>
         </div>
       </div>
-      <div aria-hidden="true" className="position-absolute border border-1 rounded pointer-events-none" style={{inset: 0, borderColor: '#00594f'}} />
+      <div aria-hidden="true" className="position-absolute rounded pointer-events-none" style={{inset: 0, border: '2px solid #00594f'}} />
     </div>
   );
 }
