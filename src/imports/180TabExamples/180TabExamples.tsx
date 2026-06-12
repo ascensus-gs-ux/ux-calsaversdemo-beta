@@ -1,4 +1,5 @@
 import svgPaths from "./svg-eovqmbbazp";
+import linear180Image from "../../assets/180-linear-image.svg";
 
 function Text2() {
   return (
@@ -38,8 +39,16 @@ function Frame2() {
 
 function InnerContainer() {
   return (
-    <div className="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="InnerContainer">
-      <Frame2 />
+    <div className="d-flex flex-column flex-lg-row gap-4 align-items-start flex-shrink-0 w-100" data-name="InnerContainer">
+      <div style={{flex: '1 1 0', minWidth: 0}}>
+        <Frame2 />
+      </div>
+      <img
+        src={linear180Image}
+        alt="180° payroll file upload flow diagram"
+        className="img-fluid flex-shrink-0 align-self-center align-self-lg-start"
+        style={{maxWidth: '348px', width: '100%'}}
+      />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import svgPaths from "./svg-28wx2odd2y";
+import cycle360Image from "../../assets/360-cycle-image.svg";
 
 const PAYROLL_PROVIDERS = [
   "ADP RUN",
@@ -739,7 +740,7 @@ function TextField({
           onChange={(e) => onChange(e.target.value)}
           placeholder="Search participating payroll providers"
           className="flex-fill bg-transparent border-0 shadow-none"
-          style={{outline: 'none', minWidth: 0, height: '100%'}}
+          style={{outline: 'none', minWidth: 0}}
         />
         <div className="overflow-hidden position-relative flex-shrink-0" style={{width: '20px', height: '20px'}} data-name="icon">
           <Group1 />
@@ -1147,8 +1148,16 @@ function Text4() {
 
 function Step() {
   return (
-    <div className="d-flex align-items-start position-relative flex-shrink-0" data-name="Step">
-      <Text4 />
+    <div className="d-flex align-items-start position-relative flex-shrink-0 w-100" data-name="Step">
+      <div className="d-flex flex-column flex-lg-row gap-4 align-items-start w-100">
+        <Text4 />
+        <img
+          src={cycle360Image}
+          alt="360° automated payroll sync cycle diagram"
+          className="img-fluid flex-shrink-0 align-self-center align-self-lg-start"
+          style={{maxWidth: '306px', width: '100%'}}
+        />
+      </div>
     </div>
   );
 }
