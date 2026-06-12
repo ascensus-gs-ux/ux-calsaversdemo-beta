@@ -136,6 +136,30 @@ h1, h2, h3, h4 { color: #212529 !important; }
 .radio-border-overlay { border: 1px solid rgba(0, 89, 79, 0.25) !important; }
 .radio-border-overlay.radio-selected { border: 2px solid #00594f !important; }
 
+/* Toggle switch — white knob, neutral track */
+[data-name="Background"] {
+  background-color: #e9ecef !important;
+  border-color: #ced4da !important;
+}
+[data-name="QuickViewToggle"] circle {
+  fill: white !important;
+  stroke: #adb5bd !important;
+}
+[data-name="Toggle Switch"] button:focus-visible {
+  outline: 2px solid rgba(0, 89, 79, 0.3) !important;
+  outline-offset: 2px;
+  box-shadow: none !important;
+}
+[data-name="Toggle Switch"] button:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fee table column headers — 14px only */
+[data-name="Column Header"] p {
+  font-size: 14px !important;
+}
+
 /* Accordion, fees table, and support card borders */
 .accordion-border-overlay { border: 1px solid #00594f !important; }
 .fees-table-border { border: 1px solid rgba(0, 89, 79, 0.5) !important; }
@@ -192,7 +216,7 @@ h1, h2, h3, h4 { color: #212529 !important; }
 }
 
 [data-name="IntegrationRadios"]:hover [data-name="selection"] > div[aria-hidden="true"] {
-  border-color: #1A1A1A !important;
+  border: 2px solid #1A1A1A !important;
 }
 
 /* --- Cards (SupportCard, info Card) --- */
