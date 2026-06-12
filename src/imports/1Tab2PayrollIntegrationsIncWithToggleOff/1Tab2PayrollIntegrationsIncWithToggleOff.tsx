@@ -222,8 +222,13 @@ function Text3() {
 
 function Step1() {
   return (
-    <div className="d-flex gap-4 align-items-start flex-shrink-0 w-100" data-name="Step">
-      <Text3 />
+    <div className="row g-4 align-items-start w-100">
+      <div className="col-lg-6">
+        <Text3 />
+      </div>
+      <div className="col-lg-6">
+        <img src="https://cdn.unite529.com/jcdn/files/CAER/images/initiate-payroll-integrations.png" alt="" className="img-fluid" />
+      </div>
     </div>
   );
 }
@@ -289,8 +294,13 @@ function Text4() {
 
 function Step2() {
   return (
-    <div className="d-flex gap-4 align-items-start flex-shrink-0 w-100" data-name="Step">
-      <Text4 />
+    <div className="row g-4 align-items-start w-100">
+      <div className="col-lg-6">
+        <Text4 />
+      </div>
+      <div className="col-lg-6">
+        <img src="https://cdn.unite529.com/jcdn/files/CAER/images/add-bank-account-preview.png" alt="" className="img-fluid" />
+      </div>
     </div>
   );
 }
@@ -353,8 +363,13 @@ function Text5() {
 
 function Step3() {
   return (
-    <div className="d-flex gap-4 align-items-start flex-shrink-0 w-100" data-name="Step">
-      <Text5 />
+    <div className="row g-4 align-items-start w-100">
+      <div className="col-lg-6">
+        <Text5 />
+      </div>
+      <div className="col-lg-6">
+        <img src="https://cdn.unite529.com/jcdn/files/CAER/images/Payroll-Integrations-Inc-registration.png" alt="" className="img-fluid" />
+      </div>
     </div>
   );
 }
@@ -416,8 +431,13 @@ function Text6() {
 
 function Step4() {
   return (
-    <div className="d-flex gap-4 align-items-start flex-shrink-0 w-100" data-name="Step">
-      <Text6 />
+    <div className="row g-4 align-items-start w-100">
+      <div className="col-lg-6">
+        <Text6 />
+      </div>
+      <div className="col-lg-6">
+        <img src="https://cdn.unite529.com/jcdn/files/CAER/images/verify-connection-preview.png" alt="" className="img-fluid" />
+      </div>
     </div>
   );
 }

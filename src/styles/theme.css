@@ -389,7 +389,7 @@ div:has(> [data-name="QuickViewToggle"]) > p {
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
   }
-  
+
   input::placholder {
   position: relative;
   top: 2px;
