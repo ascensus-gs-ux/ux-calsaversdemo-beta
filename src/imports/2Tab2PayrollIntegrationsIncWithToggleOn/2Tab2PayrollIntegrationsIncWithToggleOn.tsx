@@ -249,9 +249,30 @@ function RegisterExerienced() {
   );
 }
 
+function VideoSection() {
+  return (
+    <div className="row g-4 align-items-center w-100">
+      <div className="col-12 col-md-6">
+        <div className="ratio ratio-16x9">
+          <iframe
+            src="https://fast.wistia.net/embed/iframe/86yl3cedux?videoFoam=true"
+            title="Setting up your Payroll Provider"
+            allow="autoplay; fullscreen"
+            allowFullScreen
+          />
+        </div>
+      </div>
+      <div className="col-12 col-md-6 d-flex align-items-center">
+        <h4 className="text-dark mb-0">Learn how to integrate your payroll using Payroll Integrations Inc.</h4>
+      </div>
+    </div>
+  );
+}
+
 function Group1() {
   return (
     <div className="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
+      <VideoSection />
       <StepText />
       <RegisterExerienced />
     </div>

@@ -740,7 +740,7 @@ function TextField({
           onChange={(e) => onChange(e.target.value)}
           placeholder="Search participating payroll providers"
           className="flex-fill bg-transparent border-0 shadow-none"
-          style={{outline: 'none', minWidth: 0}}
+          style={{outline: 'none', minWidth: 0, padding: 0}}
         />
         <div className="overflow-hidden position-relative flex-shrink-0" style={{width: '20px', height: '20px'}} data-name="icon">
           <Group1 />

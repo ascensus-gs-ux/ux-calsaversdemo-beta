@@ -88,56 +88,6 @@ function AccordionExpanded() {
   );
 }
 
-function Group2() {
-  return (
-    <div className="position-absolute" style={{inset: '6.05% 8.98%'}} data-name="Group">
-      <div className="position-absolute" style={{inset: '-3.2% -3.43%'}}>
-        <svg className="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 35.0625 37.4062">
-          <g id="Group">
-            <path d={svgPaths.p17c1c440} id="Vector" stroke="var(--stroke-0, #846926)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-            <path d="M12.8438 31.5938H22.2188" id="Vector_2" stroke="var(--stroke-0, #846926)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-            <path d="M17.5312 1.125V3.46875" id="Vector_3" stroke="var(--stroke-0, #846926)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-            <path d="M1.125 17.5312H3.46875" id="Vector_4" stroke="var(--stroke-0, #846926)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-            <path d={svgPaths.p231b1d80} id="Vector_5" stroke="var(--stroke-0, #846926)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-            <path d="M33.9375 17.5312H31.5938" id="Vector_6" stroke="var(--stroke-0, #846926)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-            <path d={svgPaths.p2917c300} id="Vector_7" stroke="var(--stroke-0, #846926)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-            <path d={svgPaths.p5a90f00} id="Vector_8" stroke="var(--stroke-0, #846926)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-            <path d={svgPaths.p264bec00} id="Vector_9" stroke="var(--stroke-0, #846926)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-            <path d={svgPaths.p1219f100} id="Vector_10" stroke="var(--stroke-0, #846926)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-          </g>
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Bulb1StreamlineStreamline() {
-  return (
-    <div className="overflow-hidden flex-shrink-0 position-relative" style={{width: '40px', height: '40px'}} data-name="Bulb-1 Streamline Streamline-3.0">
-      <Group2 />
-    </div>
-  );
-}
-
-function Tip() {
-  return (
-    <div className="rounded w-100 position-relative" style={{backgroundColor: '#f2f0e9'}} data-name="Tip">
-      <div aria-hidden="true" className="position-absolute border border-1 rounded pointer-events-none" style={{inset: 0, borderColor: '#846926'}} />
-      <div className="d-flex flex-row align-items-center justify-content-center w-100 h-100">
-        <div className="d-flex gap-4 align-items-center justify-content-center p-3 w-100 h-100">
-          <Bulb1StreamlineStreamline />
-          <div className="d-flex flex-fill flex-column justify-content-center text-dark">
-            <p className="mb-0">
-              <span className="fw-semibold">{`Tip: `}</span>
-              <span>Have your CalSavers account number ready when you contact your provider.</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function Text2() {
   return (
     <div className="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
@@ -458,7 +408,6 @@ function Accordions() {
         <div className="bg-white flex-shrink-0 w-100" data-name="Step=Step 1">
           <div className="overflow-hidden w-100 h-100">
             <div className="d-flex flex-column gap-4 align-items-start p-4 w-100 h-100">
-              <Tip />
               <Steps1 />
             </div>
           </div>
@@ -516,9 +465,30 @@ function RegisterNovice() {
   );
 }
 
+function VideoSection() {
+  return (
+    <div className="row g-4 align-items-center w-100">
+      <div className="col-12 col-md-6">
+        <div className="ratio ratio-16x9">
+          <iframe
+            src="https://fast.wistia.net/embed/iframe/86yl3cedux?videoFoam=true"
+            title="Setting up your Payroll Provider"
+            allow="autoplay; fullscreen"
+            allowFullScreen
+          />
+        </div>
+      </div>
+      <div className="col-12 col-md-6 d-flex align-items-center">
+        <h4 className="text-dark mb-0">Learn how to integrate your payroll using Payroll Integrations Inc.</h4>
+      </div>
+    </div>
+  );
+}
+
 function Group1() {
   return (
     <div className="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
+      <VideoSection />
       <StepText />
       <RegisterNovice />
     </div>
