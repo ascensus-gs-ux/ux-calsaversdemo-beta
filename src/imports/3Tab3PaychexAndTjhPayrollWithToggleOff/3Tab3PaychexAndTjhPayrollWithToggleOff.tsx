@@ -59,8 +59,8 @@ function NumberContainer1() {
 
 function TextContainer1() {
   return (
-    <div className="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-      <p className="fw-semibold w-100" style={{color: '#00594f'}}>Go to "Payroll Provider" to begin the integration process</p>
+    <div className="d-flex flex-fill align-items-center" data-name="Text Container">
+      <p className="fw-semibold w-100 mb-0" style={{color: '#00594f'}}>Go to "Payroll Provider" to begin the integration process</p>
     </div>
   );
 }
@@ -83,7 +83,7 @@ function AccordionExpanded1() {
           </div>
         </div>
       </div>
-      <div aria-hidden="true" className="position-absolute rounded pointer-events-none" style={{inset: 0, border: '2px solid #00594f'}} />
+      <div aria-hidden="true" className="position-absolute rounded pointer-events-none accordion-border-overlay" style={{inset: 0}} />
     </div>
   );
 }
@@ -128,8 +128,8 @@ function NumberContainer2() {
 
 function TextContainer2() {
   return (
-    <div className="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-      <p className="fw-semibold w-100" style={{color: '#00594f'}}>Log in and add a bank or select a previously added account</p>
+    <div className="d-flex flex-fill align-items-center" data-name="Text Container">
+      <p className="fw-semibold w-100 mb-0" style={{color: '#00594f'}}>Log in and add a bank or select a previously added account</p>
     </div>
   );
 }
@@ -152,7 +152,7 @@ function AccordionExpanded2() {
           </div>
         </div>
       </div>
-      <div aria-hidden="true" className="position-absolute rounded pointer-events-none" style={{inset: 0, border: '2px solid #00594f'}} />
+      <div aria-hidden="true" className="position-absolute rounded pointer-events-none accordion-border-overlay" style={{inset: 0}} />
     </div>
   );
 }
@@ -193,8 +193,8 @@ function NumberContainer4() {
 
 function TextContainer4() {
   return (
-    <div className="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-      <p className="fw-semibold w-100" style={{color: '#00594f'}}>Complete setup and verify connection</p>
+    <div className="d-flex flex-fill align-items-center" data-name="Text Container">
+      <p className="fw-semibold w-100 mb-0" style={{color: '#00594f'}}>Complete setup and verify connection</p>
     </div>
   );
 }
@@ -217,7 +217,7 @@ function AccordionExpanded4() {
           </div>
         </div>
       </div>
-      <div aria-hidden="true" className="position-absolute rounded pointer-events-none" style={{inset: 0, border: '2px solid #00594f'}} />
+      <div aria-hidden="true" className="position-absolute rounded pointer-events-none accordion-border-overlay" style={{inset: 0}} />
     </div>
   );
 }
