@@ -175,10 +175,30 @@ div:has(> [data-name="QuickViewToggle"]) > p {
   margin-bottom: 4px !important;
 }
 
-/* Toggle label — prevent wrapping and collapse all margins */
+/* Toggle label — prevent wrapping on wide screens; allow wrap on smaller desktops */
 [data-name="Toggle Switch"] > p {
   white-space: nowrap !important;
   margin: 0 !important;
+}
+@media (max-width: 1300px) {
+  [data-name="Toggle Switch"] > p {
+    white-space: normal !important;
+    text-align: start !important;
+  }
+}
+
+/* StepText heading — flex alongside the toggle column at desktop */
+[data-name="StepText"] > h3 {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+}
+
+/* Tab buttons — auto-width (not equal fill) at smaller desktop sizes */
+@media (min-width: 1025px) and (max-width: 1399px) {
+  [data-name="Tabs"].d-none.d-md-flex [data-name="TabSetup"] {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+  }
 }
 
 /* Tab Text — remove bottom margin on both paragraphs */
