@@ -488,9 +488,9 @@ function VideoSection() {
 function Group1() {
   return (
     <div className="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
-      <VideoSection />
       <StepText />
       <RegisterNovice />
+      <VideoSection />
     </div>
   );
 }
