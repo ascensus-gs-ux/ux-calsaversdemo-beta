@@ -287,13 +287,12 @@ export default function App() {
         white-space: break-spaces;
         width: 100%;
         flex: inherit;
-        padding: 8px 0;
+        padding: 0;
         }
 
         [data-name="Text + Icon"] {
         min-height: auto;
         width: 100%;
-        padding-inline: 0px;
         }
 
         /* Tab containers */
@@ -362,7 +361,7 @@ export default function App() {
         @media (min-width: 768px) {
           [data-name="StepText"] {
             flex-direction: row !important;
-            align-items: flex-start !important;
+            align-items: center !important;
           }
           [data-name="StepText"] > p:first-child {
             flex: 1 1 0% !important;
@@ -427,13 +426,12 @@ export default function App() {
             white-space: normal !important;
             width: 100%;
             flex: inherit;
-            padding: 8px 0;
+            padding: 0;
           }
 
            [data-name="Text + Icon"] {
             min-height: auto;
             width: 100%;
-            padding-inline: 0px;
           }
           
           /* Integration cards gap 24px */

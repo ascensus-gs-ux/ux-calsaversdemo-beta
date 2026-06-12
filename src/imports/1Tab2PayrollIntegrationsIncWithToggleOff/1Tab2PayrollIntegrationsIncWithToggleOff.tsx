@@ -28,9 +28,9 @@ function Group5() {
 
 function Frame5() {
   return (
-    <div className="d-flex flex-column gap-1 align-items-start flex-fill">
+    <div className="d-flex flex-column gap-1 align-items-start flex-shrink-0">
       <p className="fst-italic text-secondary w-100">Need a more detailed walk-through?</p>
-      <div className="d-flex align-items-end flex-shrink-0 w-100" data-name="QuickViewToggle">
+      <div className="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
         <div className="d-flex gap-2 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
           <p className="fw-semibold text-dark text-end flex-shrink-0">Toggle Detailed Instructions</p>
           <Group5 />
@@ -42,8 +42,8 @@ function Frame5() {
 
 function StepText() {
   return (
-    <div className="d-flex flex-column flex-md-row gap-2 align-items-start flex-shrink-0 w-100" data-name="StepText">
-      <h3 className="flex-fill mb-0">Setup guide to integrate with Payroll Integrations Inc.</h3>
+    <div className="d-flex flex-column flex-md-row gap-3 align-items-start align-items-md-center justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
+      <h3 className="mb-0">Setup guide to integrate with Payroll Integrations Inc.</h3>
       <Frame5 />
     </div>
   );

@@ -147,6 +147,28 @@ h1, h2, h3, h4 { color: #212529 !important; }
   box-shadow: none !important;
 }
 
+/* Active tab — white cover at bottom to seamlessly connect with tab panel */
+[data-name="TabSetup"][data-tab-active="true"]::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: white;
+  z-index: 3;
+}
+
+/* QuickViewToggle — vertically center label + toggle button */
+[data-name="QuickViewToggle"] {
+  align-items: center !important;
+}
+
+/* Remove extra bottom margin from italic text above toggle row */
+div:has(> [data-name="QuickViewToggle"]) > p {
+  margin-bottom: 2px !important;
+}
+
 /* Fee table column headers — 14px only */
 [data-name="Column Header"] p {
   font-size: 14px !important;

@@ -314,7 +314,7 @@ function Toggle({
         <div className="overflow-hidden rounded w-100 h-100">
           <div className="d-flex gap-3 align-items-start p-4 position-relative w-100 h-100" data-integration-type="360">
             <div className="bg-white d-flex align-items-center justify-content-center position-relative rounded-circle flex-shrink-0" style={{width: '24px', height: '24px'}} data-name="selection">
-              <div aria-hidden="true" className="position-absolute border rounded-circle pointer-events-none" style={{inset: 0, borderColor: '#1a1a1a'}} />
+              <div aria-hidden="true" className="position-absolute rounded-circle pointer-events-none" style={{inset: 0, border: is360Selected ? '2px solid #1a1a1a' : '1px solid #1a1a1a'}} />
               {is360Selected && (
                 <div className="position-relative rounded flex-shrink-0" style={{backgroundColor: '#1a1a1a', width: '14px', height: '14px'}} data-name="radiocircle" />
               )}
@@ -339,7 +339,7 @@ function Toggle({
         />
         <div className="d-flex gap-3 align-items-start p-4 position-relative w-100 h-100" data-integration-type="180">
           <div className="bg-white d-flex align-items-center justify-content-center position-relative rounded-circle flex-shrink-0" style={{width: '24px', height: '24px'}} data-name="selection">
-            <div aria-hidden="true" className="position-absolute border rounded-circle pointer-events-none" style={{inset: 0, borderColor: '#1a1a1a'}} />
+            <div aria-hidden="true" className="position-absolute rounded-circle pointer-events-none" style={{inset: 0, border: is180Selected ? '2px solid #1a1a1a' : '1px solid #1a1a1a'}} />
             {is180Selected && (
               <div className="position-relative rounded flex-shrink-0" style={{backgroundColor: '#1a1a1a', width: '14px', height: '14px'}} data-name="radiocircle" />
             )}
@@ -450,7 +450,7 @@ function Spacer1() {
 
 function TabText2({ isActive = false }: { isActive?: boolean }) {
   return (
-    <div className="d-flex flex-column fw-semibold h-100 align-items-start justify-content-center position-relative flex-shrink-0 text-start text-nowrap" data-name="Tab Text">
+    <div className="d-flex flex-column fw-semibold align-items-start position-relative flex-shrink-0 text-start text-nowrap" data-name="Tab Text">
       <p className="flex-shrink-0 text-uppercase" style={{color: '#80641f'}}>Setup Guide</p>
       <p className={`flex-shrink-0 tab-main-text ${isActive ? 'text-dark' : ''}`} style={isActive ? {} : {color: '#00594f'}}>Paychex or TJH Payroll</p>
     </div>
@@ -739,7 +739,8 @@ function TextField({
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder="Search participating payroll providers"
-            className="form-control bg-transparent border-0 shadow-none flex-fill p-0"
+            className="flex-fill bg-transparent border-0 shadow-none"
+            style={{outline: 'none', minWidth: 0}}
           />
           <div className="overflow-hidden position-relative flex-shrink-0" style={{width: '20px', height: '20px'}} data-name="icon">
             <Group1 />
@@ -1326,13 +1327,15 @@ function InnerContainer4() {
 function Section1() {
   return (
     <div className="bg-white d-flex flex-column align-items-center justify-content-center flex-shrink-0 w-100 py-5 px-4" data-name="Section">
-      <div className="row g-4 align-items-center w-100 mx-0" style={{maxWidth: '1200px'}}>
-        <div className="col-md-8 d-flex flex-column gap-3" data-name="RightContainer">
-          <VideoFrame />
-          <VideoDetails />
-        </div>
-        <div className="col-md-4 d-flex flex-column gap-4" data-name="LeftContainer">
-          <Text5 />
+      <div className="w-100" data-name="Steps">
+        <div className="row g-4 align-items-center mx-0">
+          <div className="col-md-8 d-flex flex-column gap-3" data-name="RightContainer">
+            <VideoFrame />
+            <VideoDetails />
+          </div>
+          <div className="col-md-4 d-flex flex-column gap-4" data-name="LeftContainer">
+            <Text5 />
+          </div>
         </div>
       </div>
     </div>
