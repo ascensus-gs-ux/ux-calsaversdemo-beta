@@ -18,7 +18,7 @@ function Switch() {
 function Group1() {
   return (
     <button className="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
-      <div className="rounded-pill flex-shrink-0" style={{backgroundColor: '#00594f', height: '24px', width: '44px'}} data-name="Background" />
+      <div className="rounded-pill flex-shrink-0" style={{backgroundColor: '#00594f', border: '1px solid #00594f', height: '24px', width: '44px'}} data-name="Background" />
       <div className="position-absolute" style={{marginLeft: '21px', marginTop: '1px'}}>
         <Switch />
       </div>

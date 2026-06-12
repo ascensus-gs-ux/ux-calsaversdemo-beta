@@ -488,8 +488,7 @@ function MobileDropdown({
   if (integrationMode === "180") {
     const options = [
       { value: 1, label: "180° Integration - Overview" },
-      // TODO: Re-enable the option below when Setup Guide content is ready
-      // { value: 2, label: "180° Integration - How to integrate payroll with a 180° integration" },
+      { value: 2, label: "180° Integration - How to integrate payroll with a 180° integration" },
     ];
     return (
       <div className="d-md-none w-100 mb-4" style={{zIndex: 2}} data-name="Tabs">
@@ -577,9 +576,8 @@ function Tabs({
             <TextIcon2 isActive={isTab1Active} integrationMode={integrationMode} />
             <Spacer />
           </div>
-          {/* TODO: Remove 'd-none' below to re-enable the Setup Guide tab when content is ready */}
           <button
-            className={`d-none align-items-center position-relative rounded-top flex-fill`}
+            className={`d-flex align-items-center position-relative rounded-top flex-fill`}
             style={{minHeight: '72px', backgroundColor: isTab2Active ? 'white' : '#f2f0e9'}}
             data-name="TabSetup"
             data-tab-active={isTab2Active}

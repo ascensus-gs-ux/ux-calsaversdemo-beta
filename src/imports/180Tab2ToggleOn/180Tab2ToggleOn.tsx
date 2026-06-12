@@ -10,7 +10,7 @@ export function Tab180SetupToggleOnBodyContent() {
             <div className="d-flex gap-2 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
               <p className="fw-semibold text-dark text-end flex-shrink-0">Toggle Detailed Instructions</p>
               <button className="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
-                <div className="bg-light border rounded-pill flex-shrink-0" style={{height: '24px', width: '44px'}} data-name="Background" />
+                <div className="rounded-pill flex-shrink-0" style={{height: '24px', width: '44px', backgroundColor: '#E6E6E6', border: '1px solid #D3D3D3'}} data-name="Background" />
                 <div className="position-absolute" style={{marginLeft: '7px', marginTop: '6px'}}>
                   <svg className="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12" style={{width: '12px', height: '12px'}}>
                     <g id="Switch">
