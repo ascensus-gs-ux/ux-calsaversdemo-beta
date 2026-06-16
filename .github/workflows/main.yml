@@ -1,4 +1,3 @@
-
 name: Deploy to GitHub Pages
 
 on:
@@ -29,6 +28,12 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Copy standalone employer-overview page into build output
+        run: |
+          cp employer-overview.html dist/
+          mkdir -p dist/src/assets
+          cp src/assets/Hero.png dist/src/assets/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
