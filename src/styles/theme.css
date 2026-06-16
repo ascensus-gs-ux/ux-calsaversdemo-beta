@@ -375,7 +375,7 @@ div:has(> [data-name="QuickViewToggle"]) > p {
   }
 
   h2 {
-    font-size: var(--text-xl);
+    font-size: var(--tmin-width: 120px;ext-xl);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
   }
