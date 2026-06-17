@@ -1,0 +1,2159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payroll Provider Integration | CalSavers</title>
+
+  <!-- Bootstrap 5 -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous">
+
+  <!-- CalSavers brand fonts + styles -->
+  <link rel="stylesheet" href="https://cdn.unite529.com/jcdn/modules/templates-cau/css/google-font.css">
+  <link rel="stylesheet" href="https://cdn.unite529.com/jcdn/modules/templates-cau/css/styles.css">
+
+  <style>
+    /* =====================================================================
+       Shared brand tokens, headings, reusable components
+       (mirrors employer-overview.html so both pages stay visually aligned)
+       ===================================================================== */
+
+    body { background-color: #ffffff; }
+    h1, h2, h3, h4 { color: #000000; }
+    section svg, section img { width: auto; }
+
+    /* Constrain inner content to 2/3 of viewport on desktop, centered.
+       Section background colors stay full-width since they're on the <section> element. */
+    @media (min-width: 1025px) {
+      .cs-pi-hero > .container,
+      .cs-pi-section > .container,
+      .cs-pi-video > .container,
+      .cs-pi-support > .container {
+        max-width: 66.666%;
+      }
+    }
+
+    /* Section title — 2rem h2 across the site */
+    .section-title { font-size: 1.5rem; line-height: 1.25; color: #000000; }
+    @media (max-width: 575.98px) { .section-title { font-size: 1.625rem; } }
+
+    /* Link styling — solid green, hover green, animated underline from center,
+       chevron after, weight 500. !important required because Bootstrap 5.3's
+       .link-primary forces blue with !important. */
+    .link-primary {
+      color: #00594f !important;
+      font-weight: 500 !important;
+      text-decoration: none !important;
+      position: relative;
+      display: inline-block;
+    }
+    .link-primary:hover, .link-primary:focus {
+      color: #00473F !important;
+      font-weight: 500 !important;
+      text-decoration: none !important;
+    }
+
+    .support-link {
+      cursor: pointer;
+    }
+
+    .arrow-wrapper {
+      display: inline-flex;
+      transition: transform 0.25s ease;
+    }
+
+    .support-link:hover .arrow-wrapper {
+      transform: translateX(6px);
+    }
+
+    .support-link:hover p {
+      text-decoration: underline;
+      transition: transform 0.2s ease;
+    }
+
+    .support-link p {
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      transition: text-decoration-color 0.2s ease;
+    }
+
+    .support-link:hover p {
+      text-decoration-color: currentColor;
+    }
+
+    .link-primary::before {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      margin: auto;
+      width: 0; height: 1px;
+      background-color: currentColor;
+      transition: all 0.5s;
+    }
+    .link-primary:hover::before, .link-primary:focus::before { width: 100%; }
+    section a.link-primary::after, section a.link-primary:after,
+    .link-primary::after, .link-primary:after {
+      content: "›";
+      position: static;
+      display: inline-block;
+      background: none;
+      width: auto; height: auto;
+      transition: transform 0.2s ease;
+      margin: 0 0 0 4px;
+      color: inherit;
+      transition: none;
+      font-weight: 600;
+      line-height: 1;
+    }
+    section a.link-primary:hover::after, section a.link-primary:hover:after,
+    .link-primary:hover::after, .link-primary:hover:after { width: auto; transform: translateX(4px);}
+
+    /* Solid-white secondary button variant */
+    .btn-secondary-white { background-color: #ffffff; }
+
+    /* Video modal — black h3 title at weight 400, primary-green close button */
+    .cs-modal-title { color: #000000; font-weight: 400; font-size: 1.5rem; line-height: 1.3; margin: 0; }
+    .cs-modal-close {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2300594f'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E");
+      opacity: 1;
+    }
+    .cs-modal-close:hover, .cs-modal-close:focus { opacity: 0.75; }
+
+    /* =====================================================================
+       Hero — Payroll Provider Integration
+       ===================================================================== */
+    .cs-pi-hero {
+      background-color: #ffffff;
+      padding: 4rem 0 3rem;
+      text-align: center;
+    }
+    .cs-pi-hero__title { font-size: 2.25rem; line-height: 1.2; color: #000000; margin-bottom: 1rem; }
+    .cs-pi-hero__rule {
+      display: block;
+      width: 100px; height: 4px;
+      background-color: #347B73;
+      border-radius: 2px;
+      margin: 0.5rem auto 1.25rem;
+    }
+    .cs-pi-hero__lede { color: #6b6b6b; max-width: 720px; margin: 0 auto; font-weight: 500; }
+
+    /* =====================================================================
+       Section header — "Choose an integration type to learn more"
+       ===================================================================== */
+    .cs-pi-section { padding: 2rem 0 3rem; background-color: #F2F0E9; }
+    .cs-pi-section__header { text-align: center; margin-bottom: 2rem; }
+    .cs-pi-section__header h2 { color: #000000; }
+    .cs-pi-section__header p { color: #6b6b6b; max-width: 820px; margin: 0.75rem auto 0; }
+
+    /* =====================================================================
+       Integration type radio cards (360° / 180°)
+       ===================================================================== */
+    .cs-pi-radios {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .cs-pi-radios { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    }
+
+    .cs-pi-radio {
+      background-color: #ffffff;
+      border: 1px solid rgba(0, 89, 79, 0.25);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+      display: flex; flex-direction: column; gap: 1rem;
+      text-align: start;
+      width: 100%;
+    }
+    .cs-pi-radio__head {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      width: 100%;
+      min-height: 50px;
+    }
+    .cs-pi-radio:hover { background-color: #F2F6F6; border-color: #00473F; }
+    .cs-pi-radio.is-active { border: 2px solid #00594f; padding: calc(1.25rem - 1px) calc(1.5rem - 1px); }
+    /* Remove the browser-default blue focus/active ring on the radio buttons */
+    .cs-pi-radio:focus,
+    .cs-pi-radio:focus-visible,
+    .cs-pi-radio:active {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .cs-pi-radio__selection {
+      flex-shrink: 0;
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 1px solid #1a1a1a;
+      background-color: #ffffff;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .cs-pi-radio.is-active .cs-pi-radio__selection { border: 2px solid #1a1a1a; }
+    .cs-pi-radio.is-active .cs-pi-radio__selection::after {
+      content: "";
+      width: 14px; height: 14px; border-radius: 50%; background-color: #1a1a1a;
+    }
+
+    .cs-pi-radio__icon {
+      flex-shrink: 0;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background-color: #343a40;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: background-color 0.15s ease;
+    }
+    .cs-pi-radio.is-active .cs-pi-radio__icon { background-color: #00594f; }
+    .cs-pi-radio__icon-stack {
+      display: grid;
+      grid-template-columns: repeat(3, 8px);
+      gap: 2px;
+      width: 28px;
+      height: 22px;
+    }
+    .cs-pi-radio__icon-stack svg { width: 100%; height: 100%; display: block; }
+
+    .cs-pi-radio__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .cs-pi-radio__eyebrow {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: #80641f;
+    }
+    .cs-pi-radio__title { color: #000000; font-size: 1.125rem; margin-bottom: 0.75rem; }
+    .cs-pi-radio__body { color: #000000; margin: 0; font-size: 0.9375rem; line-height: 1.5; }
+
+    /* =====================================================================
+       Tab navigation (desktop tabs / mobile select)
+       ===================================================================== */
+    .cs-pi-tabs { margin-top: 2rem; }
+
+    /* Desktop tab row — flex with stretch so every tab in the row matches the
+       tallest sibling's height (when a long title wraps), and all bottoms butt
+       against the panel's top edge. */
+    .cs-pi-tabs__row {
+      display: none;
+      flex-wrap: nowrap;
+      gap: 12px;
+      width: 100%;
+      align-items: stretch;
+    }
+    @media (min-width: 768px) { .cs-pi-tabs__row { display: flex; } }
+
+    .cs-pi-tab {
+      /* Equal-share sizing: each tab targets 220px but may shrink below that
+         on tablet/small-desktop widths to avoid overflow. min-width: 0 is the
+         flex escape hatch that lets it shrink below its content's natural width. */
+      flex: 1 1 220px;
+      min-width: 0;
+      background-color: #f2f0e9;
+      border: 1px solid rgba(0, 89, 79, 0.5);
+      border-radius: 8px 8px 0 0;
+      border-bottom: none;
+      padding: 0.875rem 1.25rem;
+      cursor: pointer;
+      text-align: start;
+      /* Icon centers vertically with the label text. Equal tab heights still
+         come from .cs-pi-tabs__row's align-items: stretch above, so all tab
+         bottoms continue to butt against the panel. */
+      display: flex; gap: 0.75rem; align-items: center;
+      min-height: 64px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      color: #00594f;
+    }
+    /* Let the title wrap when its tab shrinks below the content's natural width */
+    .cs-pi-tab__labels { flex: 1 1 auto; min-width: 0; }
+    .cs-pi-tab__title { white-space: normal; word-wrap: break-word; }
+    .cs-pi-tab:hover:not(.is-active) {
+      background-color: #BFD5D3;
+    }
+    .cs-pi-tab:hover:not(.is-active) .cs-pi-tab__title { color: #00473F; text-decoration: underline; }
+    .cs-pi-tab.is-active {
+      background-color: #ffffff;
+      color: #000000;
+      position: relative;
+      z-index: 2;
+      margin-bottom: -1px;
+    }
+
+    .cs-pi-tab__icon {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: #00594f;
+    }
+    .cs-pi-tab__labels { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+    .cs-pi-tab__eyebrow {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: #80641f;
+      white-space: nowrap;
+      padding-bottom: 4px;
+    }
+    .cs-pi-tab__title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: inherit;
+    }
+
+    /* Mobile tab dropdown */
+    .cs-pi-tabs__select { display: block; }
+    @media (min-width: 768px) { .cs-pi-tabs__select { display: none; } }
+    .cs-pi-tabs__select__label {
+      display: block;
+      font-size: 0.9375rem;
+      color: #6b6b6b;
+      margin-bottom: 0.5rem;
+    }
+    .cs-pi-tabs__select select {
+      width: 100%;
+      min-height: 60px;
+      padding: 0.75rem 2.5rem 0.75rem 1rem;
+      border: 1px solid #D3D3D3;
+      border-radius: 8px;
+      background-color: #ffffff;
+      color: #000000;
+      font-weight: 400;
+      font-size: 1rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%2300594f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 16px;
+    }
+    /* Replace the browser-default blue focus/active ring with a 1px primary-green one */
+    .cs-pi-tabs__select select:focus,
+    .cs-pi-tabs__select select:focus-visible,
+    .cs-pi-tabs__select select:active {
+      outline: 1px solid #00594F;
+      outline-offset: 0;
+      border-color: #00594F;
+      box-shadow: none;
+    }
+    /* Tab body container */
+    .cs-pi-tab-body {
+      background-color: #ffffff;
+      border: 1px solid rgba(0, 89, 79, 0.5);
+      border-radius: 0 0 8px 8px;
+      padding: 1.5rem 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+    @media (min-width: 768px) {
+      .cs-pi-tab-body { padding: 2rem; border-top-left-radius: 0; border-top-right-radius: 0; }
+    }
+    @media (max-width: 767.98px) {
+      .cs-pi-tab-body { border-radius: 8px; margin-top: 0.75rem; } 
+.cs-pi-support__cards {
+    flex-direction: column;
+  }
+   .cs-pi-support__heading { text-align: center; padding-bottom: 24px;}
+   
+  .cs-pi-support__card {
+    flex: 1 1 100%;
+  }
+
+  
+  .cs-pi-pricing {
+    flex-direction: column;
+  }
+
+  .cs-pi-pricing__column {
+  flex: 0 0 auto !important;
+  width: 100%;
+    min-height: auto;
+  }
+
+
+    }
+
+    /* Panels — only the active one shows */
+    .cs-pi-panel { display: none; }
+    .cs-pi-panel.is-active { display: block; }
+
+    /* =====================================================================
+       Quick-view toggle (used in 360°-Tab2, 360°-Tab3, 180°-Tab2)
+       ===================================================================== */
+    .cs-pi-toggle-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .cs-pi-toggle-p{
+      margin-bottom: 0 !important;
+    }
+    @media (min-width: 768px) {
+      .cs-pi-toggle-row { flex-direction: row; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    }
+    .cs-pi-toggle-row__label { color: #000000; font-style: italic; margin: 0; font-size: 0.9375rem; }
+    .cs-pi-toggle {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      background: none; border: 0; padding: 0;
+      cursor: pointer; color: #000000;
+      font-size: 0.9375rem;
+    }
+    .cs-pi-toggle__switch {
+      position: relative;
+      width: 44px; height: 24px;
+      background-color: #E6E6E6;
+      border-radius: 12px;
+      transition: background-color 0.2s ease;
+      flex-shrink: 0;
+    }
+    .cs-pi-toggle__switch::after {
+      content: "";
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 20px; height: 20px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    .cs-pi-toggle.is-on .cs-pi-toggle__switch { background-color: #00594f; }
+    .cs-pi-toggle.is-on .cs-pi-toggle__switch::after { transform: translateX(20px); }
+
+    /* =====================================================================
+       Accordions (used inside several tabs)
+       ===================================================================== */
+    .cs-pi-accordion { margin-bottom: 1.25rem; }
+    .cs-pi-accordion__header {
+      display: flex; gap: 1rem; align-items: center;
+      background-color: #ffffff;
+      border: 1px solid #00594F;
+      border-radius: 8px;
+      padding: 1.25rem 1.25rem;
+      cursor: pointer; width: 100%;
+      text-align: start;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+      color: #000000;
+    }
+    .cs-pi-accordion__header:hover { background-color: #E5EEED; border-color: #00473F; }
+    .cs-pi-accordion__header:hover .cs-pi-accordion__title { color: #00473F; text-decoration: underline; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__header { border-color: #00594f; }
+    .cs-pi-accordion__num {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background-color: #80641f;
+      color: #ffffff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 600;
+    }
+    .cs-pi-accordion__title { flex: 1; font-weight: 600; color: #00594f; }
+    .cs-pi-accordion__chevron { flex-shrink: 0; color: #00594f; transition: transform 0.2s ease; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__chevron { transform: rotate(180deg); }
+    .cs-pi-accordion__body {
+      display: none;
+      padding: 1.75rem;
+    }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__body { display: block; }
+    .cs-pi-accordion__step {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .cs-pi-accordion__step { grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+    }
+    .cs-pi-accordion__screenshot {
+      width: 100%; height: auto;
+      border: 1px solid #00594f;
+      border-radius: 8px;
+    }
+
+    /* Provider search inside Tab 1 PII accordion */
+    .cs-pi-search { position: relative; width: 100%; }
+    .cs-pi-search__input {
+      width: 100%;
+      padding: 0.625rem 2.5rem 0.625rem 0.75rem;
+      border: 1px solid #666666;
+      border-radius: 6px;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+ 
+.cs-pi-search__input::placeholder {
+  position: relative;
+  top: 1px;   /* tweak: 1–2px if needed */
+}
+
+    
+    .cs-pi-search__icon {
+      position: absolute;
+      top: 50%; right: 0.75rem;
+      transform: translateY(-50%);
+      color: #6b6b6b;
+      pointer-events: none;
+    }
+    .cs-pi-search__results {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0; right: 0;
+      background: #ffffff;
+      border: 1px solid rgba(0,89,79,0.5);
+      border-radius: 6px;
+      max-height: 280px;
+      overflow-y: auto;
+      z-index: 10;
+      display: none;
+    }
+    .cs-pi-search__results.is-open { display: block; }
+    .cs-pi-search__result {
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+      color: #000000;
+      font-size: 0.9375rem;
+    }
+    .cs-pi-search__result:hover { background-color: #F2F6F6; color: #00594f; }
+    .cs-pi-validation { margin-top: 0.5rem; font-size: 0.9375rem; }
+    .cs-pi-validation--success { color: #1b6c2e; }
+    .cs-pi-validation--error { color: #b3261e; }
+
+    /* Pricing table — title + cards wrapped in a primary-green 25% bordered container */
+    .cs-pi-pricing-box {
+      margin-top: 1.5rem;
+      border: 1px solid rgba(0, 89, 79, 0.25);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+    .cs-pi-pricing-box__title {
+      color: #000000;
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+    }
+
+.cs-pi-pricing {
+  display: flex;
+  gap: 16px;
+}
+
+/* each “column card” */
+.cs-pi-pricing__column { 
+  flex: 1 1 auto;
+  min-height: auto;
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* header */
+.cs-pi-pricing__header {
+  background: #f2f0e9;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* value */
+.cs-pi-pricing__cell {
+  padding: 14px;
+  text-align: center;
+}
+
+    /* Body text utility for paragraphs in panels */
+    .cs-pi-panel-body { color: #6b6b6b; line-height: 1.6; }
+
+    /* Diagram image — cap width and center within its column */
+    .cs-pi-diagram {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* =====================================================================
+       Interactions + hover states + responsive overrides
+       (mirrors src/styles/theme.css and src/app/App.tsx's inline style block)
+       ===================================================================== */
+
+    /* Base transitions for hover-able elements */
+    [data-name="IntegrationRadios"],
+    [data-name="SupportCard"],
+    [data-name="Card"],
+    [data-name="Accordion/expanded"],
+    [data-name="Accordion/collapsed"] {
+      transition: background-color 0.15s ease;
+      cursor: pointer;
+    }
+
+    /* Accordion / expandable step bodies — smooth show/hide via max-height + opacity */
+    [data-name^="Step="] {
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      overflow: hidden;
+    }
+    [data-name="chevron-up"],
+    [data-name="chevron-down"] {
+      transition: transform 0.3s ease;
+    }
+
+    /* Toggle OFF (quick view) — stack list items vertically on every breakpoint */
+    [data-toggle-state="off"] [data-name="StepsContainer"] [data-name="Row"] {
+      flex-direction: column !important;
+    }
+
+    /* Accordion sizing — taller headers, generous body padding, 24px between items */
+    [data-name="Accordions"] {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 24px !important;
+    }
+    [data-name="Accordion/expanded"] > .overflow-hidden > .d-flex,
+    [data-name="Accordion/collapsed"] > .overflow-hidden > .d-flex {
+      padding: 24px !important;
+      min-height: 80px;
+      align-items: center;
+    }
+    [data-name^="Step="] > .overflow-hidden > .d-flex {
+      padding: 24px !important;
+    }
+    /* Body rows (text + screenshot) top-align */
+    [data-name^="Step="] [data-name="Step"],
+    [data-name^="Step="] .row {
+      align-items: flex-start !important;
+    }
+
+    /* Accordion hover — soft mint background + hover-green border.
+       !important is required because the React markup uses Bootstrap's
+       .bg-white utility on the same element (Bootstrap utilities are !important). */
+    [data-name="Accordion/expanded"]:hover,
+    [data-name="Accordion/collapsed"]:hover {
+      background-color: #E5EEED !important;
+    }
+    [data-name="Accordion/expanded"]:hover .accordion-border-overlay,
+    [data-name="Accordion/collapsed"]:hover .accordion-border-overlay {
+      border-color: #00473F !important;
+    }
+    [data-name="Accordion/expanded"]:hover [data-name="Text Container"] p,
+    [data-name="Accordion/collapsed"]:hover [data-name="Text Container"] p {
+      color: #00473F !important;
+      text-decoration: underline;
+    }
+
+    /* Toggle switch focus ring */
+    [data-name="Toggle Switch"] button { cursor: pointer; }
+    [data-name="Toggle Switch"] button:focus-visible {
+      outline: 2px solid rgba(0, 89, 79, 0.3);
+      outline-offset: 2px;
+    }
+
+    /* QuickViewToggle — vertically center label + toggle */
+    [data-name="QuickViewToggle"] {
+      align-items: center !important;
+      flex-wrap: nowrap !important;
+    }
+    [data-name="Toggle Switch"] > p {
+      white-space: nowrap;
+      margin: 0 !important;
+    }
+    @media (max-width: 1300px) {
+      [data-name="Toggle Switch"] > p {
+        white-space: normal;
+        text-align: start;
+      }
+    }
+
+    /* StepText — heading flexes alongside the toggle column on desktop */
+    [data-name="StepText"] > h3 {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    /* Width-100 helpers for nested step content */
+    [data-name="Group"],
+    [data-name="Register/Novice"],
+    [data-name="Register/Exerienced"],
+    [data-name="Accordions"],
+    [data-name="StepsContainer"] {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    [data-name="Text Container"] > p { width: 100% !important; }
+    [data-name^="Step="] [data-name="Steps"] {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    /* ===== MOBILE breakpoint (<=767px) overrides ported from App.tsx ===== */
+    @media (max-width: 767.98px) {
+      /* Stack heading + toggle vertically inside StepText */
+      [data-name="Group"] [data-name="StepText"],
+      [data-name="StepText"] {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 16px !important;
+      }
+      [data-name="StepText"] > p,
+      [data-name="StepText"] > div {
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+      /* Stack quick-view rows */
+      [data-name="StepsContainer"] [data-name="Row"] {
+        flex-direction: column !important;
+        gap: 16px !important;
+        height: auto !important;
+      }
+      /* Stack accordion step columns (text + screenshot) */
+      [data-name^="Step="] [data-name="Step"] {
+        flex-direction: column !important;
+        gap: 24px !important;
+      }
+      /* Accordion bodies — full-width padding */
+      [data-name="Accordion"] [data-name^="Step="] > div > div {
+        padding: 16px !important;
+      }
+      /* Text wrapping safety net */
+      p, span, div, a, button {
+        min-width: 0 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+      }
+    }
+
+    /* ===== TABLET breakpoint (768–1024) overrides ===== */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      /* StepText — keep heading + toggle side-by-side but allow wrap */
+      [data-name="StepText"] > p,
+      [data-name="StepText"] > div {
+        flex: 1 1 0;
+        min-width: 0;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      [data-name="StepsContainer"] [data-name="Row"] {
+        height: auto !important;
+      }
+    }
+
+    /* Supporting classes pulled from the brand theme so the React-exported
+       Bootstrap markup renders identically here. */
+    .accordion-border-overlay { border: 1px solid #00594f; }
+    .pointer-events-none { pointer-events: none; }
+
+    /* Quick-view cards (compact step cards under toggle ON) */
+    .cs-pi-quickcard {
+      background-color: #ffffff;
+      border: 1px solid rgba(0, 89, 79, 0.25);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+    }
+    .cs-pi-quickcard__num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background-color: #80641f; color: #ffffff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .cs-pi-quickcard__title { font-weight: 600; color: #00594f; font-size: 1rem; margin-bottom: 0.5rem; }
+    .cs-pi-quickcard__desc { color: #6b6b6b; font-size: 0.9375rem; line-height: 1.5; margin-bottom: 0; }
+    .cs-pi-quickcard__action { margin-top: 1rem; }
+
+    /* =====================================================================
+       Video + Support sections (below tabs)
+       ===================================================================== */
+    .cs-pi-video { padding: 3rem 0; }
+    .cs-pi-video__heading { color: #000000; font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .cs-pi-video__lede { color: #6b6b6b; }
+    .cs-video {
+      border: 1px solid #c3c3c3;
+    }
+    .cs-pi-video__caption { color: #6b6b6b; font-size: 0.9375rem; }
+
+    .cs-pi-support {
+      background-color: #F2F6F6;
+      border-top: 1px solid rgba(0, 89, 79, 0.25);
+      border-bottom: 1px solid rgba(0, 89, 79, 0.25);
+      padding: 3rem 0;
+    }
+    .cs-pi-support__heading { text-align: left; color: #000000; margin-bottom: 1.5rem; }
+    .cs-pi-support__cards { display: flex; gap: 1.25rem; }
+    @media (min-width: 768px) { .cs-pi-support__cards { display: flex; gap: 1.25rem; } }
+    .cs-pi-support__card {
+      background-color: #ffffff;
+      border: 1px solid rgba(0, 89, 79, 0.25);
+      border-radius: 8px;
+      padding: 1.5rem;
+      flex: 1 1 50%;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+    .cs-pi-support__card:hover { background-color: #F2F6F6; border-color: #00473F; }
+    .cs-pi-support__icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+      color: #846926;
+    }
+    .cs-pi-support__title { color: #000000; font-size: 1.125rem; margin-bottom: 0.5rem; }
+    .cs-pi-support__body { color: #6b6b6b; margin-bottom: 1rem; font-size: 0.9375rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ====================================================================
+       HERO — Payroll Provider Integration
+       ==================================================================== -->
+  <section class="cs-pi-hero">
+    <div class="container">
+      <h1 class="cs-pi-hero__title">Payroll Provider Integration</h1>
+      <span class="cs-pi-hero__rule" aria-hidden="true"></span>
+      <p class="cs-pi-hero__lede">
+        Establish a connection between your payroll provider and CalSavers to simplify your CalSavers experience.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       CHOOSE AN INTEGRATION TYPE
+       ==================================================================== -->
+  <section class="cs-pi-section">
+    <div class="container">
+
+      <header class="cs-pi-section__header">
+        <h2 class="section-title">Choose an integration type to learn more</h2>
+        <p>
+          We provide two integration options depending on what your payroll service offers. Reach out to your payroll provider to find out if they support one of these two integration options.
+        </p>
+      </header>
+
+      <!-- Radio cards -->
+      <div class="cs-pi-radios" role="radiogroup" aria-label="Integration type">
+
+        <button type="button" class="cs-pi-radio is-active" data-integration="360" role="radio" aria-checked="true">
+          <div class="cs-pi-radio__head">
+            <span class="cs-pi-radio__selection" aria-hidden="true"></span>
+            <span class="cs-pi-radio__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 26.3581 26.375" fill="none">
+                <g stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15.9915 17.875L12.2415 21.625L15.9915 25.375"/>
+                  <path d="M24.379 12.3311C24.1268 14.8779 22.9367 17.2399 21.0401 18.9582C19.1435 20.6765 16.6757 21.6283 14.1165 21.6286H12.2415"/>
+                  <path d="M18.8616 6.40723L23.9841 7.77973L25.3578 2.65723"/>
+                  <path d="M9.86646 1.91612C12.1979 0.861816 14.838 0.711894 17.2738 1.49549C19.7096 2.27908 21.7671 3.94022 23.0465 6.15612L23.984 7.78112"/>
+                  <path d="M7.49525 9.65473L6.12275 4.53223L1.00025 5.90473"/>
+                  <path d="M8.10242 19.6925C6.0241 18.1997 4.57483 15.9877 4.03613 13.4862C3.49743 10.9846 3.90776 8.37218 5.18742 6.15625L6.12492 4.53125"/>
+                </g>
+              </svg>
+            </span>
+            <div class="cs-pi-radio__text">
+              <span class="cs-pi-radio__eyebrow">360° Integration</span>
+              <h3 class="mb-0">Automatic payroll sync</h3>
+            </div>
+          </div>
+          <div class="cs-pi-radio__body">
+            CalSavers automatically syncs employee contribution information from your payroll provider and sends savings rate changes back when needed.
+          </div>
+        </button>
+
+        <button type="button" class="cs-pi-radio" data-integration="180" role="radio" aria-checked="false">
+          <div class="cs-pi-radio__head">
+            <span class="cs-pi-radio__selection" aria-hidden="true"></span>
+            <span class="cs-pi-radio__icon" aria-hidden="true">
+              <span class="cs-pi-radio__icon-stack" aria-hidden="true">
+                <svg viewBox="0 0 15.1293 30.1253" fill="none" style="grid-area:1/1;">
+                  <path d="M1 1.93887C0.999727 1.75032 1.05632 1.56606 1.16238 1.41016C1.26844 1.25426 1.41905 1.13397 1.59454 1.06499C1.77002 0.996006 1.96223 0.981546 2.14607 1.02349C2.3299 1.06544 2.49681 1.16185 2.625 1.30012L13.625 13.7839C13.9491 14.1311 14.1293 14.5883 14.1293 15.0632C14.1293 15.5382 13.9491 15.9954 13.625 16.3426L2.625 28.8251C2.49674 28.9635 2.32971 29.0599 2.14576 29.1018C1.96181 29.1437 1.76949 29.1292 1.59395 29.06C1.41841 28.9909 1.26782 28.8704 1.16185 28.7143C1.05588 28.5582 0.999475 28.3738 1 28.1851V1.93887Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg viewBox="0 0 15.1318 30.1315" fill="none" style="grid-area:1/2;">
+                  <path d="M1.0025 22.1551V28.1914C1.00197 28.38 1.05838 28.5645 1.16435 28.7206C1.27031 28.8767 1.42091 28.9972 1.59645 29.0663C1.77199 29.1354 1.96431 29.15 2.14826 29.1081C2.33221 29.0662 2.49924 28.9697 2.6275 28.8314L13.6275 16.3489C13.9516 16.0017 14.1318 15.5444 14.1318 15.0695C14.1318 14.5946 13.9516 14.1373 13.6275 13.7901L2.625 1.30012C2.49681 1.16185 2.3299 1.06544 2.14606 1.02349C1.96223 0.981546 1.77002 0.996006 1.59453 1.06499C1.41905 1.13397 1.26844 1.25426 1.16238 1.41016C1.05631 1.56606 0.999725 1.75032 1 1.93887V7.97137" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg viewBox="0 0 15.1318 30.1315" fill="none" style="grid-area:1/3;">
+                  <path d="M1.0025 22.1551V28.1914C1.00197 28.38 1.05838 28.5645 1.16435 28.7206C1.27031 28.8767 1.42091 28.9972 1.59645 29.0663C1.77199 29.1354 1.96431 29.15 2.14826 29.1081C2.33221 29.0662 2.49923 28.9697 2.6275 28.8314L13.6275 16.3489C13.9516 16.0017 14.1318 15.5444 14.1318 15.0695C14.1318 14.5946 13.9516 14.1373 13.6275 13.7901L2.625 1.30012C2.49681 1.16185 2.3299 1.06544 2.14606 1.02349C1.96223 0.981546 1.77002 0.996007 1.59454 1.06499C1.41905 1.13397 1.26844 1.25426 1.16238 1.41016C1.05631 1.56606 0.999725 1.75032 1 1.93887V7.97137" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+            <div class="cs-pi-radio__text">
+              <span class="cs-pi-radio__eyebrow">180° Integration</span>
+              <h3 class="mb-0">Payroll file upload</h3>
+            </div>
+          </div>
+          <div class="cs-pi-radio__body">
+            Your payroll provider manually uploads contribution rates updated <strong>by you, the employer, every month.</strong> This option is available for those payroll providers who do not currently connect with a 360° integration to CalSavers.
+          </div>
+        </button>
+
+      </div>
+
+      <!-- Tabs -->
+      <div class="cs-pi-tabs">
+
+        <!-- Desktop tab row -->
+        <div class="cs-pi-tabs__row" role="tablist">
+          <!-- 360° tabs -->
+          <button type="button" class="cs-pi-tab is-active" data-mode="360" data-tab="1" role="tab" aria-selected="true">
+            <span class="cs-pi-tab__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.1947 0.031693C11.7513 0.188226 8.48661 1.46423 5.73527 3.72889C5.26634 4.11489 4.10061 5.28063 3.71461 5.74956C1.11474 8.90823 -0.166192 12.7124 0.0172751 16.7296C0.179542 20.2806 1.42168 23.4865 3.71461 26.2722C4.10061 26.7412 5.26634 27.9069 5.73527 28.2929C7.71234 29.9202 9.91141 31.0192 12.3385 31.5926C14.6718 32.144 17.3165 32.1434 19.6609 31.5914C21.7789 31.0928 23.8947 30.1013 25.6166 28.801C26.7359 27.9557 27.9414 26.7502 28.7867 25.6309C30.087 23.909 31.0785 21.7932 31.5771 19.6752C32.1291 17.3308 32.1297 14.6861 31.5783 12.3528C31.0041 9.92263 29.8943 7.70543 28.2647 5.73223C27.8871 5.27503 26.7165 4.10636 26.2579 3.72889C23.7979 1.70409 20.9795 0.48876 17.8853 0.11836C17.4723 0.0690263 16.1226 -0.00990704 15.8753 0.00102629C15.8181 0.00342629 15.5118 0.017293 15.1947 0.031693ZM15.2117 2.04263C12.0939 2.21249 9.16034 3.40876 6.79261 5.47569C6.40808 5.81143 5.68714 6.53676 5.36608 6.91089C3.59434 8.97583 2.44234 11.578 2.11234 14.2602C1.78168 16.9493 2.21288 19.5977 3.38514 22.0776C4.43048 24.2886 6.21021 26.3206 8.31794 27.7096C11.2986 29.6737 14.9663 30.4165 18.5218 29.7761C20.6019 29.4014 22.6822 28.4916 24.3843 27.2118C25.3989 26.4492 26.4441 25.4028 27.2101 24.3829C28.6361 22.4844 29.5886 20.126 29.8781 17.777C30.2094 15.0882 29.7847 12.4458 28.6249 9.97889C27.5777 7.75156 25.7918 5.70689 23.6753 4.31223C21.9129 3.15089 19.8293 2.38276 17.7473 2.12663C17.3026 2.07196 16.2075 2.00396 15.8926 2.01143C15.7877 2.01396 15.4813 2.02796 15.2117 2.04263ZM15.1473 8.05436C14.4129 8.21676 13.8999 8.97636 14.017 9.72823C14.1467 10.5608 14.921 11.1264 15.7407 10.987C16.0605 10.9328 16.3193 10.7986 16.5505 10.5674C17.1375 9.98036 17.1455 9.05836 16.5686 8.47129C16.3426 8.24129 16.1186 8.11449 15.831 8.05356C15.5498 7.99383 15.4202 7.99409 15.1473 8.05436ZM13.7893 13.029C13.5889 13.0716 13.4506 13.1489 13.2926 13.3069C13.0458 13.5537 12.955 13.8489 13.0191 14.1956C13.0599 14.4168 13.1111 14.513 13.2901 14.7052C13.5322 14.965 13.6098 14.9868 14.3401 14.9996L14.9889 15.0109L14.9994 17.7556C15.0097 20.4717 15.0106 20.503 15.0869 20.7733C15.3813 21.8158 16.1811 22.6168 17.2273 22.9168C17.4839 22.9904 17.5706 22.9962 18.3886 22.9962H19.2726L19.449 22.9032C19.6511 22.7965 19.8251 22.6132 19.9178 22.4092C19.9899 22.2502 20.0045 21.8953 19.9473 21.6892C19.8893 21.4805 19.6667 21.2309 19.4393 21.119C19.2409 21.0217 19.2266 21.02 18.4753 21.0021C17.7685 20.9853 17.7017 20.9782 17.5638 20.9054C17.3482 20.7913 17.1539 20.5746 17.0727 20.3577C17.0037 20.173 17.0019 20.1017 17.0014 17.4916C17.0006 14.5388 17.0002 14.5321 16.7857 14.1042C16.6362 13.8064 16.2251 13.3868 15.9446 13.2458C15.5469 13.0461 15.417 13.0225 14.6446 13.0098C14.2538 13.0036 13.8689 13.0121 13.7893 13.029Z" fill="#846926"/>
+              </svg>
+            </span>
+            <span class="cs-pi-tab__labels">
+              <span class="cs-pi-tab__eyebrow">360° Integration</span>
+              <span class="cs-pi-tab__title">Overview and Pricing</span>
+            </span>
+          </button>
+          <button type="button" class="cs-pi-tab" data-mode="360" data-tab="2" role="tab" aria-selected="false">
+            <span class="cs-pi-tab__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.56032 0.02469C1.81246 0.110957 1.09659 0.507623 0.674056 1.07002C0.381523 1.45962 0.209523 1.83296 0.0723229 2.37682C0.0197896 2.58509 0.0141896 3.67509 0.00325627 15.7942C-0.00514373 25.0967 0.00245627 29.0947 0.0289896 29.3574C0.16419 30.698 0.97259 31.5843 2.38566 31.9408C2.59392 31.9934 3.68392 31.999 15.803 32.0099C25.1055 32.0183 29.1035 32.0107 29.3662 31.9842C30.7069 31.849 31.5931 31.0406 31.9497 29.6275C32.0022 29.4192 32.0078 28.331 32.0185 16.2275C32.0265 7.14202 32.0187 2.93389 31.9934 2.66629C31.8655 1.31416 31.0577 0.422157 29.6363 0.06349C29.4278 0.0108233 28.3437 0.00589001 16.115 0.000556675C8.80299 -0.00264333 2.70339 0.00829001 2.56032 0.02469ZM2.73526 2.03469C2.35819 2.10856 2.12019 2.39229 2.03992 2.86349C1.97926 3.21896 2.00712 29.2604 2.06832 29.4008C2.20832 29.7227 2.44299 29.8928 2.85499 29.971C3.17952 30.0327 29.267 30.007 29.4097 29.9448C29.7315 29.8048 29.9017 29.5702 29.9798 29.1582C30.0415 28.8336 30.0158 2.74616 29.9537 2.60349C29.8171 2.28962 29.5881 2.11909 29.1913 2.03549C28.9658 1.98802 2.97739 1.98722 2.73526 2.03469ZM12.3735 5.70709C11.5369 5.88296 10.8843 6.38829 10.5131 7.14762C10.2865 7.61096 10.2579 7.79536 10.2554 8.80882C10.2527 9.89149 10.2233 9.99816 9.88592 10.1492C9.75512 10.2076 9.64859 10.2139 8.81126 10.2115C7.67272 10.2082 7.44566 10.2503 6.92072 10.5618C6.23006 10.9716 5.80206 11.589 5.66072 12.3795C5.59739 12.7332 5.59832 12.8952 5.66579 13.2808C5.78899 13.9862 6.02579 14.3504 6.85979 15.1179C7.46672 15.6764 7.55299 15.7876 7.55152 16.0098C7.55006 16.2399 7.44139 16.3872 6.93459 16.8458C6.66552 17.0894 6.36006 17.3828 6.25592 17.498C5.79019 18.0126 5.53086 18.8922 5.64512 19.5695C5.75192 20.203 5.97179 20.6347 6.40859 21.0692C6.66739 21.3266 6.76219 21.3946 7.07086 21.545C7.58992 21.7978 7.76672 21.8262 8.82099 21.8262C9.78139 21.8262 9.84779 21.837 10.0201 22.0212C10.1757 22.1875 10.187 22.2652 10.187 23.16C10.187 24.0747 10.2209 24.3634 10.3721 24.7378C10.5165 25.0954 10.6778 25.333 10.9882 25.6452C11.2466 25.9052 11.3349 25.969 11.6469 26.1202C12.1103 26.3448 12.4566 26.4178 12.9401 26.3924C13.3355 26.3718 13.6053 26.3075 13.9273 26.1576C14.3023 25.9831 14.5683 25.7628 15.0766 25.2056C15.3454 24.911 15.6053 24.6386 15.6541 24.6002C15.7926 24.4912 15.9861 24.4516 16.1583 24.497C16.2843 24.5302 16.4065 24.6376 16.999 25.2364C17.6202 25.8642 17.7217 25.9522 17.9747 26.0834C18.3881 26.2978 18.7143 26.3751 19.2177 26.3783C19.7146 26.3815 20.0345 26.3048 20.4657 26.0792C20.8739 25.8656 21.3155 25.417 21.5298 24.9982C21.8042 24.462 21.8087 24.436 21.8318 23.2622C21.8522 22.2244 21.8527 22.219 21.9385 22.094C21.9857 22.025 22.0815 21.9366 22.1511 21.8974C22.2689 21.8311 22.3355 21.8262 23.105 21.8255C24.0139 21.8247 24.2909 21.7972 24.6501 21.6724C25.2374 21.4682 25.8198 20.9758 26.0879 20.4568C26.3313 19.9859 26.3938 19.7302 26.393 19.2088C26.3923 18.7095 26.3426 18.4634 26.1667 18.0859C25.9906 17.7083 25.7741 17.4487 25.1798 16.903C24.8645 16.6135 24.5809 16.3275 24.5494 16.2674C24.4755 16.1264 24.4762 15.8766 24.5509 15.734C24.5831 15.6723 24.7769 15.4774 24.9814 15.3007C25.9679 14.4486 26.2223 14.0812 26.3562 13.3155C26.4205 12.9483 26.4245 12.7614 26.3739 12.4812C26.273 11.9206 26.0634 11.4766 25.7286 11.115C25.3514 10.7075 24.9175 10.4444 24.4138 10.3175C24.1769 10.2578 24.0221 10.2484 23.2563 10.2479C22.7702 10.2474 22.317 10.2318 22.2495 10.213C22.1101 10.1743 21.9265 10.0004 21.8718 9.85522C21.8495 9.79616 21.835 9.42442 21.835 8.91362C21.835 7.99896 21.8011 7.71029 21.6499 7.33589C21.3839 6.67762 20.8493 6.13136 20.2078 5.86269C19.5425 5.58389 18.749 5.60842 18.0737 5.92856C17.6569 6.12616 17.4995 6.25842 16.8978 6.91642C16.6167 7.22376 16.3385 7.50016 16.2795 7.53069C16.1406 7.60256 15.8795 7.60162 15.7386 7.52869C15.6775 7.49722 15.4183 7.22629 15.1626 6.92669C14.5486 6.20762 14.2635 5.99042 13.671 5.79002C13.4401 5.71202 13.3213 5.69456 12.9603 5.68549C12.7219 5.67962 12.4579 5.68922 12.3735 5.70709ZM12.591 7.74909C12.4919 7.79402 12.419 7.86229 12.357 7.96802C12.2673 8.12109 12.267 8.12416 12.267 8.90469C12.267 9.98896 12.2234 10.2642 11.9693 10.7856C11.7318 11.2727 11.3065 11.6923 10.7937 11.9455C10.3231 12.1779 10.1933 12.1979 9.06672 12.2118C7.98952 12.2251 7.96872 12.2284 7.78939 12.4198C7.68192 12.5343 7.61059 12.7683 7.64086 12.9068C7.68952 13.1295 7.75606 13.2138 8.20019 13.616C8.90632 14.2556 9.09046 14.4687 9.28699 14.8743C9.66766 15.6596 9.65339 16.4855 9.24619 17.2475C9.05939 17.5971 8.91752 17.7582 8.29326 18.3288C7.75206 18.8236 7.68432 18.906 7.64392 19.1182C7.59366 19.3816 7.77859 19.6982 8.02712 19.7742C8.10859 19.7991 8.52326 19.8194 9.11232 19.8271C10.1157 19.8403 10.2206 19.855 10.6533 20.0407C11.3574 20.3431 11.9287 21.0283 12.1286 21.8099C12.1887 22.0452 12.1978 22.1963 12.1985 22.9844C12.1991 23.7927 12.2061 23.904 12.2639 24.0315C12.3993 24.3295 12.7319 24.4616 13.0454 24.3419C13.1667 24.2956 13.2877 24.1852 13.6231 23.815C14.2434 23.13 14.4689 22.9327 14.8425 22.7483C15.251 22.5464 15.5497 22.4772 16.011 22.4772C16.4719 22.4772 16.7682 22.5459 17.1897 22.7506C17.5097 22.9059 17.5387 22.9304 18.2123 23.6128C18.8141 24.2224 18.9258 24.3206 19.0585 24.3562C19.3155 24.4251 19.5649 24.3316 19.7345 24.1031C19.8029 24.0108 19.8082 23.948 19.8281 22.9938C19.8445 22.2084 19.8621 21.9356 19.9069 21.7742C20.1307 20.9655 20.6811 20.3288 21.4275 20.0152C21.835 19.844 22.0471 19.8168 22.979 19.8159C23.4897 19.8154 23.8837 19.7998 23.967 19.7768C24.1681 19.7212 24.3547 19.513 24.3851 19.3103C24.4286 19.0206 24.3653 18.8988 23.9903 18.5519C23.8059 18.3812 23.4906 18.077 23.2895 17.8759C22.9718 17.5578 22.903 17.4672 22.7618 17.1808C22.5553 16.7619 22.4861 16.4659 22.4861 16.0022C22.4861 15.5419 22.5553 15.2423 22.7553 14.8372C22.9455 14.4522 23.1422 14.2291 23.7822 13.6731C24.2699 13.2495 24.3377 13.1679 24.3781 12.9555C24.4283 12.692 24.2434 12.3755 23.9949 12.2995C23.9138 12.2747 23.5026 12.2544 22.927 12.2467C21.8643 12.2324 21.7721 12.2167 21.263 11.9644C20.575 11.6235 20.0858 11.0171 19.8943 10.2679C19.833 10.0278 19.8242 9.88162 19.8235 9.08922C19.8229 8.28416 19.8158 8.16962 19.7589 8.04616C19.6461 7.80189 19.4611 7.68216 19.1967 7.68216C18.9846 7.68216 18.8223 7.78802 18.5233 8.12136C17.8266 8.89789 17.553 9.14402 17.1699 9.33882C16.5017 9.67856 15.5203 9.67856 14.8521 9.33882C14.4498 9.13429 14.1923 8.90016 13.6211 8.21949C13.4303 7.99216 13.2441 7.80669 13.1599 7.76016C12.987 7.66469 12.7855 7.66069 12.591 7.74909ZM15.6561 12.0198C15.1909 12.0563 14.7117 12.1908 14.2603 12.4118C13.4354 12.8154 12.8242 13.4266 12.4206 14.2515C12.0987 14.9094 11.9739 15.5819 12.031 16.3518C12.0662 16.8255 12.1969 17.2956 12.4206 17.7528C12.8242 18.5778 13.4354 19.189 14.2603 19.5926C14.9182 19.9144 15.5907 20.0392 16.3606 19.9822C17.2635 19.9152 18.1779 19.4899 18.8383 18.8295C19.4963 18.1715 19.9246 17.2532 19.9901 16.3604C20.0801 15.1306 19.6759 14.0126 18.8383 13.1748C18.2009 12.5375 17.2586 12.0874 16.4443 12.0314C16.2918 12.0208 16.1281 12.008 16.0803 12.0028C16.0327 11.9975 15.8418 12.0052 15.6561 12.0198ZM15.7683 14.0302C14.9667 14.1167 14.2595 14.7431 14.0711 15.5334C14.0183 15.7551 14.0183 16.2492 14.0711 16.471C14.1993 17.0084 14.6227 17.5396 15.1113 17.7759C15.4438 17.9367 15.6453 17.9831 16.011 17.9831C16.5773 17.9831 17.0185 17.8016 17.4145 17.4056C17.8105 17.0096 17.9919 16.5684 17.9919 16.0022C17.9919 15.4359 17.8105 14.9947 17.4145 14.5987C16.9686 14.153 16.4122 13.9607 15.7683 14.0302Z" fill="#846926"/>
+              </svg>
+            </span>
+            <span class="cs-pi-tab__labels">
+              <span class="cs-pi-tab__eyebrow">Setup Guide</span>
+              <span class="cs-pi-tab__title">Payroll Integrations Inc.</span>
+            </span>
+          </button>
+          <button type="button" class="cs-pi-tab" data-mode="360" data-tab="3" role="tab" aria-selected="false">
+            <span class="cs-pi-tab__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.56032 0.02469C1.81246 0.110957 1.09659 0.507623 0.674056 1.07002C0.381523 1.45962 0.209523 1.83296 0.0723229 2.37682C0.0197896 2.58509 0.0141896 3.67509 0.00325627 15.7942C-0.00514373 25.0967 0.00245627 29.0947 0.0289896 29.3574C0.16419 30.698 0.97259 31.5843 2.38566 31.9408C2.59392 31.9934 3.68392 31.999 15.803 32.0099C25.1055 32.0183 29.1035 32.0107 29.3662 31.9842C30.7069 31.849 31.5931 31.0406 31.9497 29.6275C32.0022 29.4192 32.0078 28.331 32.0185 16.2275C32.0265 7.14202 32.0187 2.93389 31.9934 2.66629C31.8655 1.31416 31.0577 0.422157 29.6363 0.06349C29.4278 0.0108233 28.3437 0.00589001 16.115 0.000556675C8.80299 -0.00264333 2.70339 0.00829001 2.56032 0.02469ZM2.73526 2.03469C2.35819 2.10856 2.12019 2.39229 2.03992 2.86349C1.97926 3.21896 2.00712 29.2604 2.06832 29.4008C2.20832 29.7227 2.44299 29.8928 2.85499 29.971C3.17952 30.0327 29.267 30.007 29.4097 29.9448C29.7315 29.8048 29.9017 29.5702 29.9798 29.1582C30.0415 28.8336 30.0158 2.74616 29.9537 2.60349C29.8171 2.28962 29.5881 2.11909 29.1913 2.03549C28.9658 1.98802 2.97739 1.98722 2.73526 2.03469ZM12.3735 5.70709C11.5369 5.88296 10.8843 6.38829 10.5131 7.14762C10.2865 7.61096 10.2579 7.79536 10.2554 8.80882C10.2527 9.89149 10.2233 9.99816 9.88592 10.1492C9.75512 10.2076 9.64859 10.2139 8.81126 10.2115C7.67272 10.2082 7.44566 10.2503 6.92072 10.5618C6.23006 10.9716 5.80206 11.589 5.66072 12.3795C5.59739 12.7332 5.59832 12.8952 5.66579 13.2808C5.78899 13.9862 6.02579 14.3504 6.85979 15.1179C7.46672 15.6764 7.55299 15.7876 7.55152 16.0098C7.55006 16.2399 7.44139 16.3872 6.93459 16.8458C6.66552 17.0894 6.36006 17.3828 6.25592 17.498C5.79019 18.0126 5.53086 18.8922 5.64512 19.5695C5.75192 20.203 5.97179 20.6347 6.40859 21.0692C6.66739 21.3266 6.76219 21.3946 7.07086 21.545C7.58992 21.7978 7.76672 21.8262 8.82099 21.8262C9.78139 21.8262 9.84779 21.837 10.0201 22.0212C10.1757 22.1875 10.187 22.2652 10.187 23.16C10.187 24.0747 10.2209 24.3634 10.3721 24.7378C10.5165 25.0954 10.6778 25.333 10.9882 25.6452C11.2466 25.9052 11.3349 25.969 11.6469 26.1202C12.1103 26.3448 12.4566 26.4178 12.9401 26.3924C13.3355 26.3718 13.6053 26.3075 13.9273 26.1576C14.3023 25.9831 14.5683 25.7628 15.0766 25.2056C15.3454 24.911 15.6053 24.6386 15.6541 24.6002C15.7926 24.4912 15.9861 24.4516 16.1583 24.497C16.2843 24.5302 16.4065 24.6376 16.999 25.2364C17.6202 25.8642 17.7217 25.9522 17.9747 26.0834C18.3881 26.2978 18.7143 26.3751 19.2177 26.3783C19.7146 26.3815 20.0345 26.3048 20.4657 26.0792C20.8739 25.8656 21.3155 25.417 21.5298 24.9982C21.8042 24.462 21.8087 24.436 21.8318 23.2622C21.8522 22.2244 21.8527 22.219 21.9385 22.094C21.9857 22.025 22.0815 21.9366 22.1511 21.8974C22.2689 21.8311 22.3355 21.8262 23.105 21.8255C24.0139 21.8247 24.2909 21.7972 24.6501 21.6724C25.2374 21.4682 25.8198 20.9758 26.0879 20.4568C26.3313 19.9859 26.3938 19.7302 26.393 19.2088C26.3923 18.7095 26.3426 18.4634 26.1667 18.0859C25.9906 17.7083 25.7741 17.4487 25.1798 16.903C24.8645 16.6135 24.5809 16.3275 24.5494 16.2674C24.4755 16.1264 24.4762 15.8766 24.5509 15.734C24.5831 15.6723 24.7769 15.4774 24.9814 15.3007C25.9679 14.4486 26.2223 14.0812 26.3562 13.3155C26.4205 12.9483 26.4245 12.7614 26.3739 12.4812C26.273 11.9206 26.0634 11.4766 25.7286 11.115C25.3514 10.7075 24.9175 10.4444 24.4138 10.3175C24.1769 10.2578 24.0221 10.2484 23.2563 10.2479C22.7702 10.2474 22.317 10.2318 22.2495 10.213C22.1101 10.1743 21.9265 10.0004 21.8718 9.85522C21.8495 9.79616 21.835 9.42442 21.835 8.91362C21.835 7.99896 21.8011 7.71029 21.6499 7.33589C21.3839 6.67762 20.8493 6.13136 20.2078 5.86269C19.5425 5.58389 18.749 5.60842 18.0737 5.92856C17.6569 6.12616 17.4995 6.25842 16.8978 6.91642C16.6167 7.22376 16.3385 7.50016 16.2795 7.53069C16.1406 7.60256 15.8795 7.60162 15.7386 7.52869C15.6775 7.49722 15.4183 7.22629 15.1626 6.92669C14.5486 6.20762 14.2635 5.99042 13.671 5.79002C13.4401 5.71202 13.3213 5.69456 12.9603 5.68549C12.7219 5.67962 12.4579 5.68922 12.3735 5.70709ZM12.591 7.74909C12.4919 7.79402 12.419 7.86229 12.357 7.96802C12.2673 8.12109 12.267 8.12416 12.267 8.90469C12.267 9.98896 12.2234 10.2642 11.9693 10.7856C11.7318 11.2727 11.3065 11.6923 10.7937 11.9455C10.3231 12.1779 10.1933 12.1979 9.06672 12.2118C7.98952 12.2251 7.96872 12.2284 7.78939 12.4198C7.68192 12.5343 7.61059 12.7683 7.64086 12.9068C7.68952 13.1295 7.75606 13.2138 8.20019 13.616C8.90632 14.2556 9.09046 14.4687 9.28699 14.8743C9.66766 15.6596 9.65339 16.4855 9.24619 17.2475C9.05939 17.5971 8.91752 17.7582 8.29326 18.3288C7.75206 18.8236 7.68432 18.906 7.64392 19.1182C7.59366 19.3816 7.77859 19.6982 8.02712 19.7742C8.10859 19.7991 8.52326 19.8194 9.11232 19.8271C10.1157 19.8403 10.2206 19.855 10.6533 20.0407C11.3574 20.3431 11.9287 21.0283 12.1286 21.8099C12.1887 22.0452 12.1978 22.1963 12.1985 22.9844C12.1991 23.7927 12.2061 23.904 12.2639 24.0315C12.3993 24.3295 12.7319 24.4616 13.0454 24.3419C13.1667 24.2956 13.2877 24.1852 13.6231 23.815C14.2434 23.13 14.4689 22.9327 14.8425 22.7483C15.251 22.5464 15.5497 22.4772 16.011 22.4772C16.4719 22.4772 16.7682 22.5459 17.1897 22.7506C17.5097 22.9059 17.5387 22.9304 18.2123 23.6128C18.8141 24.2224 18.9258 24.3206 19.0585 24.3562C19.3155 24.4251 19.5649 24.3316 19.7345 24.1031C19.8029 24.0108 19.8082 23.948 19.8281 22.9938C19.8445 22.2084 19.8621 21.9356 19.9069 21.7742C20.1307 20.9655 20.6811 20.3288 21.4275 20.0152C21.835 19.844 22.0471 19.8168 22.979 19.8159C23.4897 19.8154 23.8837 19.7998 23.967 19.7768C24.1681 19.7212 24.3547 19.513 24.3851 19.3103C24.4286 19.0206 24.3653 18.8988 23.9903 18.5519C23.8059 18.3812 23.4906 18.077 23.2895 17.8759C22.9718 17.5578 22.903 17.4672 22.7618 17.1808C22.5553 16.7619 22.4861 16.4659 22.4861 16.0022C22.4861 15.5419 22.5553 15.2423 22.7553 14.8372C22.9455 14.4522 23.1422 14.2291 23.7822 13.6731C24.2699 13.2495 24.3377 13.1679 24.3781 12.9555C24.4283 12.692 24.2434 12.3755 23.9949 12.2995C23.9138 12.2747 23.5026 12.2544 22.927 12.2467C21.8643 12.2324 21.7721 12.2167 21.263 11.9644C20.575 11.6235 20.0858 11.0171 19.8943 10.2679C19.833 10.0278 19.8242 9.88162 19.8235 9.08922C19.8229 8.28416 19.8158 8.16962 19.7589 8.04616C19.6461 7.80189 19.4611 7.68216 19.1967 7.68216C18.9846 7.68216 18.8223 7.78802 18.5233 8.12136C17.8266 8.89789 17.553 9.14402 17.1699 9.33882C16.5017 9.67856 15.5203 9.67856 14.8521 9.33882C14.4498 9.13429 14.1923 8.90016 13.6211 8.21949C13.4303 7.99216 13.2441 7.80669 13.1599 7.76016C12.987 7.66469 12.7855 7.66069 12.591 7.74909ZM15.6561 12.0198C15.1909 12.0563 14.7117 12.1908 14.2603 12.4118C13.4354 12.8154 12.8242 13.4266 12.4206 14.2515C12.0987 14.9094 11.9739 15.5819 12.031 16.3518C12.0662 16.8255 12.1969 17.2956 12.4206 17.7528C12.8242 18.5778 13.4354 19.189 14.2603 19.5926C14.9182 19.9144 15.5907 20.0392 16.3606 19.9822C17.2635 19.9152 18.1779 19.4899 18.8383 18.8295C19.4963 18.1715 19.9246 17.2532 19.9901 16.3604C20.0801 15.1306 19.6759 14.0126 18.8383 13.1748C18.2009 12.5375 17.2586 12.0874 16.4443 12.0314C16.2918 12.0208 16.1281 12.008 16.0803 12.0028C16.0327 11.9975 15.8418 12.0052 15.6561 12.0198ZM15.7683 14.0302C14.9667 14.1167 14.2595 14.7431 14.0711 15.5334C14.0183 15.7551 14.0183 16.2492 14.0711 16.471C14.1993 17.0084 14.6227 17.5396 15.1113 17.7759C15.4438 17.9367 15.6453 17.9831 16.011 17.9831C16.5773 17.9831 17.0185 17.8016 17.4145 17.4056C17.8105 17.0096 17.9919 16.5684 17.9919 16.0022C17.9919 15.4359 17.8105 14.9947 17.4145 14.5987C16.9686 14.153 16.4122 13.9607 15.7683 14.0302Z" fill="#846926"/>
+              </svg>
+            </span>
+            <span class="cs-pi-tab__labels">
+              <span class="cs-pi-tab__eyebrow">Setup Guide</span>
+              <span class="cs-pi-tab__title">Paychex or TJH Payroll</span>
+            </span>
+          </button>
+
+          <!-- 180° tabs (hidden until 180° is selected) -->
+          <button type="button" class="cs-pi-tab d-none" data-mode="180" data-tab="1" role="tab" aria-selected="false" style="max-width: 33.33%;">
+            <span class="cs-pi-tab__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.1947 0.031693C11.7513 0.188226 8.48661 1.46423 5.73527 3.72889C5.26634 4.11489 4.10061 5.28063 3.71461 5.74956C1.11474 8.90823 -0.166192 12.7124 0.0172751 16.7296C0.179542 20.2806 1.42168 23.4865 3.71461 26.2722C4.10061 26.7412 5.26634 27.9069 5.73527 28.2929C7.71234 29.9202 9.91141 31.0192 12.3385 31.5926C14.6718 32.144 17.3165 32.1434 19.6609 31.5914C21.7789 31.0928 23.8947 30.1013 25.6166 28.801C26.7359 27.9557 27.9414 26.7502 28.7867 25.6309C30.087 23.909 31.0785 21.7932 31.5771 19.6752C32.1291 17.3308 32.1297 14.6861 31.5783 12.3528C31.0041 9.92263 29.8943 7.70543 28.2647 5.73223C27.8871 5.27503 26.7165 4.10636 26.2579 3.72889C23.7979 1.70409 20.9795 0.48876 17.8853 0.11836C17.4723 0.0690263 16.1226 -0.00990704 15.8753 0.00102629C15.8181 0.00342629 15.5118 0.017293 15.1947 0.031693ZM15.2117 2.04263C12.0939 2.21249 9.16034 3.40876 6.79261 5.47569C6.40808 5.81143 5.68714 6.53676 5.36608 6.91089C3.59434 8.97583 2.44234 11.578 2.11234 14.2602C1.78168 16.9493 2.21288 19.5977 3.38514 22.0776C4.43048 24.2886 6.21021 26.3206 8.31794 27.7096C11.2986 29.6737 14.9663 30.4165 18.5218 29.7761C20.6019 29.4014 22.6822 28.4916 24.3843 27.2118C25.3989 26.4492 26.4441 25.4028 27.2101 24.3829C28.6361 22.4844 29.5886 20.126 29.8781 17.777C30.2094 15.0882 29.7847 12.4458 28.6249 9.97889C27.5777 7.75156 25.7918 5.70689 23.6753 4.31223C21.9129 3.15089 19.8293 2.38276 17.7473 2.12663C17.3026 2.07196 16.2075 2.00396 15.8926 2.01143C15.7877 2.01396 15.4813 2.02796 15.2117 2.04263ZM15.1473 8.05436C14.4129 8.21676 13.8999 8.97636 14.017 9.72823C14.1467 10.5608 14.921 11.1264 15.7407 10.987C16.0605 10.9328 16.3193 10.7986 16.5505 10.5674C17.1375 9.98036 17.1455 9.05836 16.5686 8.47129C16.3426 8.24129 16.1186 8.11449 15.831 8.05356C15.5498 7.99383 15.4202 7.99409 15.1473 8.05436ZM13.7893 13.029C13.5889 13.0716 13.4506 13.1489 13.2926 13.3069C13.0458 13.5537 12.955 13.8489 13.0191 14.1956C13.0599 14.4168 13.1111 14.513 13.2901 14.7052C13.5322 14.965 13.6098 14.9868 14.3401 14.9996L14.9889 15.0109L14.9994 17.7556C15.0097 20.4717 15.0106 20.503 15.0869 20.7733C15.3813 21.8158 16.1811 22.6168 17.2273 22.9168C17.4839 22.9904 17.5706 22.9962 18.3886 22.9962H19.2726L19.449 22.9032C19.6511 22.7965 19.8251 22.6132 19.9178 22.4092C19.9899 22.2502 20.0045 21.8953 19.9473 21.6892C19.8893 21.4805 19.6667 21.2309 19.4393 21.119C19.2409 21.0217 19.2266 21.02 18.4753 21.0021C17.7685 20.9853 17.7017 20.9782 17.5638 20.9054C17.3482 20.7913 17.1539 20.5746 17.0727 20.3577C17.0037 20.173 17.0019 20.1017 17.0014 17.4916C17.0006 14.5388 17.0002 14.5321 16.7857 14.1042C16.6362 13.8064 16.2251 13.3868 15.9446 13.2458C15.5469 13.0461 15.417 13.0225 14.6446 13.0098C14.2538 13.0036 13.8689 13.0121 13.7893 13.029Z" fill="#846926"/>
+              </svg>
+            </span>
+            <span class="cs-pi-tab__labels">
+              <span class="cs-pi-tab__eyebrow">180° Integration</span>
+              <span class="cs-pi-tab__title">Overview</span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Mobile tab dropdown -->
+        <div class="cs-pi-tabs__select">
+          <label for="cs-pi-tab-select" class="cs-pi-tabs__select__label">Choose an integration detail</label>
+          <select id="cs-pi-tab-select">
+            <!-- options injected by JS based on the active mode -->
+          </select>
+        </div>
+
+        <!-- Tab body -->
+        <div class="cs-pi-tab-body">
+
+          <!-- ====== 360° TAB 1 — Overview and Pricing ====== -->
+          <div class="cs-pi-panel is-active" data-mode="360" data-panel="1">
+            <h3 class="mb-3">Automated Payroll Sync Overview</h3>
+            <p class="cs-pi-panel-body mb-4">
+              You can fully integrate your payroll through Payroll Integrations Inc., a third-party service that connects CalSavers with a growing list of participating payroll providers. Paychex and TJH Payroll also offer their own direct 360° integrations with CalSavers.
+            </p>
+            <p class="cs-pi-panel-body mb-4">
+              If your payroll provider isn't available for 360° integration, you may be able to connect your payroll for a 180° integration (payroll file upload).
+            </p>
+
+            <!-- Accordion 1: Payroll Integrations Inc. -->
+            <div class="cs-pi-accordion">
+              <button type="button" class="cs-pi-accordion__header" aria-expanded="true">
+                <span class="cs-pi-accordion__title">Learn more about Payroll Integrations Inc.</span>
+                <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="cs-pi-accordion__body">
+                <h3 class="mb-3">Payroll Integrations Inc. Integration Overview</h3>
+                <p class="cs-pi-panel-body mb-4">
+                  Payroll Integrations Inc. is a third-party company that securely connects CalSavers with a wide range of payroll providers through a 360° integration for a monthly fee. The fee for this service is based on the number of active employees making contributions.
+                </p>
+
+                <div class="cs-pi-search">
+                  <span class="cs-pi-search__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+                      <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                  <input
+                    type="text"
+                    class="cs-pi-search__input"
+                    id="cs-pi-provider-search"
+                    placeholder="Search participating payroll providers"
+                    autocomplete="off">
+                  <div class="cs-pi-search__results" id="cs-pi-provider-results" role="listbox"></div>
+                </div>
+                <div class="cs-pi-validation" id="cs-pi-provider-validation" aria-live="polite"></div>
+
+                <p class="cs-pi-panel-body mt-3 mb-0" style="font-size: 0.875rem; font-style: italic;">
+                  *If you use Paychex or TJH Hull for your payroll services, see this instruction in the "Learn more about Paychex and TJH Payroll integration" section.
+                </p>
+
+                <div class="cs-pi-pricing-box">
+                  <p class="cs-pi-pricing-box__title">Payroll Integrations Inc. third-party fees:</p>
+<div class="cs-pi-pricing-wrap text-dark">
+
+  <div class="cs-pi-pricing d-flex gap-2">
+
+    <div class="cs-pi-pricing__column">
+      <div class="cs-pi-pricing__header">0<br>Employees</div>
+      <div class="cs-pi-pricing__cell">$0 per month</div>
+    </div>
+
+    <div class="cs-pi-pricing__column">
+      <div class="cs-pi-pricing__header">1–25<br>Employees</div>
+      <div class="cs-pi-pricing__cell">$30 per month</div>
+    </div>
+
+    <div class="cs-pi-pricing__column">
+      <div class="cs-pi-pricing__header">26–50<br>Employees</div>
+      <div class="cs-pi-pricing__cell">$45 per month</div>
+    </div>
+
+    <div class="cs-pi-pricing__column">
+      <div class="cs-pi-pricing__header">51–100<br>Employees</div>
+      <div class="cs-pi-pricing__cell">$60 per month</div>
+    </div>
+
+    <div class="cs-pi-pricing__column">
+      <div class="cs-pi-pricing__header">101–499<br>Employees</div>
+      <div class="cs-pi-pricing__cell">$85 per month</div>
+    </div>
+
+  </div>
+
+</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Accordion 2: Paychex and TJH -->
+            <div class="cs-pi-accordion">
+              <button type="button" class="cs-pi-accordion__header" aria-expanded="true">
+                <span class="cs-pi-accordion__title">Learn more about Paychex and TJH Payroll integration</span>
+                <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="cs-pi-accordion__body">
+                
+                <div class="row align-items-start g-4">
+                  <div class="col-md-6">
+                    <h3 class="mb-3">Paychex and TJH Payroll Integration Overview</h3>
+                    <p class="cs-pi-panel-body mb-0" style="margin-top: 0;">
+                      Paychex and TJH Payroll offer their own direct 360° integrations with CalSavers, allowing employee contribution information to be securely transmitted automatically between your payroll provider and CalSavers. Pricing and setup support for these services are managed directly by the payroll provider. For pricing details, please contact your provider directly.
+                    </p>
+                  </div>
+                  <div class="col-md-6">
+                    <img src="../src/assets/360-cycle-image.svg" alt="360° automated payroll sync cycle diagram" class="cs-pi-diagram" style="align-self: flex-start; max-width:350px;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== 360° TAB 2 — Payroll Integrations Inc. ====== -->
+          <div class="cs-pi-panel" data-mode="360" data-panel="2">
+            <!-- Detailed view (toggle OFF, default) — converted from 1Tab2PayrollIntegrationsIncWithToggleOff.tsx -->
+            <div data-toggle-state="on" class="d-none">
+              <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
+                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
+                  <h3 class="mb-0">Setup guide to integrate with Payroll Integrations Inc.</h3>
+                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
+                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
+                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
+                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
+                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
+                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
+                          <div class="rounded-pill flex-shrink-0" style="background-color: #00594f; border: 1px solid #00594f; height: 24px; width: 44px;" data-name="Background"></div>
+                          <div class="position-absolute" style="margin-left: 21px; margin-top: 1px;">
+                            <div class="position-relative flex-shrink-0" style="width: 22px; height: 22px;" data-name="Switch">
+                              <svg class="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
+                                <circle cx="11" cy="11" fill="white" r="11"></circle>
+                                <path d="M6.99995 11.6562L9.51411 14.1704L15.171 8.51355" stroke="#00594F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row g-4 align-items-center w-100">
+                  <div class="col-12 col-md-6">
+                    <div class="ratio ratio-16x9" style="border: 2px solid #c3c3c3;">
+                      <iframe src="https://fast.wistia.net/embed/iframe/86yl3cedux?videoFoam=true" title="Setting up your Payroll Provider" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 d-flex align-items-center">
+                    <h4 class="text-dark mb-0">Learn how to integrate your payroll using Payroll Integrations Inc.</h4>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Novice">
+                  <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="Accordions">
+
+                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
+                      <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex align-items-center justify-content-between p-4 w-100">
+                            <div class="d-flex align-items-center gap-3">
+                              <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                                <p class="fw-medium text-center text-white w-100 mb-0">1</p>
+                              </div>
+                              <div class="d-flex flex-fill align-items-center" data-name="Text Container">
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Set up a deduction line with your provider</p>
+                              </div>
+                            </div>
+                            <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
+                              <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 19.5019 10.5023" style="position: absolute; top: 28.12%; left: 9.37%; right: 9.37%; bottom: 28.12%; width: 81.26%; height: 43.76%;">
+                                <path clip-rule="evenodd" d="M9.21995 0.22034C9.28962 0.150495 9.37238 0.0950809 9.4635 0.0572712C9.55461 0.0194616 9.6523 0 9.75095 0C9.8496 0 9.94728 0.0194616 10.0384 0.0572712C10.1295 0.0950809 10.2123 0.150495 10.2819 0.22034L19.2819 9.22034C19.4228 9.36117 19.5019 9.55218 19.5019 9.75134C19.5019 9.9505 19.4228 10.1415 19.2819 10.2823C19.1411 10.4232 18.9501 10.5023 18.7509 10.5023C18.5518 10.5023 18.3608 10.4232 18.2199 10.2823L9.75095 1.81184L1.28195 10.2823C1.14112 10.4232 0.950111 10.5023 0.750947 10.5023C0.551784 10.5023 0.360777 10.4232 0.219947 10.2823C0.0791174 10.1415 0 9.9505 0 9.75134C0 9.55218 0.0791174 9.36117 0.219947 9.22034L9.21995 0.22034V0.22034Z" fill="#00594F" fill-rule="evenodd"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <div aria-hidden="true" class="position-absolute rounded pointer-events-none accordion-border-overlay" style="inset: 0;"></div>
+                      </div>
+                      <div class="bg-white flex-shrink-0 w-100" data-name="Step=Step 1">
+                        <div class="overflow-hidden w-100 h-100">
+                          <div class="d-flex flex-column gap-4 align-items-start p-4 w-100 h-100">
+                            <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Steps">
+                              <div class="d-flex gap-4 align-items-start flex-shrink-0 w-100" data-name="Step">
+                                <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
+                                  <p class="text-secondary w-100">Reach out to your payroll provider to create the CalSavers deduction line item on your payroll platform.</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
+                      <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex align-items-center justify-content-between p-4 w-100">
+                            <div class="d-flex align-items-center gap-3">
+                              <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                                <p class="fw-medium text-center text-white w-100 mb-0">2</p>
+                              </div>
+                              <div class="d-flex flex-fill align-items-center" data-name="Text Container">
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Log in your CalSavers account and go to Payroll Provider</p>
+                              </div>
+                            </div>
+                            <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
+                              <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 19.5019 10.5023" style="position: absolute; top: 28.12%; left: 9.37%; right: 9.37%; bottom: 28.12%; width: 81.26%; height: 43.76%;">
+                                <path clip-rule="evenodd" d="M9.21995 0.22034C9.28962 0.150495 9.37238 0.0950809 9.4635 0.0572712C9.55461 0.0194616 9.6523 0 9.75095 0C9.8496 0 9.94728 0.0194616 10.0384 0.0572712C10.1295 0.0950809 10.2123 0.150495 10.2819 0.22034L19.2819 9.22034C19.4228 9.36117 19.5019 9.55218 19.5019 9.75134C19.5019 9.9505 19.4228 10.1415 19.2819 10.2823C19.1411 10.4232 18.9501 10.5023 18.7509 10.5023C18.5518 10.5023 18.3608 10.4232 18.2199 10.2823L9.75095 1.81184L1.28195 10.2823C1.14112 10.4232 0.950111 10.5023 0.750947 10.5023C0.551784 10.5023 0.360777 10.4232 0.219947 10.2823C0.0791174 10.1415 0 9.9505 0 9.75134C0 9.55218 0.0791174 9.36117 0.219947 9.22034L9.21995 0.22034V0.22034Z" fill="#00594F" fill-rule="evenodd"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <div aria-hidden="true" class="position-absolute rounded pointer-events-none accordion-border-overlay" style="inset: 0;"></div>
+                      </div>
+                      <div class="bg-white flex-shrink-0 w-100" data-name="Step=Step 2">
+                        <div class="overflow-hidden w-100 h-100">
+                          <div class="d-flex flex-column gap-4 align-items-start p-4 w-100 h-100">
+                            <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Steps">
+                              <div class="row g-4 align-items-start w-100">
+                                <div class="col-lg-6">
+                                  <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
+                                    <div class="text-secondary w-100">
+                                      <p class="mb-0">
+                                        <a href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" class="fw-semibold text-decoration-underline" style="color: #00594f;">Log in</a>
+                                        <span> to the employer portal and select "Payroll Provider" on the left-hand side of the screen under Dashboard.</span>
+                                      </p>
+                                      <p class="mb-0">&#8203;</p>
+                                      <p class="mb-0">Select "Add New" to start the payroll integration process.</p>
+                                      <p class="mb-0">&#8203;</p>
+                                      <p class="mb-0">Choose "I have a different payroll provider" and search for your payroll vendor in the Payroll Integrations Inc. participating vendor list.</p>
+                                      <p class="mb-0">&#8203;</p>
+                                      <p>If your payroll service participates, you will be able to continue through the set up process.</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <img src="https://cdn.unite529.com/jcdn/files/CAER/images/initiate-payroll-integrations.png" alt="" class="img-fluid" style="border: 1px solid rgba(0, 89, 79, 0.5);">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
+                      <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex align-items-center justify-content-between p-4 w-100">
+                            <div class="d-flex align-items-center gap-3">
+                              <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                                <p class="fw-medium text-center text-white w-100 mb-0">3</p>
+                              </div>
+                              <div class="d-flex flex-fill align-items-center" data-name="Text Container">
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Add a bank or select a previously added account</p>
+                              </div>
+                            </div>
+                            <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
+                              <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 19.5019 10.5023" style="position: absolute; top: 28.12%; left: 9.37%; right: 9.37%; bottom: 28.12%; width: 81.26%; height: 43.76%;">
+                                <path clip-rule="evenodd" d="M9.21995 0.22034C9.28962 0.150495 9.37238 0.0950809 9.4635 0.0572712C9.55461 0.0194616 9.6523 0 9.75095 0C9.8496 0 9.94728 0.0194616 10.0384 0.0572712C10.1295 0.0950809 10.2123 0.150495 10.2819 0.22034L19.2819 9.22034C19.4228 9.36117 19.5019 9.55218 19.5019 9.75134C19.5019 9.9505 19.4228 10.1415 19.2819 10.2823C19.1411 10.4232 18.9501 10.5023 18.7509 10.5023C18.5518 10.5023 18.3608 10.4232 18.2199 10.2823L9.75095 1.81184L1.28195 10.2823C1.14112 10.4232 0.950111 10.5023 0.750947 10.5023C0.551784 10.5023 0.360777 10.4232 0.219947 10.2823C0.0791174 10.1415 0 9.9505 0 9.75134C0 9.55218 0.0791174 9.36117 0.219947 9.22034L9.21995 0.22034V0.22034Z" fill="#00594F" fill-rule="evenodd"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <div aria-hidden="true" class="position-absolute rounded pointer-events-none accordion-border-overlay" style="inset: 0;"></div>
+                      </div>
+                      <div class="bg-white flex-shrink-0 w-100" data-name="Step=Step 3">
+                        <div class="overflow-hidden w-100 h-100">
+                          <div class="d-flex flex-column gap-4 align-items-start p-4 w-100 h-100">
+                            <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Steps">
+                              <div class="row g-4 align-items-start w-100">
+                                <div class="col-lg-6">
+                                  <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
+                                    <div class="text-secondary w-100">
+                                      <p class="mb-0">Add a bank or select a previously added account</p>
+                                      <p class="mb-0">&#8203;</p>
+                                      <p>Select a bank account that your company will use to send employee contributions.</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <img src="https://cdn.unite529.com/jcdn/files/CAER/images/add-bank-account-preview.png" alt="" class="img-fluid" style="border: 1px solid rgba(0, 89, 79, 0.5);">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
+                      <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex align-items-center justify-content-between p-4 w-100">
+                            <div class="d-flex align-items-center gap-3">
+                              <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                                <p class="fw-medium text-center text-white w-100 mb-0">4</p>
+                              </div>
+                              <div class="d-flex flex-fill align-items-center" data-name="Text Container">
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Initiate Payroll Integrations flow to register for the integration</p>
+                              </div>
+                            </div>
+                            <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
+                              <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 19.5019 10.5023" style="position: absolute; top: 28.12%; left: 9.37%; right: 9.37%; bottom: 28.12%; width: 81.26%; height: 43.76%;">
+                                <path clip-rule="evenodd" d="M9.21995 0.22034C9.28962 0.150495 9.37238 0.0950809 9.4635 0.0572712C9.55461 0.0194616 9.6523 0 9.75095 0C9.8496 0 9.94728 0.0194616 10.0384 0.0572712C10.1295 0.0950809 10.2123 0.150495 10.2819 0.22034L19.2819 9.22034C19.4228 9.36117 19.5019 9.55218 19.5019 9.75134C19.5019 9.9505 19.4228 10.1415 19.2819 10.2823C19.1411 10.4232 18.9501 10.5023 18.7509 10.5023C18.5518 10.5023 18.3608 10.4232 18.2199 10.2823L9.75095 1.81184L1.28195 10.2823C1.14112 10.4232 0.950111 10.5023 0.750947 10.5023C0.551784 10.5023 0.360777 10.4232 0.219947 10.2823C0.0791174 10.1415 0 9.9505 0 9.75134C0 9.55218 0.0791174 9.36117 0.219947 9.22034L9.21995 0.22034V0.22034Z" fill="#00594F" fill-rule="evenodd"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <div aria-hidden="true" class="position-absolute rounded pointer-events-none accordion-border-overlay" style="inset: 0;"></div>
+                      </div>
+                      <div class="bg-white flex-shrink-0 w-100" data-name="Step=Step 4">
+                        <div class="overflow-hidden w-100 h-100">
+                          <div class="d-flex flex-column gap-4 align-items-start p-4 w-100 h-100">
+                            <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Steps">
+                              <div class="row g-4 align-items-start w-100">
+                                <div class="col-lg-6">
+                                  <div class="d-flex flex-fill flex-column gap-3 align-items-start text-secondary" data-name="Text">
+                                    <p class="w-100">You will then be taken to the Payroll Integrations Inc. connection page to start your payroll connection. Once more, you will be required add banking information for the monthly fee associated with Payroll Integrations Inc. The fee for this service is based on the number of active employees making contributions.</p>
+                                    <p class="fst-italic w-100" style="font-size: 12px;">Pricing tier applied is determined monthly after payrolls are processed based on number of employees. The service charge associated with Payroll Integrations is not affiliated with CalSavers program. It is an optional service provided and billed directly by Payroll Integrations as a third-party.</p>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <img src="https://cdn.unite529.com/jcdn/files/CAER/images/Payroll-Integrations-Inc-registration.png" alt="" class="img-fluid" style="border: 1px solid rgba(0, 89, 79, 0.5);">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
+                      <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex align-items-center justify-content-between p-4 w-100">
+                            <div class="d-flex align-items-center gap-3">
+                              <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                                <p class="fw-medium text-center text-white w-100 mb-0">5</p>
+                              </div>
+                              <div class="d-flex flex-fill align-items-center" data-name="Text Container">
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Complete setup and verify connection</p>
+                              </div>
+                            </div>
+                            <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
+                              <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 19.5019 10.5023" style="position: absolute; top: 28.12%; left: 9.37%; right: 9.37%; bottom: 28.12%; width: 81.26%; height: 43.76%;">
+                                <path clip-rule="evenodd" d="M9.21995 0.22034C9.28962 0.150495 9.37238 0.0950809 9.4635 0.0572712C9.55461 0.0194616 9.6523 0 9.75095 0C9.8496 0 9.94728 0.0194616 10.0384 0.0572712C10.1295 0.0950809 10.2123 0.150495 10.2819 0.22034L19.2819 9.22034C19.4228 9.36117 19.5019 9.55218 19.5019 9.75134C19.5019 9.9505 19.4228 10.1415 19.2819 10.2823C19.1411 10.4232 18.9501 10.5023 18.7509 10.5023C18.5518 10.5023 18.3608 10.4232 18.2199 10.2823L9.75095 1.81184L1.28195 10.2823C1.14112 10.4232 0.950111 10.5023 0.750947 10.5023C0.551784 10.5023 0.360777 10.4232 0.219947 10.2823C0.0791174 10.1415 0 9.9505 0 9.75134C0 9.55218 0.0791174 9.36117 0.219947 9.22034L9.21995 0.22034V0.22034Z" fill="#00594F" fill-rule="evenodd"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <div aria-hidden="true" class="position-absolute rounded pointer-events-none accordion-border-overlay" style="inset: 0;"></div>
+                      </div>
+                      <div class="bg-white flex-shrink-0 w-100" data-name="Step=Step 5">
+                        <div class="overflow-hidden w-100 h-100">
+                          <div class="d-flex flex-column gap-4 align-items-start p-4 w-100 h-100">
+                            <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Steps">
+                              <div class="row g-4 align-items-start w-100">
+                                <div class="col-lg-6">
+                                  <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
+                                    <p class="text-secondary w-100" style="white-space: pre-line;">Finish your connection by logging into your payroll provider account and follow on-screen instructions.
+
+Once setup is complete, you will be re-routed to your CalSavers dashboard. You should see a "Connected" badge.</p>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <img src="https://cdn.unite529.com/jcdn/files/CAER/images/verify-connection-preview.png" alt="" class="img-fluid" style="border: 1px solid rgba(0, 89, 79, 0.5);">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick view (toggle ON) — converted from 2Tab2PayrollIntegrationsIncWithToggleOn.tsx -->
+            <div data-toggle-state="off">
+              <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
+                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
+                  <h3 class="mb-0">Setup guide to integrate with Payroll Integrations Inc.</h3>
+                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
+                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
+                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
+                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
+                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
+                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
+                          <div class="rounded-pill flex-shrink-0" style="height: 24px; width: 44px; background-color: #E6E6E6; border: 1px solid #D3D3D3;" data-name="Background"></div>
+                          <div class="position-absolute" style="margin-left: 7px; margin-top: 6px;">
+                            <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12" style="width: 12px; height: 12px;">
+                              <circle cx="6" cy="6" fill="#828282" r="5.5" stroke="#828282"></circle>
+                            </svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row g-4 align-items-center w-100">
+                  <div class="col-12 col-md-6">
+                    <div class="ratio ratio-16x9">
+                      <iframe src="https://fast.wistia.net/embed/iframe/86yl3cedux?videoFoam=true" title="Setting up your Payroll Provider" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 d-flex align-items-center">
+                    <h4 class="text-dark mb-0">Learn how to integrate your payroll using Payroll Integrations Inc.</h4>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Exerienced">
+                  <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="StepsContainer">
+
+                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
+                      <div class="bg-white flex-fill rounded" data-name="Step 1">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
+                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                              <p class="fw-medium text-center text-white w-100 mb-0">1</p>
+                            </div>
+                            <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
+                              <p class="fw-semibold text-dark w-100 mb-0">Set up deduction line with your provider</p>
+                              <p class="text-secondary w-100">Reach out to your payroll provider to create the CalSavers deduction line item on your payroll platform.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="bg-white flex-fill rounded" data-name="Step 2">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
+                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                              <p class="fw-medium text-center text-white w-100 mb-0">2</p>
+                            </div>
+                            <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Container">
+                              <div class="d-flex flex-fill flex-column gap-1 align-items-start w-100" data-name="Text Container">
+                                <p class="fw-semibold text-dark w-100 mb-0">Log in your CalSavers account and go to Payroll Provider</p>
+                                <p class="text-secondary w-100">Go to payroll provider and select "Add New." Choose "I have a different payroll provider" and search for your payroll vendor in the Payroll Integrations Inc. participating vendor list.</p>
+                              </div>
+                              <a class="btn btn-primary d-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" data-name="Button">
+                                <span class="fw-semibold text-center text-nowrap">Account Login</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
+                      <div class="bg-white flex-fill rounded" data-name="Step 3">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
+                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                              <p class="fw-medium text-center text-white w-100 mb-0">3</p>
+                            </div>
+                            <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
+                              <p class="fw-semibold text-dark w-100 mb-0">Add a bank or select a previously added account</p>
+                              <p class="text-secondary w-100">Select a bank account that your company will use to send employee contributions.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="bg-white flex-fill rounded" data-name="Step 4">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
+                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                              <p class="fw-medium text-center text-white w-100 mb-0">4</p>
+                            </div>
+                            <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
+                              <p class="fw-semibold text-dark w-100 mb-0">Initiate Payroll Integrations flow to register for the integration</p>
+                              <p class="text-secondary w-100">You will then be taken to the Payroll Integrations Inc. connection page to start your payroll integration.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Row">
+                      <div class="bg-white w-100 rounded" data-name="Step 5">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
+                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                              <p class="fw-medium text-center text-white w-100 mb-0">5</p>
+                            </div>
+                            <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
+                              <p class="fw-semibold text-dark w-100 mb-0">Complete setup and verify connection</p>
+                              <p class="text-secondary w-100" style="white-space: pre-line;">Finish your connection by logging into your payroll provider account and follow on-screen instructions.
+
+Once setup is complete, you will be re-routed to your CalSavers dashboard. You should see a "Connected" badge.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== 360° TAB 3 — Paychex / TJH ====== -->
+          <div class="cs-pi-panel" data-mode="360" data-panel="3">
+            <!-- Detailed view (toggle OFF, default) — converted from 3Tab3PaychexAndTjhPayrollWithToggleOff.tsx -->
+            <div data-toggle-state="on" class="d-none">
+              <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
+                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
+                  <h3 class="mb-0">Setup guide to integrate Paychex or TJH Payroll</h3>
+                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
+                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
+                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
+                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
+                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
+                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
+                          <div class="rounded-pill flex-shrink-0" style="background-color: #00594f; border: 1px solid #00594f; height: 24px; width: 44px;" data-name="Background"></div>
+                          <div class="position-absolute" style="margin-left: 21px; margin-top: 1px;">
+                            <div class="position-relative flex-shrink-0" style="width: 22px; height: 22px;" data-name="Switch">
+                              <svg class="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
+                                <circle cx="11" cy="11" fill="white" r="11"></circle>
+                                <path d="M6.99995 11.6562L9.51411 14.1704L15.171 8.51355" stroke="#00594F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Novice">
+                  <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="Accordions">
+
+                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
+                      <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex align-items-center justify-content-between p-4 w-100">
+                            <div class="d-flex align-items-center gap-3">
+                              <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                                <p class="fw-medium text-center text-white w-100 mb-0">1</p>
+                              </div>
+                              <div class="d-flex flex-fill align-items-center" data-name="Text Container">
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Log in and add a bank or select a previously added account</p>
+                              </div>
+                            </div>
+                            <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
+                              <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 19.5019 10.5023" style="position: absolute; top: 28.12%; left: 9.37%; right: 9.37%; bottom: 28.12%; width: 81.26%; height: 43.76%;">
+                                <path clip-rule="evenodd" d="M9.21995 0.22034C9.28962 0.150495 9.37238 0.0950809 9.4635 0.0572712C9.55461 0.0194616 9.6523 0 9.75095 0C9.8496 0 9.94728 0.0194616 10.0384 0.0572712C10.1295 0.0950809 10.2123 0.150495 10.2819 0.22034L19.2819 9.22034C19.4228 9.36117 19.5019 9.55218 19.5019 9.75134C19.5019 9.9505 19.4228 10.1415 19.2819 10.2823C19.1411 10.4232 18.9501 10.5023 18.7509 10.5023C18.5518 10.5023 18.3608 10.4232 18.2199 10.2823L9.75095 1.81184L1.28195 10.2823C1.14112 10.4232 0.950111 10.5023 0.750947 10.5023C0.551784 10.5023 0.360777 10.4232 0.219947 10.2823C0.0791174 10.1415 0 9.9505 0 9.75134C0 9.55218 0.0791174 9.36117 0.219947 9.22034L9.21995 0.22034V0.22034Z" fill="#00594F" fill-rule="evenodd"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <div aria-hidden="true" class="position-absolute rounded pointer-events-none accordion-border-overlay" style="inset: 0;"></div>
+                      </div>
+                      <div class="bg-white flex-shrink-0 w-100" data-name="Step=Step 1">
+                        <div class="overflow-hidden w-100 h-100">
+                          <div class="d-flex flex-column gap-4 align-items-start p-4 w-100 h-100">
+                            <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Steps">
+                              <div class="d-flex gap-4 align-items-start flex-shrink-0 w-100" data-name="Step">
+                                <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
+                                  <div class="text-secondary w-100">
+                                    <p class="mb-0">Once <a href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" class="fw-semibold text-decoration-underline" style="color: #00594f;">logged in</a> go to "Banking Information" and add a bank account that your company will use to send employee contributions.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
+                      <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex align-items-center justify-content-between p-4 w-100">
+                            <div class="d-flex align-items-center gap-3">
+                              <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                                <p class="fw-medium text-center text-white w-100 mb-0">2</p>
+                              </div>
+                              <div class="d-flex flex-fill align-items-center" data-name="Text Container">
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Go to "Payroll Provider" to begin the integration process</p>
+                              </div>
+                            </div>
+                            <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
+                              <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 19.5019 10.5023" style="position: absolute; top: 28.12%; left: 9.37%; right: 9.37%; bottom: 28.12%; width: 81.26%; height: 43.76%;">
+                                <path clip-rule="evenodd" d="M9.21995 0.22034C9.28962 0.150495 9.37238 0.0950809 9.4635 0.0572712C9.55461 0.0194616 9.6523 0 9.75095 0C9.8496 0 9.94728 0.0194616 10.0384 0.0572712C10.1295 0.0950809 10.2123 0.150495 10.2819 0.22034L19.2819 9.22034C19.4228 9.36117 19.5019 9.55218 19.5019 9.75134C19.5019 9.9505 19.4228 10.1415 19.2819 10.2823C19.1411 10.4232 18.9501 10.5023 18.7509 10.5023C18.5518 10.5023 18.3608 10.4232 18.2199 10.2823L9.75095 1.81184L1.28195 10.2823C1.14112 10.4232 0.950111 10.5023 0.750947 10.5023C0.551784 10.5023 0.360777 10.4232 0.219947 10.2823C0.0791174 10.1415 0 9.9505 0 9.75134C0 9.55218 0.0791174 9.36117 0.219947 9.22034L9.21995 0.22034V0.22034Z" fill="#00594F" fill-rule="evenodd"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <div aria-hidden="true" class="position-absolute rounded pointer-events-none accordion-border-overlay" style="inset: 0;"></div>
+                      </div>
+                      <div class="bg-white flex-shrink-0 w-100" data-name="Step=Step 2">
+                        <div class="overflow-hidden w-100 h-100">
+                          <div class="d-flex flex-column gap-4 align-items-start p-4 w-100 h-100">
+                            <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Steps">
+                              <div class="d-flex gap-4 align-items-start flex-shrink-0 w-100" data-name="Step">
+                                <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
+                                  <div class="text-secondary w-100">
+                                    <p class="mb-0">Select "Payroll integration" on the left-hand side of the screen under Dashboard. Select "Add New" to start the payroll integration process.</p>
+                                    <p class="mb-0">&#8203;</p>
+                                    <p class="mb-0">When prompted, choose your payroll provider by selecting either Paychex or TJH from the options, then continue.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
+                      <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex align-items-center justify-content-between p-4 w-100">
+                            <div class="d-flex align-items-center gap-3">
+                              <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                                <p class="fw-medium text-center text-white w-100 mb-0">3</p>
+                              </div>
+                              <div class="d-flex flex-fill align-items-center" data-name="Text Container">
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Complete setup and verify connection</p>
+                              </div>
+                            </div>
+                            <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
+                              <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 19.5019 10.5023" style="position: absolute; top: 28.12%; left: 9.37%; right: 9.37%; bottom: 28.12%; width: 81.26%; height: 43.76%;">
+                                <path clip-rule="evenodd" d="M9.21995 0.22034C9.28962 0.150495 9.37238 0.0950809 9.4635 0.0572712C9.55461 0.0194616 9.6523 0 9.75095 0C9.8496 0 9.94728 0.0194616 10.0384 0.0572712C10.1295 0.0950809 10.2123 0.150495 10.2819 0.22034L19.2819 9.22034C19.4228 9.36117 19.5019 9.55218 19.5019 9.75134C19.5019 9.9505 19.4228 10.1415 19.2819 10.2823C19.1411 10.4232 18.9501 10.5023 18.7509 10.5023C18.5518 10.5023 18.3608 10.4232 18.2199 10.2823L9.75095 1.81184L1.28195 10.2823C1.14112 10.4232 0.950111 10.5023 0.750947 10.5023C0.551784 10.5023 0.360777 10.4232 0.219947 10.2823C0.0791174 10.1415 0 9.9505 0 9.75134C0 9.55218 0.0791174 9.36117 0.219947 9.22034L9.21995 0.22034V0.22034Z" fill="#00594F" fill-rule="evenodd"></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <div aria-hidden="true" class="position-absolute rounded pointer-events-none accordion-border-overlay" style="inset: 0;"></div>
+                      </div>
+                      <div class="bg-white flex-shrink-0 w-100" data-name="Step=Step 3">
+                        <div class="overflow-hidden w-100 h-100">
+                          <div class="d-flex flex-column gap-4 align-items-start p-4 w-100 h-100">
+                            <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Steps">
+                              <div class="d-flex gap-4 align-items-start flex-shrink-0 w-100" data-name="Step">
+                                <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
+                                  <p class="text-secondary w-100" style="white-space: pre-line;">Then you can select Paychex or TJH Payroll from the screen to link up the integration.
+
+Paychex users must sign a Docusign from Paychex that will be emailed to you. Once signed, the integration is complete.
+
+Once setup is complete, you will be re-routed to your CalSavers dashboard. You should see a "Connected" badge.</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick view (toggle ON) — converted from 4Tab3PaychexAndTjhPayrollWithToggleOn.tsx -->
+            <div data-toggle-state="off">
+              <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
+                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
+                  <h3 class="mb-0">Setup guide to integrate Paychex or TJH Payroll</h3>
+                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
+                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
+                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
+                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
+                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
+                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
+                          <div class="rounded-pill flex-shrink-0" style="height: 24px; width: 44px; background-color: #E6E6E6; border: 1px solid #D3D3D3;" data-name="Background"></div>
+                          <div class="position-absolute" style="margin-left: 7px; margin-top: 6px;">
+                            <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12" style="width: 12px; height: 12px;">
+                              <circle cx="6" cy="6" fill="#828282" r="5.5" stroke="#828282"></circle>
+                            </svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Exerienced">
+                  <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="StepsContainer">
+
+                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
+                      <div class="bg-white flex-fill rounded" data-name="Step 1">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
+                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                              <p class="fw-medium text-center text-white w-100 mb-0">1</p>
+                            </div>
+                            <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Container">
+                              <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
+                                <p class="fw-semibold text-dark w-100 mb-0">Log in and add a bank or select a previously added account</p>
+                                <p class="text-secondary w-100">Once logged in, go to "Banking Information" and add a bank account that your company will use to send employee contributions.</p>
+                              </div>
+                              <a class="btn btn-primary d-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" data-name="Button">
+                                <span class="fw-semibold text-center text-nowrap">Account Login</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="bg-white flex-fill rounded" data-name="Step 2">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
+                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                              <p class="fw-medium text-center text-white w-100 mb-0">2</p>
+                            </div>
+                            <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Container">
+                              <div class="d-flex flex-column gap-1 align-items-start w-100" data-name="Text Container">
+                                <p class="fw-semibold text-dark w-100 mb-0">Go to "Payroll Provider" to begin the integration process</p>
+                                <p class="text-secondary w-100">Select "Add New" and select Paychex or TJH to start the integration.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Row">
+                      <div class="bg-white w-100 rounded" data-name="Step 3">
+                        <div class="overflow-hidden rounded w-100 h-100">
+                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
+                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
+                              <p class="fw-medium text-center text-white w-100 mb-0">3</p>
+                            </div>
+                            <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
+                              <p class="fw-semibold text-dark w-100 mb-0">Complete setup and verify connection</p>
+                              <p class="text-secondary w-100" style="white-space: pre-line;">Then you can select Paychex or TJH Payroll from the screen to link up the integration.
+
+Once setup is complete, you will be re-routed to your CalSavers dashboard. You should see a "Connected" badge.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== 180° TAB 1 — Overview (converted from 180TabExamples.tsx, Tab180OverviewContent export) ====== -->
+          <div class="cs-pi-panel" data-mode="180" data-panel="1">
+            <div class="d-flex flex-column flex-lg-row gap-4 align-items-start flex-shrink-0 w-100" data-name="InnerContainer">
+              <div style="flex: 1 1 0; min-width: 0;">
+                <div class="d-flex flex-column gap-2 align-items-start flex-shrink-0 w-100">
+                  <h3 class="w-100 mb-0">Payroll File Upload Overview</h3>
+                  <div class="position-relative flex-shrink-0 w-100" data-name="InnerContainer">
+                    <div class="d-flex flex-column align-items-start align-self-start flex-shrink-0" data-name="Text">
+                      <p class="text-secondary w-100">
+                        Some payroll providers have the option to upload files to CalSavers with a 180° connection. With this access, you would need to send updated employee contribution rates to your payroll provider prior to each pay date. Then the payroll provider uploads the employee payroll file to CalSavers.
+                        <br aria-hidden="true">
+                        <br aria-hidden="true">
+                        If you are interested in this type of integration, contact your payroll provider for more information, including any fees and set-up assistance. Your payroll provider can contact
+                        <a href="mailto:pps@ascensus.com" class="fw-semibold text-decoration-underline" style="color: #00594f;">pps@ascensus.com</a>
+                        for support.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <img
+                src="../src/assets/180-linear-image.svg"
+                alt="180° payroll file upload flow diagram"
+                class="img-fluid flex-shrink-0 align-self-start mx-auto"
+                style="max-width: 350px; width: 100%; margin-top: 0;">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       VIDEO SECTION
+       ==================================================================== -->
+  <section class="cs-pi-video">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8 order-lg-1">
+          <div class="cs-video">
+            <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0; position:relative;">
+              <div class="wistia_responsive_wrapper" style="height:100%; left:0; position:absolute; top:0; width:100%;">
+                <iframe
+                  src="https://fast.wistia.net/embed/iframe/z4h0pqpuwk?seo=true&amp;videoFoam=true"
+                  title="Learn about Payroll Provider Integration Options"
+                  allow="autoplay; fullscreen" allowtransparency="true"
+                  frameborder="0" scrolling="no"
+                  class="wistia_embed" name="wistia_embed"
+                  msallowfullscreen width="100%" height="100%"></iframe>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mt-2">
+            <span class="cs-pi-video__caption">Payroll provider integration options</span>
+            <a href="https://ascensus-1.wistia.com/medias/z4h0pqpuwk" target="_blank" class="link-primary">Captions Transcript</a>
+          </div>
+        </div>
+        <div class="col-lg-4 order-lg-2">
+          <h2 class="cs-pi-video__heading">Learn more about payroll provider integration options</h2>
+          <p class="cs-pi-video__lede mb-0">
+            To learn more about the benefits and your options, check out our informative video.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       NEED ADDITIONAL SUPPORT
+       ==================================================================== -->
+  <section class="cs-pi-support">
+    <div class="container">
+      
+   <div class="row align-items-stretch">
+
+      <!-- LEFT: TITLE -->
+      <div class="col-lg-4 d-flex align-items-center">
+        <h2 class="cs-pi-support__heading section-title mb-0">
+          Need additional support?
+        </h2>
+      </div>
+      <div class="col-lg-8">
+      <div class="cs-pi-support__cards d-flex gap-4">
+
+        <a href="#" class="cs-pi-support__card text-decoration-none">
+          <span class="cs-pi-support__icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <g clip-path="url(#clip0_4766_8122)">
+    <path d="M28.1875 20.6875V24.4375" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M3.8125 24.4375V11.3125C3.8125 10.8152 4.01004 10.3383 4.36167 9.98667C4.71331 9.63504 5.19022 9.4375 5.6875 9.4375H10.375" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M19.23 24.4375C18.9046 25.007 18.4345 25.4803 17.8673 25.8095C17.3 26.1387 16.6559 26.3121 16 26.3121C15.3441 26.3121 14.7 26.1387 14.1327 25.8095C13.5655 25.4803 13.0954 25.007 12.77 24.4375H1.9375V26.3125C1.9375 27.3071 2.33259 28.2609 3.03585 28.9642C3.73911 29.6674 4.69294 30.0625 5.6875 30.0625H26.3125C27.3071 30.0625 28.2609 29.6674 28.9642 28.9642C29.6674 28.2609 30.0625 27.3071 30.0625 26.3125V24.4375H19.23Z" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M24.4452 2.27C22.9744 1.83049 21.4079 1.82597 19.9346 2.25699C18.4613 2.68802 17.1442 3.53616 16.1422 4.6991C15.1402 5.86203 14.4962 7.29006 14.2878 8.8109C14.0794 10.3317 14.3155 11.8804 14.9677 13.27L12.3877 18.5075L18.2914 16.895C18.8114 17.1925 19.3652 17.43 19.9402 17.6025C21.9617 18.1615 24.1218 17.9032 25.9545 16.8834C27.7872 15.8637 29.1455 14.1642 29.7362 12.1518C30.3269 10.1393 30.1026 7.97536 29.1118 6.12685C28.121 4.27833 26.4431 2.89351 24.4402 2.27125L24.4452 2.27Z" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M19.8799 8.07752C19.8799 7.61397 20.0173 7.16083 20.2749 6.7754C20.5324 6.38997 20.8985 6.08957 21.3267 5.91217C21.755 5.73478 22.2262 5.68837 22.6809 5.7788C23.1355 5.86923 23.5531 6.09245 23.8809 6.42023C24.2087 6.74801 24.4319 7.16563 24.5223 7.62027C24.6128 8.07492 24.5664 8.54617 24.389 8.97443C24.2116 9.40269 23.9112 9.76874 23.5258 10.0263C23.1403 10.2838 22.6872 10.4213 22.2236 10.4213" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M22.2236 14.1713C22.0993 14.1713 21.9801 14.1219 21.8922 14.034C21.8043 13.9461 21.7549 13.8268 21.7549 13.7025C21.7549 13.5782 21.8043 13.459 21.8922 13.3711C21.9801 13.2832 22.0993 13.2338 22.2236 13.2338" stroke="#846926" stroke-width="2"/>
+    <path d="M22.2236 14.1713C22.348 14.1713 22.4672 14.1219 22.5551 14.034C22.643 13.9461 22.6924 13.8268 22.6924 13.7025C22.6924 13.5782 22.643 13.459 22.5551 13.3711C22.4672 13.2832 22.348 13.2338 22.2236 13.2338" stroke="#846926" stroke-width="2"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_4766_8122">
+      <rect width="32" height="32" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+          </span>
+          <h3 class="cs-pi-support__title">Chat with CalSavvy</h3>
+          <p class="cs-pi-support__body">
+            CalSavvy is here to help you get the most out of CalSavers. From answering questions about your account to walking you through the setup process, CalSavvy is here for you.
+          </p>
+               <div class="support-link d-flex gap-2 align-items-center">
+          <p class="fw-semibold text-nowrap mb-0" style="color: #00594F;">
+            Start a Chat
+          </p>
+          <div class="arrow-wrapper" style="width: 16px; height: 16px;">
+            <svg viewBox="0 0 16 16" width="100%" height="100%" fill="none">
+              <path d="M0.96875 8H15.0312" stroke="#00594F" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8.46875 14.5625L15.0312 8L8.46875 1.4375" stroke="#00594F" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        </a>
+
+        <a href="https://www.calsavers.com/home/frequently-asked-questions.html?language=en#" target="_blank" class="cs-pi-support__card text-decoration-none">
+          <span class="cs-pi-support__icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <path d="M11.3125 16C11.3125 17.2432 11.8064 18.4355 12.6854 19.3146C13.5645 20.1936 14.7568 20.6875 16 20.6875C17.2432 20.6875 18.4355 20.1936 19.3146 19.3146C20.1936 18.4355 20.6875 17.2432 20.6875 16C20.6875 14.7568 20.1936 13.5645 19.3146 12.6854C18.4355 11.8064 17.2432 11.3125 16 11.3125C14.7568 11.3125 13.5645 11.8064 12.6854 12.6854C11.8064 13.5645 11.3125 14.7568 11.3125 16Z" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22.3986 26.3762L16.6611 20.6387" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M20.6387 16.6625L26.3762 22.3987" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M5.62402 22.3988L11.3615 16.6613" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M15.3391 20.64L9.60156 26.3763" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M9.60156 5.625L15.3391 11.3612" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M11.3615 15.3388L5.62402 9.60126" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M26.3762 9.60126L20.6387 15.3388" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16.6611 11.3612L22.3986 5.625" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M3.8125 16C3.8125 19.2323 5.09654 22.3323 7.38214 24.6179C9.66774 26.9035 12.7677 28.1875 16 28.1875C19.2323 28.1875 22.3323 26.9035 24.6179 24.6179C26.9035 22.3323 28.1875 19.2323 28.1875 16C28.1875 12.7677 26.9035 9.66774 24.6179 7.38214C22.3323 5.09654 19.2323 3.8125 16 3.8125C12.7677 3.8125 9.66774 5.09654 7.38214 7.38214C5.09654 9.66774 3.8125 12.7677 3.8125 16Z" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+          </span>
+          <h3 class="cs-pi-support__title">Employer FAQs</h3>
+          <p class="cs-pi-support__body">
+            For more information about running CalSavers visit our FAQ page.
+          </p>
+        <div class="support-link d-flex gap-2 align-items-center">
+          <p class="fw-semibold text-nowrap mb-0" style="color: #00594F;">
+            Visit FAQs
+          </p>
+          <div class="arrow-wrapper" style="width: 16px; height: 16px;">
+            <svg viewBox="0 0 16 16" width="100%" height="100%" fill="none">
+              <path d="M0.96875 8H15.0312" stroke="#00594F" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8.46875 14.5625L15.0312 8L8.46875 1.4375" stroke="#00594F" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        </a>
+
+      </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Reusable video modal -->
+  <div class="modal fade" id="cs-pi-video-modal" tabindex="-1" aria-labelledby="cs-pi-video-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h3 class="modal-title cs-modal-title" id="cs-pi-video-modal-title">Video</h3>
+          <button type="button" class="btn-close cs-modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="ratio ratio-16x9">
+            <iframe id="cs-pi-video-modal-iframe" src="" title="Video" allow="autoplay; fullscreen" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap JS bundle (modals/dropdowns) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <!-- Wistia loader -->
+  <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
+
+  <!-- Video modal: swap iframe src on open; clear on close -->
+  <script>
+    (function () {
+      var modal = document.getElementById('cs-pi-video-modal');
+      if (!modal) return;
+      var iframe = modal.querySelector('#cs-pi-video-modal-iframe');
+      var title  = modal.querySelector('#cs-pi-video-modal-title');
+
+      modal.addEventListener('show.bs.modal', function (e) {
+        var trigger = e.relatedTarget;
+        if (!trigger) return;
+        var src      = trigger.getAttribute('data-video-src') || '';
+        var explicit = trigger.getAttribute('data-video-title');
+        iframe.src = src;
+        if (explicit) title.textContent = explicit;
+      });
+
+      modal.addEventListener('hidden.bs.modal', function () { iframe.src = ''; });
+    })();
+  </script>
+
+  <!-- Mode toggle (360° / 180°), tab switching, accordion, quick-view toggle -->
+  <script>
+    (function () {
+      var mode = '360';
+      var activeTab = { '360': '1', '180': '1' };
+
+      var radios = document.querySelectorAll('.cs-pi-radio');
+      var tabs   = document.querySelectorAll('.cs-pi-tab');
+      var panels = document.querySelectorAll('.cs-pi-panel');
+      var select = document.getElementById('cs-pi-tab-select');
+
+      function rebuildMobileSelect() {
+        if (!select) return;
+        select.innerHTML = '';
+        tabs.forEach(function (t) {
+          if (t.getAttribute('data-mode') !== mode) return;
+          var opt = document.createElement('option');
+          opt.value = t.getAttribute('data-tab');
+          var eyebrow = t.querySelector('.cs-pi-tab__eyebrow');
+          var title   = t.querySelector('.cs-pi-tab__title');
+          opt.textContent = (eyebrow ? eyebrow.textContent + ' — ' : '') + (title ? title.textContent : '');
+          if (opt.value === activeTab[mode]) opt.selected = true;
+          select.appendChild(opt);
+        });
+      }
+
+      function applyState() {
+        // Show/hide tabs based on mode
+        tabs.forEach(function (t) {
+          var isMode = t.getAttribute('data-mode') === mode;
+          t.classList.toggle('d-none', !isMode);
+          var isActive = isMode && t.getAttribute('data-tab') === activeTab[mode];
+          t.classList.toggle('is-active', isActive);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        // Show/hide panels
+        panels.forEach(function (p) {
+          var isActive = p.getAttribute('data-mode') === mode && p.getAttribute('data-panel') === activeTab[mode];
+          p.classList.toggle('is-active', isActive);
+        });
+        // Radio active state
+        radios.forEach(function (r) {
+          r.classList.toggle('is-active', r.getAttribute('data-integration') === mode);
+          r.setAttribute('aria-checked', r.getAttribute('data-integration') === mode ? 'true' : 'false');
+        });
+        rebuildMobileSelect();
+      }
+
+      radios.forEach(function (r) {
+        r.addEventListener('click', function () {
+          mode = r.getAttribute('data-integration');
+          activeTab[mode] = '1';
+          applyState();
+        });
+      });
+
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function () {
+          if (t.getAttribute('data-mode') !== mode) return;
+          activeTab[mode] = t.getAttribute('data-tab');
+          applyState();
+        });
+      });
+
+      if (select) {
+        select.addEventListener('change', function () {
+          activeTab[mode] = select.value;
+          applyState();
+        });
+      }
+
+      // ============================================================
+      // Accordion expand/collapse — supports BOTH the legacy
+      // .cs-pi-accordion__header markup and the React-faithful
+      // [data-name="Accordion/expanded|collapsed"] markup.
+      // Ported from src/app/App.tsx (handleClick + apply state effect).
+      // ============================================================
+      function applyAccordionState(container) {
+        var header = container.querySelector('[data-name="Accordion/expanded"], [data-name="Accordion/collapsed"]');
+        var step   = container.querySelector('[data-name^="Step="]');
+        if (!header || !step) return;
+        var expanded = header.getAttribute('data-name') === 'Accordion/expanded';
+        if (expanded) {
+          step.style.maxHeight = '100000px';
+          step.style.opacity = '1';
+          step.style.overflow = 'visible';
+        } else {
+          step.style.maxHeight = '0';
+          step.style.opacity = '0';
+          step.style.overflow = 'hidden';
+        }
+        var chevron = header.querySelector('[data-name="chevron-up"], [data-name="chevron-down"]');
+        if (chevron) chevron.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+        var border = header.querySelector('.accordion-border-overlay');
+        if (border) border.style.borderColor = '#00594f';
+      }
+
+      // Initial accordion render for all React-style accordions
+      document.querySelectorAll('[data-name="Accordion"]').forEach(applyAccordionState);
+
+      // Legacy + new accordion click handler (delegated)
+      document.addEventListener('click', function (e) {
+        // Legacy markup
+        var legacyHeader = e.target.closest('.cs-pi-accordion__header');
+        if (legacyHeader) {
+          var legacyAcc = legacyHeader.closest('.cs-pi-accordion');
+          if (legacyAcc) legacyAcc.classList.toggle('is-expanded');
+          return;
+        }
+        // React-style markup
+        var reactHeader = e.target.closest('[data-name="Accordion/expanded"], [data-name="Accordion/collapsed"]');
+        if (!reactHeader) return;
+        var container = reactHeader.closest('[data-name="Accordion"]');
+        if (!container) return;
+        var expanded = reactHeader.getAttribute('data-name') === 'Accordion/expanded';
+        reactHeader.setAttribute('data-name', expanded ? 'Accordion/collapsed' : 'Accordion/expanded');
+        applyAccordionState(container);
+      });
+
+      // Legacy quick-view toggle (data-target-detailed / data-target-quick)
+      document.querySelectorAll('.cs-pi-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetSelector = btn.getAttribute('data-target-detailed');
+          var quickSelector  = btn.getAttribute('data-target-quick');
+          if (!targetSelector || !quickSelector) return;
+          var detailed = document.querySelector(targetSelector);
+          var quick    = document.querySelector(quickSelector);
+          var isOn = btn.classList.toggle('is-on');
+          if (detailed) detailed.classList.toggle('d-none', isOn);
+          if (quick)    quick.classList.toggle('d-none', !isOn);
+        });
+      });
+
+      // React-style quick-view toggle — click inside [data-name="Toggle Switch"]
+      // swaps the two [data-toggle-state] siblings in the enclosing panel.
+      // Ported from src/app/App.tsx (toggleSwitch / Background / Switch handlers).
+      document.addEventListener('click', function (e) {
+        var inToggle = e.target.closest('[data-name="Toggle Switch"], [data-name="Background"], [data-name="Switch"]');
+        if (!inToggle) return;
+        var panel = inToggle.closest('.cs-pi-panel');
+        if (!panel) return;
+        var states = panel.querySelectorAll('[data-toggle-state]');
+        if (states.length !== 2) return;
+        states.forEach(function (s) { s.classList.toggle('d-none'); });
+      });
+
+      applyState();
+
+      // ============================================================
+      // Provider search (Tab 1, PII accordion)
+      // ============================================================
+      var PAYROLL_PROVIDERS = [
+        "ADP RUN","ADP TOTAL SOURCE","ADP WORKFORCE NOW","ADP WORKFORCE NOW NEXT GEN",
+        "QuickBooks","Workday","Paychex","Paylocity","AbacusHCM","Abacus Paysystems",
+        "Absolute Wages","AccuPay Systems","Accurate Pay Systems","Adirondack Payroll Services",
+        "All Business Payroll","Allied Payroll Services","AmCheck","Apex HCM",
+        "Applied Payroll Solutions","Apollo Payroll","AspenHR","Back Office Support Solutions",
+        "Balance Point HCM","Baron Payroll","Bayview Payroll Services","Birch Tree Business Solutions",
+        "Blue Sky Payroll","Boutique Payroll Company LLC","B2E Solutions","Capital Payroll Partners",
+        "CAVU HCM","Charlotte Payroll","Checkmate HCM","CheckRight NW","Clarity HCM","ClearPalm",
+        "CNY Payroll","Coastal Payroll","Commonwealth Payroll","Company Payroll Processing",
+        "CompassOne Payroll","Complete Payroll Resources","Contempo HCM","Corneliuson & Associates",
+        "CS3 Technology","CTR Payroll & HR","Dominion Payroll","Employ Drive",
+        "Employee Payment Solutions","Entrust Payroll Solutions","EWH Small Business Accounting",
+        "Express Data Systems","EZ Payroll","FocusPay Solutions","Gem Payroll","HigherUp HCM",
+        "Hometown Payroll Solutions","Horizon Payroll","HRmonious","HRtoGo","Human Elements",
+        "Hunter Payroll Systems","inFocus Payroll","iPay Solutions","IRIS Payroll","isolved","Kabel",
+        "Keystone Payroll","Ledger Payroll","Ludt Payroll","Market Dimensions","Miami Payroll Center",
+        "Metro Payroll","Miter","Netchex","New England Payroll Solutions","OnTime Payroll","Onyx HR",
+        "Optima Payroll","Pacific Payroll Group","Panacea Payroll","Paper Trails Payroll",
+        "Payday Employer Solutions","Pay Day Masters","Payficiency","PayFWDs","Paymedia HCM","PayNW",
+        "PayPlus","PayPro HCS","PaySource Payroll","The Payroll Company","Payroll Data Processing",
+        "PayrollHUB","Payrolls Plus","Payroll Processors","Payroll Vault","Paywerx","Performance Pay",
+        "Pinkerton Payroll & Insurance","Pioneer Payroll Solutions","Press Gold Group",
+        "Quartermaster Payroll Providers","Rabco Payroll","Ridgecrest Solutions","River Run Payroll",
+        "RKL","SmartBean","SourceOne Payroll","Spruce Valley Payroll","Tax & Payroll Shelters",
+        "Thread HCM","Three Pillars Bookkeeping","Time & Payroll","UKG Ready","Vertilocity",
+        "Vision Payroll","WipFli","Workplace HCM","WorkGroup Payroll","WORX Payroll",
+        "Your Payroll Department","YPD HCM"
+      ];
+
+      var searchInput   = document.getElementById('cs-pi-provider-search');
+      var resultsList   = document.getElementById('cs-pi-provider-results');
+      var validationEl  = document.getElementById('cs-pi-provider-validation');
+
+      if (searchInput && resultsList && validationEl) {
+        function clearResults() {
+          resultsList.innerHTML = '';
+          resultsList.classList.remove('is-open');
+        }
+
+        function setValidation(kind, message) {
+          validationEl.textContent = message || '';
+          validationEl.classList.remove('cs-pi-validation--success', 'cs-pi-validation--error');
+          if (kind === 'success') validationEl.classList.add('cs-pi-validation--success');
+          if (kind === 'error')   validationEl.classList.add('cs-pi-validation--error');
+        }
+
+        function findExactMatch(q) {
+          var lower = q.toLowerCase().trim();
+          for (var i = 0; i < PAYROLL_PROVIDERS.length; i++) {
+            if (PAYROLL_PROVIDERS[i].toLowerCase() === lower) return PAYROLL_PROVIDERS[i];
+          }
+          return null;
+        }
+
+        function renderResults(query) {
+          var q = query.toLowerCase().trim();
+          if (!q) { clearResults(); setValidation('', ''); return; }
+          var matches = PAYROLL_PROVIDERS
+            .filter(function (p) { return p.toLowerCase().indexOf(q) !== -1; })
+            .slice(0, 10);
+          resultsList.innerHTML = '';
+          if (matches.length === 0) {
+            clearResults();
+            setValidation('error', 'Your payroll provider is not yet participating.');
+            return;
+          }
+          matches.forEach(function (name) {
+            var item = document.createElement('div');
+            item.className = 'cs-pi-search__result';
+            item.setAttribute('role', 'option');
+            item.textContent = name;
+            item.addEventListener('mousedown', function (e) {
+              // mousedown so it fires before input blur clears the list
+              e.preventDefault();
+              searchInput.value = name;
+              clearResults();
+              setValidation('success', 'Good news! Your selected payroll provider is offered through Payroll Integrations Inc.');
+            });
+            resultsList.appendChild(item);
+          });
+          resultsList.classList.add('is-open');
+          // Live validation as user types
+          var exact = findExactMatch(query);
+          if (exact) setValidation('success', 'Good news! Your selected payroll provider is offered through Payroll Integrations Inc.');
+          else        setValidation('', '');
+        }
+
+        searchInput.addEventListener('input', function () { renderResults(searchInput.value); });
+        searchInput.addEventListener('focus', function () { if (searchInput.value) renderResults(searchInput.value); });
+        searchInput.addEventListener('blur',  function () { setTimeout(clearResults, 120); });
+      }
+    })();
+  </script>
+
+</body>
+</html>
