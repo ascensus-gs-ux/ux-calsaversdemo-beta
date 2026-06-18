@@ -22,12 +22,16 @@
       --gray-text: #6b6b6b;
     }
 
-    /* ── Nav ── */
-    .site-nav { background: #fff; border-bottom: 1px solid #d3d3d3; height: 112px; display: flex; align-items: center; justify-content: center; }
-    .site-nav .inner { max-width: 1140px; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 8px; }
-    .site-nav .logo { height: 80px; }
-    .btn-register { background: #fff; color: var(--green); border: 1px solid var(--green); border-radius: 4px; padding: 8px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: 1px; cursor: pointer; text-decoration: none; }
-    .btn-login { background: var(--green); color: #fff; border: 1px solid var(--green-dark); border-radius: 4px; padding: 8px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: 1px; text-decoration: none; }
+    /* Global link color — override Bootstrap blue, underline grows from center */
+    a { color: var(--green); text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-position: 50% 100%; background-repeat: no-repeat; background-size: 0% 1px; transition: background-size 0.3s ease, color 0.15s ease; }
+    a:hover { color: var(--green-dark); background-size: 100% 1px; }
+    a::after { content: "›"; display: inline-block; margin-left: 4px; font-weight: 600; transition: transform 0.2s ease; }
+    a:hover::after { transform: translateX(4px); }
+    .btn-green::after, .btn-white-outline::after, .link-arrow::after, .cs-pi-support__card::after { content: none; }
+    .cs-pi-support__card { background-image: none; }
+    .link-primary, .link-primary:active { color: var(--green) !important; text-decoration: none; font-weight: 600;}
+    .link-primary:hover { color: var(--green-dark) !important; }
+    
 
     /* ── Hero ── */
     .hero-section { background: #fff; padding: 80px 0; text-align: center; }
@@ -36,9 +40,13 @@
 
     /* ── Who Must Register / Exemptions section ── */
     .eligibility-section { background: #fff; padding-bottom: 80px; }
-    .eligibility-section .inner { max-width: 1140px; margin: 0 auto; padding: 0 8px; display: flex; gap: 40px; align-items: flex-start; }
-    .elig-card { flex: 1; }
-    .elig-divider { width: 1px; background: #c3c3c3; align-self: stretch; flex-shrink: 0; }
+    .eligibility-section .inner { margin: 0 auto; padding: 0 8px; display: flex; flex-direction: column; gap: 40px; align-items: flex-start; }
+    @media (min-width: 768px) { .eligibility-section .inner { flex-direction: row; } }
+    @media (min-width: 1025px) { .eligibility-section .inner { max-width: 66.666%; } .container {max-width: 66.66%;} }
+    .elig-card { flex: 1; width: 100%; }
+    .elig-divider { background: #c3c3c3; flex-shrink: 0; width: 100%; height: 1px; }
+    @media (min-width: 768px) { .elig-divider { width: 1px; height: auto; align-self: stretch; } }
+    @media (max-width: 1025px) {.container{max-width: 100%; padding: 0 24px}}
     .icon-circle { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .icon-circle-green { background: var(--green); }
     .icon-circle-gold { background: var(--gold); }
@@ -47,75 +55,87 @@
     .elig-card-body h2 { font-size: 20px; font-weight: 500; letter-spacing: 1px; margin-bottom: 16px; }
     .elig-card-body p { font-size: 16px; line-height: 24px; letter-spacing: 1px; }
     .link-arrow { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-weight: 600; font-size: 16px; letter-spacing: 1px; text-decoration: none; padding: 8px 0; border: none; background: none; cursor: pointer; }
-    .link-arrow:hover { text-decoration: underline; color: var(--green); }
+    .link-arrow span:first-child { text-decoration: underline; text-decoration-color: transparent; transition: text-decoration-color 0.2s ease; }
+    .link-arrow:hover span:first-child { text-decoration-color: currentColor; }
+    .link-arrow:hover .arrow-wrapper { transform: translateX(6px); }
     .exemption-list { list-style: none; padding: 0; margin-bottom: 16px; }
     .exemption-list li { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 8px; font-size: 16px; line-height: 24px; letter-spacing: 1px; }
-    .exemption-list li::before { content: "›"; color: var(--gold-text); font-size: 20px; line-height: 24px; flex-shrink: 0; font-weight: 700; }
+    .exemption-list li::before { content: "→"; color: var(--gold-text); font-size: 16px; line-height: 24px; flex-shrink: 0; font-weight: 400; }
 
     /* ── Watch Overview ── */
-    .overview-section { background: var(--cream); padding: 80px 0 40px; }
-    .overview-section .inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
-    .video-frame { border: 1px solid #c3c3c3; border-radius: 0; position: relative; background: #000; aspect-ratio: 16/9; overflow: hidden; }
-    .video-frame video { width: 100%; height: 100%; object-fit: cover; }
-    .video-details { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; font-size: 12px; letter-spacing: 1px; }
-    .video-details .label { color: var(--gray-text); font-weight: 500; }
-    .video-details .transcript { color: var(--green); text-decoration: underline; font-weight: 500; cursor: pointer; }
-    .overview-text h2 { font-size: 28px; font-weight: 500; letter-spacing: 0.6px; margin-bottom: 16px; }
-    .overview-text p { font-size: 16px; line-height: 24px; letter-spacing: 1px; margin-bottom: 32px; }
-    .overview-text .ready { font-style: italic; font-size: 16px; margin-bottom: 8px; }
+    .cs-pi-video { padding: 3rem 0; background: var(--cream); }
+    .cs-pi-video__heading { color: #000000; font-size: 1.5rem; font-weight: 500; margin-bottom: 0.75rem; }
+    .cs-pi-video__lede { color: #000000; font-size: 1rem; line-height: 1.6; }
+    .cs-video { border: 1px solid #c3c3c3; }
+    .cs-pi-video__caption { color: var(--gray-text); font-size: 1rem; }
     .btn-green { background: var(--green); color: #fff; border: 1px solid var(--green-dark); border-radius: 4px; padding: 8px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: 1px; text-decoration: none; display: inline-block; }
-    .btn-green:hover { color: #fff; opacity: 0.9; }
+    .btn-green:hover { color: #fff; background-color: var(--green-dark); border-color: var(--green-dark); }
+    .btn-white-outline:hover { background-color: var(--green-light); border-color: var(--green-dark); color: var(--green-dark); }
 
-    /* ── Instructions section ── */
-    .instructions-section { background: var(--cream); padding: 80px 0; overflow: hidden; }
-    .instructions-section .inner { max-width: 1140px; margin: 0 auto; }
-    .instructions-section h2 { font-size: 28px; font-weight: 500; letter-spacing: 0.6px; text-align: center; margin-bottom: 40px; }
+    /* ── cs-pi Tab system ── */
+    .cs-pi-section { padding: 2rem 0 3rem; background-color: #F2F0E9; }
+    .cs-pi-section__header { text-align: center; margin-bottom: 2rem; }
+    h3 { color: #000000; font-size: 1.25rem; }
 
-    /* Tabs */
-    .custom-tabs { display: flex; gap: 16px; margin-bottom: -1px; position: relative; z-index: 2; }
-    .custom-tab { height: 72px; border-radius: 8px 8px 0 0; display: flex; align-items: center; padding: 0 16px; gap: 8px; font-size: 16px; font-weight: 600; letter-spacing: 1px; cursor: pointer; border: 1px solid rgba(0,89,79,0.5); font-family: 'Poppins', sans-serif; }
-    .custom-tab.active { background: #fff; border-bottom-color: #fff; color: #000; }
-    .custom-tab.inactive { background: var(--green-light); border-color: rgba(0,89,79,0.5); color: var(--green); }
-    .tab-icon { width: 32px; height: 32px; }
+    .cs-pi-tabs { margin-top: 2rem; }
+    .cs-pi-tabs__row { display: none; flex-wrap: nowrap; gap: 12px; width: fit-content; align-items: stretch; }
+    @media (min-width: 768px) { .cs-pi-tabs__row { display: flex; } }
+    .cs-pi-tab { flex: 0 0 auto; background-color: #f2f0e9; border: 1px solid rgba(0,89,79,0.5); border-radius: 8px 8px 0 0; border-bottom: none; padding: 0.875rem 1.25rem; cursor: pointer; text-align: start; display: flex; gap: 0.75rem; align-items: center; min-height: 64px; transition: background-color 0.15s ease, color 0.15s ease; color: #00594f; }
+    .cs-pi-tab__labels { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; line-height: 1.25; }
+    .cs-pi-tab__title { font-weight: 600; font-size: 1rem; color: inherit; white-space: normal; word-wrap: break-word; }
+    .cs-pi-tab:hover:not(.is-active) { background-color: #BFD5D3; }
+    .cs-pi-tab:hover:not(.is-active) .cs-pi-tab__title { color: #00473F; text-decoration: underline; }
+    .cs-pi-tab.is-active { background-color: #ffffff; color: #000000; position: relative; z-index: 2; margin-bottom: -1px; }
+    .cs-pi-tab__icon { flex-shrink: 0; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; }
+    .cs-pi-tab:focus, .cs-pi-tab:focus-visible, .cs-pi-tab:active { outline: none; box-shadow: none; }
 
-    /* Body panel */
-    .tab-body { background: #fff; border: 1px solid rgba(0,89,79,0.5); border-radius: 0 8px 8px 8px; padding: 48px; position: relative; z-index: 1; }
-    .step-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
-    .step-header h3 { font-size: 20px; font-weight: 500; letter-spacing: 1px; margin: 0; }
-    .quick-toggle { text-align: right; }
-    .quick-toggle p { font-style: italic; font-size: 16px; color: var(--gray-text); margin-bottom: 4px; }
-    .toggle-row { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
-    .toggle-row span { font-weight: 600; font-size: 16px; }
-    .toggle-switch { width: 44px; height: 24px; background: #e6e6e6; border: 1px solid #d3d3d3; border-radius: 24px; position: relative; cursor: pointer; }
-    .toggle-switch::after { content: ''; width: 12px; height: 12px; background: #828282; border-radius: 50%; position: absolute; top: 5px; left: 7px; }
+    .cs-pi-tabs__select { display: block; }
+    @media (min-width: 768px) { .cs-pi-tabs__select { display: none; } }
+    .cs-pi-tabs__select__label { display: block; font-size: 1rem; color: #6b6b6b; margin-bottom: 0.5rem; }
+    .cs-pi-tabs__select select { width: 100%; min-height: 60px; padding: 0.75rem 2.5rem 0.75rem 1rem; border: 1px solid #D3D3D3; border-radius: 8px; background-color: #ffffff; color: #000000; font-size: 1rem; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%2300594f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 16px; }
+    .cs-pi-tabs__select select:focus { outline: 1px solid #00594F; border-color: #00594F; box-shadow: none; }
 
-    /* Accordion */
-    .accordion-list { display: flex; flex-direction: column; gap: 24px; }
-    .accord-item { background: #fff; border-radius: 8px; overflow: hidden; }
-    .accord-header { display: flex; align-items: center; gap: 12px; padding: 24px; border: 1px solid var(--green); border-radius: 8px; cursor: pointer; }
-    .accord-header.collapsed { border-radius: 8px; }
-    .accord-num { width: 32px; height: 32px; background: var(--gold); border-radius: 32px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 500; flex-shrink: 0; }
-    .accord-title { flex: 1; font-size: 16px; font-weight: 600; color: var(--green); letter-spacing: 1px; }
-    .accord-chevron { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
-    .accord-body { padding: 32px; display: flex; gap: 16px; align-items: flex-start; }
-    .accord-body.hidden { display: none; }
-    .accord-text { flex: 1; }
-    .accord-text p { font-size: 16px; line-height: 24px; color: var(--gray-text); letter-spacing: 1px; margin-bottom: 16px; }
-    .accord-text a { color: var(--green); font-weight: 600; text-decoration: underline; }
-    .screenshot-box { flex: 1; height: 264px; border-radius: 10px; overflow: hidden; border: 1.25px solid rgba(0,89,79,0.25); display: flex; flex-direction: column; background: #fff; }
-    .screenshot-img { flex: 1; overflow: hidden; background: #fdfdfb; }
-    .screenshot-img img { width: 100%; height: 100%; object-fit: cover; }
-    .screenshot-caption { background: var(--green-light); padding: 12px; font-style: italic; font-size: 14px; text-align: center; letter-spacing: 1px; flex-shrink: 0; }
+    .cs-pi-tab-body { background-color: #ffffff; border: 1px solid rgba(0,89,79,0.5); border-radius: 0 0 8px 8px; padding: 1.5rem 1.25rem; position: relative; z-index: 1; }
+    @media (min-width: 768px) { .cs-pi-tab-body { padding: 2rem; } }
+    @media (max-width: 767.98px) { .cs-pi-tab-body { border-radius: 8px; margin-top: 0.75rem; } .eligibility-section .inner {padding: 0 24px;} .container {padding: 0 24px;} .cs-pi-support__cards { flex-direction: column; } .cs-pi-support__heading { text-align: center; padding-bottom: 24px; } .cs-pi-support__card { flex: 1 1 100%; } .payroll-banner { flex-direction: column; align-items: flex-start; gap: 16px; } .payroll-banner .btn-white-outline { align-self: flex-start; } }
 
-    /* Post-registration banner */
+    .cs-pi-panel { display: none; }
+    .cs-pi-panel.is-active { display: block; }
+
+    /* ── Toggle ── */
+    .cs-pi-toggle-p { margin-bottom: 0 !important; }
+
+    /* ── Accordions ── */
+    .cs-pi-accordion { margin-bottom: 1.25rem; }
+    .cs-pi-accordion__header { display: flex; gap: 1rem; align-items: center; background-color: #ffffff; border: 1px solid #00594F; border-radius: 8px; padding: 1.25rem; cursor: pointer; width: 100%; text-align: start; transition: background-color 0.15s ease, border-color 0.15s ease; color: #000000; }
+    .cs-pi-accordion__header:hover { background-color: #E5EEED; border-color: #00473F; }
+    .cs-pi-accordion__header:hover .cs-pi-accordion__title { color: #00473F; text-decoration: underline; }
+    .cs-pi-accordion__num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background-color: #80641f; color: #ffffff; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; }
+    .cs-pi-accordion__title { flex: 1; font-weight: 600; color: #00594f; }
+    .cs-pi-accordion__chevron { flex-shrink: 0; color: #00594f; transition: transform 0.2s ease; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__chevron { transform: rotate(180deg); }
+    .cs-pi-accordion__body { display: none; padding: 1.75rem 0 0; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__body { display: block; }
+    .cs-pi-accordion__step { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 768px) { .cs-pi-accordion__step { grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; } }
+    .cs-pi-accordion__screenshot { width: 100%; height: auto; border: 1px solid #BFD5D3; border-radius: 8px; display: block; }
+    .cs-pi-panel-body { color: #6b6b6b; line-height: 1.6; }
+
+    /* ── Quick-view list items ── */
+    .cs-pi-quickcard { display: flex; gap: 1rem; margin: 16px; align-items: flex-start; }
+    .cs-pi-quickcard__num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background-color: #80641f; color: #ffffff; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; }
+    .cs-pi-quickcard__title { font-weight: 600; color: #000000; font-size: 1rem; margin-bottom: 0.25rem; }
+    .cs-pi-quickcard__desc { color: #6b6b6b; font-size: 1rem; line-height: 1.5; margin-bottom: 0; }
+
+    /* ── Post-registration banner ── */
     .post-reg { margin-top: 40px; }
     .post-reg-title { font-weight: 600; font-size: 16px; letter-spacing: 1px; margin-bottom: 4px; }
     .post-reg-text { font-size: 16px; line-height: 24px; color: var(--gray-text); letter-spacing: 1px; margin-bottom: 24px; }
-    .post-reg-text a { color: var(--green); font-weight: 600; text-decoration: underline; }
+    .post-reg-text a { color: var(--green); font-weight: 600; }
     .payroll-banner { background: var(--green-light); border: 1px solid rgba(0,89,79,0.25); border-radius: 8px; padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; gap: 48px; }
     .payroll-banner-text h4 { font-weight: 600; font-size: 16px; letter-spacing: 1px; margin-bottom: 8px; }
     .payroll-banner-text p { font-size: 16px; line-height: 24px; letter-spacing: 1px; margin: 0; }
-    .payroll-banner-text p a { color: var(--green); font-weight: 600; text-decoration: underline; }
+    .payroll-banner-text p a { color: var(--green); font-weight: 600; }
     .btn-white-outline { background: #fff; color: var(--green); border: 1px solid var(--green); border-radius: 4px; padding: 8px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; cursor: pointer; text-decoration: none; }
 
     /* HR divider in tab body */
@@ -126,52 +146,24 @@
     .chat-icon { width: 75px; height: 75px; background: var(--green); border-radius: 100px; border: 3px solid #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
 
     /* ── Support section ── */
-    .support-section { background: var(--support-bg); border-top: 1px solid rgba(0,89,79,0.25); border-bottom: 1px solid rgba(0,89,79,0.25); padding: 80px 0; }
-    .support-section .inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 3fr; gap: 32px; align-items: start; }
-    .support-title h2 { font-size: 28px; font-weight: 500; letter-spacing: 0.6px; }
-    .support-cards { display: flex; gap: 32px; }
-    .support-card { background: #fff; border: 1px solid rgba(0,89,79,0.25); border-radius: 8px; padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 24px; text-decoration: none; color: inherit; }
-    .support-card:hover { text-decoration: none; color: inherit; }
-    .support-card-icon { width: 32px; height: 32px; color: var(--gold-text); }
-    .support-card h3 { font-size: 16px; font-weight: 600; letter-spacing: 1px; margin-bottom: 6px; }
-    .support-card p { font-size: 16px; line-height: 24px; color: var(--gray-text); letter-spacing: 1px; margin: 0; }
+    .section-title { font-size: 1.5rem; line-height: 1.25; color: #000000; }
+    .support-link { cursor: pointer; }
+    .arrow-wrapper { display: inline-flex; transition: transform 0.25s ease; }
+    .support-link:hover .arrow-wrapper { transform: translateX(6px); }
+    .support-link p { text-decoration: underline; text-decoration-color: transparent; transition: text-decoration-color 0.2s ease; }
+    .support-link:hover p { text-decoration-color: currentColor; }
+    .cs-pi-support { background-color: #F2F6F6; border-top: 1px solid rgba(0,89,79,0.25); border-bottom: 1px solid rgba(0,89,79,0.25); padding: 3rem 0; }
+    .cs-pi-support__heading { text-align: left; color: #000000; margin-bottom: 1.5rem; }
+    .cs-pi-support__cards { display: flex; gap: 1.25rem; }
+    .cs-pi-support__card { background-color: #ffffff; border: 1px solid rgba(0,89,79,0.25); border-radius: 8px; padding: 1.5rem; flex: 1 1 50%; transition: background-color 0.15s ease, border-color 0.15s ease; text-decoration: none; color: inherit; display: block; }
+    .cs-pi-support__card:hover { background-color: #F2F6F6; border-color: #00473F; }
+    .cs-pi-support__icon { display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: #846926; }
+    .cs-pi-support__title { color: #000000; font-size: 1.125rem; margin-bottom: 0.5rem; }
+    .cs-pi-support__body { color: #6b6b6b; margin-bottom: 1rem; font-size: 1rem; }
 
-    /* ── Footer ── */
-    .site-footer { background: var(--footer-bg); padding: 32px 120px; color: #fff; }
-    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; }
-    .footer-contact { font-size: 14px; font-weight: 500; line-height: 21px; letter-spacing: 1px; }
-    .footer-contact p { margin-bottom: 8px; }
-    .footer-social { display: flex; gap: 16px; margin-top: 24px; align-items: center; }
-    .social-x { background: #fff; border-radius: 6px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
-    .footer-seal { width: 140px; height: 140px; object-fit: cover; }
-    .footer-lang { display: flex; flex-wrap: wrap; gap: 8px 0; align-items: center; font-size: 14px; font-weight: 500; letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 24px; margin-bottom: 24px; }
-    .footer-lang span { padding: 0 16px; }
-    .footer-lang .divider { width: 1px; height: 14px; background: #fff; opacity: 0.5; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 8px 0; align-items: center; font-size: 14px; letter-spacing: 1px; margin-bottom: 24px; }
-    .footer-links span { padding: 0 16px; }
-    .footer-links a { color: #fff; text-decoration: none; font-weight: 500; }
-    .footer-links a:hover { text-decoration: underline; }
-    .footer-links .divider { width: 1px; height: 14px; background: #fff; opacity: 0.5; }
-    .footer-legal { font-size: 12px; line-height: 18px; letter-spacing: 1px; color: #fff; }
-    .footer-legal p { margin-bottom: 8px; }
   </style>
 </head>
 <body>
-
-<!-- ════════════════════════════════════
-     NAVIGATION
-════════════════════════════════════ -->
-<nav class="site-nav">
-  <div class="inner">
-    <img class="logo" src="./src/imports/Eligibility/6568f42840319b6c3af603b082bc57fc59b6af19.png" alt="CalSavers logo" />
-    <div class="d-flex gap-2">
-      <button class="btn-register">Register</button>
-      <a class="btn-login" href="https://saver.calsavers.com/californiaeetpl/auth/sessionCreate/viewCollectUsername.cs?request_locale=en_US" target="_blank">Login</a>
-    </div>
-  </div>
-</nav>
-
-<hr style="margin:0; border-color:#d3d3d3;" />
 
 <!-- ════════════════════════════════════
      HERO
@@ -191,24 +183,25 @@
     <div class="elig-card">
       <div class="elig-card-header">
         <div class="icon-circle icon-circle-green">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="9" cy="7" r="4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <path d="M15.0625 22.5625C15.0625 24.5516 15.8527 26.4593 17.2592 27.8658C18.6657 29.2723 20.5734 30.0625 22.5625 30.0625C24.5516 30.0625 26.4593 29.2723 27.8658 27.8658C29.2723 26.4593 30.0625 24.5516 30.0625 22.5625C30.0625 20.5734 29.2723 18.6657 27.8658 17.2592C26.4593 15.8527 24.5516 15.0625 22.5625 15.0625C20.5734 15.0625 18.6657 15.8527 17.2592 17.2592C15.8527 18.6657 15.0625 20.5734 15.0625 22.5625Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25.9054 20.3825L22.2741 25.2238C22.1933 25.3311 22.0905 25.4198 21.9725 25.484C21.8546 25.5482 21.7242 25.5864 21.5903 25.596C21.4563 25.6056 21.3218 25.5864 21.1959 25.5396C21.07 25.4929 20.9556 25.4197 20.8604 25.325L18.9854 23.45" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4.75 16V3.8125C4.75 3.31522 4.94754 2.83831 5.29917 2.48667C5.65081 2.13504 6.12772 1.9375 6.625 1.9375H25.375C25.8723 1.9375 26.3492 2.13504 26.7008 2.48667C27.0525 2.83831 27.25 3.31522 27.25 3.8125V11.3125" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13.1875 16H1.9375C1.9375 17.2432 2.43136 18.4355 3.31044 19.3146C3.74571 19.7498 4.26246 20.0951 4.83117 20.3307C5.39989 20.5663 6.00943 20.6875 6.625 20.6875H11.3125" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <div class="elig-card-body">
           <h2>Who Must Register:</h2>
           <p>
             Eligible employers with <strong>at least one</strong> employee in the current year are required to
-            <a href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank" style="color:var(--green);font-weight:600;text-decoration:underline;">
+            <a href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank" style="font-weight:600;">
               register or request an exemption
             </a>
             if they meet one of the conditions for exemption.
           </p>
           <button class="link-arrow" style="margin-top:16px;">
-            Go to Registration Instructions
-            <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M1 8h14" stroke="#00594F" stroke-width="2" stroke-linecap="round"/><path d="M9 2l6 6-6 6" stroke="#00594F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Go to Registration Instructions</span>
+            <span class="arrow-wrapper"><svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M1 8h14" stroke="#00594F" stroke-width="2" stroke-linecap="round"/><path d="M9 2l6 6-6 6" stroke="#00594F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
         </div>
       </div>
@@ -220,12 +213,14 @@
     <div class="elig-card">
       <div class="elig-card-header">
         <div class="icon-circle icon-circle-gold">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <polyline points="14 2 14 8 20 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="16" y1="13" x2="8" y2="13" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            <line x1="16" y1="17" x2="8" y2="17" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            <polyline points="10 9 9 9 8 9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <path d="M9.4375 8.49998V3.16248C9.4375 2.83095 9.5692 2.51301 9.80362 2.27859C10.038 2.04417 10.356 1.91248 10.6875 1.91248H22.825L30.1 9.24998V28.8375C30.1 29.169 29.9683 29.4869 29.7339 29.7214C29.4995 29.9558 29.1815 30.0875 28.85 30.0875H20.6875" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22.5625 1.9375V8.1875C22.5625 8.51902 22.6942 8.83696 22.9286 9.07138C23.163 9.3058 23.481 9.4375 23.8125 9.4375H30.0625" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25.75 14.125H16.9375" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25.75 24.125H22.25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25.75 19.125H18.8125" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1.9375 26.3125L2.875 30.0625H16L16.9375 26.3125" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13.1875 22.5625H11.3125V19.225C12.0274 18.8122 12.5861 18.1751 12.902 17.4124C13.218 16.6498 13.2734 15.8042 13.0597 15.0068C12.8461 14.2094 12.3753 13.5048 11.7204 13.0023C11.0654 12.4998 10.263 12.2274 9.4375 12.2274C8.612 12.2274 7.80956 12.4998 7.15464 13.0023C6.49973 13.5048 6.02893 14.2094 5.81528 15.0068C5.60162 15.8042 5.65705 16.6498 5.97295 17.4124C6.28886 18.1751 6.84759 18.8122 7.5625 19.225V22.5625H5.6875C4.69294 22.5625 3.73911 22.9576 3.03585 23.6608C2.33259 24.3641 1.9375 25.3179 1.9375 26.3125H16.9375C16.9375 25.3179 16.5424 24.3641 15.8392 23.6608C15.1359 22.9576 14.1821 22.5625 13.1875 22.5625Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <div class="elig-card-body">
@@ -237,8 +232,8 @@
             <li>Company's classification is either a government entity, religious organization, or tribal organization</li>
           </ul>
           <button class="link-arrow">
-            Go to Exemption Instructions
-            <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M1 8h14" stroke="#00594F" stroke-width="2" stroke-linecap="round"/><path d="M9 2l6 6-6 6" stroke="#00594F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Go to Exemption Instructions</span>
+            <span class="arrow-wrapper"><svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M1 8h14" stroke="#00594F" stroke-width="2" stroke-linecap="round"/><path d="M9 2l6 6-6 6" stroke="#00594F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
         </div>
       </div>
@@ -250,226 +245,480 @@
 <!-- ════════════════════════════════════
      WATCH THE OVERVIEW
 ════════════════════════════════════ -->
-<section class="overview-section">
-  <div class="inner">
+<section class="cs-pi-video">
+  <div class="container" >
+    <div class="row align-items-center g-4">
 
-    <!-- Video -->
-    <div>
-      <div class="video-frame">
-        <video controlsList="nodownload" loop style="width:100%;height:100%;object-fit:cover;">
-          <source src="/_videos/v1/5a4316a97c0785eb46e803fc6847ac399b891fce" />
-        </video>
+      <div class="col-lg-8 order-lg-1">
+        <div class="cs-video">
+          <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+            <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+              <iframe
+                src="https://fast.wistia.net/embed/iframe/wtxeyguxfe?seo=true&amp;videoFoam=true"
+                title="How to Register or Request an Exemption"
+                allow="autoplay; fullscreen" allowtransparency="true"
+                frameborder="0" scrolling="no"
+                class="wistia_embed" name="wistia_embed"
+                msallowfullscreen width="100%" height="100%"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mt-2">
+          <span class="cs-pi-video__caption">How to Register or Request an Exemption</span>
+          <a href="https://ascensus-1.wistia.com/medias/wtxeyguxfe" target="_blank" class="link-primary">Captions Transcript</a>
+        </div>
       </div>
-      <div class="video-details">
-        <span class="label">How to Register or Request an Exemption</span>
-        <span class="transcript">Captions Transcript</span>
+
+      <div class="col-lg-4 order-lg-2">
+        <h2 class="cs-pi-video__heading">Watch the Overview</h2>
+        <p class="cs-pi-video__lede">Learn how to register or request an exemption for CalSavers in just a few minutes.</p>
+        <p class="fst-italic mb-3" style="color:#000000;">Ready to get started?</p>
+        <a class="btn-green" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank">
+          Register or Request Exemption
+        </a>
       </div>
-    </div>
 
-    <!-- Text -->
-    <div class="overview-text">
-      <h2>Watch the Overview</h2>
-      <p>Learn how to register or request an exemption for CalSavers in just a few minutes.</p>
-      <p class="ready"><em>Ready to get started?</em></p>
-      <a class="btn-green" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank">
-        Register or Request Exemption
-      </a>
     </div>
-
   </div>
 </section>
 
 <!-- ════════════════════════════════════
      INSTRUCTIONS (TABS + ACCORDIONS)
 ════════════════════════════════════ -->
-<section class="instructions-section">
-  <div class="inner">
-    <h2>Instructions on how to register or request an exemption</h2>
+<section class="cs-pi-section">
+  <div class="container" >
 
-    <!-- Tabs -->
-    <div class="custom-tabs">
-      <div class="custom-tab active" onclick="switchTab('register')" id="tab-register">
-        <svg class="tab-icon" fill="none" viewBox="0 0 32 32">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="12" cy="9" r="4" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M28 21v-2a4 4 0 0 0-3-3.87M22 5.13a4 4 0 0 1 0 7.75" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Register for CalSavers
-      </div>
-      <div class="custom-tab inactive" onclick="switchTab('exempt')" id="tab-exempt">
-        <svg class="tab-icon" fill="none" viewBox="0 0 32 32">
-          <path d="M18 3H6a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V11z" stroke="#00594f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <polyline points="18 3 18 11 26 11" stroke="#00594f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <line x1="22" y1="17" x2="12" y2="17" stroke="#00594f" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        Request an Exemption
-      </div>
-    </div>
+    <header class="cs-pi-section__header">
+      <h2 class="section-title">Instructions on how to register or request an exemption</h2>
+    </header>
 
-    <!-- Tab body: Register -->
-    <div class="tab-body" id="panel-register">
+    <div class="cs-pi-tabs">
 
-      <div class="step-header">
-        <h3>How to Register for CalSavers</h3>
-        <div class="quick-toggle">
-          <p>Need a simplified walk-through?</p>
-          <div class="toggle-row">
-            <span>Toggle Quick Overview Instructions</span>
-            <div class="toggle-switch"></div>
-          </div>
-        </div>
-      </div>
+      <!-- Desktop tab row -->
+      <div class="cs-pi-tabs__row" role="tablist">
 
-      <div class="accordion-list">
+        <button type="button" class="cs-pi-tab is-active" data-tab="register" role="tab" aria-selected="true">
+          <span class="cs-pi-tab__icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.0625 22.5625C15.0625 24.5516 15.8527 26.4593 17.2592 27.8658C18.6657 29.2723 20.5734 30.0625 22.5625 30.0625C24.5516 30.0625 26.4593 29.2723 27.8658 27.8658C29.2723 26.4593 30.0625 24.5516 30.0625 22.5625C30.0625 20.5734 29.2723 18.6657 27.8658 17.2592C26.4593 15.8527 24.5516 15.0625 22.5625 15.0625C20.5734 15.0625 18.6657 15.8527 17.2592 17.2592C15.8527 18.6657 15.0625 20.5734 15.0625 22.5625Z" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M25.9054 20.3825L22.2741 25.2238C22.1933 25.3311 22.0905 25.4198 21.9725 25.484C21.8546 25.5482 21.7242 25.5864 21.5903 25.596C21.4563 25.6056 21.3218 25.5864 21.1959 25.5396C21.07 25.4929 20.9556 25.4197 20.8604 25.325L18.9854 23.45" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4.75 16V3.8125C4.75 3.31522 4.94754 2.83831 5.29917 2.48667C5.65081 2.13504 6.12772 1.9375 6.625 1.9375H25.375C25.8723 1.9375 26.3492 2.13504 26.7008 2.48667C27.0525 2.83831 27.25 3.31522 27.25 3.8125V11.3125" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M13.1875 16H1.9375C1.9375 17.2432 2.43136 18.4355 3.31044 19.3146C3.74571 19.7498 4.26246 20.0951 4.83117 20.3307C5.39989 20.5663 6.00943 20.6875 6.625 20.6875H11.3125" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="cs-pi-tab__labels">
+            <span class="cs-pi-tab__title">Register for CalSavers</span>
+          </span>
+        </button>
 
-        <!-- Step 1 (expanded) -->
-        <div class="accord-item">
-          <div class="accord-header" onclick="toggleAccord(this)">
-            <div class="accord-num">1</div>
-            <div class="accord-title">Enter your EIN/TIN and Access Code on the registration and exemption page</div>
-            <div class="accord-chevron">
-              <svg width="20" height="11" fill="none" viewBox="0 0 20 11"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.75 0l9.75 10.5H0L9.75 0z" fill="#00594F"/></svg>
-            </div>
-          </div>
-          <div class="accord-body">
-            <div class="accord-text">
-              <p>
-                Go to the registration or request exemption page where you will enter your Federal Employer Identification Number or Tax Identification Number (EIN/TIN) and your CalSavers Access Code.
-                <a href="#" style="color:var(--green);">Request an Access Code</a> if you do not have one.
-              </p>
-              <a class="btn-green" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank">Get Started</a>
-            </div>
-            <div class="screenshot-box">
-              <div class="screenshot-img">
-                <img src="./src/imports/Eligibility/200c7787c7cfa10c4e336e217f05d9d65c719b58.png" alt="Registration page preview" style="width:100%;height:100%;object-fit:cover;" />
-              </div>
-              <div class="screenshot-caption">Registration page preview</div>
-            </div>
-          </div>
-        </div>
+        <button type="button" class="cs-pi-tab" data-tab="exempt" role="tab" aria-selected="false">
+          <span class="cs-pi-tab__icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.4375 8.49998V3.16248C9.4375 2.83095 9.5692 2.51301 9.80362 2.27859C10.038 2.04417 10.356 1.91248 10.6875 1.91248H22.825L30.1 9.24998V28.8375C30.1 29.169 29.9683 29.4869 29.7339 29.7214C29.4995 29.9558 29.1815 30.0875 28.85 30.0875H20.6875" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22.5625 1.9375V8.1875C22.5625 8.51902 22.6942 8.83696 22.9286 9.07138C23.163 9.3058 23.481 9.4375 23.8125 9.4375H30.0625" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M25.75 14.125H16.9375" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M25.75 24.125H22.25" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M25.75 19.125H18.8125" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M1.9375 26.3125L2.875 30.0625H16L16.9375 26.3125" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M13.1875 22.5625H11.3125V19.225C12.0274 18.8122 12.5861 18.1751 12.902 17.4124C13.218 16.6498 13.2734 15.8042 13.0597 15.0068C12.8461 14.2094 12.3753 13.5048 11.7204 13.0023C11.0654 12.4998 10.263 12.2274 9.4375 12.2274C8.612 12.2274 7.80956 12.4998 7.15464 13.0023C6.49973 13.5048 6.02893 14.2094 5.81528 15.0068C5.60162 15.8042 5.65705 16.6498 5.97295 17.4124C6.28886 18.1751 6.84759 18.8122 7.5625 19.225V22.5625H5.6875C4.69294 22.5625 3.73911 22.9576 3.03585 23.6608C2.33259 24.3641 1.9375 25.3179 1.9375 26.3125H16.9375C16.9375 25.3179 16.5424 24.3641 15.8392 23.6608C15.1359 22.9576 14.1821 22.5625 13.1875 22.5625Z" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="cs-pi-tab__labels">
+            <span class="cs-pi-tab__title">Request an Exemption</span>
+          </span>
+        </button>
 
-        <!-- Step 2 (collapsed) -->
-        <div class="accord-item">
-          <div class="accord-header" onclick="toggleAccord(this)">
-            <div class="accord-num">2</div>
-            <div class="accord-title">Enter company information</div>
-            <div class="accord-chevron">
-              <svg width="20" height="11" fill="none" viewBox="0 0 20 11"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.75 10.5L0 0h19.5L9.75 10.5z" fill="#00594F"/></svg>
-            </div>
-          </div>
-          <div class="accord-body hidden">
-            <div class="accord-text">
-              <p>A new page will open where you will enter your company's name and address, then click Next to determine whether your business is exempt from the mandate.</p>
-            </div>
-            <div class="screenshot-box">
-              <div class="screenshot-img">
-                <img src="./src/imports/Eligibility/1be263d120b563f150451ac6cfb6291ac8e8042f.png" alt="Enter company information preview" style="width:100%;height:100%;object-fit:cover;" />
-              </div>
-              <div class="screenshot-caption">Enter company information preview</div>
-            </div>
-          </div>
-        </div>
+      </div><!-- /cs-pi-tabs__row -->
 
-        <!-- Step 3 (collapsed) -->
-        <div class="accord-item">
-          <div class="accord-header" onclick="toggleAccord(this)">
-            <div class="accord-num">3</div>
-            <div class="accord-title">Complete exemption check</div>
-            <div class="accord-chevron">
-              <svg width="20" height="11" fill="none" viewBox="0 0 20 11"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.75 10.5L0 0h19.5L9.75 10.5z" fill="#00594F"/></svg>
-            </div>
-          </div>
-          <div class="accord-body hidden">
-            <div class="accord-text">
-              <p>Determine whether your business is exempt from the mandate by choosing your business type. If you don't see your exemption reason listed, you can request an exemption by emailing <a href="mailto:calsavers@treasurer.ca.gov">calsavers@treasurer.ca.gov.</a></p>
-              <p>If your company is not exempt, you'll continue through the steps 4 and 5 of the registration process.</p>
-            </div>
-            <div class="screenshot-box">
-              <div class="screenshot-img">
-                <img src="./src/imports/Eligibility/5f7c71a946ceaa3165e4600dc6064f01095c05d8.png" alt="Exemption check preview" style="width:100%;height:100%;object-fit:cover;" />
-              </div>
-              <div class="screenshot-caption">Exemption check preview</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 4 (collapsed) -->
-        <div class="accord-item">
-          <div class="accord-header" onclick="toggleAccord(this)">
-            <div class="accord-num">4</div>
-            <div class="accord-title">Add account administrators and choose username/password</div>
-            <div class="accord-chevron">
-              <svg width="20" height="11" fill="none" viewBox="0 0 20 11"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.75 10.5L0 0h19.5L9.75 10.5z" fill="#00594F"/></svg>
-            </div>
-          </div>
-          <div class="accord-body hidden">
-            <div class="accord-text">
-              <p>Provide contact information for the person who will run the CalSavers program for your company (Account Manager) and anyone else who may be assisting (Administrator).</p>
-              <p>Then choose a username, password, and security questions for future logins.</p>
-            </div>
-            <div class="screenshot-box">
-              <div class="screenshot-img">
-                <img src="./src/imports/Eligibility/eff1046475126ca5c8666f8302a9b8adef90ad12.png" alt="Add administrator preview" style="width:100%;height:100%;object-fit:cover;" />
-              </div>
-              <div class="screenshot-caption">Add administrator preview</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 5 (collapsed) -->
-        <div class="accord-item">
-          <div class="accord-header" onclick="toggleAccord(this)">
-            <div class="accord-num">5</div>
-            <div class="accord-title">Review your registration details and submit</div>
-            <div class="accord-chevron">
-              <svg width="20" height="11" fill="none" viewBox="0 0 20 11"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.75 10.5L0 0h19.5L9.75 10.5z" fill="#00594F"/></svg>
-            </div>
-          </div>
-          <div class="accord-body hidden">
-            <div class="accord-text">
-              <p>Review your information to make sure everything is correct, then click Submit to complete your registration. You'll receive a confirmation email with the next steps.</p>
-            </div>
-            <div class="screenshot-box">
-              <div class="screenshot-img">
-                <img src="./src/imports/Eligibility/8daddc77dbbd4947e255e71e2c2b551451076ff4.png" alt="Review and submit preview" style="width:100%;height:100%;object-fit:cover;" />
-              </div>
-              <div class="screenshot-caption">Review and submit preview</div>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /accordion-list -->
-
-      <hr class="section-hr" />
-
-      <!-- Post registration -->
-      <div class="post-reg">
-        <p class="post-reg-title">What to do after registration:</p>
-        <p class="post-reg-text">
-          After registering, you will be required to complete your account setup and
-          <a href="#">upload your employee roster</a>
-          within 30 days. CalSavers will then notify your employees about the program, initiating a 30-day opt-out window.
-        </p>
-        <div class="payroll-banner">
-          <div class="payroll-banner-text">
-            <h4>Automate this step with payroll integration</h4>
-            <p>Payroll integration automates key payroll tasks—saving time every pay cycle and reducing the need for ongoing staff involvement. <a href="#">Learn More</a></p>
-          </div>
-          <a href="#" class="btn-white-outline">
-            <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M8 1v7M8 8l3-3M8 8L5 5" stroke="#00594F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path fill="#00594F" d="M3 10a5 5 0 1 0 10 0" stroke="#00594F" stroke-width="2" stroke-linecap="round"/></svg>
-            Watch Video
-          </a>
-        </div>
+      <!-- Mobile dropdown -->
+      <div class="cs-pi-tabs__select">
+        <label for="elig-tab-select" class="cs-pi-tabs__select__label">Select a guide</label>
+        <select id="elig-tab-select">
+          <option value="register">Register for CalSavers</option>
+          <option value="exempt">Request an Exemption</option>
+        </select>
       </div>
 
-    </div><!-- /panel-register -->
+      <!-- Tab body -->
+      <div class="cs-pi-tab-body">
 
-    <!-- Tab body: Exempt (hidden by default) -->
-    <div class="tab-body" id="panel-exempt" style="display:none;">
-      <p class="text-muted">Exemption instructions content would appear here.</p>
-    </div>
+        <!-- ══════ TAB 1: Register for CalSavers ══════ -->
+        <div class="cs-pi-panel is-active" id="elig-panel-register">
 
-  </div>
+          <!-- ── Toggle OFF (default): quick overview ── -->
+          <div data-toggle-state="off">
+
+            <div class="d-flex flex-column flex-md-row gap-3 align-items-start justify-content-md-between mb-4" data-name="StepText">
+              <h3 class="mb-0">How to Register for CalSavers</h3>
+              <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
+                <p class="fst-italic text-secondary mb-0 cs-pi-toggle-p">Need a more detailed walk-through?</p>
+                <div class="d-flex align-items-center flex-shrink-0" data-name="QuickViewToggle">
+                  <div class="d-flex gap-1 align-items-center flex-shrink-0" data-name="Toggle Switch">
+                    <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
+                    <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative" aria-label="Toggle detailed instructions">
+                      <div class="rounded-pill flex-shrink-0" style="height:24px;width:44px;background-color:#E6E6E6;border:1px solid #D3D3D3;" data-name="Background"></div>
+                      <div class="position-absolute" style="margin-left:7px;margin-top:6px;" data-name="Switch">
+                        <svg fill="none" viewBox="0 0 12 12" style="width:12px;height:12px;display:block;">
+                          <circle cx="6" cy="6" fill="#828282" r="5.5" stroke="#828282"/>
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column gap-4">
+              <div class="cs-pi-quickcard">
+                <div class="cs-pi-quickcard__num">1</div>
+                <div>
+                  <p class="cs-pi-quickcard__title">Enter your EIN/TIN and Access Code</p>
+                  <p class="cs-pi-quickcard__desc">Go to the registration page and enter your EIN/TIN and your CalSavers Access Code.</p>
+                </div>
+              </div>
+              <div class="cs-pi-quickcard">
+                <div class="cs-pi-quickcard__num">2</div>
+                <div>
+                  <p class="cs-pi-quickcard__title">Enter company information</p>
+                  <p class="cs-pi-quickcard__desc">Enter your company's name and address, then click Next.</p>
+                </div>
+              </div>
+              <div class="cs-pi-quickcard">
+                <div class="cs-pi-quickcard__num">3</div>
+                <div>
+                  <p class="cs-pi-quickcard__title">Complete exemption check</p>
+                  <p class="cs-pi-quickcard__desc">Choose your business type to determine whether your company qualifies for an exemption.</p>
+                </div>
+              </div>
+              <div class="cs-pi-quickcard">
+                <div class="cs-pi-quickcard__num">4</div>
+                <div>
+                  <p class="cs-pi-quickcard__title">Add administrators and set login</p>
+                  <p class="cs-pi-quickcard__desc">Provide contact info for your Account Manager and choose a username, password, and security questions.</p>
+                </div>
+              </div>
+              <div class="cs-pi-quickcard">
+                <div class="cs-pi-quickcard__num">5</div>
+                <div>
+                  <p class="cs-pi-quickcard__title">Review and submit</p>
+                  <p class="cs-pi-quickcard__desc">Review your information, then click Submit to complete your registration. A confirmation email will follow with next steps.</p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /data-toggle-state="off" -->
+
+          <!-- ── Toggle ON (detailed instructions): hidden by default ── -->
+          <div data-toggle-state="on" class="d-none">
+
+            <div class="d-flex flex-column flex-md-row gap-3 align-items-start justify-content-md-between mb-4" data-name="StepText">
+              <h3 class="mb-0">How to Register for CalSavers</h3>
+              <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
+                <p class="fst-italic text-secondary mb-0 cs-pi-toggle-p">Need a more detailed walk-through?</p>
+                <div class="d-flex align-items-center flex-shrink-0" data-name="QuickViewToggle">
+                  <div class="d-flex gap-1 align-items-center flex-shrink-0" data-name="Toggle Switch">
+                    <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
+                    <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative" aria-label="Toggle detailed instructions">
+                      <div class="rounded-pill flex-shrink-0" style="height:24px;width:44px;background-color:#00594f;border:1px solid #00594f;" data-name="Background"></div>
+                      <div class="position-absolute" style="margin-left:21px;margin-top:1px;" data-name="Switch">
+                        <svg fill="none" viewBox="0 0 22 22" style="width:22px;height:22px;display:block;">
+                          <circle cx="11" cy="11" fill="white" r="11"/>
+                          <path d="M6.99995 11.6562L9.51411 14.1704L15.171 8.51355" stroke="#00594F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Accordions (all collapsed by default) -->
+            <div class="d-flex flex-column gap-2">
+
+              <div class="cs-pi-accordion">
+                <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+                  <span class="cs-pi-accordion__num">1</span>
+                  <span class="cs-pi-accordion__title">Enter your EIN/TIN and Access Code on the registration and exemption page</span>
+                  <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="cs-pi-accordion__body">
+                  <div class="cs-pi-accordion__step">
+                    <div>
+                      <p class="cs-pi-panel-body">Go to the registration or request exemption page where you will enter your Federal Employer Identification Number or Tax Identification Number (EIN/TIN) and your CalSavers Access Code. <a href="#" style="color:#00594f;font-weight:600;">Request an Access Code</a> if you do not have one.</p>
+                      <a class="btn-green" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank">Get Started</a>
+                    </div>
+                    <img class="cs-pi-accordion__screenshot" src="../src/assets/register-step1.png" alt="Registration page preview">
+                  </div>
+                </div>
+              </div>
+
+              <div class="cs-pi-accordion">
+                <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+                  <span class="cs-pi-accordion__num">2</span>
+                  <span class="cs-pi-accordion__title">Enter company information</span>
+                  <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="cs-pi-accordion__body">
+                  <div class="cs-pi-accordion__step">
+                    <div>
+                      <p class="cs-pi-panel-body">A new page will open where you will enter your company's name and address, then click Next to determine whether your business is exempt from the mandate.</p>
+                    </div>
+                    <img class="cs-pi-accordion__screenshot" src="../src/assets/register-step2.png" alt="Enter company information preview">
+                  </div>
+                </div>
+              </div>
+
+              <div class="cs-pi-accordion">
+                <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+                  <span class="cs-pi-accordion__num">3</span>
+                  <span class="cs-pi-accordion__title">Complete exemption check</span>
+                  <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="cs-pi-accordion__body">
+                  <div class="cs-pi-accordion__step">
+                    <div>
+                      <p class="cs-pi-panel-body">Determine whether your business is exempt from the mandate by choosing your business type. If you don't see your exemption reason listed, you can request an exemption by emailing <a href="mailto:calsavers@treasurer.ca.gov" style="color:#00594f;font-weight:600;">calsavers@treasurer.ca.gov</a>.</p>
+                      <p class="cs-pi-panel-body">If your company is not exempt, you'll continue through steps 4 and 5 of the registration process.</p>
+                    </div>
+                    <img class="cs-pi-accordion__screenshot" src="../src/assets/register-step3.png" alt="Exemption check preview">
+                  </div>
+                </div>
+              </div>
+
+              <div class="cs-pi-accordion">
+                <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+                  <span class="cs-pi-accordion__num">4</span>
+                  <span class="cs-pi-accordion__title">Add account administrators and choose username/password</span>
+                  <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="cs-pi-accordion__body">
+                  <div class="cs-pi-accordion__step">
+                    <div>
+                      <p class="cs-pi-panel-body">Provide contact information for the person who will run the CalSavers program for your company (Account Manager) and anyone else who may be assisting (Administrator).</p>
+                      <p class="cs-pi-panel-body">Then choose a username, password, and security questions for future logins.</p>
+                    </div>
+                    <img class="cs-pi-accordion__screenshot" src="../src/assets/register-step4.png" alt="Add administrator preview">
+                  </div>
+                </div>
+              </div>
+
+              <div class="cs-pi-accordion">
+                <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+                  <span class="cs-pi-accordion__num">5</span>
+                  <span class="cs-pi-accordion__title">Review your registration details and submit</span>
+                  <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="cs-pi-accordion__body">
+                  <div class="cs-pi-accordion__step">
+                    <div>
+                      <p class="cs-pi-panel-body">Review your information to make sure everything is correct, then click Submit to complete your registration. You'll receive a confirmation email with the next steps.</p>
+                    </div>
+                    <img class="cs-pi-accordion__screenshot" src="../src/assets/register-step5.png" alt="Review and submit preview">
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /accordions -->
+
+          </div><!-- /data-toggle-state="on" -->
+
+          <hr style="border:none;border-top:1px solid #666666;margin:2rem 0;">
+
+          <!-- Post registration -->
+          <div class="post-reg">
+            <p class="post-reg-title">What to do after registration:</p>
+            <p class="post-reg-text">After registering, you will be required to complete your account setup and <a href="#">upload your employee roster</a> within 30 days. CalSavers will then notify your employees about the program, initiating a 30-day opt-out window.</p>
+            <div class="payroll-banner">
+              <div class="payroll-banner-text">
+                <h4>Automate this step with payroll integration</h4>
+                <p>Payroll integration automates key payroll tasks—saving time every pay cycle and reducing the need for ongoing staff involvement. <a href="#">Learn More</a></p>
+              </div>
+              <a href="#" class="btn-white-outline">
+                Watch Video
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="#00594F"/><path d="M7 5.5l6 3.5-6 3.5V5.5z" fill="white"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div><!-- /elig-panel-register -->
+
+        <!-- ══════ TAB 2: Request an Exemption ══════ -->
+        <div class="cs-pi-panel" id="elig-panel-exempt">
+
+          <!-- ── Toggle OFF (default): quick overview ── -->
+          <div data-toggle-state="off">
+
+            <div class="d-flex flex-column flex-md-row gap-3 align-items-start justify-content-md-between mb-4" data-name="StepText">
+              <h3 class="mb-0">How to Request an Exemption for CalSavers</h3>
+              <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
+                <p class="fst-italic text-secondary mb-0 cs-pi-toggle-p">Need a more detailed walk-through?</p>
+                <div class="d-flex align-items-center flex-shrink-0" data-name="QuickViewToggle">
+                  <div class="d-flex gap-1 align-items-center flex-shrink-0" data-name="Toggle Switch">
+                    <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
+                    <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative" aria-label="Toggle detailed instructions">
+                      <div class="rounded-pill flex-shrink-0" style="height:24px;width:44px;background-color:#E6E6E6;border:1px solid #D3D3D3;" data-name="Background"></div>
+                      <div class="position-absolute" style="margin-left:7px;margin-top:6px;" data-name="Switch">
+                        <svg fill="none" viewBox="0 0 12 12" style="width:12px;height:12px;display:block;">
+                          <circle cx="6" cy="6" fill="#828282" r="5.5" stroke="#828282"/>
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column gap-4">
+              <div class="cs-pi-quickcard">
+                <div class="cs-pi-quickcard__num">1</div>
+                <div>
+                  <p class="cs-pi-quickcard__title">Enter your EIN/TIN and Access Code</p>
+                  <p class="cs-pi-quickcard__desc">Go to the registration page and enter your company tax ID and <a href="#" style="font-weight:600;">Access Code</a></p>
+                  <a class="btn-green" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank" style="margin-top:0.75rem;">Get Started</a>
+                </div>
+              </div>
+              <div class="cs-pi-quickcard">
+                <div class="cs-pi-quickcard__num">2</div>
+                <div>
+                  <p class="cs-pi-quickcard__title">Enter company information</p>
+                  <p class="cs-pi-quickcard__desc">Fill out company details in the form and choose your business type in the exemption check</p>
+                </div>
+              </div>
+              <div class="cs-pi-quickcard">
+                <div class="cs-pi-quickcard__num">3</div>
+                <div>
+                  <p class="cs-pi-quickcard__title">Select exemption reason</p>
+                  <p class="cs-pi-quickcard__desc">Choose the reason that applies to your business from the list of qualifying exemptions</p>
+                </div>
+              </div>
+              <div class="cs-pi-quickcard">
+                <div class="cs-pi-quickcard__num">4</div>
+                <div>
+                  <p class="cs-pi-quickcard__title">Review and submit document proof</p>
+                  <p class="cs-pi-quickcard__desc">Double-check details, submit, and follow the online instructions to provide proof of existing retirement plan or other supporting documents</p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /data-toggle-state="off" -->
+
+          <!-- ── Toggle ON (detailed instructions): hidden by default ── -->
+          <div data-toggle-state="on" class="d-none">
+
+            <div class="d-flex flex-column flex-md-row gap-3 align-items-start justify-content-md-between mb-4" data-name="StepText">
+              <h3 class="mb-0">How to Request an Exemption for CalSavers</h3>
+              <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
+                <p class="fst-italic text-secondary mb-0 cs-pi-toggle-p">Need a more detailed walk-through?</p>
+                <div class="d-flex align-items-center flex-shrink-0" data-name="QuickViewToggle">
+                  <div class="d-flex gap-1 align-items-center flex-shrink-0" data-name="Toggle Switch">
+                    <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
+                    <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative" aria-label="Toggle detailed instructions">
+                      <div class="rounded-pill flex-shrink-0" style="height:24px;width:44px;background-color:#00594f;border:1px solid #00594f;" data-name="Background"></div>
+                      <div class="position-absolute" style="margin-left:21px;margin-top:1px;" data-name="Switch">
+                        <svg fill="none" viewBox="0 0 22 22" style="width:22px;height:22px;display:block;">
+                          <circle cx="11" cy="11" fill="white" r="11"/>
+                          <path d="M6.99995 11.6562L9.51411 14.1704L15.171 8.51355" stroke="#00594F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Accordions -->
+            <div class="d-flex flex-column gap-2">
+
+              <div class="cs-pi-accordion">
+                <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+                  <span class="cs-pi-accordion__num">1</span>
+                  <span class="cs-pi-accordion__title">Enter your EIN/TIN and Access Code on the registration and exemption page</span>
+                  <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="cs-pi-accordion__body">
+                  <div class="cs-pi-accordion__step">
+                    <div>
+                      <p class="cs-pi-panel-body">Go to the registration or request exemption page where you will enter your Federal Employer Identification Number or Tax Identification Number (EIN/TIN) and your CalSavers Access Code. <a href="#" style="color:#00594f;font-weight:600;">Request an Access Code</a> if you do not have one.</p>
+                      <a class="btn-green" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank">Get Started</a>
+                    </div>
+                    <img class="cs-pi-accordion__screenshot" src="../src/assets/exempt-step1.png" alt="Registration and exemption page preview">
+                  </div>
+                </div>
+              </div>
+
+              <div class="cs-pi-accordion">
+                <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+                  <span class="cs-pi-accordion__num">2</span>
+                  <span class="cs-pi-accordion__title">Enter company information</span>
+                  <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="cs-pi-accordion__body">
+                  <div class="cs-pi-accordion__step">
+                    <div>
+                      <p class="cs-pi-panel-body">A new page will open where you will enter your company's name and address, then click Next to determine whether your business is exempt from the mandate.</p>
+                    </div>
+                    <img class="cs-pi-accordion__screenshot" src="../src/assets/exempt-step2.png" alt="Enter company information preview">
+                  </div>
+                </div>
+              </div>
+
+              <div class="cs-pi-accordion">
+                <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+                  <span class="cs-pi-accordion__num">3</span>
+                  <span class="cs-pi-accordion__title">Select exemption reason</span>
+                  <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="cs-pi-accordion__body">
+                  <div class="cs-pi-accordion__step">
+                    <div>
+                      <p class="cs-pi-panel-body">Choose the reason that applies to your business from the list of qualifying exemptions. If you don't see your exemption reason listed, you can request an exemption by emailing <a href="mailto:calsavers@treasurer.ca.gov" style="color:#00594f;font-weight:600;">calsavers@treasurer.ca.gov</a>.</p>
+                    </div>
+                    <img class="cs-pi-accordion__screenshot" src="../src/assets/exempt-step3.png" alt="Exemption reason selection preview">
+                  </div>
+                </div>
+              </div>
+
+              <div class="cs-pi-accordion">
+                <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+                  <span class="cs-pi-accordion__num">4</span>
+                  <span class="cs-pi-accordion__title">Review exemption request details</span>
+                  <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="cs-pi-accordion__body">
+                  <div class="cs-pi-accordion__step">
+                    <div>
+                      <p class="cs-pi-panel-body">Review your information to make sure everything is correct, then click Submit to continue to instructions to submit any supporting documentation based on your exemption selection.</p>
+                    </div>
+                    <img class="cs-pi-accordion__screenshot" src="../src/assets/exempt-step4-5.png" alt="Review exemption request preview">
+                  </div>
+                </div>
+              </div>
+
+              <div class="cs-pi-accordion">
+                <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+                  <span class="cs-pi-accordion__num">5</span>
+                  <span class="cs-pi-accordion__title">Submit supporting documentation</span>
+                  <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="cs-pi-accordion__body">
+                  <div class="cs-pi-accordion__step">
+                    <div>
+                      <p class="cs-pi-panel-body">If required, follow the online instructions to provide proof of existing retirement plan or other supporting documents. You'll receive a confirmation email with your exemption status.</p>
+                    </div>
+                    <img class="cs-pi-accordion__screenshot" src="../src/assets/exempt-step4-5.png" alt="Submit supporting documentation preview">
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /accordions -->
+
+          </div><!-- /data-toggle-state="on" -->
+
+        </div><!-- /elig-panel-exempt -->
+
+      </div><!-- /cs-pi-tab-body -->
+    </div><!-- /cs-pi-tabs -->
+  </div><!-- /container -->
 </section>
 
 <!-- ════════════════════════════════════
@@ -486,117 +735,137 @@
 <!-- ════════════════════════════════════
      SUPPORT SECTION
 ════════════════════════════════════ -->
-<section class="support-section">
-  <div class="inner">
+<section class="cs-pi-support">
+  <div class="container" >
+    <div class="row align-items-stretch">
 
-    <div class="support-title">
-      <h2>Need additional support?</h2>
-    </div>
-
-    <div class="support-cards">
-
-      <!-- Chat with CalSavvy -->
-      <div class="support-card">
-        <div>
-          <svg width="32" height="32" fill="none" viewBox="0 0 32 32" style="margin-bottom:6px;">
-            <path d="M6 4h20a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H10l-6 6V6a2 2 0 0 1 2-2z" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <h3>Chat with CalSavvy</h3>
-          <p>CalSavvy helps employers with questions about the CalSavers retirement program, from registration to operations!</p>
-        </div>
-        <a href="#" class="link-arrow">
-          Start a Chat
-          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M1 8h14" stroke="#00594F" stroke-width="2" stroke-linecap="round"/><path d="M9 2l6 6-6 6" stroke="#00594F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+      <!-- LEFT: TITLE -->
+      <div class="col-lg-4 d-flex align-items-center">
+        <h2 class="cs-pi-support__heading section-title mb-0">
+          Need additional support?
+        </h2>
       </div>
 
-      <!-- Employer FAQs -->
-      <a class="support-card" href="https://www.calsavers.com/home/frequently-asked-questions.html?language=en#" target="_blank">
-        <div>
-          <svg width="32" height="32" fill="none" viewBox="0 0 32 32" style="margin-bottom:6px;">
-            <circle cx="16" cy="16" r="13" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M16 22v-6M16 10h.01" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <h3>Employer FAQs</h3>
-          <p>For more information about running CalSavers visit our FAQ page.</p>
-        </div>
-        <span class="link-arrow">
-          Visit FAQs
-          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M1 8h14" stroke="#00594F" stroke-width="2" stroke-linecap="round"/><path d="M9 2l6 6-6 6" stroke="#00594F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-      </a>
+      <div class="col-lg-8">
+        <div class="cs-pi-support__cards d-flex gap-4">
 
+          <a href="#" class="cs-pi-support__card text-decoration-none">
+            <span class="cs-pi-support__icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <g clip-path="url(#clip0_4766_8122)">
+                  <path d="M28.1875 20.6875V24.4375" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M3.8125 24.4375V11.3125C3.8125 10.8152 4.01004 10.3383 4.36167 9.98667C4.71331 9.63504 5.19022 9.4375 5.6875 9.4375H10.375" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M19.23 24.4375C18.9046 25.007 18.4345 25.4803 17.8673 25.8095C17.3 26.1387 16.6559 26.3121 16 26.3121C15.3441 26.3121 14.7 26.1387 14.1327 25.8095C13.5655 25.4803 13.0954 25.007 12.77 24.4375H1.9375V26.3125C1.9375 27.3071 2.33259 28.2609 3.03585 28.9642C3.73911 29.6674 4.69294 30.0625 5.6875 30.0625H26.3125C27.3071 30.0625 28.2609 29.6674 28.9642 28.9642C29.6674 28.2609 30.0625 27.3071 30.0625 26.3125V24.4375H19.23Z" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M24.4452 2.27C22.9744 1.83049 21.4079 1.82597 19.9346 2.25699C18.4613 2.68802 17.1442 3.53616 16.1422 4.6991C15.1402 5.86203 14.4962 7.29006 14.2878 8.8109C14.0794 10.3317 14.3155 11.8804 14.9677 13.27L12.3877 18.5075L18.2914 16.895C18.8114 17.1925 19.3652 17.43 19.9402 17.6025C21.9617 18.1615 24.1218 17.9032 25.9545 16.8834C27.7872 15.8637 29.1455 14.1642 29.7362 12.1518C30.3269 10.1393 30.1026 7.97536 29.1118 6.12685C28.121 4.27833 26.4431 2.89351 24.4402 2.27125L24.4452 2.27Z" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M19.8799 8.07752C19.8799 7.61397 20.0173 7.16083 20.2749 6.7754C20.5324 6.38997 20.8985 6.08957 21.3267 5.91217C21.755 5.73478 22.2262 5.68837 22.6809 5.7788C23.1355 5.86923 23.5531 6.09245 23.8809 6.42023C24.2087 6.74801 24.4319 7.16563 24.5223 7.62027C24.6128 8.07492 24.5664 8.54617 24.389 8.97443C24.2116 9.40269 23.9112 9.76874 23.5258 10.0263C23.1403 10.2838 22.6872 10.4213 22.2236 10.4213" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M22.2236 14.1713C22.0993 14.1713 21.9801 14.1219 21.8922 14.034C21.8043 13.9461 21.7549 13.8268 21.7549 13.7025C21.7549 13.5782 21.8043 13.459 21.8922 13.3711C21.9801 13.2832 22.0993 13.2338 22.2236 13.2338" stroke="#846926" stroke-width="2"/>
+                  <path d="M22.2236 14.1713C22.348 14.1713 22.4672 14.1219 22.5551 14.034C22.643 13.9461 22.6924 13.8268 22.6924 13.7025C22.6924 13.5782 22.643 13.459 22.5551 13.3711C22.4672 13.2832 22.348 13.2338 22.2236 13.2338" stroke="#846926" stroke-width="2"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_4766_8122">
+                    <rect width="32" height="32" fill="white"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </span>
+            <h3 class="cs-pi-support__title">Chat with CalSavvy</h3>
+            <p class="cs-pi-support__body">
+              CalSavvy is here to help you get the most out of CalSavers. From answering questions about your account to walking you through the setup process, CalSavvy is here for you.
+            </p>
+            <div class="support-link d-flex gap-2 align-items-center">
+              <p class="fw-semibold text-nowrap mb-0" style="color:#00594F;">Start a Chat</p>
+              <div class="arrow-wrapper" style="width:16px;height:16px;">
+                <svg viewBox="0 0 16 16" width="100%" height="100%" fill="none">
+                  <path d="M0.96875 8H15.0312" stroke="#00594F" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M8.46875 14.5625L15.0312 8L8.46875 1.4375" stroke="#00594F" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.calsavers.com/home/frequently-asked-questions.html?language=en#" target="_blank" class="cs-pi-support__card text-decoration-none">
+            <span class="cs-pi-support__icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M11.3125 16C11.3125 17.2432 11.8064 18.4355 12.6854 19.3146C13.5645 20.1936 14.7568 20.6875 16 20.6875C17.2432 20.6875 18.4355 20.1936 19.3146 19.3146C20.1936 18.4355 20.6875 17.2432 20.6875 16C20.6875 14.7568 20.1936 13.5645 19.3146 12.6854C18.4355 11.8064 17.2432 11.3125 16 11.3125C14.7568 11.3125 13.5645 11.8064 12.6854 12.6854C11.8064 13.5645 11.3125 14.7568 11.3125 16Z" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22.3986 26.3762L16.6611 20.6387" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20.6387 16.6625L26.3762 22.3987" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5.62402 22.3988L11.3615 16.6613" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15.3391 20.64L9.60156 26.3763" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.60156 5.625L15.3391 11.3612" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M11.3615 15.3388L5.62402 9.60126" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M26.3762 9.60126L20.6387 15.3388" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16.6611 11.3612L22.3986 5.625" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3.8125 16C3.8125 19.2323 5.09654 22.3323 7.38214 24.6179C9.66774 26.9035 12.7677 28.1875 16 28.1875C19.2323 28.1875 22.3323 26.9035 24.6179 24.6179C26.9035 22.3323 28.1875 19.2323 28.1875 16C28.1875 12.7677 26.9035 9.66774 24.6179 7.38214C22.3323 5.09654 19.2323 3.8125 16 3.8125C12.7677 3.8125 9.66774 5.09654 7.38214 7.38214C5.09654 9.66774 3.8125 12.7677 3.8125 16Z" stroke="#846926" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <h3 class="cs-pi-support__title">Employer FAQs</h3>
+            <p class="cs-pi-support__body">
+              For more information about running CalSavers visit our FAQ page.
+            </p>
+            <div class="support-link d-flex gap-2 align-items-center">
+              <p class="fw-semibold text-nowrap mb-0" style="color:#00594F;">Visit FAQs</p>
+              <div class="arrow-wrapper" style="width:16px;height:16px;">
+                <svg viewBox="0 0 16 16" width="100%" height="100%" fill="none">
+                  <path d="M0.96875 8H15.0312" stroke="#00594F" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M8.46875 14.5625L15.0312 8L8.46875 1.4375" stroke="#00594F" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     FOOTER
-════════════════════════════════════ -->
-<footer class="site-footer">
-
-  <div class="footer-top">
-    <div class="footer-contact">
-      <p>Employer assistance: 855-650-6916</p>
-      <p>Employee assistance: 855-650-6918</p>
-      <p>clientservices@calsavers.com</p>
-      <p>treasurer.ca.gov/calsavers</p>
-      <div class="footer-social">
-        <div class="social-x">
-          <svg width="20" height="20" fill="none" viewBox="0 0 25 25"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="#565958"/></svg>
-        </div>
-        <img src="./src/imports/Eligibility/039f4bb8bf585934b82734f24f18ba6d5292401d.png" alt="LinkedIn" style="height:36px;" />
-      </div>
-    </div>
-    <img class="footer-seal" src="./src/imports/Eligibility/c38e6508f8ab610083aded5dea6e466c8ce1f856.png" alt="California seal" />
-  </div>
-
-  <div class="footer-lang">
-    <span>English</span><div class="divider"></div>
-    <span>Español</span><div class="divider"></div>
-    <span>Filipino</span><div class="divider"></div>
-    <span>한국어</span><div class="divider"></div>
-    <span>Tiếng Việt</span><div class="divider"></div>
-    <span>中文</span><div class="divider"></div>
-    <span>armenian</span><div class="divider"></div>
-    <span>ру́сский</span><div class="divider"></div>
-    <span>日本語</span><div class="divider"></div>
-    <span>punjabi</span>
-  </div>
-
-  <div class="footer-links">
-    <span>Copyright © 2026</span><div class="divider"></div>
-    <a href="https://chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://cdn.unite529.com/jcdn/files/CAU/pdfs/en_US/terms.pdf" target="_blank">Terms of Use</a><div class="divider"></div>
-    <a href="https://chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://cdn.unite529.com/jcdn/files/CAU/pdfs/en_US/privacy.pdf" target="_blank">Privacy</a><div class="divider"></div>
-    <a href="http://www.ascensus529.com/home/infosec.html?language=en#" target="_blank">Security</a><div class="divider"></div>
-    <a href="https://www.calsavers.com/home/sitemap.html" target="_blank">Sitemap</a><div class="divider"></div>
-    <a href="https://www.calsavers.com/home/frequently-asked-questions.html" target="_blank">Help Center</a>
-  </div>
-
-  <div class="footer-legal">
-    <p>The CalSavers Retirement Savings Program ("CalSavers" or the "Program") is an automatic enrollment payroll deduction IRA overseen by the CalSavers Retirement Savings Board ("Board"). Ascensus College Savings Recordkeeping Services, LLC ("ACSR") is the program administrator. ACSR and its affiliates are responsible for day-to-day program operations. Participants saving through CalSavers beneficially own and have control over their IRAs, as provided in the Program Disclosure Booklet available at saver.calsavers.com. CalSavers is not sponsored by the employer, and therefore the employer is not responsible for the Program or liable as a Program sponsor. Employers are not permitted to endorse the Program or encourage or advise employees on whether to participate, how much (if any) to contribute or provide investment help.</p>
-    <p>CalSavers offers investment options selected by the Board. For more information on CalSavers' investment options go to saver.calsavers.com. Account balances in CalSavers will vary with market conditions. Investments in CalSavers are not guaranteed or insured by the Board, the State of California, the Federal Deposit Insurance Corporation, or any other organization.</p>
-    <p>CalSavers is a completely voluntary retirement program. Savers may opt out at any time or reduce or increase the amount of payroll contributions. If a saver opts out they can later opt back into CalSavers.</p>
-    <p>Saving through an IRA may not be appropriate for all individuals. Employer facilitation of CalSavers should not be considered an endorsement or recommendation by a participating employer, IRAs, or the investment options offered through CalSavers. IRAs are not exclusive to CalSavers and can be obtained outside of the Program and contributed to outside of payroll deduction. Contributing to a CalSavers IRA through payroll deduction may offer some tax benefits and consequences. However, not everyone is eligible to contribute to a Roth IRA and savers should consult a tax or financial advisor if they have questions related to taxes or investments. Employers do not provide financial advice and employees should not contact an employer for financial advice. Employers should refer all questions about the Program to CalSavers. Employers are not liable for decisions employees make pursuant to Section 100034 of the California Government Code.</p>
-  </div>
-
-</footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  function switchTab(tab) {
-    const isRegister = tab === 'register';
-    document.getElementById('tab-register').className = 'custom-tab ' + (isRegister ? 'active' : 'inactive');
-    document.getElementById('tab-exempt').className = 'custom-tab ' + (!isRegister ? 'active' : 'inactive');
-    document.getElementById('panel-register').style.display = isRegister ? 'block' : 'none';
-    document.getElementById('panel-exempt').style.display = !isRegister ? 'block' : 'none';
+(function () {
+  // ── Tab switching ──
+  var tabs   = document.querySelectorAll('.cs-pi-tab');
+  var panels = document.querySelectorAll('.cs-pi-panel');
+  var select = document.getElementById('elig-tab-select');
+
+  function activateTab(tabId) {
+    tabs.forEach(function (t) {
+      var active = t.getAttribute('data-tab') === tabId;
+      t.classList.toggle('is-active', active);
+      t.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    panels.forEach(function (p) {
+      p.classList.toggle('is-active', p.id === 'elig-panel-' + tabId);
+    });
+    if (select) select.value = tabId;
   }
 
-  function toggleAccord(header) {
-    const body = header.nextElementSibling;
-    const isHidden = body.classList.contains('hidden');
-    body.classList.toggle('hidden', !isHidden);
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { activateTab(t.getAttribute('data-tab')); });
+  });
+
+  if (select) {
+    select.addEventListener('change', function () { activateTab(select.value); });
   }
+
+  // ── Accordion expand/collapse ──
+  document.addEventListener('click', function (e) {
+    var header = e.target.closest('.cs-pi-accordion__header');
+    if (!header) return;
+    var acc = header.closest('.cs-pi-accordion');
+    if (acc) acc.classList.toggle('is-expanded');
+  });
+
+  // ── Quick-view toggle: swap two [data-toggle-state] siblings inside .cs-pi-panel ──
+  document.addEventListener('click', function (e) {
+    var inToggle = e.target.closest('[data-name="Toggle Switch"], [data-name="Background"], [data-name="Switch"]');
+    if (!inToggle) return;
+    var panel = inToggle.closest('.cs-pi-panel');
+    if (!panel) return;
+    var states = panel.querySelectorAll('[data-toggle-state]');
+    if (states.length !== 2) return;
+    states.forEach(function (s) { s.classList.toggle('d-none'); });
+  });
+})();
 </script>
 </body>
 </html>
