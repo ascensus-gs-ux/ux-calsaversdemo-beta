@@ -123,6 +123,29 @@
     }
     .cs-modal-close:hover, .cs-modal-close:focus { opacity: 0.75; }
 
+    /* Zoomable screenshot images */
+    .cs-pi-zoomable { cursor: zoom-in; transition: opacity 0.15s ease; }
+    .cs-pi-zoomable:hover { opacity: 0.85; }
+
+    /* Accordion image container — consistent 480×300 max, responsive, no distortion */
+    .cs-pi-img-wrap {
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 8 / 5;
+      border: 1px solid rgba(0, 89, 79, 0.5);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cs-pi-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
     /* =====================================================================
        Hero — Payroll Provider Integration
        ===================================================================== */
@@ -1188,7 +1211,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <img src="https://cdn.unite529.com/jcdn/files/CAER/images/initiate-payroll-integrations.png" alt="" class="img-fluid" style="border: 1px solid rgba(0, 89, 79, 0.5);">
+                                  <div class="cs-pi-img-wrap">
+                                    <img src="../src/assets/PI-Instructions-Add-Provider.png" alt="Log in CalSavers and go to Payroll Provider" class="img-fluid cs-pi-zoomable">
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -1233,7 +1258,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <img src="https://cdn.unite529.com/jcdn/files/CAER/images/add-bank-account-preview.png" alt="" class="img-fluid" style="border: 1px solid rgba(0, 89, 79, 0.5);">
+                                  <div class="cs-pi-img-wrap">
+                                    <img src="../src/assets/PI-Instructions-Add-Bank.png" alt="Add a bank or select a previously added account" class="img-fluid cs-pi-zoomable">
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -1275,7 +1302,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <img src="https://cdn.unite529.com/jcdn/files/CAER/images/Payroll-Integrations-Inc-registration.png" alt="" class="img-fluid" style="border: 1px solid rgba(0, 89, 79, 0.5);">
+                                  <div class="cs-pi-img-wrap">
+                                    <img src="../src/assets/PI%20Screen_%20Employer%20connects.png" alt="Initiate Payroll Integrations flow to register for the integration" class="img-fluid cs-pi-zoomable">
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -1318,7 +1347,9 @@ Once setup is complete, you will be re-routed to your CalSavers dashboard. You s
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <img src="https://cdn.unite529.com/jcdn/files/CAER/images/verify-connection-preview.png" alt="" class="img-fluid" style="border: 1px solid rgba(0, 89, 79, 0.5);">
+                                  <div class="cs-pi-img-wrap">
+                                    <img src="../src/assets/PI-Instructions-Payroll-Added.png" alt="Complete setup and verify connection" class="img-fluid cs-pi-zoomable">
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -1879,6 +1910,20 @@ Once setup is complete, you will be re-routed to your CalSavers dashboard. You s
   </div>
 
 
+  <!-- Image zoom modal -->
+  <div class="modal fade" id="cs-pi-image-modal" tabindex="-1" aria-label="Image zoom" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img id="cs-pi-image-modal-img" src="" alt="" class="img-fluid" style="max-height: 75vh; width: auto;">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap JS bundle (modals/dropdowns) -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -2152,6 +2197,23 @@ Once setup is complete, you will be re-routed to your CalSavers dashboard. You s
         searchInput.addEventListener('focus', function () { if (searchInput.value) renderResults(searchInput.value); });
         searchInput.addEventListener('blur',  function () { setTimeout(clearResults, 120); });
       }
+    })();
+  </script>
+
+  <!-- Image zoom: open modal on .cs-pi-zoomable click -->
+  <script>
+    (function () {
+      var zoomModal = document.getElementById('cs-pi-image-modal');
+      var zoomImg   = document.getElementById('cs-pi-image-modal-img');
+      if (!zoomModal || !zoomImg) return;
+      document.addEventListener('click', function (e) {
+        var target = e.target.closest('.cs-pi-zoomable');
+        if (!target) return;
+        zoomImg.src = target.src;
+        zoomImg.alt = target.alt;
+        bootstrap.Modal.getOrCreateInstance(zoomModal).show();
+      });
+      zoomModal.addEventListener('hidden.bs.modal', function () { zoomImg.src = ''; });
     })();
   </script>
 
