@@ -30,9 +30,6 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Install React peer dependencies
-        run: npm install react@18.3.1 react-dom@18.3.1 --legacy-peer-deps
-
       - name: Build project
         run: npm run build
 
@@ -40,9 +37,7 @@ jobs:
         run: |
           cp employer-overview.html dist/
           mkdir -p dist/src/assets
-          cp src/assets/Hero.png dist/src/assets/
-          cp src/assets/360-cycle-image.svg dist/src/assets/
-          cp src/assets/180-linear-image.svg dist/src/assets/
+          cp -r src/assets/. dist/src/assets/
           cp -r employers dist/
 
       - name: Setup Pages
