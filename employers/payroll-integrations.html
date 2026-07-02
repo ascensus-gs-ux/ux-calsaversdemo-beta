@@ -411,47 +411,10 @@
     .cs-pi-panel.is-active { display: block; }
 
     /* =====================================================================
-       Quick-view toggle (used in 360°-Tab2, 360°-Tab3, 180°-Tab2)
+       Quick-view toggle label spacing (switch itself is the [data-name="Toggle
+       Switch"] React-faithful markup, styled inline per instance)
        ===================================================================== */
-    .cs-pi-toggle-row {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .cs-pi-toggle-p{
-      margin-bottom: 0 !important;
-    }
-    @media (min-width: 768px) {
-      .cs-pi-toggle-row { flex-direction: row; align-items: center; justify-content: space-between; gap: 1.5rem; }
-    }
-    .cs-pi-toggle-row__label { color: #000000; font-style: italic; margin: 0; font-size: 0.9375rem; }
-    .cs-pi-toggle {
-      display: inline-flex; align-items: center; gap: 0.75rem;
-      background: none; border: 0; padding: 0;
-      cursor: pointer; color: #000000;
-      font-size: 0.9375rem;
-    }
-    .cs-pi-toggle__switch {
-      position: relative;
-      width: 44px; height: 24px;
-      background-color: #E6E6E6;
-      border-radius: 12px;
-      transition: background-color 0.2s ease;
-      flex-shrink: 0;
-    }
-    .cs-pi-toggle__switch::after {
-      content: "";
-      position: absolute;
-      top: 2px; left: 2px;
-      width: 20px; height: 20px;
-      background-color: #ffffff;
-      border-radius: 50%;
-      transition: transform 0.2s ease;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    }
-    .cs-pi-toggle.is-on .cs-pi-toggle__switch { background-color: #00594f; }
-    .cs-pi-toggle.is-on .cs-pi-toggle__switch::after { transform: translateX(20px); }
+    .cs-pi-toggle-p { margin-bottom: 0 !important; }
 
     /* =====================================================================
        Accordions (used inside several tabs)
@@ -776,24 +739,6 @@
     .accordion-border-overlay { border: 1px solid #00594f; }
     .pointer-events-none { pointer-events: none; }
 
-    /* Quick-view cards (compact step cards under toggle ON) */
-    .cs-pi-quickcard {
-      background-color: #ffffff;
-      border: 1px solid rgba(0, 89, 79, 0.25);
-      border-radius: 8px;
-      padding: 1.25rem 1.5rem;
-    }
-    .cs-pi-quickcard__num {
-      width: 36px; height: 36px; border-radius: 50%;
-      background-color: #80641f; color: #ffffff;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-    .cs-pi-quickcard__title { font-weight: 600; color: #00594f; font-size: 1rem; margin-bottom: 0.5rem; }
-    .cs-pi-quickcard__desc { color: #6b6b6b; font-size: 0.9375rem; line-height: 1.5; margin-bottom: 0; }
-    .cs-pi-quickcard__action { margin-top: 1rem; }
-
     /* =====================================================================
        Video + Support sections (below tabs)
        ===================================================================== */
@@ -813,7 +758,6 @@
     }
     .cs-pi-support__heading { text-align: left; color: #000000; margin-bottom: 1.5rem; }
     .cs-pi-support__cards { display: flex; gap: 1.25rem; }
-    @media (min-width: 768px) { .cs-pi-support__cards { display: flex; gap: 1.25rem; } }
     .cs-pi-support__card {
       background-color: #ffffff;
       border: 1px solid rgba(0, 89, 79, 0.25);
@@ -2073,21 +2017,7 @@ Once setup is complete, you will be re-routed to your CalSavers dashboard. You s
         applyAccordionState(container);
       });
 
-      // Legacy quick-view toggle (data-target-detailed / data-target-quick)
-      document.querySelectorAll('.cs-pi-toggle').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var targetSelector = btn.getAttribute('data-target-detailed');
-          var quickSelector  = btn.getAttribute('data-target-quick');
-          if (!targetSelector || !quickSelector) return;
-          var detailed = document.querySelector(targetSelector);
-          var quick    = document.querySelector(quickSelector);
-          var isOn = btn.classList.toggle('is-on');
-          if (detailed) detailed.classList.toggle('d-none', isOn);
-          if (quick)    quick.classList.toggle('d-none', !isOn);
-        });
-      });
-
-      // React-style quick-view toggle — click inside [data-name="Toggle Switch"]
+      // Quick-view toggle — click inside [data-name="Toggle Switch"]
       // swaps the two [data-toggle-state] siblings in the enclosing panel.
       // Ported from src/app/App.tsx (toggleSwitch / Background / Switch handlers).
       document.addEventListener('click', function (e) {

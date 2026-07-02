@@ -28,7 +28,6 @@
     a::after { content: "›"; display: inline-block; margin-left: 4px; font-weight: 600; transition: transform 0.2s ease; }
     a:hover::after { transform: translateX(4px); }
     .btn-green::after, .btn-white-outline::after, .link-arrow::after, .cs-pi-support__card::after { content: none; }
-    .cs-pi-support__card { background-image: none; }
     .link-primary, .link-primary:active { color: var(--green) !important; text-decoration: none; font-weight: 600;}
     .link-primary:hover { color: var(--green-dark) !important; }
     
@@ -42,11 +41,11 @@
     .eligibility-section { background: #fff; padding-bottom: 80px; }
     .eligibility-section .inner { margin: 0 auto; padding: 0 8px; display: flex; flex-direction: column; gap: 40px; align-items: flex-start; }
     @media (min-width: 768px) { .eligibility-section .inner { flex-direction: row; } }
-    @media (min-width: 1025px) { .eligibility-section .inner { max-width: 66.666%; } .container {max-width: 66.66%;} }
+    @media (min-width: 1025px) { .eligibility-section .inner { max-width: 66.666%; } .container {max-width: 66.666%;} }
     .elig-card { flex: 1; width: 100%; }
     .elig-divider { background: #c3c3c3; flex-shrink: 0; width: 100%; height: 1px; }
     @media (min-width: 768px) { .elig-divider { width: 1px; height: auto; align-self: stretch; } }
-    @media (max-width: 1025px) {.container{max-width: 100%; padding: 0 24px}}
+    @media (max-width: 1024.98px) {.container{max-width: 100%; padding: 0 24px}}
     .icon-circle { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .icon-circle-green { background: var(--green); }
     .icon-circle-gold { background: var(--gold); }
@@ -110,6 +109,7 @@
     .cs-pi-accordion__header { display: flex; gap: 1rem; align-items: center; background-color: #ffffff; border: 1px solid #00594F; border-radius: 8px; padding: 1.25rem; cursor: pointer; width: 100%; text-align: start; transition: background-color 0.15s ease, border-color 0.15s ease; color: #000000; }
     .cs-pi-accordion__header:hover { background-color: #E5EEED; border-color: #00473F; }
     .cs-pi-accordion__header:hover .cs-pi-accordion__title { color: #00473F; text-decoration: underline; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__header { border-color: #00594f; }
     .cs-pi-accordion__num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background-color: #80641f; color: #ffffff; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; }
     .cs-pi-accordion__title { flex: 1; font-weight: 600; color: #00594f; }
     .cs-pi-accordion__chevron { flex-shrink: 0; color: #00594f; transition: transform 0.2s ease; }
@@ -155,7 +155,7 @@
     .cs-pi-support { background-color: #F2F6F6; border-top: 1px solid rgba(0,89,79,0.25); border-bottom: 1px solid rgba(0,89,79,0.25); padding: 3rem 0; }
     .cs-pi-support__heading { text-align: left; color: #000000; margin-bottom: 1.5rem; }
     .cs-pi-support__cards { display: flex; gap: 1.25rem; }
-    .cs-pi-support__card { background-color: #ffffff; border: 1px solid rgba(0,89,79,0.25); border-radius: 8px; padding: 1.5rem; flex: 1 1 50%; transition: background-color 0.15s ease, border-color 0.15s ease; text-decoration: none; color: inherit; display: block; }
+    .cs-pi-support__card { background-color: #ffffff; background-image: none; border: 1px solid rgba(0,89,79,0.25); border-radius: 8px; padding: 1.5rem; flex: 1 1 50%; transition: background-color 0.15s ease, border-color 0.15s ease; text-decoration: none; color: inherit; display: block; }
     .cs-pi-support__card:hover { background-color: #F2F6F6; border-color: #00473F; }
     .cs-pi-support__icon { display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: #846926; }
     .cs-pi-support__title { color: #000000; font-size: 1.125rem; margin-bottom: 0.5rem; }
@@ -522,7 +522,7 @@
 
           </div><!-- /data-toggle-state="on" -->
 
-          <hr style="border:none;border-top:1px solid #666666;margin:2rem 0;">
+          <hr class="section-hr">
 
           <!-- Post registration -->
           <div class="post-reg">
