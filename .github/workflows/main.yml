@@ -26,9 +26,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: |
+          for i in 1 2 3; do
+            npm ci --legacy-peer-deps && exit 0
+            echo "npm ci failed (attempt $i/3) — likely a transient esbuild ETXTBSY race, retrying in 5s..."
+            sleep 5
+          done
+          exit 1
 
       - name: Build project
         run: npm run build
