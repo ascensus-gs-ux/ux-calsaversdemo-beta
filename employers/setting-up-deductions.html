@@ -158,17 +158,17 @@
     .cs-pi-section__header h2 { color: #000000; }
 
     .cs-pi-tabs { margin-top: 2rem; }
-    .cs-pi-tabs__row { display: flex; flex-wrap: nowrap; gap: 12px; width: 100%; align-items: stretch; }
+    .cs-pi-tabs__row { display: flex; flex-wrap: nowrap; gap: 12px; width: fit-content; align-items: stretch; }
 
     .cs-pi-tab {
-      flex: 1 1 auto;
-      min-width: 0;
+      flex: 0 0 auto;
       background-color: #f2f0e9;
       border: 1px solid rgba(0, 89, 79, 0.5);
       border-radius: 8px 8px 0 0;
       border-bottom: none;
       padding: 0.875rem 1.25rem;
-      cursor: pointer;
+      cursor: default;
+      pointer-events: none;
       text-align: start;
       display: flex; gap: 0.75rem; align-items: center;
       min-height: 64px;
@@ -326,7 +326,7 @@
 
         <!-- Desktop tab row -->
         <div class="cs-pi-tabs__row" role="tablist">
-          <button type="button" class="cs-pi-tab is-active" data-tab="deductions" role="tab" aria-selected="true">
+          <button type="button" class="cs-pi-tab is-active" data-tab="deductions" role="tab" aria-selected="true" tabindex="-1">
             <span class="cs-pi-tab__icon" aria-hidden="true">
               <img src="../src/assets/File-Dollar.svg" alt="" width="32" height="32">
             </span>
