@@ -1912,8 +1912,10 @@ Once setup is complete, you will be re-routed to your CalSavers dashboard. You s
       function rebuildMobileSelect() {
         if (!select) return;
         select.innerHTML = '';
+        var count = 0;
         tabs.forEach(function (t) {
           if (t.getAttribute('data-mode') !== mode) return;
+          count++;
           var opt = document.createElement('option');
           opt.value = t.getAttribute('data-tab');
           var eyebrow = t.querySelector('.cs-pi-tab__eyebrow');
@@ -1922,6 +1924,10 @@ Once setup is complete, you will be re-routed to your CalSavers dashboard. You s
           if (opt.value === activeTab[mode]) opt.selected = true;
           select.appendChild(opt);
         });
+        // Only one tab for this mode (e.g. 180° Overview) — the dropdown has
+        // nothing to switch between, so hide it on mobile too.
+        var wrapper = select.closest('.cs-pi-tabs__select');
+        if (wrapper) wrapper.style.display = count <= 1 ? 'none' : '';
       }
 
       function applyState() {

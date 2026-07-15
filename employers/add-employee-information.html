@@ -214,7 +214,7 @@
       align-items: flex-start;
     }
     .cs-pi-warning__icon { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; color: #C27800; }
-    .cs-pi-warning__text { color: #6b6b6b; font-size: 0.9375rem; line-height: 1.5; margin: 0; }
+    .cs-pi-warning__text { color: #000000; font-size: 1em; line-height: 1.5; margin: 0; }
     .cs-pi-warning__text strong { color: #000000; }
 
     /* HR divider in tab body (mirrors eligibilty-and-registration.html) */
@@ -726,21 +726,6 @@
                   </div>
                 </div>
 
-                <div class="cs-pi-callout w-100">
-                  <div class="cs-pi-callout__body">
-                    <span class="cs-pi-callout__icon" aria-hidden="true">
-                      <img src="../src/assets/bulb.svg" alt="">
-                    </span>
-                    <div class="cs-pi-callout__text">
-                      <p class="cs-pi-callout__title">Looking for a more hands-off approach?</p>
-                      <p class="cs-pi-callout__desc">Payroll integration options can help automate the ongoing tasks of sending contributions and making updates when employees update their contribution rates.</p>
-                    </div>
-                  </div>
-                  <div class="cs-pi-callout__action">
-                    <a href="payroll-integrations.html" class="btn-white-outline">Learn More</a>
-                  </div>
-                </div>
-
                 <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Novice">
                   <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="Accordions">
 
@@ -1007,21 +992,6 @@
                   </div>
                 </div>
 
-                <div class="cs-pi-callout w-100">
-                  <div class="cs-pi-callout__body">
-                    <span class="cs-pi-callout__icon" aria-hidden="true">
-                      <img src="../src/assets/bulb.svg" alt="">
-                    </span>
-                    <div class="cs-pi-callout__text">
-                      <p class="cs-pi-callout__title">Looking for a more hands-off approach?</p>
-                      <p class="cs-pi-callout__desc">Payroll integration options can help automate the ongoing tasks of sending contributions and making updates when employees update their contribution rates.</p>
-                    </div>
-                  </div>
-                  <div class="cs-pi-callout__action">
-                    <a href="payroll-integrations.html" class="btn-white-outline">Learn More</a>
-                  </div>
-                </div>
-
                 <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Exerienced">
                   <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="StepsContainer">
 
@@ -1145,7 +1115,7 @@
               <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
                 <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
                   <div class="d-flex flex-column flex-shrink-0">
-                    <span class="cs-pi-tab__eyebrow mb-1">Recommended for 10 or More Employees</span>
+                    <span class="cs-pi-tab__eyebrow mb-1">Recommended for Less Than 10 Employees</span>
                     <h3 class="mb-0">Instructions for File Upload</h3>
                   </div>
                   <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
@@ -1178,21 +1148,6 @@
                   <div class="col-12 col-md-6 d-flex flex-column gap-3 align-items-start justify-content-center">
                     <h4 class="text-dark mb-0">Watch a video on how to upload your employee roster file</h4>
                     <a href="#" class="btn-white-outline">Download Excel Template</a>
-                  </div>
-                </div>
-
-                <div class="cs-pi-callout w-100">
-                  <div class="cs-pi-callout__body">
-                    <span class="cs-pi-callout__icon" aria-hidden="true">
-                      <img src="../src/assets/bulb.svg" alt="">
-                    </span>
-                    <div class="cs-pi-callout__text">
-                      <p class="cs-pi-callout__title">Looking for a more hands-off approach?</p>
-                      <p class="cs-pi-callout__desc">Payroll integration options can help automate the ongoing tasks of sending contributions and making updates when employees update their contribution rates.</p>
-                    </div>
-                  </div>
-                  <div class="cs-pi-callout__action">
-                    <a href="payroll-integrations.html" class="btn-white-outline">Learn More</a>
                   </div>
                 </div>
 
@@ -1331,16 +1286,11 @@
                                     <ol class="text-secondary w-100 mb-0 ps-3">
                                       <li>Download the template to access the Excel file</li>
                                       <li>Within the file, review the "Formatting Examples" tab for required field guidance. See additional <a href="#" class="fw-semibold text-decoration-underline" style="color: #00594f;">Tips for using the file upload template</a></li>
-                                      <li>Complete all fields marked with an asterisk (*) without modifying the original formatting of the structure.</li>
                                     </ol>
                                     <a href="#" class="btn-white-outline">Download Excel Template</a>
                                     <div class="cs-pi-warning w-100">
                                       <span class="cs-pi-warning__icon" aria-hidden="true">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                          <path d="M10 2.5L18.75 17.5H1.25L10 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-                                          <path d="M10 8v3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                          <circle cx="10" cy="14.25" r="0.9" fill="currentColor"/>
-                                        </svg>
+                                        <img src="../src/assets/alert-triangle.svg" alt="" width="20" height="20">
                                       </span>
                                       <p class="cs-pi-warning__text">
                                         <strong>Warning!</strong> Do not modify the Excel file's formatting (columns, widths, or structure), as changes may cause errors when uploading, and cause processing delays.
@@ -1392,6 +1342,7 @@
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
                                     <ol class="text-secondary w-100 mb-0 ps-3">
                                       <li>Go to the "Payroll Census" tab in the Excel file</li>
+                                      <li>Complete all fields marked with an asterisk (*) without modifying the original formatting of the structure.</li>
                                       <li>Click Enable Editing and carefully enter employee details for this payroll group</li>
                                       <li>Add valid email addresses when available</li>
                                       <li>Save your completed file.</li>
@@ -1495,7 +1446,7 @@
                                         <ul class="mb-0 mt-1" style="color: #6b6b6b;">
                                           <li>Compare your file to the template formatting</li>
                                           <li>Correct and re-upload as needed</li>
-                                          <li>Contact Client Services if issues persist</li>
+                                          <li>Contact Client Services at <a class="link-primary" href="tel:1-855-650-6916">1-855-650-6916</a> if issues persist</li>
                                         </ul>
                                       </li>
                                     </ol>
@@ -1515,6 +1466,18 @@
 
                   </div>
                 </div>
+
+                <hr class="section-hr w-100">
+
+                <div class="w-100">
+                  <p class="fw-semibold mb-2" style="color: #000000;">What Happens Next:</p>
+                  <p class="cs-pi-panel-body mb-3">
+                    After you have added your employee information, CalSavers will then notify your employees about the program by sending a welcome packet (either by email or mail), initiating the 30-day decision window. Your employees may make changes to the account defaults or opt out of the program during this time.
+                  </p>
+                  <p class="cs-pi-panel-body mb-0">
+                    During this period while you wait on employees to enroll, there are a <a href="https://employer.calsavers.com/home/help-center/enrollment.html" target="_blank" class="fw-semibold text-decoration-underline" style="color: #00594f;">few tasks</a> you can complete.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -1523,7 +1486,7 @@
               <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
                 <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
                   <div class="d-flex flex-column flex-shrink-0">
-                    <span class="cs-pi-tab__eyebrow mb-1">Recommended for 10 or More Employees</span>
+                    <span class="cs-pi-tab__eyebrow mb-1">Recommended for Less Than 10 Employees</span>
                     <h3 class="mb-0">Instructions for File Upload</h3>
                   </div>
                   <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
@@ -1553,21 +1516,6 @@
                   <div class="col-12 col-md-6 d-flex flex-column gap-3 align-items-start justify-content-center">
                     <h4 class="text-dark mb-0">Watch a video on how to upload your employee roster file</h4>
                     <a href="#" class="btn-white-outline">Download Excel Template</a>
-                  </div>
-                </div>
-
-                <div class="cs-pi-callout w-100">
-                  <div class="cs-pi-callout__body">
-                    <span class="cs-pi-callout__icon" aria-hidden="true">
-                      <img src="../src/assets/bulb.svg" alt="">
-                    </span>
-                    <div class="cs-pi-callout__text">
-                      <p class="cs-pi-callout__title">Looking for a more hands-off approach?</p>
-                      <p class="cs-pi-callout__desc">Payroll integration options can help automate the ongoing tasks of sending contributions and making updates when employees update their contribution rates.</p>
-                    </div>
-                  </div>
-                  <div class="cs-pi-callout__action">
-                    <a href="payroll-integrations.html" class="btn-white-outline">Learn More</a>
                   </div>
                 </div>
 
@@ -1630,16 +1578,11 @@
                               <ol class="text-secondary w-100 mb-0 ps-3">
                                 <li>Download the template to access the Excel file</li>
                                 <li>Within the file, review the "Formatting Examples" tab for required field guidance. See additional <a href="#" class="fw-semibold text-decoration-underline" style="color: #00594f;">Tips for using the file upload template</a></li>
-                                <li>Complete all fields marked with an asterisk (*) without modifying the original formatting of the structure.</li>
                               </ol>
                               <a href="#" class="btn-white-outline">Download Excel Template</a>
                               <div class="cs-pi-warning w-100">
                                 <span class="cs-pi-warning__icon" aria-hidden="true">
-                                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M10 2.5L18.75 17.5H1.25L10 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-                                    <path d="M10 8v3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    <circle cx="10" cy="14.25" r="0.9" fill="currentColor"/>
-                                  </svg>
+                                  <img src="../src/assets/alert-triangle.svg" alt="" width="20" height="20">
                                 </span>
                                 <p class="cs-pi-warning__text">
                                   <strong>Warning!</strong> Do not modify the Excel file's formatting (columns, widths, or structure), as changes may cause errors when uploading, and cause processing delays.
@@ -1663,6 +1606,7 @@
                               <p class="fw-semibold text-dark w-100 mb-0">Enter Employee Information</p>
                               <ol class="text-secondary w-100 mb-0 ps-3">
                                 <li>Go to the "Payroll Census" tab in the Excel file</li>
+                                <li>Complete all fields marked with an asterisk (*) without modifying the original formatting of the structure.</li>
                                 <li>Click Enable Editing and carefully enter employee details for this payroll group</li>
                                 <li>Add valid email addresses when available</li>
                                 <li>Save your completed file.</li>
@@ -1710,7 +1654,7 @@
                                   <ul class="mb-0 mt-1" style="color: #6b6b6b;">
                                     <li>Compare your file to the template formatting</li>
                                     <li>Correct and re-upload as needed</li>
-                                    <li>Contact Client Services if issues persist</li>
+                                    <li>Contact Client Services at <a class="link-primary" href="tel:1-855-650-6916">1-855-650-6916</a> if issues persist</li>
                                   </ul>
                                 </li>
                               </ol>
@@ -1721,6 +1665,18 @@
                     </div>
 
                   </div>
+                </div>
+
+                <hr class="section-hr w-100">
+
+                <div class="w-100">
+                  <p class="fw-semibold mb-2" style="color: #000000;">What Happens Next:</p>
+                  <p class="cs-pi-panel-body mb-3">
+                    After you have added your employee information, CalSavers will then notify your employees about the program by sending a welcome packet (either by email or mail), initiating the 30-day decision window. Your employees may make changes to the account defaults or opt out of the program during this time.
+                  </p>
+                  <p class="cs-pi-panel-body mb-0">
+                    During this period while you wait on employees to enroll, there are a <a href="https://employer.calsavers.com/home/help-center/enrollment.html" target="_blank" class="fw-semibold text-decoration-underline" style="color: #00594f;">few tasks</a> you can complete.
+                  </p>
                 </div>
               </div>
             </div>
@@ -1767,21 +1723,6 @@
                   </div>
                   <div class="col-12 col-md-6 d-flex align-items-center">
                     <h4 class="text-dark mb-0">Watch a video on how to manually add your employees</h4>
-                  </div>
-                </div>
-
-                <div class="cs-pi-callout w-100">
-                  <div class="cs-pi-callout__body">
-                    <span class="cs-pi-callout__icon" aria-hidden="true">
-                      <img src="../src/assets/bulb.svg" alt="">
-                    </span>
-                    <div class="cs-pi-callout__text">
-                      <p class="cs-pi-callout__title">Looking for a more hands-off approach?</p>
-                      <p class="cs-pi-callout__desc">Payroll integration options can help automate the ongoing tasks of sending contributions and making updates when employees update their contribution rates.</p>
-                    </div>
-                  </div>
-                  <div class="cs-pi-callout__action">
-                    <a href="payroll-integrations.html" class="btn-white-outline">Learn More</a>
                   </div>
                 </div>
 
@@ -1871,11 +1812,9 @@
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
                                     <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>A new window will open to send contributions</li>
-                                      <li>If you have multiple pay schedules, select the correct one</li>
-                                      <li>Enter the pay date for the payroll you are reporting</li>
-                                      <li>Choose Add Manually as your entry method</li>
+                                      <li>Choose the pay schedule group and pay schedule from the dropdown menus.</li>
                                       <li>Click Next</li>
+                                      <li>Review the on-screen upload instructions</li>
                                     </ol>
                                   </div>
                                 </div>
@@ -1921,9 +1860,14 @@
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
                                     <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>Enter the amount deducted from each employee's paycheck for the pay cycle</li>
-                                      <li>Repeat for all participating employees under the selected pay schedule</li>
-                                      <li>Click Next once all amounts are entered</li>
+                                      <li>Enter details for each eligible employee in this payroll group</li>
+                                      <li>Include an email address when available to reduce paper notices</li>
+                                      <li>Repeat until all employees are added</li>
+                                      <li>Carefully review all information for accuracy</li>
+                                      <li>Click Finish and submit</li>
+                                      <li>Do not navigate away before submitting to avoid losing your work</li>
+                                      <li>Confirm employees are on the correct pay schedule</li>
+                                      <li>(Optional) Download the list for your records</li>
                                     </ol>
                                   </div>
                                 </div>
@@ -1993,21 +1937,6 @@
                   </div>
                 </div>
 
-                <div class="cs-pi-callout w-100">
-                  <div class="cs-pi-callout__body">
-                    <span class="cs-pi-callout__icon" aria-hidden="true">
-                      <img src="../src/assets/bulb.svg" alt="">
-                    </span>
-                    <div class="cs-pi-callout__text">
-                      <p class="cs-pi-callout__title">Looking for a more hands-off approach?</p>
-                      <p class="cs-pi-callout__desc">Payroll integration options can help automate the ongoing tasks of sending contributions and making updates when employees update their contribution rates.</p>
-                    </div>
-                  </div>
-                  <div class="cs-pi-callout__action">
-                    <a href="payroll-integrations.html" class="btn-white-outline">Learn More</a>
-                  </div>
-                </div>
-
                 <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Exerienced">
                   <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="StepsContainer">
 
@@ -2072,7 +2001,8 @@
                                 <li>Carefully review all information for accuracy</li>
                                 <li>Click Finish and submit</li>
                                 <li>Do not navigate away before submitting to avoid losing your work</li>
-                                <li>(Optional) Download the list for your records and confirm employees are on the correct pay schedule</li>
+                                <li>Confirm employees are on the correct pay schedule</li>
+                                <li>(Optional) Download the list for your records</li>
                               </ol>
                             </div>
                           </div>
