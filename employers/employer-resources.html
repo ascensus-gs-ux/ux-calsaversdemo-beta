@@ -618,11 +618,11 @@
           </div>
         </li>
 
-        <!-- Instructional Videos (panel content added in a later prompt) -->
+        <!-- How-To Videos (panel content added in a later prompt) -->
         <li>
           <button class="cs-htr__tab" type="button" aria-expanded="false" aria-controls="cs-er-panel-3" data-tab="3">
             <span class="cs-htr__labels">
-              <span class="cs-htr__title">Instructional Videos</span>
+              <span class="cs-htr__title">How-to Videos</span>
             </span>
             <svg class="cs-htr__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -699,6 +699,28 @@
                 </span>
               </button>
 
+              <button type="button" class="cs-resource-card"
+                      data-bs-toggle="modal" data-bs-target="#cs-video-modal" data-video-src="https://fast.wistia.net/embed/iframe/7elh3oz5yo?seo=true&amp;videoFoam=true" data-video-title="Process contributions file upload">
+                <span class="cs-resource-card__label">Process contributions file upload</span>
+                <span class="cs-resource-card__icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="11" />
+                    <path d="M10 8l5 4-5 4z" fill="#ffffff"/>
+                  </svg>
+                </span>
+              </button>
+
+              <button type="button" class="cs-resource-card"
+                      data-bs-toggle="modal" data-bs-target="#cs-video-modal" data-video-src="https://fast.wistia.net/embed/iframe/o0mqzlnrhq?seo=true&amp;videoFoam=true" data-video-title="Submit employee contributions manually">
+                <span class="cs-resource-card__label">Submit employee contributions manually</span>
+                <span class="cs-resource-card__icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="11" />
+                    <path d="M10 8l5 4-5 4z" fill="#ffffff"/>
+                  </svg>
+                </span>
+              </button>
+
             </div>
           </div>
         </li>
@@ -752,16 +774,18 @@
             </div>
             <hr class="cs-htr__divider my-4">
 
-            <div class="cs-printable-card">
-              <div class="cs-printable-card__text">
-                <p class="cs-printable-card__title fw-semibold mb-1">Saver Webinar Information</p>
-                <p class="cs-printable-card__desc mb-0">
-                  Webinar sessions available for employees to learn about CalSavers, enrollment, retirement saving options, and account management. These webinars last about 40 minutes and include an interactive Q&amp;A.
-                </p>
-              </div>
-              <div class="cs-printable-card__action">
-                <a href="https://saver.calsavers.com/home/savers/webinar.html?language=en#" target="_blank" rel="noopener" class="btn btn-secondary btn-secondary-white">Learn More</a>
-              </div>
+            <div>
+              <p class="cs-printable-card__title fw-semibold mb-3">Saver Overview</p>
+              <button type="button" class="cs-resource-card"
+                      data-bs-toggle="modal" data-bs-target="#cs-video-modal" data-video-src="https://share.synthesia.io/90c2243c-d38a-43b7-b4d1-b95bca8744e5" data-video-title="Calsavers Employee Webinar">
+                <span class="cs-resource-card__label">Calsavers Employee Webinar</span>
+                <span class="cs-resource-card__icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="11" />
+                    <path d="M10 8l5 4-5 4z" fill="#ffffff"/>
+                  </svg>
+                </span>
+              </button>
             </div>
           </div>
         </li>
