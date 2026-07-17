@@ -203,6 +203,12 @@
       padding: 3rem 0;
     }
     .cs-pi-support__heading { text-align: left; color: #000000; margin-bottom: 1.5rem; }
+    /* Tablet — Bootstrap's col-lg-4/col-lg-8 stack the title above the cards
+       before the mobile-only padding-bottom override below kicks in;
+       restore the gap that .mb-0 zeroes out. */
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      .cs-pi-support__heading.mb-0 { margin-bottom: 1.5rem !important; }
+    }
     .cs-pi-support__cards { display: flex; gap: 1.25rem; }
     .cs-pi-support__card {
       background-color: #ffffff;

@@ -249,6 +249,12 @@
       padding: 3rem 0;
     }
     .cs-pi-support__heading { text-align: left; color: #000000; margin-bottom: 1.5rem; }
+    /* Below Bootstrap's lg breakpoint, .col-lg-4/.col-lg-8 stack the title
+       above the cards — restore the gap that .mb-0 (used for desktop's
+       side-by-side vertical centering) zeroes out. */
+    @media (max-width: 991.98px) {
+      .cs-pi-support__heading.mb-0 { margin-bottom: 1.5rem !important; }
+    }
     .cs-pi-support__cards { display: flex; gap: 1.25rem; }
     .cs-pi-support__card {
       background-color: #ffffff;
