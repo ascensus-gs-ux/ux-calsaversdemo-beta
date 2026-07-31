@@ -290,7 +290,19 @@
     }
 
     /* Inline subhead inside a panel (e.g. "Employee deductions") */
-    .cs-htr__panel-subhead { color: #000; font-size: 1rem; font-weight: 600; }
+    .cs-htr__panel-subhead {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      color: #000;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .cs-htr__panel-subhead__icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
 
     /* Mobile: stacked accordion — matches Payroll Integrations component style */
     @media (max-width: 767.98px) {
@@ -754,14 +766,21 @@
             <p class="cs-htr__panel-body mb-2">
               You will have <strong>30 days to add employees</strong> who meet the following criteria to the employer portal:
             </p>
-            <ul class="cs-htr__panel-body mb-4">
+            <ul class="cs-htr__panel-body mb-0">
               <li>Receives California W-2</li>
               <li>18 years or older</li>
               <li>Social Security Number or an Individual Taxpayer Identification Number (ITIN)</li>
               <li>Employed for at least 30 days, no minimum hours required</li>
             </ul>
 
-            <p class="cs-htr__panel-subhead mb-3">Employer Resources:</p>
+            <p class="cs-htr__panel-body mb-4">
+              Learn more about adding <a href="/employers/add-employee-information.html" target="_blank" class="link-primary fw-semibold">employee information</a>.
+            </p>
+
+            <p class="cs-htr__panel-subhead mb-3">
+              <img src="src/assets/EmployerIcon.svg" alt="" class="cs-htr__panel-subhead__icon" aria-hidden="true">
+              Employer Resources:
+            </p>
 
             <div class="d-flex flex-column gap-3 mb-4">
               <button type="button" class="cs-resource-card"
@@ -802,7 +821,10 @@
 
             <hr class="cs-htr__divider mb-4">
 
-            <p class="cs-htr__panel-subhead mb-3">Employee Resources:</p>
+            <p class="cs-htr__panel-subhead mb-3">
+              <img src="src/assets/Employee-Icon.svg" alt="" class="cs-htr__panel-subhead__icon" aria-hidden="true">
+              Employee Resources:
+            </p>
 
             <div class="d-flex flex-column align-items-start gap-2 mb-4">
               <div class="dropdown">
@@ -873,7 +895,8 @@
             <p class="cs-htr__panel-subhead mb-2">If you are administering CalSavers directly:</p>
             <ol class="cs-htr__panel-body mb-4">
               <li class="mb-2">
-                Identify participating employees and their contribution percentage
+                Identify participating employees and their contribution percentage.
+                Learn more about setting up <a href="/employers/setting-up-deductions.html" target="_blank" class="link-primary fw-semibold">employee deductions</a>.
                 <div class="mt-2">
                   <a href="#" class="btn btn-secondary btn-secondary-white d-inline-flex align-items-center gap-2"
                      data-bs-toggle="modal" data-bs-target="#cs-video-modal"
@@ -888,9 +911,8 @@
                 </div>
               </li>
               <li class="mb-2">Calculate contributions for each participating employee</li>
-              <li>Submit contributions through the employer portal</li>
+              <li>Submit contributions through the employer portal. Learn more about <a href="/employers/submitting-contributions.html" target="_blank" class="link-primary fw-semibold">setting up contributions</a>.</li>
             </ol>
-
             <div class="d-flex flex-column gap-3">
               <button type="button" class="cs-resource-card"
                       data-bs-toggle="modal" data-bs-target="#cs-video-modal"
