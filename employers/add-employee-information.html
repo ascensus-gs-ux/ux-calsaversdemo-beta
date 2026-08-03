@@ -31,7 +31,8 @@
       .cs-pi-hero > .container,
       .cs-pi-section > .container,
       .cs-eligibility > .container,
-      .cs-pi-support > .container {
+      .cs-pi-support > .container,
+      .cs-pi-faq > .container {
         max-width: 66.666%;
       }
     }
@@ -88,7 +89,7 @@
       align-items: flex-start;
       gap: 0.75rem;
     }
-    .cs-bullets__item + .cs-bullets__item { margin-top: 1.25rem; }
+
     .cs-bullets__icon {
       flex-shrink: 0;
       width: 22px; height: 22px;
@@ -272,7 +273,7 @@
        "How to Add Your Employee Roster" — tab section
        (ported verbatim from payroll-integrations.html's cs-pi-tabs system)
        ===================================================================== */
-    .cs-pi-section { padding: 2rem 0 3rem; background-color: #F2F0E9; }
+    .cs-pi-section { padding: 6rem 0 3rem; background-color: #F2F0E9; }
     .cs-pi-section__header { text-align: center; margin-bottom: 2rem; }
     .cs-pi-section__header h2 { color: #000000; }
     .cs-pi-section__header p { color: #6b6b6b; max-width: 820px; margin: 0.75rem auto 0; }
@@ -391,7 +392,31 @@
     .cs-pi-panel { display: none; }
     .cs-pi-panel.is-active { display: block; }
     .cs-pi-panel-body { color: #6b6b6b; line-height: 1.6; }
-    .cs-pi-toggle-p { margin-bottom: 0 !important; }
+
+    /* =====================================================================
+       FAQ section (mirrors eligibility-and-exemptions.html's cs-pi-faq)
+       ===================================================================== */
+    .cs-pi-faq { padding: 3rem 0; background-color: #ffffff; }
+    .cs-pi-accordion { margin-bottom: 1.25rem; }
+    .cs-pi-accordion__header {
+      display: flex; gap: 1rem; align-items: center;
+      background-color: #ffffff;
+      border: 1px solid #00594F;
+      border-radius: 8px;
+      padding: 1.25rem 1.25rem;
+      cursor: pointer; width: 100%;
+      text-align: start;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+      color: #000000;
+    }
+    .cs-pi-accordion__header:hover { background-color: #E5EEED; border-color: #00473F; }
+    .cs-pi-accordion__header:hover .cs-pi-accordion__title { color: #00473F; text-decoration: underline; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__header { border-color: #00594f; }
+    .cs-pi-accordion__title { flex: 1; font-weight: 600; color: #00594f; }
+    .cs-pi-accordion__chevron { flex-shrink: 0; color: #00594f; transition: transform 0.2s ease; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__chevron { transform: rotate(180deg); }
+    .cs-pi-accordion__body { display: none; padding: 1.75rem; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__body { display: block; }
 
     /* Accordion image container — consistent 480×300 max, responsive, no distortion */
     .cs-pi-img-wrap {
@@ -436,7 +461,6 @@
       overflow: hidden;
     }
     [data-name="chevron-up"], [data-name="chevron-down"] { transition: transform 0.3s ease; }
-    [data-toggle-state="off"] [data-name="StepsContainer"] [data-name="Row"] { flex-direction: column !important; }
     [data-name="Accordions"] { display: flex !important; flex-direction: column !important; gap: 24px !important; }
     [data-name="Accordion/expanded"] > .overflow-hidden > .d-flex,
     [data-name="Accordion/collapsed"] > .overflow-hidden > .d-flex {
@@ -490,14 +514,14 @@
       <h1 class="cs-pi-hero__title">Add Employee Information</h1>
       <span class="cs-pi-hero__rule" aria-hidden="true"></span>
       <p class="cs-pi-hero__lede">
-        After registering, you have up to 30 days to complete your account set up by uploading your employee information. As you hire new employees and they become eligible for CalSavers, you will also need to add them to your employee roster.
+        After registering, you have 30 days to upload your eligible employee roster. As you hire new eligible employees, you'll also need to add them to your roster within 30 days of their hire date.
       </p>
 
       <!-- Callout: hands-off approach via payroll integration -->
       <div class="cs-pi-callout">
         <div class="cs-pi-callout__body">
           <span class="cs-pi-callout__icon" aria-hidden="true">
-            <img src="../src/assets/bulb.svg" alt="">
+            <img src="../src/assets/Sync-Icon.svg" alt="">
           </span>
           <div class="cs-pi-callout__text">
             <p class="cs-pi-callout__title">Looking for a more hands-off approach?</p>
@@ -520,20 +544,21 @@
 
         <div class="col-lg-6">
           <h3 class="section-title mb-3">Employee Eligibility and Requirements for the Program</h3>
-          <p class="cs-eligibility__body mb-4">
-            Eligible employees must be employed in the state of California, be age 18 or older, and have a valid Social Security Number or an Individual Taxpayer Identification Number.
+          <p class="cs-eligibility__body mb-2">
+            Employees are eligible for CalSavers if they:
           </p>
-          <p class="fw-semibold mb-2" style="color: #000000;">Let your employees know about the Saver's Tax Credit</p>
-          <p class="cs-eligibility__body mb-0" style="color: #000000;">
-            Informing your employees about the <a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-credit-savers-credit" target="_blank" class="link-primary fw-semibold">Saver's Tax Credit</a> can be a great way to enhance their awareness of available benefits. This not only helps them but also boosts overall employee satisfaction and retention.
-          </p>
+          <ul class="cs-eligibility__body mb-0" style="padding-left: 1.25rem;">
+            <li>Receive California wages</li>
+            <li>Are 18 years of age or older</li>
+            <li>Have a valid Social Security Number (SSN) or Individual Taxpayer Identification Number (ITIN)</li>
+          </ul>
         </div>
 
         <div class="col-lg-6">
           <p class="fw-semibold mb-3" style="color: #000000;">You will need the following information all your eligible employees:</p>
 
           <ul class="cs-bullets cs-bullets--gold list-unstyled mb-0" style="padding: 0">
-            <li class="cs-bullets__item" style="padding:0.25rem 0;">
+            <li class="cs-bullets__item">
               <span class="cs-bullets__icon" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M2.5 7.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -543,7 +568,7 @@
                 <p class="cs-bullets__title mb-0">Social Security Number (SSN) or Individual Taxpayer Identification Number (ITIN)</p>
               </div>
             </li>
-            <li class="cs-bullets__item" style="padding:0.25rem 0;">
+            <li class="cs-bullets__item">
               <span class="cs-bullets__icon" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M2.5 7.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -553,7 +578,7 @@
                 <p class="cs-bullets__title mb-0">First &amp; last name</p>
               </div>
             </li>
-            <li class="cs-bullets__item" style="padding:0.25rem 0;">
+            <li class="cs-bullets__item">
               <span class="cs-bullets__icon" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M2.5 7.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -563,7 +588,7 @@
                 <p class="cs-bullets__title mb-0">Birthdate</p>
               </div>
             </li>
-            <li class="cs-bullets__item" style="padding:0.25rem 0;">
+            <li class="cs-bullets__item">
               <span class="cs-bullets__icon" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M2.5 7.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -573,21 +598,55 @@
                 <p class="cs-bullets__title mb-0">Physical address</p>
               </div>
             </li>
-            <li class="cs-bullets__item" style="padding:0.25rem 0;">
+            <li class="cs-bullets__item">
               <span class="cs-bullets__icon" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M2.5 7.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
               <div class="cs-bullets__text">
-                <p class="cs-bullets__title mb-1">Phone number and email address (if available)</p>
-                <p class="cs-bullets__desc fst-italic mb-0">An email address is the preferred form of communication as it reduces paper expense and eliminates delays associated with ground mail.</p>
+                <p class="cs-bullets__title mb-0">Phone number</p>
+              </div>
+            </li>
+            <li class="cs-bullets__item">
+              <span class="cs-bullets__icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2.5 7.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <div class="cs-bullets__text">
+                <p class="cs-bullets__title mb-1">Email address (if available)</p>
+                <p class="cs-bullets__desc fst-italic mb-0">Email is preferred because it provides faster electronic communication and reduces paper mail delays.</p>
               </div>
             </li>
           </ul>
         </div>
 
       </div>
+
+      <div class="cs-pi-callout cs-pi-callout--gold w-100">
+        <div class="cs-pi-callout__body">
+          <span class="cs-pi-callout__icon" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.6875 28.2031V35.2344C24.6875 35.856 24.4406 36.4521 24.001 36.8917C23.5615 37.3312 22.9654 37.5781 22.3438 37.5781H17.6562C17.0346 37.5781 16.4385 37.3312 15.999 36.8917C15.5594 36.4521 15.3125 35.856 15.3125 35.2344V28.2031" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15.3125 32.8906H24.6875" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M20 2.42188V4.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3.59375 18.8281H5.9375" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7.10938 7.10938L8.82812 8.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M36.4062 18.8281H34.0625" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M32.8906 7.10938L31.1719 8.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15.3125 18.0469C15.9341 18.0469 16.5302 18.2938 16.9698 18.7333C17.4093 19.1729 17.6562 19.769 17.6562 20.3906V28.2031" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22.3438 28.2031V20.3906C22.3438 19.769 22.5907 19.1729 23.0302 18.7333C23.4698 18.2938 24.0659 18.0469 24.6875 18.0469" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15.1874 28.2031H24.8124C26.5549 27.34 28.0178 26.0019 29.0324 24.3431C30.0471 22.6843 30.572 20.7725 30.5468 18.8281C30.4986 16.046 29.3719 13.3912 27.4044 11.4237C25.4368 9.45609 22.782 8.32944 19.9999 8.28125C17.2177 8.32944 14.563 9.45609 12.5954 11.4237C10.6279 13.3912 9.50121 16.046 9.45302 18.8281C9.42776 20.7725 9.95272 22.6843 10.9674 24.3431C11.982 26.0019 13.4449 27.34 15.1874 28.2031Z" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div class="cs-pi-callout__text">
+            <p class="cs-pi-callout__title mb-1">Did you know that employees may qualify for a Saver's Tax Credit?</p>
+            <p class="cs-pi-callout__desc mb-0">Share information about the <a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-credit-savers-credit" target="_blank" class="link-primary fw-semibold">Saver's Tax Credit</a> to help eligible employees make the most of their retirement savings.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -688,34 +747,11 @@
           <!-- ====== TAB 1 — Set Up Pay Schedules ====== -->
           <div class="cs-pi-panel is-active" data-mode="info" data-panel="1">
 
-            <!-- Detailed view (toggle ON) -->
-            <div data-toggle-state="on" class="d-none">
-              <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
-                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
-                  <div class="d-flex flex-column flex-shrink-0">
-                    <span class="cs-pi-tab__eyebrow mb-1">Get Started</span>
-                    <h3 class="mb-0">Set Up Pay Schedules</h3>
-                  </div>
-                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
-                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
-                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
-                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
-                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
-                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
-                          <div class="rounded-pill flex-shrink-0" style="background-color: #00594f; border: 1px solid #00594f; height: 24px; width: 44px;" data-name="Background"></div>
-                          <div class="position-absolute" style="margin-left: 21px; margin-top: 1px;">
-                            <div class="position-relative flex-shrink-0" style="width: 22px; height: 22px;" data-name="Switch">
-                              <svg class="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
-                                <circle cx="11" cy="11" fill="white" r="11"></circle>
-                                <path d="M6.99995 11.6562L9.51411 14.1704L15.171 8.51355" stroke="#00594F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                              </svg>
-                            </div>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div data-name="Group" class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100">
+              <div class="d-flex flex-column flex-shrink-0" data-name="StepText">
+                <span class="cs-pi-tab__eyebrow mb-1">Get Started</span>
+                <h3 class="mb-0">Set Up Pay Schedules</h3>
+              </div>
 
                 <p class="cs-pi-panel-body mb-0 w-100">
                   If you have separate schedules for hourly and salaried employees, you will need a schedule for each group. If everyone is paid on the same day, only one schedule is needed.
@@ -955,195 +991,17 @@
                   </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Quick view (toggle OFF, default) -->
-            <div data-toggle-state="off">
-              <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
-                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
-                  <div class="d-flex flex-column flex-shrink-0">
-                    <span class="cs-pi-tab__eyebrow mb-1">Get Started</span>
-                    <h3 class="mb-0">Set Up Pay Schedules</h3>
-                  </div>
-                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
-                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
-                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
-                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
-                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
-                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
-                          <div class="rounded-pill flex-shrink-0" style="height: 24px; width: 44px; background-color: #E6E6E6; border: 1px solid #D3D3D3;" data-name="Background"></div>
-                          <div class="position-absolute" style="margin-left: 7px; margin-top: 6px;">
-                            <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12" style="width: 12px; height: 12px;">
-                              <circle cx="6" cy="6" fill="#828282" r="5.5" stroke="#828282"></circle>
-                            </svg>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <p class="cs-pi-panel-body mb-0 w-100">
-                  If you have separate schedules for hourly and salaried employees, you will need a schedule for each group. If everyone is paid on the same day, only one schedule is needed.
-                </p>
-
-                <div class="row g-4 align-items-center w-100">
-                  <div class="col-12 col-md-6">
-                    <div class="ratio ratio-16x9 cs-pi-video-frame">
-                      <iframe src="https://fast.wistia.net/embed/iframe/clwy4a9h3w?videoFoam=true" title="How to Set Up Payroll Schedules" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6 d-flex align-items-center">
-                    <h4 class="text-dark mb-0">Watch a video on how to set up pay schedules manually</h4>
-                  </div>
-                </div>
-
-                <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Exerienced">
-                  <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="StepsContainer">
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 1">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">1</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Get Started in the Employer Portal</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Log in to the Employer Portal</li>
-                                <li>Go to Step 2 – Add employee information</li>
-                                <li>Select Add employees</li>
-                                <li>Choose your method (Upload file or Add manually)</li>
-                                <li>Click Next</li>
-                              </ol>
-                              <a class="btn btn-primary d-inline-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" data-name="Button">
-                                <span class="fw-semibold text-center text-nowrap">Log In</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 2">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">2</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Create a New Pay Schedule</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Select a pay schedule group from the dropdown menu</li>
-                                <li>Click Create New Pay Schedule</li>
-                              </ol>
-                              <div class="cs-pi-callout cs-pi-callout--gold w-100">
-                                <div class="cs-pi-callout__body">
-                                  <span class="cs-pi-callout__icon" aria-hidden="true">
-                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M24.6875 28.2031V35.2344C24.6875 35.856 24.4406 36.4521 24.001 36.8917C23.5615 37.3312 22.9654 37.5781 22.3438 37.5781H17.6562C17.0346 37.5781 16.4385 37.3312 15.999 36.8917C15.5594 36.4521 15.3125 35.856 15.3125 35.2344V28.2031" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M15.3125 32.8906H24.6875" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M20 2.42188V4.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M3.59375 18.8281H5.9375" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M7.10938 7.10938L8.82812 8.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M36.4062 18.8281H34.0625" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M32.8906 7.10938L31.1719 8.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M15.3125 18.0469C15.9341 18.0469 16.5302 18.2938 16.9698 18.7333C17.4093 19.1729 17.6562 19.769 17.6562 20.3906V28.2031" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M22.3438 28.2031V20.3906C22.3438 19.769 22.5907 19.1729 23.0302 18.7333C23.4698 18.2938 24.0659 18.0469 24.6875 18.0469" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M15.1874 28.2031H24.8124C26.5549 27.34 28.0178 26.0019 29.0324 24.3431C30.0471 22.6843 30.572 20.7725 30.5468 18.8281C30.4986 16.046 29.3719 13.3912 27.4044 11.4237C25.4368 9.45609 22.782 8.32944 19.9999 8.28125C17.2177 8.32944 14.563 9.45609 12.5954 11.4237C10.6279 13.3912 9.50121 16.046 9.45302 18.8281C9.42776 20.7725 9.95272 22.6843 10.9674 24.3431C11.982 26.0019 13.4449 27.34 15.1874 28.2031Z" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                  </span>
-                                  <div class="cs-pi-callout__text">
-                                    <p class="cs-pi-callout__desc mb-0"><span class="fw-semibold text-dark">Tip:</span> You can return later to create additional schedules if needed.</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 3">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">3</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Define Schedule Details</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Choose the pay frequency from the Schedule dropdown</li>
-                                <li>Use the calendar to select the next pay date</li>
-                                <li>Enter a name for the pay schedule and pay schedule group</li>
-                                <li>Click Next and proceed to add your employees by using the file upload or manual process.</li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 4">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">4</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Add Additional Schedules (If Needed)</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Repeat the process to create more schedules for other employee groups</li>
-                                <li>Ensure employees are assigned to the correct pay schedule before continuing</li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
 
           </div>
 
           <!-- ====== TAB 2 — File Upload Instructions ====== -->
           <div class="cs-pi-panel" data-mode="info" data-panel="2">
 
-            <!-- Detailed view (toggle ON) -->
-            <div data-toggle-state="on" class="d-none">
-              <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
-                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
-                  <div class="d-flex flex-column flex-shrink-0">
-                    <span class="cs-pi-tab__eyebrow mb-1">Recommended for Less Than 10 Employees</span>
-                    <h3 class="mb-0">Instructions for File Upload</h3>
-                  </div>
-                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
-                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
-                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
-                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
-                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
-                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
-                          <div class="rounded-pill flex-shrink-0" style="background-color: #00594f; border: 1px solid #00594f; height: 24px; width: 44px;" data-name="Background"></div>
-                          <div class="position-absolute" style="margin-left: 21px; margin-top: 1px;">
-                            <div class="position-relative flex-shrink-0" style="width: 22px; height: 22px;" data-name="Switch">
-                              <svg class="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
-                                <circle cx="11" cy="11" fill="white" r="11"></circle>
-                                <path d="M6.99995 11.6562L9.51411 14.1704L15.171 8.51355" stroke="#00594F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                              </svg>
-                            </div>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div data-name="Group" class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100">
+              <div class="d-flex flex-column flex-shrink-0" data-name="StepText">
+                <span class="cs-pi-tab__eyebrow mb-1">Recommended for 10 or More Employees</span>
+                <h3 class="mb-0">Instructions for File Upload</h3>
+              </div>
 
                 <div class="row g-4 align-items-center w-100">
                   <div class="col-12 col-md-6">
@@ -1485,241 +1343,17 @@
                   </p>
                 </div>
               </div>
-            </div>
-
-            <!-- Quick view (toggle OFF, default) -->
-            <div data-toggle-state="off">
-              <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
-                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
-                  <div class="d-flex flex-column flex-shrink-0">
-                    <span class="cs-pi-tab__eyebrow mb-1">Recommended for Less Than 10 Employees</span>
-                    <h3 class="mb-0">Instructions for File Upload</h3>
-                  </div>
-                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
-                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
-                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
-                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
-                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
-                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
-                          <div class="rounded-pill flex-shrink-0" style="height: 24px; width: 44px; background-color: #E6E6E6; border: 1px solid #D3D3D3;" data-name="Background"></div>
-                          <div class="position-absolute" style="margin-left: 7px; margin-top: 6px;">
-                            <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12" style="width: 12px; height: 12px;">
-                              <circle cx="6" cy="6" fill="#828282" r="5.5" stroke="#828282"></circle>
-                            </svg>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row g-4 align-items-center w-100">
-                  <div class="col-12 col-md-6">
-                    <div class="ratio ratio-16x9 cs-pi-video-frame">
-                      <iframe src="https://fast.wistia.net/embed/iframe/qxjc1em155?videoFoam=true" title="How to Add Employees with a File Upload" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6 d-flex flex-column gap-3 align-items-start justify-content-center">
-                    <h4 class="text-dark mb-0">Watch a video on how to upload your employee roster file</h4>
-                    <a href="#" class="btn-white-outline">Download Excel Template</a>
-                  </div>
-                </div>
-
-                <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Exerienced">
-                  <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="StepsContainer">
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 1">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">1</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Log In and Start Add Employee Process</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Log in to the Employer Portal</li>
-                                <li>Go to Step 2 – Add employee information</li>
-                                <li>Click Add employees</li>
-                                <li>Select Upload file and click Next</li>
-                              </ol>
-                              <a class="btn btn-primary d-inline-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" data-name="Button">
-                                <span class="fw-semibold text-center text-nowrap">Log In</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 2">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">2</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Select a Pay Schedule</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Choose the pay schedule group and pay schedule from the dropdown menus.</li>
-                                <li>Click Next</li>
-                                <li>Review the on-screen upload instructions</li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 3">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">3</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Download &amp; Prepare Template</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Download the template to access the Excel file</li>
-                                <li>Within the file, review the "Formatting Examples" tab for required field guidance. See additional <a href="#" class="fw-semibold text-decoration-underline" style="color: #00594f;">Tips for using the file upload template</a></li>
-                              </ol>
-                              <a href="#" class="btn-white-outline">Download Excel Template</a>
-                              <div class="cs-pi-warning w-100">
-                                <span class="cs-pi-warning__icon" aria-hidden="true">
-                                  <img src="../src/assets/alert-triangle.svg" alt="" width="20" height="20">
-                                </span>
-                                <p class="cs-pi-warning__text">
-                                  <strong>Warning!</strong> Do not modify the Excel file's formatting (columns, widths, or structure), as changes may cause errors when uploading, and cause processing delays.
-                                  <a href="#" class="fw-semibold text-decoration-underline" style="color: #00594f;">Tips for using the file upload template</a>.
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 4">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">4</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Enter Employee Information</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Go to the "Payroll Census" tab in the Excel file</li>
-                                <li>Complete all fields marked with an asterisk (*) without modifying the original formatting of the structure.</li>
-                                <li>Click Enable Editing and carefully enter employee details for this payroll group</li>
-                                <li>Add valid email addresses when available</li>
-                                <li>Save your completed file.</li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 5">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">5</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Upload File in the Portal</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Return to the Employer Portal</li>
-                                <li>Drag and drop your file or click Browse to upload</li>
-                                <li>Click Next</li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 6">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">6</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Review &amp; Resolve Errors (If Any)</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Review your employee list under Employees for accuracy</li>
-                                <li>Confirm employees are on the correct pay schedule</li>
-                                <li>
-                                  If errors occur:
-                                  <ul class="mb-0 mt-1" style="color: #6b6b6b;">
-                                    <li>Compare your file to the template formatting</li>
-                                    <li>Correct and re-upload as needed</li>
-                                    <li>Contact Client Services at <a class="link-primary" href="tel:1-855-650-6916">1-855-650-6916</a> if issues persist</li>
-                                  </ul>
-                                </li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-                <hr class="section-hr w-100">
-
-                <div class="w-100">
-                  <p class="fw-semibold mb-2" style="color: #000000;">What Happens Next:</p>
-                  <p class="cs-pi-panel-body mb-3">
-                    After you have added your employee information, CalSavers will then notify your employees about the program by sending a welcome packet (either by email or mail), initiating the 30-day decision window. Your employees may make changes to the account defaults or opt out of the program during this time.
-                  </p>
-                  <p class="cs-pi-panel-body mb-0">
-                    During this period while you wait on employees to enroll, there are a <a href="https://employer.calsavers.com/home/help-center/enrollment.html" target="_blank" class="fw-semibold text-decoration-underline" style="color: #00594f;">few tasks</a> you can complete.
-                  </p>
-                </div>
-              </div>
-            </div>
 
           </div>
 
           <!-- ====== TAB 3 — Manual Upload Instructions ====== -->
           <div class="cs-pi-panel" data-mode="info" data-panel="3">
 
-            <!-- Detailed view (toggle ON) -->
-            <div data-toggle-state="on" class="d-none">
-              <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
-                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
-                  <div class="d-flex flex-column flex-shrink-0">
-                    <span class="cs-pi-tab__eyebrow mb-1">Recommended for Less Than 10 Employees</span>
-                    <h3 class="mb-0">Instructions for Manual Upload</h3>
-                  </div>
-                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
-                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
-                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
-                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
-                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
-                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
-                          <div class="rounded-pill flex-shrink-0" style="background-color: #00594f; border: 1px solid #00594f; height: 24px; width: 44px;" data-name="Background"></div>
-                          <div class="position-absolute" style="margin-left: 21px; margin-top: 1px;">
-                            <div class="position-relative flex-shrink-0" style="width: 22px; height: 22px;" data-name="Switch">
-                              <svg class="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
-                                <circle cx="11" cy="11" fill="white" r="11"></circle>
-                                <path d="M6.99995 11.6562L9.51411 14.1704L15.171 8.51355" stroke="#00594F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                              </svg>
-                            </div>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div data-name="Group" class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100">
+              <div class="d-flex flex-column flex-shrink-0" data-name="StepText">
+                <span class="cs-pi-tab__eyebrow mb-1">Recommended for Less Than 10 Employees</span>
+                <h3 class="mb-0">Instructions for Manual Upload</h3>
+              </div>
 
                 <div class="row g-4 align-items-center w-100">
                   <div class="col-12 col-md-6">
@@ -1904,138 +1538,86 @@
                   </p>
                 </div>
               </div>
-            </div>
-
-            <!-- Quick view (toggle OFF, default) -->
-            <div data-toggle-state="off">
-              <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
-                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
-                  <div class="d-flex flex-column flex-shrink-0">
-                    <span class="cs-pi-tab__eyebrow mb-1">Recommended for 10 or Less Employees</span>
-                    <h3 class="mb-0">Instructions for Manual Upload</h3>
-                  </div>
-                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
-                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
-                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
-                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
-                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
-                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
-                          <div class="rounded-pill flex-shrink-0" style="height: 24px; width: 44px; background-color: #E6E6E6; border: 1px solid #D3D3D3;" data-name="Background"></div>
-                          <div class="position-absolute" style="margin-left: 7px; margin-top: 6px;">
-                            <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12" style="width: 12px; height: 12px;">
-                              <circle cx="6" cy="6" fill="#828282" r="5.5" stroke="#828282"></circle>
-                            </svg>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row g-4 align-items-center w-100">
-                  <div class="col-12 col-md-6">
-                    <div class="ratio ratio-16x9 cs-pi-video-frame">
-                      <iframe src="https://fast.wistia.net/embed/iframe/r1wnh6ewjn?videoFoam=true" title="How to Manually Add Employees" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6 d-flex align-items-center">
-                    <h4 class="text-dark mb-0">Watch a video on how to manually add your employees</h4>
-                  </div>
-                </div>
-
-                <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Exerienced">
-                  <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="StepsContainer">
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 1">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">1</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Log In and Start Add Employee Process</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Log in to the Employer Portal</li>
-                                <li>Go to Step 2 – Add employee information</li>
-                                <li>Click Add employees</li>
-                                <li>Select Add manually</li>
-                                <li>Click Next</li>
-                              </ol>
-                              <a class="btn btn-primary d-inline-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" data-name="Button">
-                                <span class="fw-semibold text-center text-nowrap">Log In</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 2">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">2</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Select a Pay Schedule</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Choose the pay schedule group and pay schedule from the dropdown menus.</li>
-                                <li>Click Next</li>
-                                <li>Review the on-screen upload instructions</li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column flex-md-row gap-3 align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 3">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">3</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-2 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Enter, Review &amp; Submit Employees</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Enter details for each eligible employee in this payroll group</li>
-                                <li>Include an email address when available to reduce paper notices</li>
-                                <li>Repeat until all employees are added</li>
-                                <li>Carefully review all information for accuracy</li>
-                                <li>Click Finish and submit</li>
-                                <li>Do not navigate away before submitting to avoid losing your work</li>
-                                <li>Confirm employees are on the correct pay schedule</li>
-                                <li>(Optional) Download the list for your records</li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-                <hr class="section-hr w-100">
-
-                <div class="w-100">
-                  <p class="fw-semibold mb-2" style="color: #000000;">What Happens Next:</p>
-                  <p class="cs-pi-panel-body mb-3">
-                    After you have added your employee information, CalSavers will then notify your employees about the program by sending a welcome packet (either by email or mail), initiating the 30-day decision window. Your employees may make changes to the account defaults or opt out of the program during this time.
-                  </p>
-                  <p class="cs-pi-panel-body mb-0">
-                    During this period while you wait on employees to enroll, there are a <a href="https://employer.calsavers.com/home/help-center/enrollment.html" target="_blank" class="fw-semibold text-decoration-underline" style="color: #00594f;">few tasks</a> you can complete.
-                  </p>
-                </div>
-              </div>
-            </div>
 
           </div>
 
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       FREQUENTLY ASKED QUESTIONS
+       ==================================================================== -->
+  <section class="cs-pi-faq">
+    <div class="container">
+
+      <header class="cs-pi-section__header">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </header>
+
+      <div class="d-flex flex-column gap-2">
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">What are pay schedules?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">A pay schedule is a term used to describe how frequently your employees are paid (ex. weekly, bi-weekly, monthly).</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">What are pay schedule groups?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">A pay schedule group is an additional (optional) way to group your employees (i.e., like a folder).</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">What does it mean that employees are automatically enrolled?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">With automatic enrollment, eligible employees who do not choose to opt out will be enrolled automatically in the program.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">What if my employee does not want me to disclose information?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">Employers facilitating the CalSavers program are required by law to provide information on all eligible employees to the program.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">What if my employee says they do not want to participate?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">Employees who do not want to participate can opt out. The easiest way to opt out is either by calling our automated phone system at (855) 650-6918 or through our website.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">Are all employees eligible for the program? When do employees become eligible?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">All employees of a participating employer are eligible as long as they are at least age eighteen and have the status of an employee under California law. The program has no minimum requirements based on hours worked or tenure with the employer.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -2215,6 +1797,14 @@
       document.querySelectorAll('[data-name="Accordion"]').forEach(applyAccordionState);
 
       document.addEventListener('click', function (e) {
+        // Legacy markup (used by the FAQ accordions)
+        var legacyHeader = e.target.closest('.cs-pi-accordion__header');
+        if (legacyHeader) {
+          var legacyAcc = legacyHeader.closest('.cs-pi-accordion');
+          if (legacyAcc) legacyAcc.classList.toggle('is-expanded');
+          return;
+        }
+        // React-style markup
         var reactHeader = e.target.closest('[data-name="Accordion/expanded"], [data-name="Accordion/collapsed"]');
         if (!reactHeader) return;
         var container = reactHeader.closest('[data-name="Accordion"]');
@@ -2222,17 +1812,6 @@
         var expanded = reactHeader.getAttribute('data-name') === 'Accordion/expanded';
         reactHeader.setAttribute('data-name', expanded ? 'Accordion/collapsed' : 'Accordion/expanded');
         applyAccordionState(container);
-      });
-
-      // Quick-view toggle
-      document.addEventListener('click', function (e) {
-        var inToggle = e.target.closest('[data-name="Toggle Switch"], [data-name="Background"], [data-name="Switch"]');
-        if (!inToggle) return;
-        var panel = inToggle.closest('.cs-pi-panel');
-        if (!panel) return;
-        var states = panel.querySelectorAll('[data-toggle-state]');
-        if (states.length !== 2) return;
-        states.forEach(function (s) { s.classList.toggle('d-none'); });
       });
     })();
   </script>
