@@ -146,6 +146,15 @@
       .cs-pi-callout__action { align-self: flex-start; }
     }
 
+    /* Gold variant — used for the inline "Tip" callout inside numbered steps
+       (ported verbatim from add-employee-information.html) */
+    .cs-pi-callout--gold {
+      background-color: #F2F0E9;
+      border-color: rgba(128, 100, 31, 0.35);
+    }
+    .cs-pi-callout--gold .cs-pi-callout__body { align-items: center; }
+    .cs-pi-callout--gold .cs-pi-callout__desc { color: #000000; }
+
     /* =====================================================================
        Tabs (ported verbatim from submitting-contributions.html /
        payroll-integrations.html's .cs-pi-section / .cs-pi-tabs system)
@@ -294,7 +303,7 @@
     <h1>Setting up Deductions</h1>
     <div class="hero-underline"></div>
     <p class="cs-pi-hero__lede">
-      After the 30-day opt-out period has ended, you will receive an email from CalSavers reminding you to submit employee contributions. But first you will need to set up your CalSavers deductions.
+      After the 30-day decision period has ended, you will receive an email from CalSavers reminding you to begin submitting participating employee payroll contributions. Before submitting your first contribution, you will need to set up your CalSavers deductions.
     </p>
 
     <!-- Callout: hands-off approach via payroll integration -->
@@ -337,7 +346,7 @@
               <img src="../src/assets/File-Dollar.svg" alt="" width="32" height="32">
             </span>
             <span class="cs-pi-tab__labels">
-              <span class="cs-pi-tab__title">Set Up Employee Deductions</span>
+              <span class="cs-pi-tab__title">Set Up Payroll Deductions</span>
             </span>
           </button>
         </div>
@@ -360,8 +369,7 @@
                         <p class="fw-semibold text-dark w-100 mb-0">Create a payroll deduction</p>
                         <p class="cs-pi-panel-body w-100 mb-0">In your payroll system, or file, create a deduction labeled "Retirement Savings Deduction".</p>
                         <ul class="text-secondary w-100 mb-0 ps-3">
-                          <li>CalSavers is a Roth IRA program. If your payroll provider offers a Roth IRA deduction option, use that.</li>
-                          <li>If a Roth IRA option isn't available, create an "Other" after-tax deduction option instead.</li>
+                          <li>Use the Roth IRA deduction option, if not available, create an "Other" after-tax deduction.</li>
                         </ul>
                       </div>
                     </div>
@@ -385,12 +393,17 @@
                         <a class="btn btn-primary d-inline-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" data-name="Button">
                           <span class="fw-semibold text-center text-nowrap">Log In</span>
                         </a>
-                        <div class="d-flex flex-fill flex-column gap-1 align-items-start w-100" data-name="Text Container">
-                          <p class="cs-pi-panel-body w-100 mb-0"><strong class="text-dark">Important:</strong> Employees are automatically enrolled at a 5% contribution rate unless they:</p>
-                          <ul class="text-secondary w-100 mb-0 ps-3">
-                            <li>Opt out during the decision window, or</li>
-                            <li>Log in to their account and choose a different contribution rate.</li>
-                          </ul>
+                        <div class="cs-pi-warning w-100" style="padding-bottom: 0rem; margin-top: 16px;">
+                          <span class="cs-pi-warning__icon" aria-hidden="true">
+                            <img src="../src/assets/alert-triangle.svg" alt="" width="20" height="20">
+                          </span>
+                          <div class="cs-pi-warning__text">
+                            <p class="mb-0"><strong>Important:</strong> Employees are automatically enrolled at a 5% contribution rate unless they:</p>
+                            <ul class="mb-0 ps-4" style="color: #000000; padding-top: 4px;">
+                              <li>Opt out during the decision window, or</li>
+                              <li>Log in to their account and choose a different contribution rate.</li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -406,20 +419,35 @@
                       <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
                         <p class="fw-medium text-center text-white w-100 mb-0">3</p>
                       </div>
-                      <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Container">
+                      <div class="d-flex flex-fill flex-column gap-0 align-items-start" data-name="Container">
                         <div class="d-flex flex-fill flex-column gap-1 align-items-start w-100" data-name="Text Container">
                           <p class="fw-semibold text-dark w-100 mb-0">Verify deduction settings</p>
-                          <p class="cs-pi-panel-body w-100 mb-0">Because CalSavers contributions are made after tax:</p>
-                          <ul class="text-secondary w-100 mb-0 ps-3">
-                            <li>Do not report contributions on the employee's W-2.</li>
-                            <li>Confirm that the contribution percentage is calculated using the employee's gross income, not net pay.</li>
+                          <p class="cs-pi-panel-body w-100 mb-0">CalSavers payroll contributions are an after-tax deduction, please confirm that:</p>
+                          <ul class="text-secondary w-100 mb-0 ps-3" style="padding-bottom: 0;">
+                            <li>Contribution amounts are calculated using the employee's gross pay, not net pay.</li>
+                            <li>Contributions are not reported on the employee's W-2.</li>
                           </ul>
                         </div>
-                        <div class="cs-pi-warning w-100">
-                          <span class="cs-pi-warning__icon" aria-hidden="true">
-                            <img src="../src/assets/alert-triangle.svg" alt="" width="20" height="20">
-                          </span>
-                          <p class="cs-pi-warning__text">Before processing payroll double-check that the deduction is set up as an after-tax deduction and is based on gross income.</p>
+                        <div class="cs-pi-callout cs-pi-callout--gold w-100">
+                          <div class="cs-pi-callout__body">
+                            <span class="cs-pi-callout__icon" aria-hidden="true">
+                              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24.6875 28.2031V35.2344C24.6875 35.856 24.4406 36.4521 24.001 36.8917C23.5615 37.3312 22.9654 37.5781 22.3438 37.5781H17.6562C17.0346 37.5781 16.4385 37.3312 15.999 36.8917C15.5594 36.4521 15.3125 35.856 15.3125 35.2344V28.2031" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15.3125 32.8906H24.6875" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M20 2.42188V4.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3.59375 18.8281H5.9375" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M7.10938 7.10938L8.82812 8.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M36.4062 18.8281H34.0625" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M32.8906 7.10938L31.1719 8.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15.3125 18.0469C15.9341 18.0469 16.5302 18.2938 16.9698 18.7333C17.4093 19.1729 17.6562 19.769 17.6562 20.3906V28.2031" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22.3438 28.2031V20.3906C22.3438 19.769 22.5907 19.1729 23.0302 18.7333C23.4698 18.2938 24.0659 18.0469 24.6875 18.0469" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15.1874 28.2031H24.8124C26.5549 27.34 28.0178 26.0019 29.0324 24.3431C30.0471 22.6843 30.572 20.7725 30.5468 18.8281C30.4986 16.046 29.3719 13.3912 27.4044 11.4237C25.4368 9.45609 22.782 8.32944 19.9999 8.28125C17.2177 8.32944 14.563 9.45609 12.5954 11.4237C10.6279 13.3912 9.50121 16.046 9.45302 18.8281C9.42776 20.7725 9.95272 22.6843 10.9674 24.3431C11.982 26.0019 13.4449 27.34 15.1874 28.2031Z" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </span>
+                            <div class="cs-pi-callout__text">
+                              <p class="cs-pi-callout__desc mb-0"><span class="fw-semibold text-dark">Tip:</span> Before processing payroll double-check that the deduction is set up as an after-tax deduction and is based on gross income.</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

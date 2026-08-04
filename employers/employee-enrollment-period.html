@@ -31,6 +31,7 @@
     @media (min-width: 1025px) {
       .cs-pi-hero > .container,
       .cs-pi-section > .container,
+      .cs-pi-faq > .container,
       .cs-pi-support > .container {
         max-width: 66.666%;
       }
@@ -140,6 +141,28 @@
     .cs-pi-callout__desc { color: #000000; margin: 0; font-size: 0.9375rem; line-height: 1.5; }
     .cs-pi-callout__action { flex-shrink: 0; }
 
+    /* Inline step number — brand gold circle, white number, used within callout copy */
+    .cs-pi-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      margin: 0 0.4rem;
+      border-radius: 50%;
+      background-color: #80641f;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      vertical-align: middle;
+    }
+    /* Each numbered line item — block-level so it naturally breaks to its own
+       line (replaces manual <br> tags), with a touch of breathing room above/below. */
+    .cs-pi-step-item {
+      display: block;
+      padding: 2px 0;
+    }
+
     @media (max-width: 767.98px) {
       .cs-pi-callout {
         flex-direction: column;
@@ -185,6 +208,36 @@
       border-color: #00473F;
       color: #00473F;
     }
+
+    /* =====================================================================
+       Frequently Asked Questions (ported verbatim from eligibility-and-exemptions.html)
+       ===================================================================== */
+    .cs-pi-faq { padding: 3rem 0; background-color: #ffffff; }
+    .cs-pi-section__header { text-align: center; margin-bottom: 2rem; }
+    .cs-pi-section__header h2 { color: #000000; }
+    .cs-pi-section__header p { color: #6b6b6b; max-width: 820px; margin: 0.75rem auto 0; }
+    .cs-pi-panel-body { color: #6b6b6b; line-height: 1.6; }
+
+    .cs-pi-accordion { margin-bottom: 1.25rem; }
+    .cs-pi-accordion__header {
+      display: flex; gap: 1rem; align-items: center;
+      background-color: #ffffff;
+      border: 1px solid #00594F;
+      border-radius: 8px;
+      padding: 1.25rem;
+      cursor: pointer; width: 100%;
+      text-align: start;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+      color: #000000;
+    }
+    .cs-pi-accordion__header:hover { background-color: #E5EEED; border-color: #00473F; }
+    .cs-pi-accordion__header:hover .cs-pi-accordion__title { color: #00473F; text-decoration: underline; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__header { border-color: #00594f; }
+    .cs-pi-accordion__title { flex: 1; font-weight: 600; color: #00594f; }
+    .cs-pi-accordion__chevron { flex-shrink: 0; color: #00594f; transition: transform 0.2s ease; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__chevron { transform: rotate(180deg); }
+    .cs-pi-accordion__body { display: none; padding: 1.75rem 0 0; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__body { display: block; }
 
     /* =====================================================================
        Need additional support? (ported verbatim from payroll-integrations.html)
@@ -244,7 +297,7 @@
       <h1 class="cs-pi-hero__title">Waiting for Employee Enrollment</h1>
       <span class="cs-pi-hero__rule" aria-hidden="true"></span>
       <p class="cs-pi-hero__lede">
-        Once you add employee information, CalSavers will notify your employees, starting a 30-day decision window. During this time, employees can adjust account defaults or opt out. Any communication to your employees keeps them informed and confident in their next steps.
+        Once you add employee information, CalSavers will notify your employees about the program, starting their 30-day decision window. During this time, employees can register and customize their account settings or opt out. 
       </p>
 
       <!-- Info banner: 30-day waiting period -->
@@ -254,8 +307,8 @@
             <img src="../src/assets/Calandar.svg" alt="">
           </span>
           <div class="cs-pi-callout__text">
-            <p class="cs-pi-callout__title">The 30-day waiting period begins after submitting your employee roster</p>
-            <p class="cs-pi-callout__desc">Your employees have 30 days to opt out or change their contribution rate. While you wait, tell your employees that your company is joining CalSavers and prepare to add deductions in your payroll system.</p>
+            <p class="cs-pi-callout__title">During the 30-Day Decision Period</p>
+            <p class="cs-pi-callout__desc">While employees consider their options, you will want to prepare your payroll system for <a href="/employers/setting-up-deductions.html" target="_blank" class="link-primary fw-semibold">CalSavers deductions</a> and consider notifying them about CalSavers.</p>
           </div>
         </div>
       </div>
@@ -271,14 +324,27 @@
 
         <!-- LEFT -->
         <div class="col-lg-6">
-          <h2 class="section-title mb-3">Help keep your employees informed of the program during the wait</h2>
+          <h2 class="section-title mb-3">Help keep your employees informed</h2>
           <p class="cs-eligibility__body mb-0">
-            You don't need to take any action during the 30-day decision window. To ease the transition, consider emailing or sharing the <a href="#" class="link-primary fw-semibold">Saver Brochure</a> with your employees. This helps inform them that CalSavers will be reaching out about the program, which is crucial since many people are wary of unsolicited emails.
-          </p>
+            No action is required during the 30-day decision period. Consider using the <a href="https://employer.calsavers.com/home/help-center/communication.html" target="_blank" class="link-primary fw-semibold">Communication Template</a> and sharing the <a href="https://cdn.unite529.com/jcdn/files/CAER/pdfs/en_US/saver_overview.pdf" target="_blank" class="link-primary fw-semibold">Saver Brochure</a> to notify employees about CalSavers and the communication they will receive from the program.</p>
         </div>
 
         <!-- RIGHT -->
         <div class="col-lg-6">
+
+          <div class="d-flex gap-3 align-items-start">
+            <span class="cs-pi-callout__icon" aria-hidden="true">
+              <img src="../src/assets/CommunicationIcon.svg" alt="">
+            </span>
+            <div class="cs-pi-callout__text">
+              <p class="cs-pi-callout__title mb-1">Need help communicating with your employees?</p>
+              <p class="cs-pi-callout__desc mb-0">
+                <a href="https://employer.calsavers.com/home/help-center/communication.html" target="_blank" rel="noopener" class="link-primary fw-semibold">Use this template</a> communication to inform your employees that your company is running CalSavers.
+              </p>
+            </div>
+          </div>
+
+          <hr class="cs-htr__divider my-4">
 
           <div class="mb-0">
             <p class="cs-printable-card__title fw-semibold mb-1">Saver Overview Brochure</p>
@@ -304,20 +370,6 @@
             </div>
           </div>
 
-          <hr class="cs-htr__divider my-4">
-
-          <div class="d-flex gap-3 align-items-start">
-            <span class="cs-pi-callout__icon" aria-hidden="true">
-              <img src="../src/assets/CommunicationIcon.svg" alt="">
-            </span>
-            <div class="cs-pi-callout__text">
-              <p class="cs-pi-callout__title mb-1">Need help communicating to your employees?</p>
-              <p class="cs-pi-callout__desc mb-0">
-                <a href="https://employer.calsavers.com/home/help-center/communication.html" target="_blank" rel="noopener" class="link-primary fw-semibold">Use this template</a> communication to inform your employees that your company is running CalSavers.
-              </p>
-            </div>
-          </div>
-
         </div>
 
         <!-- FULL WIDTH: welcome packet callout -->
@@ -328,13 +380,93 @@
                 <img src="../src/assets/information-circle.svg" alt="">
               </span>
               <div class="cs-pi-callout__text">
-                <p class="cs-pi-callout__title">Has an employee missed out on receiving their welcome packet?</p>
-                <p class="cs-pi-callout__desc">If any of your employees report that they did not receive a welcome packet within 7 days of when you added their information, log in to the employer portal, open the employee's profile and resend the information.</p>
+                <p class="cs-pi-callout__title">Employee Didn't Receive a Welcome Packet?</p>
+                <p class="cs-pi-callout__desc">If an employee didn’t receive a welcome packet within 7 days of being added to your employee roster:
+                  <span class="cs-pi-step-item"><span class="cs-pi-step-num">1</span><a href="https://employer.calsavers.com/californiaertpl/auth/sessionCreate/viewCollectEmpLogin.cs" target="_blank" rel="noopener" class="link-primary fw-semibold">Log in</a> to the employer portal.</span>
+                  <span class="cs-pi-step-item"><span class="cs-pi-step-num">2</span>Open the employee's profile.</span>
+                  <span class="cs-pi-step-item"><span class="cs-pi-step-num">3</span>Resend the welcome packet.</span>
+                </p>
               </div>
             </div>
             <div class="cs-pi-callout__action">
-              <a href="#" class="btn-white-outline">Log In</a>
+              <a href="https://employer.calsavers.com/californiaertpl/auth/sessionCreate/viewCollectEmpLogin.cs" class="btn-white-outline">Log In</a>
             </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       FREQUENTLY ASKED QUESTIONS
+       ==================================================================== -->
+  <section class="cs-pi-faq">
+    <div class="container">
+
+      <header class="cs-pi-section__header">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </header>
+
+      <div class="d-flex flex-column gap-2">
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">What does it mean that employees are automatically enrolled?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">California law establishes CalSavers as an automatic enrollment program. Once you add your employee roster, CalSavers contacts your eligible employees directly within a 30-day window to explain the program and how to opt out. Employees who take no action are enrolled at the standard contribution rate.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">What if my employee doesn't want me to disclose their information?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">Employers are required by law to provide basic information for all eligible employees. The program's administrator and recordkeeper is the only party with access to employee personal data and maintains strict privacy and security standards to protect it.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">What if my employee says they don't want to participate?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">Employees can opt out directly with CalSavers by calling (855) 650-6918, visiting <a href="https://calsavers.com" target="_blank" class="link-primary fw-semibold">calsavers.com</a>, or mailing in a paper form. Employees must contact the program directly — not through their employer — to opt out.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">Are all employees eligible for the program? When do employees become eligible?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">All employees of a participating employer are eligible once they are at least 18 years old and have employee status under California law. There is no minimum on hours worked or length of employment.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">How do I communicate to our employees about CalSavers?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">Employers must remain neutral when discussing the program. CalSavers provides a communication template at registration that you can use to notify employees. For questions, employees should contact CalSavers directly at calsavers.com, (855) 650-6918, or <a href="mailto:clientservices@calsavers.com" class="link-primary fw-semibold">clientservices@calsavers.com</a>.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">What should I do if an employee asks me for information or advice?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">Employers do not provide financial advice, and employees should not rely on their employer for it. Refer any questions about the program directly to CalSavers.</p>
           </div>
         </div>
 
@@ -438,6 +570,16 @@
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+
+  <!-- FAQ accordion expand/collapse (ported from eligibility-and-exemptions.html) -->
+  <script>
+    document.addEventListener('click', function (e) {
+      var header = e.target.closest('.cs-pi-accordion__header');
+      if (!header) return;
+      var acc = header.closest('.cs-pi-accordion');
+      if (acc) acc.classList.toggle('is-expanded');
+    });
+  </script>
 
 </body>
 </html>

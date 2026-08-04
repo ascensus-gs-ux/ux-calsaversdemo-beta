@@ -130,6 +130,34 @@
     .link-arrow:hover .arrow-wrapper { transform: translateX(6px); }
 
     /* =====================================================================
+       Frequently Asked Questions (ported verbatim from
+       employee-enrollment-period.html / eligibility-and-exemptions.html)
+       ===================================================================== */
+    @media (min-width: 1025px) { .cs-pi-faq > .container { max-width: 66.666%; } }
+    .cs-pi-faq { padding: 3rem 0; background-color: #ffffff; }
+
+    .cs-pi-accordion { margin-bottom: 1.25rem; }
+    .cs-pi-accordion__header {
+      display: flex; gap: 1rem; align-items: center;
+      background-color: #ffffff;
+      border: 1px solid #00594F;
+      border-radius: 8px;
+      padding: 1.25rem;
+      cursor: pointer; width: 100%;
+      text-align: start;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+      color: #000000;
+    }
+    .cs-pi-accordion__header:hover { background-color: #E5EEED; border-color: #00473F; }
+    .cs-pi-accordion__header:hover .cs-pi-accordion__title { color: #00473F; text-decoration: underline; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__header { border-color: #00594f; }
+    .cs-pi-accordion__title { flex: 1; font-weight: 600; color: #00594f; }
+    .cs-pi-accordion__chevron { flex-shrink: 0; color: #00594f; transition: transform 0.2s ease; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__chevron { transform: rotate(180deg); }
+    .cs-pi-accordion__body { display: none; padding: 1.75rem 0 0; }
+    .cs-pi-accordion.is-expanded .cs-pi-accordion__body { display: block; }
+
+    /* =====================================================================
        Need additional support? (ported verbatim from
        add-employee-information.html / payroll-integrations.html)
        ===================================================================== */
@@ -298,7 +326,7 @@
     @media (min-width: 1025px) {
       .cs-pi-section > .container { max-width: 66.666%; }
     }
-    .cs-pi-section { padding: 2rem 0 3rem; background-color: #F2F0E9; }
+    .cs-pi-section { padding: 6rem 0 6rem; background-color: #F2F0E9; }
     .cs-pi-section__header { text-align: center; margin-bottom: 2rem; }
     .cs-pi-section__header h2 { color: #000000; }
     .cs-pi-section__header p { color: #6b6b6b; max-width: 820px; margin: 0.75rem auto 0; }
@@ -406,7 +434,6 @@
 
     .cs-pi-panel { display: none; }
     .cs-pi-panel.is-active { display: block; }
-    .cs-pi-toggle-p { margin-bottom: 0 !important; }
 
     .cs-pi-panel-body { color: #6b6b6b; line-height: 1.6; }
 
@@ -428,10 +455,6 @@
     [data-name="chevron-up"],
     [data-name="chevron-down"] {
       transition: transform 0.3s ease;
-    }
-
-    [data-toggle-state="off"] [data-name="StepsContainer"] [data-name="Row"] {
-      flex-direction: column !important;
     }
 
     [data-name="Accordions"] {
@@ -467,37 +490,9 @@
       text-decoration: underline;
     }
 
-    [data-name="Toggle Switch"] button { cursor: pointer; }
-    [data-name="Toggle Switch"] button:focus-visible {
-      outline: 2px solid rgba(0, 89, 79, 0.3);
-      outline-offset: 2px;
-    }
-
-    [data-name="QuickViewToggle"] {
-      align-items: center !important;
-      flex-wrap: nowrap !important;
-    }
-    [data-name="Toggle Switch"] > p {
-      white-space: nowrap;
-      margin: 0 !important;
-    }
-    @media (max-width: 1300px) {
-      [data-name="Toggle Switch"] > p {
-        white-space: normal;
-        text-align: start;
-      }
-    }
-
-    [data-name="StepText"] > h3 {
-      flex: 1 1 0;
-      min-width: 0;
-    }
-
     [data-name="Group"],
     [data-name="Register/Novice"],
-    [data-name="Register/Exerienced"],
-    [data-name="Accordions"],
-    [data-name="StepsContainer"] {
+    [data-name="Accordions"] {
       width: 100% !important;
       max-width: 100% !important;
     }
@@ -506,43 +501,26 @@
       width: 100% !important;
       max-width: 100% !important;
     }
+    [data-name^="Step="] [data-name="Text"] li {
+      margin-bottom: 0.5rem;
+    }
+    [data-name^="Step="] [data-name="Text"] li:last-child {
+      margin-bottom: 0;
+    }
+    [data-name^="Step="] [data-name="Text"] ul ul ul li {
+      margin-bottom: 0.15rem;
+    }
+    [data-name^="Step="] [data-name="Text"] ul ul ul li:last-child {
+      margin-bottom: 0;
+    }
 
     @media (max-width: 767.98px) {
-      [data-name="Group"] [data-name="StepText"],
-      [data-name="StepText"] {
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 16px !important;
-      }
-      [data-name="StepText"] > p,
-      [data-name="StepText"] > div {
-        width: 100% !important;
-        min-width: 0 !important;
-      }
-      [data-name="StepsContainer"] [data-name="Row"] {
-        flex-direction: column !important;
-        gap: 16px !important;
-        height: auto !important;
-      }
       [data-name^="Step="] [data-name="Step"] {
         flex-direction: column !important;
         gap: 24px !important;
       }
       [data-name="Accordion"] [data-name^="Step="] > div > div {
         padding: 16px !important;
-      }
-    }
-
-    @media (min-width: 768px) and (max-width: 1024px) {
-      [data-name="StepText"] > p,
-      [data-name="StepText"] > div {
-        flex: 1 1 0;
-        min-width: 0;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-      }
-      [data-name="StepsContainer"] [data-name="Row"] {
-        height: auto !important;
       }
     }
 
@@ -559,7 +537,10 @@
     <h1>Submitting Contributions</h1>
     <div class="hero-underline"></div>
     <p class="cs-pi-hero__lede">
-      To complete the CalSavers onboarding process, you will need to send your first employee contributions to CalSavers so that the amount can be invested in their CalSavers Roth IRAs. Information can be entered either manually by updating on the portal or with file upload.
+      To complete the CalSavers onboarding process, you'll need to submit your first payroll contributions for participating employees. Contributions are deposited into each employee's CalSavers IRA based on their individual elections.
+    </p>
+    <p class="cs-pi-hero__lede">
+      You can submit contributions in one of two ways, depending on your preference:
     </p>
   </section>
 
@@ -590,9 +571,12 @@
             </svg>
           </div>
           <div class="elig-card-body">
-            <h2>File Upload </h2>
+            <h2>File Upload Option</h2>
             <p>
-              Securely upload a standardized payroll file containing employee contribution details for each pay period.
+              Securely upload a standardized payroll file containing employee contribution information for each pay period.
+            </p>
+            <p>
+              <strong>Best for employers who want to:</strong>
             </p>
 
             <ul class="cs-bullets cs-bullets--gold list-unstyled mb-0" style="padding: 0">
@@ -603,7 +587,7 @@
                   </svg>
                 </span>
                 <div class="cs-bullets__text">
-                  <p class="cs-bullets__title mb-0">Saves time with bulk uploads for each pay period</p>
+                  <p class="cs-bullets__title mb-0">Saves time with bulk uploads</p>
                 </div>
               </li>
               <li class="cs-bullets__item">
@@ -613,7 +597,7 @@
                   </svg>
                 </span>
                 <div class="cs-bullets__text">
-                  <p class="cs-bullets__title mb-0">More consistent and accurate with standardized files</p>
+                  <p class="cs-bullets__title mb-0">Use a consistent, standardized process</p>
                 </div>
               </li>
               <li class="cs-bullets__item">
@@ -623,7 +607,7 @@
                   </svg>
                 </span>
                 <div class="cs-bullets__text">
-                  <p class="cs-bullets__title mb-0">Scales easily for larger teams and regular submissions</p>
+                  <p class="cs-bullets__title mb-0">Easily manage larger employee rosters</p>
                 </div>
               </li>
             </ul>
@@ -666,9 +650,11 @@
           <div class="elig-card-body">
             <h2>Manual Upload</h2>
             <p>
-              Log into the CalSavers portal each pay period and enter employee contributions by the scheduled due date.
+              Log in to the CalSavers Portal each pay period to enter employee contribution information by the scheduled due date.
             </p>
-
+             <p>
+              <strong>Best for employers who want to:</strong>
+            </p>
             <ul class="cs-bullets cs-bullets--gold list-unstyled mb-0" style="padding: 0">
               <li class="cs-bullets__item">
                 <span class="cs-bullets__icon" aria-hidden="true">
@@ -677,7 +663,7 @@
                   </svg>
                 </span>
                 <div class="cs-bullets__text">
-                  <p class="cs-bullets__title mb-0">Simple to use with no setup required</p>
+                  <p class="cs-bullets__title mb-0">Easily get started with no setup</p>
                 </div>
               </li>
               <li class="cs-bullets__item">
@@ -687,7 +673,7 @@
                   </svg>
                 </span>
                 <div class="cs-bullets__text">
-                  <p class="cs-bullets__title mb-0">Full control to review and adjust each submission</p>
+                  <p class="cs-bullets__title mb-0">Review and adjust contributions before submitting</p>
                 </div>
               </li>
               <li class="cs-bullets__item">
@@ -697,7 +683,7 @@
                   </svg>
                 </span>
                 <div class="cs-bullets__text">
-                  <p class="cs-bullets__title mb-0">Flexible for small teams or irregular payrolls</p>
+                  <p class="cs-bullets__title mb-0">Manage smaller employee rosters or irregular payrolls</p>
                 </div>
               </li>
             </ul>
@@ -819,214 +805,10 @@
           <!-- ====== TAB 1 — File Upload  ====== -->
           <div class="cs-pi-panel is-active" data-mode="submit" data-panel="1">
 
-            <!-- Quick view (toggle OFF, default) -->
-            <div data-toggle-state="off">
+            <!-- Detailed instructions (accordions collapsed by default) -->
+            <div>
               <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
-                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
-                  <h3 class="mb-0">File Upload </h3>
-                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
-                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
-                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
-                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
-                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
-                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
-                          <div class="rounded-pill flex-shrink-0" style="height: 24px; width: 44px; background-color: #E6E6E6; border: 1px solid #D3D3D3;" data-name="Background"></div>
-                          <div class="position-absolute" style="margin-left: 7px; margin-top: 6px;">
-                            <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12" style="width: 12px; height: 12px;">
-                              <circle cx="6" cy="6" fill="#828282" r="5.5" stroke="#828282"></circle>
-                            </svg>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Video -->
-                <div class="row g-4 align-items-center w-100">
-                  <div class="col-12 col-md-6">
-                    <div class="ratio ratio-16x9 cs-pi-video-frame">
-                      <iframe src="https://fast.wistia.net/embed/iframe/7elh3oz5yo?videoFoam=true" title="How to Process Contributions File Upload" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6 d-flex align-items-center">
-                    <h4 class="text-dark mb-0">Watch a video on how to upload a file to submit employee contributions</h4>
-                  </div>
-                </div>
-
-                <!-- Quick view numbered steps -->
-                <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Exerienced">
-                  <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="StepsContainer">
-
-                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 1">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">1</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Container">
-                              <div class="d-flex flex-fill flex-column gap-1 align-items-start w-100" data-name="Text Container">
-                                <p class="fw-semibold text-dark w-100 mb-0">Access the Contributions Page</p>
-                                <ol class="text-secondary w-100 mb-0 ps-3">
-                                  <li>Log in to the Employer Portal and navigate to your Dashboard</li>
-                                  <li>Under "Take the Next Step", locate Step 4 – Send employee contributions</li>
-                                  <li>Click Send contributions to open the Contributions page</li>
-                                  <li>In the Upcoming Contributions section, select Send Contributions to begin</li>
-                                  <li>A new window will open for submitting contributions</li>
-                                </ol>
-                              </div>
-                              <a class="btn btn-primary d-inline-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" data-name="Button">
-                                <span class="fw-semibold text-center text-nowrap">Log In</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 2">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">2</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Select Pay Schedule &amp; Upload Method</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>If you have multiple pay schedules, choose the correct one for this submission</li>
-                                <li>Enter the pay date that corresponds to the payroll you are reporting</li>
-                                <li>Under contribution entry options, select Upload File</li>
-                                <li>Click Next to proceed</li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 3">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">3</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Container">
-                              <div class="d-flex flex-fill flex-column gap-1 align-items-start w-100" data-name="Text Container">
-                                <p class="fw-semibold text-dark w-100 mb-0">Download, Complete, and Upload Template</p>
-                                <ol class="text-secondary w-100 mb-0 ps-3">
-                                  <li>Click Download Template to access the Excel file (pre-filled with your employee list)</li>
-                                  <li>Enter contribution amounts only for employees who are actively participating</li>
-                                  <li>Input the amount deducted from each employee's paycheck for that pay cycle</li>
-                                  <li>Complete all required fields (marked with an asterisk *)</li>
-                                  <li>Save your updated file, then upload it to the Employer Portal</li>
-                                  <li>Enter the total contribution amount you are submitting in the provided field</li>
-                                  <li>Click Next to continue</li>
-                                </ol>
-                              </div>
-                              <div class="cs-pi-callout cs-pi-callout--gold w-100">
-                                <div class="cs-pi-callout__body">
-                                  <span class="cs-pi-callout__icon" aria-hidden="true">
-                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M24.6875 28.2031V35.2344C24.6875 35.856 24.4406 36.4521 24.001 36.8917C23.5615 37.3312 22.9654 37.5781 22.3438 37.5781H17.6562C17.0346 37.5781 16.4385 37.3312 15.999 36.8917C15.5594 36.4521 15.3125 35.856 15.3125 35.2344V28.2031" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M15.3125 32.8906H24.6875" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M20 2.42188V4.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M3.59375 18.8281H5.9375" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M7.10938 7.10938L8.82812 8.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M36.4062 18.8281H34.0625" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M32.8906 7.10938L31.1719 8.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M15.3125 18.0469C15.9341 18.0469 16.5302 18.2938 16.9698 18.7333C17.4093 19.1729 17.6562 19.769 17.6562 20.3906V28.2031" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M22.3438 28.2031V20.3906C22.3438 19.769 22.5907 19.1729 23.0302 18.7333C23.4698 18.2938 24.0659 18.0469 24.6875 18.0469" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                      <path d="M15.1874 28.2031H24.8124C26.5549 27.34 28.0178 26.0019 29.0324 24.3431C30.0471 22.6843 30.572 20.7725 30.5468 18.8281C30.4986 16.046 29.3719 13.3912 27.4044 11.4237C25.4368 9.45609 22.782 8.32944 19.9999 8.28125C17.2177 8.32944 14.563 9.45609 12.5954 11.4237C10.6279 13.3912 9.50121 16.046 9.45302 18.8281C9.42776 20.7725 9.95272 22.6843 10.9674 24.3431C11.982 26.0019 13.4449 27.34 15.1874 28.2031Z" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                  </span>
-                                  <div class="cs-pi-callout__text">
-                                    <p class="cs-pi-callout__desc mb-0"><span class="fw-semibold text-dark">Tip:</span> Save a copy of your completed template to reuse each pay period—just update amounts or employee participation as needed.</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 4">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">4</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Review, Confirm, and Submit Payment</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Review the contribution summary screen and confirm the total amount is correct</li>
-                                <li>Add or update your banking information for sending the contributions. Click "Change" if you need to update your payment method.
-                                  <ul class="mb-0" style="color:rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;">
-                                    <li>If you are paying with your business bank account include routing number, name, account number and account type.</li>
-                                    <li>Or select an alternative payment method from either "Send money via ACH", "wire funds" or "check." For check, add your check's routing number, bank name and account number. Click "Mail a paper check" if you are sending a physical check to CalSavers.</li>
-                                  </ul>
-                                </li>
-                                <li>Click Save after you have entered all your payment information. Then click to check the box next to "I agree to send this amount to CalSavers."</li>
-                                <li>At the bottom of the screen you will see in green "Show all employee contribution amounts if you want to confirm the details."</li>
-                                <li>Select "Send payment" to complete the task.</li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-                <hr class="section-hr w-100">
-
-                <!-- Additional Information -->
-                <div class="d-flex flex-column gap-3 align-items-start flex-shrink-0 w-100">
-                  <h4 class="fw-semibold text-dark mb-0">Additional Information</h4>
-                  <p class="cs-pi-panel-body mb-0">
-                    You will continue to send employee contributions each pay period. <strong class="text-dark">Contributions must be sent within 7 days of taking the money out of your employees' paychecks.</strong> If employees make a change to their contribution rate or choose to opt out, you will receive an e-mail or notification in the Employer Portal (you will be prompted to select your notification preference) prior to each pay period so you can make the appropriate change prior to submitting that payroll's contributions. Also, you can always access the most up-to-date information on the employer portal.
-                  </p>
-                  <p class="cs-pi-panel-body mb-0">
-                    For more information on how to identify eligible employees for sending contributions, watch the video <a href="#" class="link-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#cs-pi-video-modal" data-video-src="https://fast.wistia.net/embed/iframe/ljnib5orc9?videoFoam=true" data-video-title="Identifying Eligible Employees">Identifying Eligible Employees.</a>
-                  </p>
-                  <p class="cs-pi-panel-body mb-0">
-                    If you need help, contact your field representative at <a href="mailto:fieldsupport@calsavers.com" class="link-primary fw-semibold">fieldsupport@calsavers.com.</a>
-                  </p>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Detailed view (toggle ON), accordions collapsed by default -->
-            <div data-toggle-state="on" class="d-none">
-              <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
-                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
-                  <h3 class="mb-0">File Upload </h3>
-                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
-                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
-                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
-                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
-                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
-                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
-                          <div class="rounded-pill flex-shrink-0" style="background-color: #00594f; border: 1px solid #00594f; height: 24px; width: 44px;" data-name="Background"></div>
-                          <div class="position-absolute" style="margin-left: 21px; margin-top: 1px;">
-                            <div class="position-relative flex-shrink-0" style="width: 22px; height: 22px;" data-name="Switch">
-                              <svg class="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
-                                <circle cx="11" cy="11" fill="white" r="11"></circle>
-                                <path d="M6.99995 11.6562L9.51411 14.1704L15.171 8.51355" stroke="#00594F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                              </svg>
-                            </div>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <h3 class="mb-0">File Upload </h3>
 
                 <!-- Video -->
                 <div class="row g-4 align-items-center w-100">
@@ -1044,7 +826,7 @@
                 <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Novice">
                   <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="Accordions">
 
-                    <!-- Accordion 1: Access the Contributions Page -->
+                    <!-- Accordion 1: Open Contributions Page -->
                     <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
                       <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
                         <div class="overflow-hidden rounded w-100 h-100">
@@ -1054,7 +836,7 @@
                                 <p class="fw-medium text-center text-white w-100 mb-0">1</p>
                               </div>
                               <div class="d-flex flex-fill align-items-center" data-name="Text Container">
-                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Access the Contributions Page</p>
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Open Contributions Page</p>
                               </div>
                             </div>
                             <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
@@ -1073,13 +855,12 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
-                                    <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>Log in to the Employer Portal and navigate to your Dashboard</li>
-                                      <li>Under "Take the Next Step", locate Step 4 – Send employee contributions</li>
-                                      <li>Click Send contributions to open the Contributions page</li>
-                                      <li>In the Upcoming Contributions section, select Send Contributions to begin</li>
-                                      <li>A new window will open for submitting contributions</li>
-                                    </ol>
+                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
+                                      <li>Log in to the Employer Portal.</li>
+                                      <li>From your Dashboard, locate Step 4 – Send Employee Contributions.</li>
+                                      <li>Click Send Contributions to open the Contribution page.</li>
+                                      <li>Under Upcoming Contributions, click Send Contributions and a new window will open.</li>
+                                    </ul>
                                     <a class="btn btn-primary d-inline-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" data-name="Button">
                                       <span class="fw-semibold text-center text-nowrap">Log In</span>
                                     </a>
@@ -1097,7 +878,7 @@
                       </div>
                     </div>
 
-                    <!-- Accordion 2: Select Pay Schedule & Upload Method -->
+                    <!-- Accordion 2: Select Pay Schedule & Upload -->
                     <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
                       <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
                         <div class="overflow-hidden rounded w-100 h-100">
@@ -1107,7 +888,7 @@
                                 <p class="fw-medium text-center text-white w-100 mb-0">2</p>
                               </div>
                               <div class="d-flex flex-fill align-items-center" data-name="Text Container">
-                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Select Pay Schedule &amp; Upload Method</p>
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Select Pay Schedule &amp; Upload</p>
                               </div>
                             </div>
                             <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
@@ -1126,12 +907,12 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
-                                    <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>If you have multiple pay schedules, choose the correct one for this submission</li>
-                                      <li>Enter the pay date that corresponds to the payroll you are reporting</li>
-                                      <li>Under contribution entry options, select Upload File</li>
-                                      <li>Click Next to proceed</li>
-                                    </ol>
+                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
+                                      <li>Select the appropriate pay schedule (if applicable).</li>
+                                      <li>Enter the pay date for the payroll you are reporting.</li>
+                                      <li>Select Upload File as your entry method.</li>
+                                      <li>Click Next.</li>
+                                    </ul>
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -1146,7 +927,7 @@
                       </div>
                     </div>
 
-                    <!-- Accordion 3: Download, Complete, and Upload Template -->
+                    <!-- Accordion 3: Complete and Upload Template -->
                     <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
                       <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
                         <div class="overflow-hidden rounded w-100 h-100">
@@ -1156,7 +937,7 @@
                                 <p class="fw-medium text-center text-white w-100 mb-0">3</p>
                               </div>
                               <div class="d-flex flex-fill align-items-center" data-name="Text Container">
-                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Download, Complete, and Upload Template</p>
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Complete and Upload Template</p>
                               </div>
                             </div>
                             <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
@@ -1175,15 +956,13 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
-                                    <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>Click Download Template to access the Excel file (pre-filled with your employee list)</li>
-                                      <li>Enter contribution amounts only for employees who are actively participating</li>
-                                      <li>Input the amount deducted from each employee's paycheck for that pay cycle</li>
-                                      <li>Complete all required fields (marked with an asterisk *)</li>
-                                      <li>Save your updated file, then upload it to the Employer Portal</li>
-                                      <li>Enter the total contribution amount you are submitting in the provided field</li>
-                                      <li>Click Next to continue</li>
-                                    </ol>
+                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
+                                      <li>Click Download Template to download the pre-filled Excel file.</li>
+                                      <li>Enter contribution amounts only for participating employees.</li>
+                                      <li>Complete all required fields (*).</li>
+                                      <li>Save the file and upload it to the Employer Portal.</li>
+                                      <li>Enter the total contribution amount and click Next.</li>
+                                    </ul>
                                     <div class="cs-pi-callout cs-pi-callout--gold w-100">
                                       <div class="cs-pi-callout__body">
                                         <span class="cs-pi-callout__icon" aria-hidden="true">
@@ -1201,7 +980,7 @@
                                           </svg>
                                         </span>
                                         <div class="cs-pi-callout__text">
-                                          <p class="cs-pi-callout__desc mb-0"><span class="fw-semibold text-dark">Tip:</span> Save a copy of your completed template to reuse each pay period—just update amounts or employee participation as needed.</p>
+                                          <p class="cs-pi-callout__desc mb-0"><span class="fw-semibold text-dark">Tip:</span> Save a copy of the completed template to reuse each pay period – just update the contribution amounts or employee participation as needed.</p>
                                         </div>
                                       </div>
                                     </div>
@@ -1219,7 +998,7 @@
                       </div>
                     </div>
 
-                    <!-- Accordion 4: Review, Confirm, and Submit Payment -->
+                    <!-- Accordion 4: Review and Submit -->
                     <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
                       <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
                         <div class="overflow-hidden rounded w-100 h-100">
@@ -1229,7 +1008,7 @@
                                 <p class="fw-medium text-center text-white w-100 mb-0">4</p>
                               </div>
                               <div class="d-flex flex-fill align-items-center" data-name="Text Container">
-                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Review, Confirm, and Submit Payment</p>
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Review and Submit</p>
                               </div>
                             </div>
                             <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
@@ -1248,18 +1027,31 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
-                                    <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>Review the contribution summary screen and confirm the total amount is correct</li>
-                                      <li>Add or update your banking information for sending the contributions. Click "Change" if you need to update your payment method.
-                                        <ul class="mb-0" style="color:rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;">
-                                          <li>If you are paying with your business bank account include routing number, name, account number and account type.</li>
-                                          <li>Or select an alternative payment method from either "Send money via ACH", "wire funds" or "check." For check, add your check's routing number, bank name and account number. Click "Mail a paper check" if you are sending a physical check to CalSavers.</li>
+                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
+                                      <li>Review the contribution summary to confirm the total amount is correct.</li>
+                                      <li>Add or update your payment method for sending contributions, if needed.
+                                        <ul class="mb-0" style="list-style: square; color:rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;">
+                                          <li>If you are paying with your business bank account, enter the required banking details:
+                                            <ul class="mb-0" style="list-style-type: &quot;- &quot;; padding: 0 0 0 1.25rem; color:rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;">
+                                              <li>Routing number</li>
+                                              <li>Bank name</li>
+                                              <li>Account number</li>
+                                              <li>Account type</li>
+                                            </ul>
+                                          </li>
+                                          <li>Or select an alternative payment method:
+                                            <ul class="mb-0" style="list-style-type: &quot;- &quot;; padding: 0 0 0 1.25rem; color:rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;">
+                                              <li>Send money via ACH</li>
+                                              <li>Wire funds</li>
+                                              <li>Check – include check's routing number, bank name, and account number</li>
+                                            </ul>
+                                          </li>
                                         </ul>
                                       </li>
-                                      <li>Click Save after you have entered all your payment information. Then click to check the box next to "I agree to send this amount to CalSavers."</li>
-                                      <li>At the bottom of the screen you will see in green "Show all employee contribution amounts if you want to confirm the details."</li>
-                                      <li>Select "Send payment" to complete the task.</li>
-                                    </ol>
+                                      <li>Click Save, then check the box "I agree to send this amount to CalSavers."</li>
+                                      <li>For optional review, you can click "Show all employee contribution amounts" to confirm details.</li>
+                                      <li>Select Send Payment to finish.</li>
+                                    </ul>
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -1281,15 +1073,17 @@
 
                 <!-- Additional Information -->
                 <div class="d-flex flex-column gap-3 align-items-start flex-shrink-0 w-100">
-                  <h4 class="fw-semibold text-dark mb-0">Additional Information</h4>
+                  <h4 class="fw-semibold text-dark mb-0">Ongoing Responsibilities</h4>
+                  <ul class="cs-pi-panel-body w-100 mb-0 ps-3" style="list-style: disc;">
+                    <li>Contributions must be sent within <strong class="text-dark">7 days</strong> of taking money from your employees' paychecks.</li>
+                    <li>Submit contributions <strong class="text-dark">every pay period</strong> for participating employees.</li>
+                    <li>Before each payroll, review your employee's participation status and contribution rate in the <strong class="text-dark">Employer Portal.</strong></li>
+                  </ul>
                   <p class="cs-pi-panel-body mb-0">
-                    You will continue to send employee contributions each pay period. <strong class="text-dark">Contributions must be sent within 7 days of taking the money out of your employees' paychecks.</strong> If employees make a change to their contribution rate or choose to opt out, you will receive an e-mail or notification in the Employer Portal (you will be prompted to select your notification preference) prior to each pay period so you can make the appropriate change prior to submitting that payroll's contributions. Also, you can always access the most up-to-date information on the employer portal.
+                    For information on identifying participating employees, watch <a href="#" class="link-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#cs-pi-video-modal" data-video-src="https://fast.wistia.net/embed/iframe/ljnib5orc9?videoFoam=true" data-video-title="Identifying Eligible Employees">Identifying Eligible Employees</a>
                   </p>
                   <p class="cs-pi-panel-body mb-0">
-                    For more information on how to identify eligible employees for sending contributions, watch the video <a href="#" class="link-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#cs-pi-video-modal" data-video-src="https://fast.wistia.net/embed/iframe/ljnib5orc9?videoFoam=true" data-video-title="Identifying Eligible Employees">Identifying Eligible Employees.</a>
-                  </p>
-                  <p class="cs-pi-panel-body mb-0">
-                    If you need help, contact your field representative at <a href="mailto:fieldsupport@calsavers.com" class="link-primary fw-semibold">fieldsupport@calsavers.com.</a>
+                    <span class="text-dark"><strong>Need help?</strong> Contact your CalSavers Field Representative at</span> <a href="mailto:fieldsupport@calsavers.com" class="link-primary fw-semibold">fieldsupport@calsavers.com.</a>
                   </p>
                 </div>
 
@@ -1301,187 +1095,10 @@
           <!-- ====== TAB 2 — Manual Upload ====== -->
           <div class="cs-pi-panel" data-mode="submit" data-panel="2">
 
-            <!-- Quick view (toggle OFF, default) -->
-            <div data-toggle-state="off">
+            <!-- Detailed instructions (accordions collapsed by default) -->
+            <div>
               <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
-                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
-                  <h3 class="mb-0">Manual Upload</h3>
-                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
-                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
-                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
-                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
-                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
-                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
-                          <div class="rounded-pill flex-shrink-0" style="height: 24px; width: 44px; background-color: #E6E6E6; border: 1px solid #D3D3D3;" data-name="Background"></div>
-                          <div class="position-absolute" style="margin-left: 7px; margin-top: 6px;">
-                            <svg class="d-block" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12" style="width: 12px; height: 12px;">
-                              <circle cx="6" cy="6" fill="#828282" r="5.5" stroke="#828282"></circle>
-                            </svg>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Video -->
-                <div class="row g-4 align-items-center w-100">
-                  <div class="col-12 col-md-6">
-                    <div class="ratio ratio-16x9 cs-pi-video-frame">
-                      <iframe src="https://fast.wistia.net/embed/iframe/o0mqzlnrhq?videoFoam=true" title="How to Submit Employee Contributions Manually" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6 d-flex align-items-center">
-                    <h4 class="text-dark mb-0">Watch a video on how to manually submit employee contributions each pay period</h4>
-                  </div>
-                </div>
-
-                <!-- Quick view numbered steps -->
-                <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Exerienced">
-                  <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="StepsContainer">
-
-                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 1">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">1</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Container">
-                              <div class="d-flex flex-fill flex-column gap-1 align-items-start w-100" data-name="Text Container">
-                                <p class="fw-semibold text-dark w-100 mb-0">Access the Contributions Page</p>
-                                <ol class="text-secondary w-100 mb-0 ps-3">
-                                  <li>Log in to the Employer Portal and go to your Dashboard</li>
-                                  <li>Under "Take the Next Step", select Step 4 – Send employee contributions</li>
-                                  <li>Click Send contributions to open the Contributions page</li>
-                                  <li>Under Upcoming Contributions, click Send Contributions to begin</li>
-                                </ol>
-                              </div>
-                              <a class="btn btn-primary d-inline-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" data-name="Button">
-                                <span class="fw-semibold text-center text-nowrap">Log In</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 2">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">2</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Select Pay Schedule &amp; Entry Method</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>A new window will open to send contributions</li>
-                                <li>If you have multiple pay schedules, select the correct one</li>
-                                <li>Enter the pay date for the payroll you are reporting</li>
-                                <li>Choose Add Manually as your entry method</li>
-                                <li>Click Next</li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 3">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">3</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Enter Contribution Amounts</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Enter the amount deducted from each employee's paycheck for the pay cycle</li>
-                                <li>Repeat for all participating employees under the selected pay schedule</li>
-                                <li>Click Next once all amounts are entered</li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Row">
-                      <div class="bg-white w-100 rounded" data-name="Step 4">
-                        <div class="overflow-hidden rounded w-100 h-100">
-                          <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                            <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                              <p class="fw-medium text-center text-white w-100 mb-0">4</p>
-                            </div>
-                            <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-                              <p class="fw-semibold text-dark w-100 mb-0">Review, Confirm, and Submit Payment</p>
-                              <ol class="text-secondary w-100 mb-0 ps-3">
-                                <li>Review the contribution summary screen and confirm the total amount is correct</li>
-                                <li>Add or update your banking information for sending the contributions. Click "Change" if you need to update your payment method.
-                                  <ul class="mb-0" style="color:rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;">
-                                    <li>If you are paying with your business bank account include routing number, name, account number and account type.</li>
-                                    <li>Or select an alternative payment method from either "Send money via ACH", "wire funds" or "check." For check, add your check's routing number, bank name and account number. Click "Mail a paper check" if you are sending a physical check to CalSavers.</li>
-                                  </ul>
-                                </li>
-                                <li>Click Save after you have entered all your payment information. Then click to check the box next to "I agree to send this amount to CalSavers."</li>
-                                <li>At the bottom of the screen you will see in green "Show all employee contribution amounts if you want to confirm the details."</li>
-                                <li>Select "Send payment" to complete the task.</li>
-                              </ol>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-                <hr class="section-hr w-100">
-
-                <!-- Additional Information -->
-                <div class="d-flex flex-column gap-3 align-items-start flex-shrink-0 w-100">
-                  <h4 class="fw-semibold text-dark mb-0">Additional Information</h4>
-                  <p class="cs-pi-panel-body mb-0">
-                    You will continue to send employee contributions each pay period. <strong class="text-dark">Contributions must be sent within 7 days of taking the money out of your employees' paychecks.</strong> If employees make a change to their contribution rate or choose to opt out, you will receive an e-mail or notification in the Employer Portal (you will be prompted to select your notification preference) prior to each pay period so you can make the appropriate change prior to submitting that payroll's contributions. Also, you can always access the most up-to-date information on the employer portal.
-                  </p>
-                  <p class="cs-pi-panel-body mb-0">
-                    For more information on how to identify eligible employees for sending contributions, watch the video <a href="#" class="link-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#cs-pi-video-modal" data-video-src="https://fast.wistia.net/embed/iframe/ljnib5orc9?videoFoam=true" data-video-title="Identifying Eligible Employees">Identifying Eligible Employees.</a>
-                  </p>
-                  <p class="cs-pi-panel-body mb-0">
-                    If you need help, contact your field representative at <a href="mailto:fieldsupport@calsavers.com" class="link-primary fw-semibold">fieldsupport@calsavers.com.</a>
-                  </p>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Detailed view (toggle ON), accordions collapsed by default -->
-            <div data-toggle-state="on" class="d-none">
-              <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
-                <div class="d-flex flex-column flex-md-row gap-2 align-items-start justify-content-md-between flex-shrink-0 w-100" data-name="StepText">
-                  <h3 class="mb-0">Manual Upload</h3>
-                  <div class="d-flex flex-column gap-1 align-items-start flex-shrink-0">
-                    <p class="fst-italic text-secondary w-100 cs-pi-toggle-p">Need a more detailed walk-through?</p>
-                    <div class="d-flex align-items-center flex-shrink-0 w-100" data-name="QuickViewToggle">
-                      <div class="d-flex gap-1 align-items-center flex-shrink-0 w-100" data-name="Toggle Switch">
-                        <p class="fw-semibold text-dark mb-0">Toggle Detailed Instructions</p>
-                        <button type="button" class="d-inline-flex flex-shrink-0 border-0 bg-transparent p-0 position-relative">
-                          <div class="rounded-pill flex-shrink-0" style="background-color: #00594f; border: 1px solid #00594f; height: 24px; width: 44px;" data-name="Background"></div>
-                          <div class="position-absolute" style="margin-left: 21px; margin-top: 1px;">
-                            <div class="position-relative flex-shrink-0" style="width: 22px; height: 22px;" data-name="Switch">
-                              <svg class="d-block w-100 h-100" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
-                                <circle cx="11" cy="11" fill="white" r="11"></circle>
-                                <path d="M6.99995 11.6562L9.51411 14.1704L15.171 8.51355" stroke="#00594F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                              </svg>
-                            </div>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <h3 class="mb-0">Manual Upload</h3>
 
                 <!-- Video -->
                 <div class="row g-4 align-items-center w-100">
@@ -1499,7 +1116,7 @@
                 <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Register/Novice">
                   <div class="d-flex flex-column gap-4 align-items-start flex-shrink-0 w-100" data-name="Accordions">
 
-                    <!-- Accordion 1: Access the Contributions Page -->
+                    <!-- Accordion 1: Open Contributions Page -->
                     <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
                       <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
                         <div class="overflow-hidden rounded w-100 h-100">
@@ -1509,7 +1126,7 @@
                                 <p class="fw-medium text-center text-white w-100 mb-0">1</p>
                               </div>
                               <div class="d-flex flex-fill align-items-center" data-name="Text Container">
-                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Access the Contributions Page</p>
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Open Contributions Page</p>
                               </div>
                             </div>
                             <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
@@ -1528,12 +1145,12 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
-                                    <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>Log in to the Employer Portal and go to your Dashboard</li>
-                                      <li>Under "Take the Next Step", select Step 4 – Send employee contributions</li>
-                                      <li>Click Send contributions to open the Contributions page</li>
-                                      <li>Under Upcoming Contributions, click Send Contributions to begin</li>
-                                    </ol>
+                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
+                                      <li>Log in to the Employer Portal.</li>
+                                      <li>From your Dashboard, locate Step 4 – Send Employee Contributions.</li>
+                                      <li>Click Send Contributions to open the Contribution page.</li>
+                                      <li>Under Upcoming Contributions, click Send Contributions and a new window will open.</li>
+                                    </ul>
                                     <a class="btn btn-primary d-inline-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" data-name="Button">
                                       <span class="fw-semibold text-center text-nowrap">Log In</span>
                                     </a>
@@ -1551,7 +1168,7 @@
                       </div>
                     </div>
 
-                    <!-- Accordion 2: Select Pay Schedule & Entry Method -->
+                    <!-- Accordion 2: Select Pay Schedule -->
                     <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
                       <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
                         <div class="overflow-hidden rounded w-100 h-100">
@@ -1561,7 +1178,7 @@
                                 <p class="fw-medium text-center text-white w-100 mb-0">2</p>
                               </div>
                               <div class="d-flex flex-fill align-items-center" data-name="Text Container">
-                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Select Pay Schedule &amp; Entry Method</p>
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Select Pay Schedule</p>
                               </div>
                             </div>
                             <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
@@ -1580,13 +1197,12 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
-                                    <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>A new window will open to send contributions</li>
-                                      <li>If you have multiple pay schedules, select the correct one</li>
-                                      <li>Enter the pay date for the payroll you are reporting</li>
-                                      <li>Choose Add Manually as your entry method</li>
-                                      <li>Click Next</li>
-                                    </ol>
+                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
+                                      <li>Choose the appropriate pay schedule (if applicable).</li>
+                                      <li>Enter the pay date for the payroll you are reporting.</li>
+                                      <li>Select Add Manually as your entry method.</li>
+                                      <li>Click Next.</li>
+                                    </ul>
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -1630,11 +1246,11 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
-                                    <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>Enter the amount deducted from each employee's paycheck for the pay cycle</li>
-                                      <li>Repeat for all participating employees under the selected pay schedule</li>
-                                      <li>Click Next once all amounts are entered</li>
-                                    </ol>
+                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
+                                      <li>Enter the contribution amount deducted from each participating employee's paycheck.</li>
+                                      <li>Repeat for all participating employees in the selected pay schedule.</li>
+                                      <li>Click Next.</li>
+                                    </ul>
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -1649,7 +1265,7 @@
                       </div>
                     </div>
 
-                    <!-- Accordion 4: Review, Confirm, and Submit Payment -->
+                    <!-- Accordion 4: Review and Submit -->
                     <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Accordion">
                       <div class="bg-white rounded w-100 position-relative" data-name="Accordion/collapsed">
                         <div class="overflow-hidden rounded w-100 h-100">
@@ -1659,7 +1275,7 @@
                                 <p class="fw-medium text-center text-white w-100 mb-0">4</p>
                               </div>
                               <div class="d-flex flex-fill align-items-center" data-name="Text Container">
-                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Review, Confirm, and Submit Payment</p>
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Review and Submit</p>
                               </div>
                             </div>
                             <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
@@ -1678,18 +1294,31 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
-                                    <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>Review the contribution summary screen and confirm the total amount is correct</li>
-                                      <li>Add or update your banking information for sending the contributions. Click "Change" if you need to update your payment method.
-                                        <ul class="mb-0" style="color:rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;">
-                                          <li>If you are paying with your business bank account include routing number, name, account number and account type.</li>
-                                          <li>Or select an alternative payment method from either "Send money via ACH", "wire funds" or "check." For check, add your check's routing number, bank name and account number. Click "Mail a paper check" if you are sending a physical check to CalSavers.</li>
+                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
+                                      <li>Review the contribution summary to confirm the total amount is correct.</li>
+                                      <li>Add or update your payment method for sending contributions, if needed.
+                                        <ul class="mb-0" style="list-style: square; color:rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;">
+                                          <li>If you are paying with your business bank account, enter the required banking details:
+                                            <ul class="mb-0" style="list-style-type: &quot;- &quot;; padding: 0 0 0 1.25rem; color:rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;">
+                                              <li>Routing number</li>
+                                              <li>Bank name</li>
+                                              <li>Account number</li>
+                                              <li>Account type</li>
+                                            </ul>
+                                          </li>
+                                          <li>Or select an alternative payment method:
+                                            <ul class="mb-0" style="list-style-type: &quot;- &quot;; padding: 0 0 0 1.25rem; color:rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;">
+                                              <li>Send money via ACH</li>
+                                              <li>Wire funds</li>
+                                              <li>Check – include check's routing number, bank name, and account number</li>
+                                            </ul>
+                                          </li>
                                         </ul>
                                       </li>
-                                      <li>Click Save after you have entered all your payment information. Then click to check the box next to "I agree to send this amount to CalSavers."</li>
-                                      <li>At the bottom of the screen you will see in green "Show all employee contribution amounts if you want to confirm the details."</li>
-                                      <li>Select "Send payment" to complete the task.</li>
-                                    </ol>
+                                      <li>Click Save, then check the box "I agree to send this amount to CalSavers."</li>
+                                      <li>For optional review, you can click "Show all employee contribution amounts" to confirm details.</li>
+                                      <li>Select Send Payment to finish.</li>
+                                    </ul>
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -1711,15 +1340,17 @@
 
                 <!-- Additional Information -->
                 <div class="d-flex flex-column gap-3 align-items-start flex-shrink-0 w-100">
-                  <h4 class="fw-semibold text-dark mb-0">Additional Information</h4>
+                  <h4 class="fw-semibold text-dark mb-0">Ongoing Responsibilities</h4>
+                  <ul class="cs-pi-panel-body w-100 mb-0 ps-3" style="list-style: disc;">
+                    <li>Contributions must be sent within <strong class="text-dark">7 days</strong> of taking money from your employees' paychecks.</li>
+                    <li>Submit contributions <strong class="text-dark">every pay period</strong> for participating employees.</li>
+                    <li>Before each payroll, review your employee's participation status and contribution rate in the <strong class="text-dark">Employer Portal.</strong></li>
+                  </ul>
                   <p class="cs-pi-panel-body mb-0">
-                    You will continue to send employee contributions each pay period. <strong class="text-dark">Contributions must be sent within 7 days of taking the money out of your employees' paychecks.</strong> If employees make a change to their contribution rate or choose to opt out, you will receive an e-mail or notification in the Employer Portal (you will be prompted to select your notification preference) prior to each pay period so you can make the appropriate change prior to submitting that payroll's contributions. Also, you can always access the most up-to-date information on the employer portal.
+                    For information on identifying participating employees, watch <a href="#" class="link-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#cs-pi-video-modal" data-video-src="https://fast.wistia.net/embed/iframe/ljnib5orc9?videoFoam=true" data-video-title="Identifying Eligible Employees">Identifying Eligible Employees</a>
                   </p>
                   <p class="cs-pi-panel-body mb-0">
-                    For more information on how to identify eligible employees for sending contributions, watch the video <a href="#" class="link-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#cs-pi-video-modal" data-video-src="https://fast.wistia.net/embed/iframe/ljnib5orc9?videoFoam=true" data-video-title="Identifying Eligible Employees">Identifying Eligible Employees.</a>
-                  </p>
-                  <p class="cs-pi-panel-body mb-0">
-                    If you need help, contact your field representative at <a href="mailto:fieldsupport@calsavers.com" class="link-primary fw-semibold">fieldsupport@calsavers.com.</a>
+                    <span class="text-dark"><strong>Need help?</strong> Contact your CalSavers Field Representative at</span> <a href="mailto:fieldsupport@calsavers.com" class="link-primary fw-semibold">fieldsupport@calsavers.com.</a>
                   </p>
                 </div>
 
@@ -1729,6 +1360,84 @@
           </div>
 
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       FREQUENTLY ASKED QUESTIONS (ported verbatim from
+       employee-enrollment-period.html / eligibility-and-exemptions.html)
+       ==================================================================== -->
+  <section class="cs-pi-faq">
+    <div class="container">
+
+      <header class="cs-pi-section__header">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </header>
+
+      <div class="d-flex flex-column gap-2">
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">Can an employer make contributions on behalf of their employees?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">No. Employers are not allowed to make contributions on behalf of, or as a match to, employee contributions in this program. If an employer wishes to make contributions to a retirement plan on behalf of their employees, they should explore offering an employer-sponsored retirement plan.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">Who will be responsible for monitoring contribution limits?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">It is the responsibility of program participants to monitor their own annual contribution limits across all Individual Retirement Accounts (IRA) they maintain, including their CalSavers account. CalSavers intends to notify employees when their CalSavers account is close to reaching the federal annual contribution limits for an IRA and will instruct employers to stop contributions when employees' contributions reach the limit. Note that limits apply across all IRAs maintained by an individual and CalSavers will not know of other IRAs that program participants maintain elsewhere.</p>
+            <p class="cs-pi-panel-body mb-0">It is also the responsibility of the program participant to determine if they are eligible to contribute to a Roth IRA, and to comply with any other IRA rules. However, CalSavers will provide program participants with educational materials to help participants understand the rules.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">How do I know who to deduct contributions for?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">Employers are prompted to select a notification preference, which will provide email notifications between 1-5 days prior to the next pay date. Also, at any point in time, employers can access up-to-date information on their employer portal, illustrating any employee decision changes.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">How often do I need to send the contributions in?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">Contributions must be submitted to the program for each paycheck and remitted within seven days of taking the deduction out of the participating employee's paycheck.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">How will I know when to submit the first payroll contributions?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body">Your first contributions will be submitted on the first pay date that occurs 30 days after you upload your employee roster. You will receive a notification in your message center a few days prior to each pay date and an e-mail will be sent to the primary company contact letting them know they should check their message center in the employer portal.</p>
+          </div>
+        </div>
+
+        <div class="cs-pi-accordion">
+          <button type="button" class="cs-pi-accordion__header" aria-expanded="false">
+            <span class="cs-pi-accordion__title">What happens if an employee does not opt out in time and contributions were submitted, but they do not want to participate?</span>
+            <svg class="cs-pi-accordion__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="cs-pi-accordion__body">
+            <p class="cs-pi-panel-body mb-0">If an employee decides to opt out after their account has already been funded they have the option to request a withdrawal in the form of a check or bank transfer. If this occurs, employees should be referred to the web site to complete a Withdrawal Form or contact the Client Services Team at <a href="tel:855-650-6918" class="link-primary fw-semibold">855-650-6918</a>.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1870,28 +1579,18 @@
   </script>
 
   <script>
-    // "Go to ... Instructions" links: activate the requested tab and force
-    // the detailed-instructions toggle off (quickview), matching the
-    // data-toggle-state on/off pattern used on payroll-integrations.html.
+    // "Go to ... Instructions" links: activate the requested tab.
     function goToTab(tabNum) {
       var tabBtn = document.querySelector('.cs-pi-tab[data-tab="' + tabNum + '"]');
       if (tabBtn) { tabBtn.click(); }
-      var panel = document.querySelector('.cs-pi-panel[data-panel="' + tabNum + '"]');
-      if (panel) {
-        var onState  = panel.querySelector('[data-toggle-state="on"]');
-        var offState = panel.querySelector('[data-toggle-state="off"]');
-        if (onState)  { onState.classList.add('d-none'); }
-        if (offState) { offState.classList.remove('d-none'); }
-      }
       var tabsSection = document.getElementById('how-to-submit');
       if (tabsSection) { tabsSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     }
   </script>
 
-  <!-- Tab switching, accordion, quick-view toggle — ported verbatim from
-       payroll-integrations.html (single-mode variant: this page has one
-       tab group, so `mode` is a constant instead of being switched by
-       integration-type radio cards). -->
+  <!-- Tab switching, accordion — ported verbatim from payroll-integrations.html
+       (single-mode variant: this page has one tab group, so `mode` is a
+       constant instead of being switched by integration-type radio cards). -->
   <script>
     (function () {
       var mode = 'submit';
@@ -1985,21 +1684,18 @@
         applyAccordionState(container);
       });
 
-      // Quick-view toggle — click inside [data-name="Toggle Switch"]
-      // swaps the two [data-toggle-state] siblings in the enclosing panel.
-      // Ported from src/app/App.tsx (toggleSwitch / Background / Switch handlers).
-      document.addEventListener('click', function (e) {
-        var inToggle = e.target.closest('[data-name="Toggle Switch"], [data-name="Background"], [data-name="Switch"]');
-        if (!inToggle) return;
-        var panel = inToggle.closest('.cs-pi-panel');
-        if (!panel) return;
-        var states = panel.querySelectorAll('[data-toggle-state]');
-        if (states.length !== 2) return;
-        states.forEach(function (s) { s.classList.toggle('d-none'); });
-      });
-
       applyState();
     })();
+  </script>
+
+  <!-- FAQ accordion expand/collapse (ported from employee-enrollment-period.html) -->
+  <script>
+    document.addEventListener('click', function (e) {
+      var header = e.target.closest('.cs-pi-accordion__header');
+      if (!header) return;
+      var acc = header.closest('.cs-pi-accordion');
+      if (acc) acc.classList.toggle('is-expanded');
+    });
   </script>
 
 </body>

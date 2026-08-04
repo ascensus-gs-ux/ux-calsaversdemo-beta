@@ -48,7 +48,8 @@
       border: 1px solid rgba(0, 89, 79, 0.5);
       border-radius: 8px;
       padding: 1.25rem 1.5rem;
-      margin-top: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -78,6 +79,7 @@
     .cs-pi-callout__icon img { width: 100%; height: 100%; }
     .cs-pi-callout__text { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; }
     .cs-pi-callout__title { font-weight: 600; color: #000000; margin-bottom: 0; font-size: 1rem; }
+    .cs-pi-callout__desc { color: #000000; margin: 0; font-size: 0.9375rem; line-height: 1.5; }
 
     @media (max-width: 767.98px) {
       .cs-pi-callout {
@@ -86,6 +88,19 @@
         gap: 1rem;
       }
     }
+
+    @media (min-width: 768px) {
+      .cs-pi-callout--flush .cs-pi-callout__body { align-items: center; }
+    }
+
+    /* Gold variant — used for the inline "Tip" callout inside numbered steps
+       (ported verbatim from setting-up-deductions.html / add-employee-information.html) */
+    .cs-pi-callout--gold {
+      background-color: #F2F0E9;
+      border-color: rgba(128, 100, 31, 0.35);
+    }
+    .cs-pi-callout--gold .cs-pi-callout__body { align-items: center; }
+    .cs-pi-callout--gold .cs-pi-callout__desc { color: #000000; }
 
     /* =====================================================================
        Tabs (ported verbatim from setting-up-deductions.html's .cs-pi-tabs
@@ -287,7 +302,7 @@
     <h1>Adding Administrators (Optional)</h1>
     <div class="hero-underline"></div>
     <p class="cs-pi-hero__lede">
-      There are two main ongoing tasks for CalSavers&ndash; maintaining your employee roster and sending payroll contributions. You may want to add your Office Manager, HR manager, Payroll Specialist or Bookkeeper as an administrator to handle this work.
+     Maintaining your employee roster and submitting payroll contributions are two ongoing responsibilities for CalSavers. If someone else manages these tasks, you can add additional administrators—such as an office manager, HR manager, payroll specialist, or bookkeeper—to help manage your employer account. 
     </p>
 
     <!-- Callout: black left-accent info banner -->
@@ -298,7 +313,7 @@
             <img src="../src/assets/Calandar.svg" alt="">
           </span>
           <div class="cs-pi-callout__text">
-            <p class="cs-pi-callout__title">You can add administrators during the registration process or at any time after completing registration.</p>
+            <p class="cs-pi-callout__title">Administrators can be added during registration or at any time after.</p>
           </div>
         </div>
       </div>
@@ -346,7 +361,7 @@
                         <p class="fw-medium text-center text-white w-100 mb-0">1</p>
                       </div>
                       <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-                        <p class="fw-semibold text-dark w-100 mb-0">You can add administrators during registration or select &ldquo;Administrators&rdquo; from the dashboard after registration.</p>
+                        <p class="fw-semibold text-dark w-100 mb-0">Add administrators during the registration process or select &ldquo;Administrators&rdquo; from the dashboard after registration.</p>
                       </div>
                     </div>
                   </div>
@@ -361,8 +376,92 @@
                       <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
                         <p class="fw-medium text-center text-white w-100 mb-0">2</p>
                       </div>
-                      <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-                        <p class="fw-semibold text-dark w-100 mb-0">Complete all fields with the required contact information.</p>
+                      <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Container">
+                        <div class="d-flex flex-fill flex-column gap-1 align-items-start w-100" data-name="Text Container">
+                          <p class="fw-semibold text-dark w-100 mb-0">Enter Administrator Information</p>
+                          <ul class="text-secondary w-100 mb-0 ps-3" style="padding-bottom: 0;">
+                            <li>Complete all required contact information.</li>
+                            <li>Select the appropriate level of access and user role.</li>
+                            <li>Review and submit.</li>
+                          </ul>
+                        </div>
+
+                        <div class="cs-pi-callout cs-pi-callout--gold w-100">
+                          <div class="cs-pi-callout__body">
+                            <span class="cs-pi-callout__icon" aria-hidden="true">
+                              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24.6875 28.2031V35.2344C24.6875 35.856 24.4406 36.4521 24.001 36.8917C23.5615 37.3312 22.9654 37.5781 22.3438 37.5781H17.6562C17.0346 37.5781 16.4385 37.3312 15.999 36.8917C15.5594 36.4521 15.3125 35.856 15.3125 35.2344V28.2031" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15.3125 32.8906H24.6875" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M20 2.42188V4.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3.59375 18.8281H5.9375" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M7.10938 7.10938L8.82812 8.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M36.4062 18.8281H34.0625" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M32.8906 7.10938L31.1719 8.76562" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15.3125 18.0469C15.9341 18.0469 16.5302 18.2938 16.9698 18.7333C17.4093 19.1729 17.6562 19.769 17.6562 20.3906V28.2031" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22.3438 28.2031V20.3906C22.3438 19.769 22.5907 19.1729 23.0302 18.7333C23.4698 18.2938 24.0659 18.0469 24.6875 18.0469" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15.1874 28.2031H24.8124C26.5549 27.34 28.0178 26.0019 29.0324 24.3431C30.0471 22.6843 30.572 20.7725 30.5468 18.8281C30.4986 16.046 29.3719 13.3912 27.4044 11.4237C25.4368 9.45609 22.782 8.32944 19.9999 8.28125C17.2177 8.32944 14.563 9.45609 12.5954 11.4237C10.6279 13.3912 9.50121 16.046 9.45302 18.8281C9.42776 20.7725 9.95272 22.6843 10.9674 24.3431C11.982 26.0019 13.4449 27.34 15.1874 28.2031Z" stroke="#80641F" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </span>
+                            <div class="cs-pi-callout__text">
+                              <p class="cs-pi-callout__desc mb-0">Administrators have the highest level of access and can perform all employer account functions, including managing users, assigning roles, and updating permissions.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Administrator Permissions table (Bootstrap table-responsive) -->
+                        <div class="cs-pi-permissions-wrap w-100">
+                          <div class="table-responsive">
+                            <table class="table cs-pi-permissions-table mb-0">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Administrator Permissions</th>
+                                  <th scope="col">Payroll Processor</th>
+                                  <th scope="col">Supervisor</th>
+                                  <th scope="col">Administrator</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>Add and edit employees</td>
+                                  <td data-label="Payroll Processor"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                  <td data-label="Supervisor"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                  <td data-label="Administrator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                </tr>
+                                <tr>
+                                  <td>Edit payroll lists</td>
+                                  <td data-label="Payroll Processor"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                  <td data-label="Supervisor"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                  <td data-label="Administrator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                </tr>
+                                <tr>
+                                  <td>Submit contributions</td>
+                                  <td data-label="Payroll Processor"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                  <td data-label="Supervisor"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                  <td data-label="Administrator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                </tr>
+                                <tr>
+                                  <td>Add delegates and payroll representatives</td>
+                                  <td data-label="Payroll Processor"><img src="../src/assets/X.svg" width="20" height="20" alt="Not included"></td>
+                                  <td data-label="Supervisor"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                  <td data-label="Administrator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                </tr>
+                                <tr>
+                                  <td>Edit company and bank info</td>
+                                  <td data-label="Payroll Processor"><img src="../src/assets/X.svg" width="20" height="20" alt="Not included"></td>
+                                  <td data-label="Supervisor"><img src="../src/assets/X.svg" width="20" height="20" alt="Not included"></td>
+                                  <td data-label="Administrator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                </tr>
+                                <tr>
+                                  <td>Change delegate access</td>
+                                  <td data-label="Payroll Processor"><img src="../src/assets/X.svg" width="20" height="20" alt="Not included"></td>
+                                  <td data-label="Supervisor"><img src="../src/assets/X.svg" width="20" height="20" alt="Not included"></td>
+                                  <td data-label="Administrator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -377,104 +476,12 @@
                       <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
                         <p class="fw-medium text-center text-white w-100 mb-0">3</p>
                       </div>
-                      <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Container">
-                        <div class="d-flex flex-fill flex-column gap-1 align-items-start w-100" data-name="Text Container">
-                          <p class="fw-semibold text-dark w-100 mb-0">Select a level of authorization for the Administrator</p>
-                          <p class="cs-pi-panel-body w-100 mb-0">The highest level of administration is the Account Manager. The Account Manager has the highest level of system access, can perform all actions, and assign all roles and permissions to others.</p>
-                        </div>
-
-                        <!-- Administrator Permissions table (Bootstrap table-responsive) -->
-                        <div class="cs-pi-permissions-wrap w-100">
-                          <div class="table-responsive">
-                            <table class="table cs-pi-permissions-table mb-0">
-                              <thead>
-                                <tr>
-                                  <th scope="col">Administrator Permissions</th>
-                                  <th scope="col">Account Manager</th>
-                                  <th scope="col">Coordinator</th>
-                                  <th scope="col">Supporter</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>Responsible for registration and program facilitation</td>
-                                  <td data-label="Account Manager"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Coordinator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Supporter"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                </tr>
-                                <tr>
-                                  <td>Add and edit employee information</td>
-                                  <td data-label="Account Manager"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Coordinator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Supporter"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                </tr>
-                                <tr>
-                                  <td>Edit pay schedules</td>
-                                  <td data-label="Account Manager"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Coordinator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Supporter"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                </tr>
-                                <tr>
-                                  <td>Submit contributions</td>
-                                  <td data-label="Account Manager"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Coordinator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Supporter"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                </tr>
-                                <tr>
-                                  <td>Add other administrators</td>
-                                  <td data-label="Account Manager"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Coordinator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Supporter"><img src="../src/assets/X.svg" width="20" height="20" alt="Not included"></td>
-                                </tr>
-                                <tr>
-                                  <td>Change access for an administrator.</td>
-                                  <td data-label="Account Manager"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Coordinator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Supporter"><img src="../src/assets/X.svg" width="20" height="20" alt="Not included"></td>
-                                </tr>
-                                <tr>
-                                  <td>Edit company and bank information.</td>
-                                  <td data-label="Account Manager"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Coordinator"><img src="../src/assets/check.svg" width="22" height="22" alt="Included"></td>
-                                  <td data-label="Supporter"><img src="../src/assets/X.svg" width="20" height="20" alt="Not included"></td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Step 4 -->
-              <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Row">
-                <div class="bg-white w-100 rounded" data-name="Step 4">
-                  <div class="overflow-hidden rounded w-100 h-100">
-                    <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                      <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                        <p class="fw-medium text-center text-white w-100 mb-0">4</p>
-                      </div>
-                      <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-                        <p class="fw-semibold text-dark w-100 mb-0">Contact your administrator to inform them that you have added them to the program.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Step 5 -->
-              <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Row">
-                <div class="bg-white w-100 rounded" data-name="Step 5">
-                  <div class="overflow-hidden rounded w-100 h-100">
-                    <div class="d-flex gap-3 align-items-start p-2 w-100 h-100">
-                      <div class="d-flex flex-column align-items-center justify-content-center p-2 rounded-circle flex-shrink-0" style="background-color: #80641f; width: 32px; height: 32px;" data-name="Number Container">
-                        <p class="fw-medium text-center text-white w-100 mb-0">5</p>
-                      </div>
-                      <div class="d-flex flex-fill flex-column gap-1 align-items-start" data-name="Text Container">
-                        <p class="fw-semibold text-dark w-100 mb-0">Each administrator you add will receive a notification to create a profile. They will need to log on to complete their registration.</p>
+                      <div class="d-flex flex-fill flex-column gap-1 align-items-start w-100" data-name="Text Container">
+                        <p class="fw-semibold text-dark w-100 mb-0">Complete Administrator Setup</p>
+                        <ul class="text-secondary w-100 mb-0 ps-3" style="padding-bottom: 0;">
+                          <li>Each administrator will receive an email invitation to create their profile and activate their account.</li>
+                          <li>Optionally, you can let your administrator know that they&rsquo;ve been added.</li>
+                        </ul>
                       </div>
                     </div>
                   </div>
