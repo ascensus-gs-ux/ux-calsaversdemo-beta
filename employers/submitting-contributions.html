@@ -298,13 +298,34 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
     .cs-pi-img-wrap img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      object-position: center;
+      object-fit: cover;
+      object-position: top;
     }
+
+    /* Zoomable accordion screenshots — click to enlarge */
+    .cs-pi-zoomable { cursor: zoom-in; }
+    .cs-pi-zoom-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 89, 79, 0.8);
+      color: #ffffff;
+      font-weight: 600;
+      text-align: center;
+      padding: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      pointer-events: none;
+    }
+    .cs-pi-zoomable-wrap:hover .cs-pi-zoom-overlay { opacity: 1; }
+
     /* FPO placeholder — stands in for a screenshot inside .cs-pi-img-wrap
        (ported verbatim from add-employee-information.html) */
     .cs-pi-fpo {
@@ -867,8 +888,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Send-contributions-button-on-dashboard.png" alt="Open the Contributions page in the Employer Portal" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -916,8 +938,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Select-up-payroll-schedule.png" alt="Select the pay schedule and upload your file" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -987,8 +1010,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Upload-contribution-amounts.png" alt="Complete and upload the contribution amounts template" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1055,8 +1079,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Add-payment-method.png" alt="Review and submit your contribution" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1080,10 +1105,10 @@
                     <li>Before each payroll, review your employee's participation status and contribution rate in the <strong class="text-dark">Employer Portal.</strong></li>
                   </ul>
                   <p class="cs-pi-panel-body mb-0">
-                    For information on identifying participating employees, watch <a href="#" class="link-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#cs-pi-video-modal" data-video-src="https://fast.wistia.net/embed/iframe/ljnib5orc9?videoFoam=true" data-video-title="Identifying Eligible Employees">Identifying Eligible Employees</a>
+                    For information on identifying participating employees, watch <a href="#" class="link-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#cs-pi-video-modal" data-video-src="https://fast.wistia.net/embed/iframe/ljnib5orc9?videoFoam=true" data-video-title="Identifying Eligible Employees">Identifying Eligible Employees</a>.
                   </p>
                   <p class="cs-pi-panel-body mb-0">
-                    <span class="text-dark"><strong>Need help?</strong> Contact your CalSavers Field Representative at</span> <a href="mailto:fieldsupport@calsavers.com" class="link-primary fw-semibold">fieldsupport@calsavers.com.</a>
+                    <span class="text-dark"><strong>Need help?</strong> Contact your CalSavers Field Representative at</span> <a href="mailto:fieldsupport@calsavers.com" class="link-primary fw-semibold">fieldsupport@calsavers.com</a>.
                   </p>
                 </div>
 
@@ -1157,8 +1182,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Send-contributions-button-on-dashboard.png" alt="Open the Contributions page in the Employer Portal" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1206,8 +1232,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Select-up-payroll-schedule.png" alt="Select the pay schedule for this contribution" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1254,8 +1281,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Enter-contribution-amounts.png" alt="Enter contribution amounts for each employee" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1322,8 +1350,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Add-payment-method.png" alt="Review and submit your contribution" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1551,6 +1580,20 @@
     </div>
   </div>
 
+  <!-- Image zoom modal -->
+  <div class="modal fade" id="cs-pi-image-modal" tabindex="-1" aria-label="Image zoom" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img id="cs-pi-image-modal-img" src="" alt="" class="img-fluid" style="max-height: 75vh; width: auto;">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap JS bundle (modals) -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -1696,6 +1739,23 @@
       var acc = header.closest('.cs-pi-accordion');
       if (acc) acc.classList.toggle('is-expanded');
     });
+  </script>
+
+  <!-- Image zoom: open modal on .cs-pi-zoomable click -->
+  <script>
+    (function () {
+      var zoomModal = document.getElementById('cs-pi-image-modal');
+      var zoomImg   = document.getElementById('cs-pi-image-modal-img');
+      if (!zoomModal || !zoomImg) return;
+      document.addEventListener('click', function (e) {
+        var target = e.target.closest('.cs-pi-zoomable');
+        if (!target) return;
+        zoomImg.src = target.src;
+        zoomImg.alt = target.alt;
+        bootstrap.Modal.getOrCreateInstance(zoomModal).show();
+      });
+      zoomModal.addEventListener('hidden.bs.modal', function () { zoomImg.src = ''; });
+    })();
   </script>
 
 </body>

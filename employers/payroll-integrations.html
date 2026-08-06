@@ -124,8 +124,23 @@
     .cs-modal-close:hover, .cs-modal-close:focus { opacity: 0.75; }
 
     /* Zoomable screenshot images */
-    .cs-pi-zoomable { cursor: zoom-in; transition: opacity 0.15s ease; }
-    .cs-pi-zoomable:hover { opacity: 0.85; }
+    .cs-pi-zoomable { cursor: zoom-in; }
+    .cs-pi-zoom-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 89, 79, 0.8);
+      color: #ffffff;
+      font-weight: 600;
+      text-align: center;
+      padding: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      pointer-events: none;
+    }
+    .cs-pi-zoomable-wrap:hover .cs-pi-zoom-overlay { opacity: 1; }
 
     /* Accordion image container — consistent 480×300 max, responsive, no distortion */
     .cs-pi-img-wrap {
@@ -138,6 +153,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
     .cs-pi-img-wrap img {
       width: 100%;
@@ -1161,8 +1177,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
                                     <img src="../src/assets/PI-Instructions-Add-Provider.png" alt="Log in CalSavers and go to Payroll Provider" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1208,8 +1225,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
                                     <img src="../src/assets/PI-Instructions-Add-Bank.png" alt="Add a bank or select a previously added account" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1252,8 +1270,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
                                     <img src="../src/assets/PI%20Screen_%20Employer%20connects.png" alt="Initiate Payroll Integrations flow to register for the integration" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1297,8 +1316,9 @@ Once setup is complete, you will be re-routed to your CalSavers dashboard. You s
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
                                     <img src="../src/assets/PI-Instructions-Payroll-Added.png" alt="Complete setup and verify connection" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1789,7 +1809,7 @@ Once setup is complete, you will be re-routed to your CalSavers dashboard. You s
           </span>
           <h3 class="cs-pi-support__title">Chat with CalSavvy</h3>
           <p class="cs-pi-support__body">
-            CalSavvy is here to help you get the most out of CalSavers. From answering questions about your account to walking you through the setup process, CalSavvy is here for you.
+           Get answers to questions about CalSavers, from registration to administration.
           </p>
                <div class="support-link d-flex gap-2 align-items-center">
           <p class="fw-semibold text-nowrap mb-0" style="color: #00594F;">

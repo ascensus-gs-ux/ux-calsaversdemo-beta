@@ -429,8 +429,28 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
-    .cs-pi-img-wrap img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
+    .cs-pi-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+    /* Zoomable accordion screenshots — click to enlarge */
+    .cs-pi-zoomable { cursor: zoom-in; }
+    .cs-pi-zoom-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 89, 79, 0.8);
+      color: #ffffff;
+      font-weight: 600;
+      text-align: center;
+      padding: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      pointer-events: none;
+    }
+    .cs-pi-zoomable-wrap:hover .cs-pi-zoom-overlay { opacity: 1; }
 
     /* FPO placeholder — stands in for a screenshot inside .cs-pi-img-wrap */
     .cs-pi-fpo {
@@ -813,8 +833,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Add-employees-button-on-dashboard.png" alt="Add employees button on the Employer Portal dashboard" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -881,8 +902,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Select-up-payroll-schedule-from-dropdown.png" alt="Select a pay schedule group and create a new pay schedule" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -930,8 +952,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Set-up-payroll-schedule.png" alt="Set up pay schedule details" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -968,17 +991,12 @@
                           <div class="d-flex flex-column gap-4 align-items-start p-4 w-100 h-100">
                             <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Steps">
                               <div class="row g-4 align-items-start w-100">
-                                <div class="col-lg-6">
+                                <div class="col-12">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
                                     <ol class="text-secondary w-100 mb-0 ps-3">
                                       <li>Repeat the process to create more schedules for other employee groups</li>
                                       <li>Ensure employees are assigned to the correct pay schedule before continuing</li>
                                     </ol>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
                                   </div>
                                 </div>
                               </div>
@@ -1059,8 +1077,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Add-employees-button-on-dashboard.png" alt="Log in and start the add employee process in the Employer Portal" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1107,8 +1126,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Select-up-payroll-schedule-from-dropdown.png" alt="Select a pay schedule from the dropdown menu" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1164,8 +1184,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Download-employee-payroll-file.png" alt="Download and prepare the Excel employee upload template" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1214,8 +1235,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Image-of-payroll-census-file.png" alt="Enter employee information in the payroll census file" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1262,8 +1284,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Upload-employee-payroll-file.png" alt="Upload the completed employee payroll file in the Employer Portal" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1300,7 +1323,7 @@
                           <div class="d-flex flex-column gap-4 align-items-start p-4 w-100 h-100">
                             <div class="d-flex flex-column align-items-start flex-shrink-0 w-100" data-name="Steps">
                               <div class="row g-4 align-items-start w-100">
-                                <div class="col-lg-6">
+                                <div class="col-12">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
                                     <ol class="text-secondary w-100 mb-0 ps-3">
                                       <li>Review your employee list under Employees for accuracy</li>
@@ -1314,11 +1337,6 @@
                                         </ul>
                                       </li>
                                     </ol>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
                                   </div>
                                 </div>
                               </div>
@@ -1411,8 +1429,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Add-employees-button-on-dashboard.png" alt="Log in and start the add employee process in the Employer Portal" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1459,8 +1478,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Select-up-payroll-schedule-from-dropdown.png" alt="Select a pay schedule from the dropdown menu" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1512,8 +1532,9 @@
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
-                                  <div class="cs-pi-img-wrap">
-                                    <div class="cs-pi-fpo w-100 h-100"></div>
+                                  <div class="cs-pi-img-wrap cs-pi-zoomable-wrap">
+                                    <img src="../src/assets/Add-all-employee-details.png" alt="Enter, review, and submit employee details manually" class="img-fluid cs-pi-zoomable">
+                                    <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -1713,6 +1734,20 @@
     </div>
   </section>
 
+  <!-- Image zoom modal -->
+  <div class="modal fade" id="cs-pi-image-modal" tabindex="-1" aria-label="Image zoom" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img id="cs-pi-image-modal-img" src="" alt="" class="img-fluid" style="max-height: 75vh; width: auto;">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap bundle -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -1813,6 +1848,23 @@
         reactHeader.setAttribute('data-name', expanded ? 'Accordion/collapsed' : 'Accordion/expanded');
         applyAccordionState(container);
       });
+    })();
+  </script>
+
+  <!-- Image zoom: open modal on .cs-pi-zoomable click -->
+  <script>
+    (function () {
+      var zoomModal = document.getElementById('cs-pi-image-modal');
+      var zoomImg   = document.getElementById('cs-pi-image-modal-img');
+      if (!zoomModal || !zoomImg) return;
+      document.addEventListener('click', function (e) {
+        var target = e.target.closest('.cs-pi-zoomable');
+        if (!target) return;
+        zoomImg.src = target.src;
+        zoomImg.alt = target.alt;
+        bootstrap.Modal.getOrCreateInstance(zoomModal).show();
+      });
+      zoomModal.addEventListener('hidden.bs.modal', function () { zoomImg.src = ''; });
     })();
   </script>
 

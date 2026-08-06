@@ -128,6 +128,26 @@
     .cs-pi-accordion__step { display: grid; grid-template-columns: 1fr; gap: 1rem; }
     @media (min-width: 768px) { .cs-pi-accordion__step { grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; } }
     .cs-pi-accordion__screenshot { width: 100%; height: auto; border: 1px solid #BFD5D3; border-radius: 8px; display: block; }
+
+    /* Zoomable accordion screenshots — click to enlarge */
+    .cs-pi-zoomable-wrap { position: relative; cursor: zoom-in; }
+    .cs-pi-zoom-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 89, 79, 0.8);
+      color: #ffffff;
+      font-weight: 600;
+      text-align: center;
+      padding: 0.75rem;
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      pointer-events: none;
+    }
+    .cs-pi-zoomable-wrap:hover .cs-pi-zoom-overlay { opacity: 1; }
     .cs-pi-panel-body { color: #6b6b6b; line-height: 1.6; }
 
     /* ── Quick-view list items ── */
@@ -464,7 +484,10 @@
                       <p class="cs-pi-panel-body">Go to the registration or request exemption page where you will enter your Federal Employer Identification Number or Tax Identification Number (EIN/TIN) and your CalSavers Access Code. <a href="#" style="color:#00594f;font-weight:600;">Request an Access Code</a> if you do not have one.</p>
                       <a class="btn-green" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank">Get Started</a>
                     </div>
-                    <img class="cs-pi-accordion__screenshot" src="../src/assets/register-step1.png" alt="Registration page preview">
+                    <div class="cs-pi-zoomable-wrap">
+                      <img class="cs-pi-accordion__screenshot cs-pi-zoomable" src="../src/assets/register-step1.png" alt="Registration page preview">
+                      <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -480,7 +503,10 @@
                     <div>
                       <p class="cs-pi-panel-body">A new page will open where you will enter your business's name and address, then click Next to determine whether your business is exempt from the mandate.</p>
                     </div>
-                    <img class="cs-pi-accordion__screenshot" src="../src/assets/register-step2.png" alt="Enter business information preview">
+                    <div class="cs-pi-zoomable-wrap">
+                      <img class="cs-pi-accordion__screenshot cs-pi-zoomable" src="../src/assets/register-step2.png" alt="Enter business information preview">
+                      <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -497,7 +523,10 @@
                       <p class="cs-pi-panel-body">Determine whether your business is exempt from the mandate by choosing your business type. If you don't see your exemption reason listed, you can request an exemption by emailing <a href="mailto:calsavers@treasurer.ca.gov" style="color:#00594f;font-weight:600;">calsavers@treasurer.ca.gov</a>.</p>
                       <p class="cs-pi-panel-body">If your business is not exempt, you'll continue through steps 4 and 5 of the registration process.</p>
                     </div>
-                    <img class="cs-pi-accordion__screenshot" src="../src/assets/register-step3.png" alt="Exemption check preview">
+                    <div class="cs-pi-zoomable-wrap">
+                      <img class="cs-pi-accordion__screenshot cs-pi-zoomable" src="../src/assets/register-step3.png" alt="Exemption check preview">
+                      <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -514,7 +543,10 @@
                       <p class="cs-pi-panel-body">Provide contact information for the person who will run the CalSavers program for your business (Account Manager) and anyone else who may be assisting (Administrator).</p>
                       <p class="cs-pi-panel-body">Then choose a username, password, and security questions for future logins.</p>
                     </div>
-                    <img class="cs-pi-accordion__screenshot" src="../src/assets/register-step4.png" alt="Add administrator preview">
+                    <div class="cs-pi-zoomable-wrap">
+                      <img class="cs-pi-accordion__screenshot cs-pi-zoomable" src="../src/assets/register-step4.png" alt="Add administrator preview">
+                      <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -530,7 +562,10 @@
                     <div>
                       <p class="cs-pi-panel-body">Review your information to make sure everything is correct, then click Submit to complete your registration. You'll receive a confirmation email with the next steps.</p>
                     </div>
-                    <img class="cs-pi-accordion__screenshot" src="../src/assets/register-step5.png" alt="Review and submit preview">
+                    <div class="cs-pi-zoomable-wrap">
+                      <img class="cs-pi-accordion__screenshot cs-pi-zoomable" src="../src/assets/register-step5.png" alt="Review and submit preview">
+                      <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -658,7 +693,10 @@
                       <p class="cs-pi-panel-body">Go to the registration or request exemption page where you will enter your Federal Employer Identification Number or Tax Identification Number (EIN/TIN) and your CalSavers Access Code. <a href="#" style="color:#00594f;font-weight:600;">Request an Access Code</a> if you do not have one.</p>
                       <a class="btn-green" href="https://employer.calsavers.com/californiaertpl/enroll/createEmp/viewCollectEmpPreRegDetails.cs?request_locale=en_US" target="_blank">Get Started</a>
                     </div>
-                    <img class="cs-pi-accordion__screenshot" src="../src/assets/exempt-step1.png" alt="Registration and exemption page preview">
+                    <div class="cs-pi-zoomable-wrap">
+                      <img class="cs-pi-accordion__screenshot cs-pi-zoomable" src="../src/assets/exempt-step1.png" alt="Registration and exemption page preview">
+                      <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -674,7 +712,10 @@
                     <div>
                       <p class="cs-pi-panel-body">A new page will open where you will enter your business's name and address, then click Next to determine whether your business is exempt from the mandate.</p>
                     </div>
-                    <img class="cs-pi-accordion__screenshot" src="../src/assets/exempt-step2.png" alt="Enter business information preview">
+                    <div class="cs-pi-zoomable-wrap">
+                      <img class="cs-pi-accordion__screenshot cs-pi-zoomable" src="../src/assets/exempt-step2.png" alt="Enter business information preview">
+                      <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -690,7 +731,10 @@
                     <div>
                       <p class="cs-pi-panel-body">Choose the reason that applies to your business from the list of qualifying exemptions. If you don't see your exemption reason listed, you can request an exemption by emailing <a href="mailto:calsavers@treasurer.ca.gov" style="color:#00594f;font-weight:600;">calsavers@treasurer.ca.gov</a>.</p>
                     </div>
-                    <img class="cs-pi-accordion__screenshot" src="../src/assets/exempt-step3.png" alt="Exemption reason selection preview">
+                    <div class="cs-pi-zoomable-wrap">
+                      <img class="cs-pi-accordion__screenshot cs-pi-zoomable" src="../src/assets/exempt-step3.png" alt="Exemption reason selection preview">
+                      <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -706,7 +750,10 @@
                     <div>
                       <p class="cs-pi-panel-body">Review your information to make sure everything is correct, then click Submit to continue to instructions to submit any supporting documentation based on your exemption selection.</p>
                     </div>
-                    <img class="cs-pi-accordion__screenshot" src="../src/assets/exempt-step4-5.png" alt="Review exemption request preview">
+                    <div class="cs-pi-zoomable-wrap">
+                      <img class="cs-pi-accordion__screenshot cs-pi-zoomable" src="../src/assets/exempt-step4-5.png" alt="Review exemption request preview">
+                      <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -722,7 +769,10 @@
                     <div>
                       <p class="cs-pi-panel-body">If required, follow the online instructions to provide proof of existing retirement plan or other supporting documents. You'll receive a confirmation email with your exemption status.</p>
                     </div>
-                    <img class="cs-pi-accordion__screenshot" src="../src/assets/exempt-step4-5.png" alt="Submit supporting documentation preview">
+                    <div class="cs-pi-zoomable-wrap">
+                      <img class="cs-pi-accordion__screenshot cs-pi-zoomable" src="../src/assets/exempt-step4-5.png" alt="Submit supporting documentation preview">
+                      <div class="cs-pi-zoom-overlay" aria-hidden="true"><span>Click to enlarge image</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -912,6 +962,20 @@
   </div>
 </section>
 
+<!-- Image zoom modal -->
+<div class="modal fade" id="cs-pi-image-modal" tabindex="-1" aria-label="Image zoom" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <img id="cs-pi-image-modal-img" src="" alt="" class="img-fluid" style="max-height: 75vh; width: auto;">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 (function () {
@@ -959,6 +1023,23 @@
     states.forEach(function (s) { s.classList.toggle('d-none'); });
   });
 })();
+</script>
+
+<!-- Image zoom: open modal on .cs-pi-zoomable click -->
+<script>
+  (function () {
+    var zoomModal = document.getElementById('cs-pi-image-modal');
+    var zoomImg   = document.getElementById('cs-pi-image-modal-img');
+    if (!zoomModal || !zoomImg) return;
+    document.addEventListener('click', function (e) {
+      var target = e.target.closest('.cs-pi-zoomable');
+      if (!target) return;
+      zoomImg.src = target.src;
+      zoomImg.alt = target.alt;
+      bootstrap.Modal.getOrCreateInstance(zoomModal).show();
+    });
+    zoomModal.addEventListener('hidden.bs.modal', function () { zoomImg.src = ''; });
+  })();
 </script>
 </body>
 </html>
