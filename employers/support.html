@@ -171,6 +171,21 @@
       margin-top: 0;
     }
 
+    /* Inline subhead inside a panel (e.g. "Employer Webinars") */
+    .cs-htr__panel-subhead {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      color: #000;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .cs-htr__panel-subhead__icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+
     /* Solid-white variant of the brand .btn-secondary (default is transparent) */
     .btn-secondary-white { background-color: #ffffff; }
 
@@ -340,12 +355,15 @@
       background-color: #f2f0e9;
       padding: 6rem 0;
     }
-    .cs-rep-meet__heading { font-size: 1.75rem; line-height: 1.2; color: #000000; }
+    .cs-rep-meet__heading { font-size: 1.5rem; line-height: 1.2; color: #000000; }
     @media (min-width: 768px) { .cs-rep-meet__heading { font-size: 1.5rem; } }
     .cs-rep-meet__lede { color: #000000; }
-    .cs-rep-meet__question { color: #000000; font-size: 1.0625rem; }
+    .cs-rep-meet__question { color: #000000; font-size: 1.0625rem; font-weight: 500; }
 
-    .cs-rep-meet__viewport { overflow: hidden; }
+    /* clip-path (in addition to overflow) prevents a hairline sliver of the
+       off-screen panel — e.g. a selected radio option's colored border —
+       from bleeding through at the slide boundary on some mobile browsers */
+    .cs-rep-meet__viewport { overflow: hidden; clip-path: inset(0); }
     .cs-rep-meet__track {
       display: flex;
       width: 200%;
@@ -415,6 +433,7 @@
       border-color: #00594f;
       box-shadow: 0 0 0 0.2rem rgba(0, 89, 79, 0.15);
     }
+    .cs-rep-meet__select.has-error { border-color: #b3261e; }
 
     /* Brand button/link (ported verbatim from eligibility-and-exemptions.html) */
     .btn-green { background: #00594f; color: #fff; border: 1px solid #00473f; border-radius: 4px; padding: 8px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: 1px; text-decoration: none; display: inline-block; cursor: pointer; }
@@ -832,6 +851,11 @@
           <div class="cs-htr__panel" id="cs-er-panel-4" role="region">
             <h3 class="mb-4">Webinars</h3>
 
+            <p class="cs-htr__panel-subhead mb-3">
+              <img src="../src/assets/EmployerIcon.svg" alt="" class="cs-htr__panel-subhead__icon" aria-hidden="true">
+              Employer Webinars:
+            </p>
+
             <button type="button" class="cs-resource-card mb-4"
                     data-bs-toggle="modal" data-bs-target="#cs-video-modal" data-video-src="https://share.synthesia.io/embeds/videos/cc38c76d-b9a4-4e4d-bc99-8c64b4d48f3c" data-video-title="CalSavers Employer Overview Recorded Webinar">
               <span class="cs-resource-card__label">CalSavers Employer Overview Recorded Webinar</span>
@@ -859,7 +883,10 @@
             <hr class="cs-htr__divider my-4">
 
             <div>
-              <p class="cs-printable-card__title fw-semibold mb-3">Saver Overview</p>
+              <p class="cs-htr__panel-subhead mb-3">
+                <img src="../src/assets/Employee-Icon.svg" alt="" class="cs-htr__panel-subhead__icon" aria-hidden="true">
+                Saver Webinars:
+              </p>
               <button type="button" class="cs-resource-card"
                       data-bs-toggle="modal" data-bs-target="#cs-video-modal" data-video-src="https://share.synthesia.io/90c2243c-d38a-43b7-b4d1-b95bca8744e5" data-video-title="Calsavers Employee Webinar">
                 <span class="cs-resource-card__label">Calsavers Employee Webinar</span>
@@ -899,7 +926,7 @@
 
               <!-- Step 1: region or non-English language -->
               <div class="cs-rep-meet__panel">
-                <p class="cs-rep-meet__question fw-bold mb-3">
+                <p class="cs-rep-meet__question mb-3">
                   First, tell us how would you like to meet with your representative.
                 </p>
 
@@ -916,26 +943,28 @@
                   </label>
                 </div>
 
-                <p class="cs-rep-meet__error mb-3" id="cs-rep-step1-error" role="alert" hidden>Please select an option to continue</p>
+                <p class="cs-rep-meet__error mb-3" id="cs-rep-step1-error" role="alert" hidden>Please make a selection to continue.</p>
 
                 <button type="button" class="btn-green" id="cs-rep-next">Next</button>
               </div>
 
               <!-- Step 2: pick from a dropdown -->
               <div class="cs-rep-meet__panel">
-                <p class="cs-rep-meet__question fw-bold mb-3" id="cs-rep-step2-question">
+                <p class="cs-rep-meet__question mb-3" id="cs-rep-step2-question">
                   Next, tell us which area would you like to connect with your representative.
                 </p>
 
-                <select class="form-select cs-rep-meet__select mb-4" id="cs-rep-area-select" aria-label="Choose an area" disabled>
+                <select class="form-select cs-rep-meet__select mb-3" id="cs-rep-area-select" aria-label="Choose an area" disabled>
                   <option value="" selected disabled hidden>Choose an area</option>
                 </select>
 
+                <p class="cs-rep-meet__error mb-3" id="cs-rep-step2-error" role="alert" hidden>Please make a selection to continue.</p>
+
                 <div class="d-flex justify-content-between align-items-center">
                   <button type="button" class="link-arrow" id="cs-rep-back">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="transform: scaleX(-1);">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                       <path d="M0.96875 8H15.0312" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                      <path d="M8.46875 14.5625L15.0312 8L8.46875 1.4375" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M7.53125 14.5625L0.96875 8L7.53125 1.4375" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     </svg>
                     Go Back
                   </button>
@@ -1158,6 +1187,7 @@
       var backBtn      = document.getElementById('cs-rep-back');
       var continueBtn  = document.getElementById('cs-rep-continue');
       var select       = document.getElementById('cs-rep-area-select');
+      var step2Error   = document.getElementById('cs-rep-step2-error');
       var question2    = document.getElementById('cs-rep-step2-question');
 
       pathInputs.forEach(function (input) {
@@ -1202,7 +1232,14 @@
         });
 
         select.disabled = false;
+        select.classList.remove('has-error');
+        step2Error.hidden = true;
         track.classList.add('is-step-2');
+      });
+
+      select.addEventListener('change', function () {
+        select.classList.remove('has-error');
+        step2Error.hidden = true;
       });
 
       backBtn.addEventListener('click', function () {
@@ -1210,9 +1247,14 @@
       });
 
       continueBtn.addEventListener('click', function () {
-        if (select.value) {
-          window.open(select.value, '_blank', 'noopener');
+        if (!select.value) {
+          select.classList.add('has-error');
+          step2Error.hidden = false;
+          return;
         }
+        select.classList.remove('has-error');
+        step2Error.hidden = true;
+        window.open(select.value, '_blank', 'noopener');
       });
     })();
   </script>
