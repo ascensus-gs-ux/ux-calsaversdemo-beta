@@ -29,6 +29,7 @@
     @media (min-width: 1025px) {
       .cs-er-hero > .container,
       .cs-htr > .container,
+      .cs-rep-meet > .container,
       .cs-pi-support > .container {
         max-width: 66.666%;
       }
@@ -108,7 +109,7 @@
        "How to register" .cs-htr system, minus the step number/eyebrow
        slots — these tabs are categories, not sequential steps)
        ===================================================================== */
-    .cs-htr { background-color: #F2F6F6; }
+    .cs-htr { background-color: #F2F6F6;  border-top: 1px solid rgba(0, 89, 79, 0.25); border-bottom: 1px solid rgba(0, 89, 79, 0.25);}
 
     .cs-htr__nav {
       display: flex;
@@ -331,6 +332,99 @@
     .cs-modal-close:hover, .cs-modal-close:focus { opacity: 0.75; }
 
     /* =====================================================================
+       Meet one-on-one with a representative — two-step picker (choose
+       region vs. non-English language, then pick from a dropdown). The two
+       steps sit side-by-side in a track that slides (swipes) between them.
+       ===================================================================== */
+    .cs-rep-meet {
+      background-color: #f2f0e9;
+      padding: 6rem 0;
+    }
+    .cs-rep-meet__heading { font-size: 1.75rem; line-height: 1.2; color: #000000; }
+    @media (min-width: 768px) { .cs-rep-meet__heading { font-size: 1.5rem; } }
+    .cs-rep-meet__lede { color: #000000; }
+    .cs-rep-meet__question { color: #000000; font-size: 1.0625rem; }
+
+    .cs-rep-meet__viewport { overflow: hidden; }
+    .cs-rep-meet__track {
+      display: flex;
+      width: 200%;
+      transition: transform 0.45s ease;
+    }
+    .cs-rep-meet__track.is-step-2 { transform: translateX(-50%); }
+    .cs-rep-meet__panel { flex: 0 0 50%; min-width: 0; }
+
+    /* Radio option row (custom visual — default / hover / selected) */
+    .cs-rep-meet__option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      background-color: #ffffff;
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+    .cs-rep-meet__option:hover { background-color: #F2F6F6; border-color: #00594f; }
+    .cs-rep-meet__option.is-selected { border-color: #00473f; background-color: #ffffff; }
+    .cs-rep-meet__option-label { color: #000000; }
+
+    .cs-rep-meet__radio-input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .cs-rep-meet__radio-visual {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #adb5bd;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s ease;
+    }
+    .cs-rep-meet__option:hover .cs-rep-meet__radio-visual { border-color: #00594f; }
+    .cs-rep-meet__option.is-selected .cs-rep-meet__radio-visual { border-color: #00473f; }
+    .cs-rep-meet__option.is-selected .cs-rep-meet__radio-visual::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #00473f;
+    }
+    .cs-rep-meet__radio-input:focus-visible ~ .cs-rep-meet__radio-visual {
+      outline: 2px solid #00594f;
+      outline-offset: 2px;
+    }
+
+    /* Validation state — reuses the brand error red from
+       payroll-integrations.html's .cs-pi-validation--error */
+    #cs-rep-options.has-error .cs-rep-meet__option { border-color: #b3261e; }
+    #cs-rep-options.has-error .cs-rep-meet__option:hover { border-color: #b3261e; }
+    #cs-rep-options.has-error .cs-rep-meet__radio-visual { border-color: #b3261e; }
+    .cs-rep-meet__error { color: #b3261e; font-size: 0.9375rem; }
+
+    .cs-rep-meet__select {
+      min-height: 56px;
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #000000;
+    }
+    .cs-rep-meet__select:focus {
+      border-color: #00594f;
+      box-shadow: 0 0 0 0.2rem rgba(0, 89, 79, 0.15);
+    }
+
+    /* Brand button/link (ported verbatim from eligibility-and-exemptions.html) */
+    .btn-green { background: #00594f; color: #fff; border: 1px solid #00473f; border-radius: 4px; padding: 8px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: 1px; text-decoration: none; display: inline-block; cursor: pointer; }
+    .btn-green:hover { color: #fff; background-color: #00473f; border-color: #00473f; }
+    .btn-green:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .link-arrow { display: inline-flex; align-items: center; gap: 8px; color: #00594f; font-weight: 600; font-size: 16px; letter-spacing: 1px; text-decoration: none; padding: 8px 0; border: none; background: none; cursor: pointer; }
+    .link-arrow:hover { color: #00473f; }
+
+    /* =====================================================================
        Need additional support (reused verbatim from payroll-integrations.html's
        .cs-pi-support system — background overridden to white for this page)
        ===================================================================== */
@@ -408,10 +502,10 @@
       <div class="cs-er-hero__inner row align-items-center g-0">
 
         <div class="col-md-6">
-          <h1 class="cs-er-hero__title mb-3">Employer Program Support</h1>
+          <h1 class="cs-er-hero__title mb-3">Employer Program Resources</h1>
           <span class="cs-er-hero__rule" aria-hidden="true"></span>
           <p class="cs-er-hero__lede">
-            A comprehensive overview for employers on effectively implementing CalSavers retirement plans.
+            Get the support you need every step of the way. Find printable materials, account setup guides, how-to videos, and webinar information to help you run CalSavers with confidence. 
           </p>
         </div>
 
@@ -548,7 +642,7 @@
               <div class="cs-printable-card__text">
                 <p class="cs-printable-card__title fw-semibold mb-1">Eligibility and Exemptions</p>
                 <p class="cs-printable-card__desc mb-0">
-                  Eligible businesses must register their company with CalSavers by mandated deadlines.
+                  Eligible employers must register their company with CalSavers by mandated deadlines.
                 </p>
               </div>
               <div class="cs-printable-card__action">
@@ -560,7 +654,7 @@
               <div class="cs-printable-card__text">
                 <p class="cs-printable-card__title fw-semibold mb-1">Adding Employee Information</p>
                 <p class="cs-printable-card__desc mb-0">
-                  Employee Information must be added within 30 days of registering your company and each time you add new employees to your organization.
+                  Employee Information must be added within 30 days of registering your employer account and each time you hire new employees.
                 </p>
               </div>
               <div class="cs-printable-card__action">
@@ -749,23 +843,13 @@
               </span>
             </button>
 
-            <div class="cs-printable-card mb-4">
-              <div class="cs-printable-card__text">
-                <p class="cs-printable-card__title fw-semibold mb-1">Webinar Registration: How to Add Employee Information and Submit Contributions</p>
-                <p class="cs-printable-card__desc mb-0">
-                  This session covers two key tasks for employers: adding employee information to the portal and submitting contributions. Employers will invite new employees to their IRA accounts and must regularly update their information and contributions.
-                </p>
-              </div>
-              <div class="cs-printable-card__action">
-                <a href="https://us06web.zoom.us/webinar/register/WN_6zyf4vOPSB-AqPiYvTTvCg#/registration" target="_blank" rel="noopener" class="btn btn-secondary btn-secondary-white">Sign Up</a>
-              </div>
-            </div>
+
 
             <div class="cs-printable-card mb-4">
               <div class="cs-printable-card__text">
-                <p class="cs-printable-card__title fw-semibold mb-1">Webinar Registration: Introduction to CalSavers</p>
+                <p class="cs-printable-card__title fw-semibold mb-1">CalSavers Employer Overview</p>
                 <p class="cs-printable-card__desc mb-0">
-                  In this session, we'll provide you with a complete overview of the program including why CalSavers was created, a summary of what your employees will experience and detailed explanations of employer responsibilities and deadlines.
+                  Attend a live webinar to learn about the CalSavers program, what employees can expect, and key employer responsibilities and deadlines.
                 </p>
               </div>
               <div class="cs-printable-card__action">
@@ -796,6 +880,79 @@
 
 
   <!-- ====================================================================
+       MEET ONE-ON-ONE WITH A REPRESENTATIVE
+       ==================================================================== -->
+  <section class="cs-rep-meet" id="cs-rep-meet">
+    <div class="container">
+      <div class="row align-items-start g-4 g-lg-5">
+
+        <div class="col-lg-6">
+          <h2 class="cs-rep-meet__heading mb-3">Meet one-on-one with a representative</h2>
+          <p class="cs-rep-meet__lede mb-0">
+            We offer virtual or in-person sessions with employers and employees to discuss program activities, assist with account setup, and answer questions.
+          </p>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="cs-rep-meet__viewport">
+            <div class="cs-rep-meet__track" id="cs-rep-track">
+
+              <!-- Step 1: region or non-English language -->
+              <div class="cs-rep-meet__panel">
+                <p class="cs-rep-meet__question fw-bold mb-3">
+                  First, tell us how would you like to meet with your representative.
+                </p>
+
+                <div class="d-flex flex-column gap-3 mb-3" id="cs-rep-options">
+                  <label class="cs-rep-meet__option">
+                    <input class="cs-rep-meet__radio-input" type="radio" name="cs-rep-meet-path" value="region">
+                    <span class="cs-rep-meet__radio-visual" aria-hidden="true"></span>
+                    <span class="cs-rep-meet__option-label">I'd like to meet by region.</span>
+                  </label>
+                  <label class="cs-rep-meet__option">
+                    <input class="cs-rep-meet__radio-input" type="radio" name="cs-rep-meet-path" value="language">
+                    <span class="cs-rep-meet__radio-visual" aria-hidden="true"></span>
+                    <span class="cs-rep-meet__option-label">I would like to meet in another language other than English.</span>
+                  </label>
+                </div>
+
+                <p class="cs-rep-meet__error mb-3" id="cs-rep-step1-error" role="alert" hidden>Please select an option to continue</p>
+
+                <button type="button" class="btn-green" id="cs-rep-next">Next</button>
+              </div>
+
+              <!-- Step 2: pick from a dropdown -->
+              <div class="cs-rep-meet__panel">
+                <p class="cs-rep-meet__question fw-bold mb-3" id="cs-rep-step2-question">
+                  Next, tell us which area would you like to connect with your representative.
+                </p>
+
+                <select class="form-select cs-rep-meet__select mb-4" id="cs-rep-area-select" aria-label="Choose an area" disabled>
+                  <option value="" selected disabled hidden>Choose an area</option>
+                </select>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <button type="button" class="link-arrow" id="cs-rep-back">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="transform: scaleX(-1);">
+                      <path d="M0.96875 8H15.0312" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M8.46875 14.5625L15.0312 8L8.46875 1.4375" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Go Back
+                  </button>
+                  <button type="button" class="btn-green" id="cs-rep-continue">Continue</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
        NEED ADDITIONAL SUPPORT
        ==================================================================== -->
   <section class="cs-pi-support">
@@ -809,7 +966,7 @@
         <div class="col-lg-8">
           <div class="cs-pi-support__cards d-flex gap-4">
 
-            <a href="mailto:fieldsupport@calsavers.com" class="cs-pi-support__card text-decoration-none">
+            <a href="#" class="cs-pi-support__card text-decoration-none">
               <span class="cs-pi-support__icon" aria-hidden="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                   <g clip-path="url(#cs-er-support-icon-clip)">
@@ -826,13 +983,13 @@
                   </defs>
                 </svg>
               </span>
-              <h3 class="cs-pi-support__title">Representative help</h3>
+              <h3 class="cs-pi-support__title">Chat with CalSavvy</h3>
               <p class="cs-pi-support__body">
-                If you discover any discrepancies or if you need help, contact your field representative at fieldsupport@calsavers.com.
+                Get answers to questions about CalSavers, from registration to administration.
               </p>
               <div class="support-link d-flex gap-2 align-items-center">
                 <p class="fw-semibold text-nowrap mb-0" style="color: #00594F;">
-                  Contact Representative
+                  Start a Chat
                 </p>
                 <div class="arrow-wrapper" style="width: 16px; height: 16px;">
                   <svg viewBox="0 0 16 16" width="100%" height="100%" fill="none">
@@ -966,6 +1123,108 @@
             panel.classList.add('is-active');
           }
         });
+      });
+    })();
+  </script>
+
+  <!-- Meet one-on-one with a representative: step 1 (region/language) ->
+       step 2 (dropdown), sliding between the two panels -->
+  <script>
+    (function () {
+      var REGION_OPTIONS = [
+        { label: 'Sacramento, Northern California, & Foothills', url: 'https://outlook.office365.com/owa/calendar/ShayneLaytonCFP@ascensus.com/bookings/' },
+        { label: 'San Jose, Central Coast, & Central California', url: 'https://outlook.office365.com/book/CalSaversEmployeeSaversPresentation@ascensus.com/' },
+        { label: 'Bay Area, Napa, & Sonoma', url: 'https://outlook.office365.com/book/CalSaversEmployeeSaversPresentation@ascensus.com/' },
+        { label: 'Central Valley North', url: 'https://outlook.office365.com/book/AnitaPang@ascensus.com/' },
+        { label: 'Central Valley South & San Luis Obispo', url: 'https://outlook.office365.com/book/CalsaversOverview@ascensus.com/' },
+        { label: 'Los Angeles County North, Ventura, & Santa Barbara', url: 'https://outlook.office365.com/book/AnitaPang@ascensus.com/' },
+        { label: 'Los Angeles County South & Riverside', url: 'https://outlook.office365.com/book/CalsaversOverview@ascensus.com/' },
+        { label: 'Orange County & San Bernardino', url: 'https://outlook.office365.com/book/carlossernaascensuscom1@ascensus.com/' },
+        { label: 'San Diego & Imperial', url: 'https://outlook.office365.com/book/carlossernaascensuscom1@ascensus.com/' }
+      ];
+      var LANGUAGE_OPTIONS = [
+        { label: 'Mandarin', url: 'https://outlook.office365.com/book/AnitaPang@ascensus.com/' },
+        { label: 'Cantonese', url: 'https://outlook.office365.com/book/AnitaPang@ascensus.com/' },
+        { label: 'Spanish', url: 'https://outlook.office365.com/book/CalsaversOverview@ascensus.com/' }
+      ];
+
+      var track       = document.getElementById('cs-rep-track');
+      if (!track) return;
+
+      var pathInputs   = document.querySelectorAll('input[name="cs-rep-meet-path"]');
+      var optionsWrap  = document.getElementById('cs-rep-options');
+      var step1Error   = document.getElementById('cs-rep-step1-error');
+      var nextBtn      = document.getElementById('cs-rep-next');
+      var backBtn      = document.getElementById('cs-rep-back');
+      var continueBtn  = document.getElementById('cs-rep-continue');
+      var select       = document.getElementById('cs-rep-area-select');
+      var question2    = document.getElementById('cs-rep-step2-question');
+
+      pathInputs.forEach(function (input) {
+        input.addEventListener('change', function () {
+          pathInputs.forEach(function (i) {
+            i.closest('.cs-rep-meet__option').classList.toggle('is-selected', i.checked);
+          });
+          optionsWrap.classList.remove('has-error');
+          step1Error.hidden = true;
+        });
+      });
+
+      nextBtn.addEventListener('click', function () {
+        var checked = document.querySelector('input[name="cs-rep-meet-path"]:checked');
+        if (!checked) {
+          optionsWrap.classList.add('has-error');
+          step1Error.hidden = false;
+          return;
+        }
+        optionsWrap.classList.remove('has-error');
+        step1Error.hidden = true;
+        var isRegion = checked.value === 'region';
+
+        question2.textContent = isRegion
+          ? 'Next, tell us which area would you like to connect with your representative.'
+          : 'Next, tell us which language you would like your representative to speak.';
+
+        select.textContent = '';
+        var placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'Choose an area';
+        placeholder.selected = true;
+        placeholder.disabled = true;
+        placeholder.hidden = true;
+        select.appendChild(placeholder);
+
+        (isRegion ? REGION_OPTIONS : LANGUAGE_OPTIONS).forEach(function (choice) {
+          var option = document.createElement('option');
+          option.value = choice.url;
+          option.textContent = choice.label;
+          select.appendChild(option);
+        });
+
+        select.disabled = false;
+        track.classList.add('is-step-2');
+      });
+
+      backBtn.addEventListener('click', function () {
+        track.classList.remove('is-step-2');
+      });
+
+      continueBtn.addEventListener('click', function () {
+        if (select.value) {
+          window.open(select.value, '_blank', 'noopener');
+        }
+      });
+    })();
+  </script>
+
+  <!-- Smooth-scroll to a section when arriving via a #hash link from another page -->
+  <script>
+    (function () {
+      if (!window.location.hash) return;
+      var target = document.querySelector(window.location.hash);
+      if (!target) return;
+      window.requestAnimationFrame(function () {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     })();
   </script>
