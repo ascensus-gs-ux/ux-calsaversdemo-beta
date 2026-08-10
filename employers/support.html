@@ -186,6 +186,90 @@
       flex-shrink: 0;
     }
 
+    /* Support-page search (styled to match .cs-pi-search on payroll-integrations.html).
+       Sits as the first item in .cs-htr__nav; margin-bottom stacks with the nav's
+       own 0.75rem gap/row-gap to give exactly 24px before the first tab. */
+    .cs-htr-search { position: relative; width: 100%; margin-bottom: 0.75rem; }
+    .cs-htr-search__input {
+      width: 100%;
+      padding: 0.625rem 2.5rem 0.625rem 0.75rem;
+      border: 1px solid #666666;
+      border-radius: 6px;
+      background-color: #ffffff;
+      color: #000000;
+    }
+    .cs-htr-search__input::placeholder {
+      position: relative;
+      top: 1px;
+    }
+    /* .cs-pi-search__input on payroll-integrations.html leaves focus to the
+       browser/OS default, which can render as an orange ring on some
+       systems — override explicitly with the brand green instead. */
+    .cs-htr-search__input:focus {
+      outline: none;
+      border-color: #00594f;
+      box-shadow: 0 0 0 0.2rem rgba(0, 89, 79, 0.15);
+    }
+    .cs-htr-search__icon {
+      position: absolute;
+      top: 50%; right: 0.75rem;
+      transform: translateY(-50%);
+      color: #6b6b6b;
+      pointer-events: none;
+    }
+    .cs-htr-search__results {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0; right: 0;
+      background: #ffffff;
+      border: 1px solid rgba(0, 89, 79, 0.5);
+      border-radius: 6px;
+      max-height: 320px;
+      overflow-y: auto;
+      z-index: 20;
+      display: none;
+    }
+    .cs-htr-search__results.is-open { display: block; }
+    .cs-htr-search__result {
+      cursor: pointer;
+      border: none;
+      border-bottom: 1px solid rgba(0, 89, 79, 0.15);
+    }
+    .cs-htr-search__result:last-child { border-bottom: none; }
+    .cs-htr-search__result:hover,
+    .cs-htr-search__result:focus { background-color: #F2F6F6; color: #00594f; }
+    .cs-htr-search__result-label { color: #000000; font-size: 0.9375rem; }
+    .cs-htr-search__result:hover .cs-htr-search__result-label,
+    .cs-htr-search__result:focus .cs-htr-search__result-label { color: #00594f; }
+    .cs-htr-search__result-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #00594f;
+      background-color: rgba(0, 89, 79, 0.1);
+      border-radius: 4px;
+      padding: 0.25rem 0.5rem;
+      flex-shrink: 0;
+    }
+    .cs-htr-search__empty { color: #6b6b6b; font-size: 0.9375rem; }
+
+    /* Momentary highlight applied to the matched card after a search jump.
+       The outline is a second box-shadow layer (not the `outline` property)
+       because outline-style can't transition from "none" — it would just
+       pop in instantly instead of fading with the rest. Fades in over 0.4s
+       so it's clearly noticeable, then .is-fading (added via JS after the
+       hold period) fades it back out more slowly over 0.8s. */
+    .cs-htr-search__target-highlight {
+      transition: background-color 0.4s ease, box-shadow 0.4s ease;
+      background-color: #E8F5E8 !important;
+      box-shadow: 0 0 0 6px #E8F5E8, 0 0 0 8px #8CCF8D;
+      border-radius: 0 !important;
+    }
+    .cs-htr-search__target-highlight.is-fading {
+      transition: background-color 0.8s ease, box-shadow 0.8s ease;
+      background-color: transparent !important;
+      box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent;
+    }
+
     /* Solid-white variant of the brand .btn-secondary (default is transparent) */
     .btn-secondary-white { background-color: #ffffff; }
 
@@ -219,7 +303,7 @@
       .cs-htr__nav {
         display: grid;
         grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
-        grid-template-rows: repeat(4, 78px) auto;
+        grid-template-rows: auto repeat(4, 78px) auto;
         column-gap: 2rem;
         row-gap: 0.75rem;
         align-content: start;
@@ -227,17 +311,18 @@
       .cs-htr__nav::before {
         content: "";
         grid-column: 1;
-        grid-row: 1 / 5;
+        grid-row: 1 / 6;
         border: 1px solid rgba(0, 89, 79, 0.25);
         border-radius: 8px;
         margin: -1rem;
         pointer-events: none;
       }
       .cs-htr__nav > li { display: contents; }
-      .cs-htr__nav > li:nth-child(1) > .cs-htr__tab { grid-column: 1; grid-row: 1; }
+      .cs-htr__nav > li:nth-child(1) > .cs-htr-search { grid-column: 1; grid-row: 1; }
       .cs-htr__nav > li:nth-child(2) > .cs-htr__tab { grid-column: 1; grid-row: 2; }
       .cs-htr__nav > li:nth-child(3) > .cs-htr__tab { grid-column: 1; grid-row: 3; }
       .cs-htr__nav > li:nth-child(4) > .cs-htr__tab { grid-column: 1; grid-row: 4; }
+      .cs-htr__nav > li:nth-child(5) > .cs-htr__tab { grid-column: 1; grid-row: 5; }
       .cs-htr__nav > li > .cs-htr__panel {
         grid-column: 2;
         grid-row: 1 / -1;
@@ -542,7 +627,28 @@
        ==================================================================== -->
   <section class="cs-htr py-5 py-lg-6">
     <div class="container">
+
       <ul class="cs-htr__nav list-unstyled mb-0">
+
+        <!-- Search (sits above the tabs, inside the same outlined nav box) -->
+        <li>
+          <div class="cs-htr-search">
+            <span class="cs-htr-search__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+                <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <input
+              type="text"
+              class="cs-htr-search__input"
+              id="cs-htr-search-input"
+              placeholder="Search resources"
+              aria-label="Search resources"
+              autocomplete="off">
+            <div class="list-group cs-htr-search__results" id="cs-htr-search-results" role="listbox"></div>
+          </div>
+        </li>
 
         <!-- Printable Program Resources (default active) -->
         <li>
@@ -1296,6 +1402,158 @@
         step2Error.hidden = true;
         window.open(select.value, '_blank', 'noopener');
       });
+    })();
+  </script>
+
+  <!-- Support-page search: filters across resources, videos, webinars, and FAQs;
+       selecting a result opens its tab (or the external FAQ page) and scrolls to it. -->
+  <script>
+    (function () {
+      var SEARCH_INDEX = [
+        { label: 'Employer Overview', category: 'Resource', tab: '1',
+          description: 'This printable reference outlines the program, benefits for employees, and registration timelines.' },
+        { label: 'Saver Overview Brochure', category: 'Resource', tab: '1',
+          description: 'This brochure provides an overview about the program and the standard saving choices.' },
+        { label: 'Communication to Your Employees', category: 'Resource', tab: '1',
+          description: 'Use this template communication to inform your employees that your company is running CalSavers.' },
+        { label: 'Program Disclosure Booklet', category: 'Resource', tab: '1',
+          description: 'The Program Disclosure Booklet describes the Program, including important information about the investments, fees, risks and features associated with the Program.' },
+        { label: 'Employee Information Packet', category: 'Resource', tab: '1',
+          description: 'The Employee Information Packet (EIP) summarizes program information for participants.' },
+
+        { label: 'Eligibility and Registration', category: 'Resource', tab: '2',
+          description: 'Eligible employers must register their company with CalSavers by mandated deadlines.' },
+        { label: 'Adding Employee Information', category: 'Resource', tab: '2',
+          description: 'Employee Information must be added within 30 days of registering your employer account and each time you hire new employees.' },
+        { label: 'Set-up Deductions', category: 'Resource', tab: '2',
+          description: 'Ensure that the payroll deduction line item is in your payroll system and review the contribution amount your employee has selected.' },
+        { label: 'Submitting Contributions', category: 'Resource', tab: '2',
+          description: 'Send employee payroll deductions to CalSavers so that the amount can be applied to their CalSavers Roth IRA. You will complete this step each pay period.' },
+        { label: 'Payroll Provider Integration', category: 'Resource', tab: '2',
+          description: 'Set up a connection between your payroll provider and CalSavers, also known as payroll integration, to make running CalSavers easier.' },
+        { label: 'Adding an Administrator', category: 'Resource', tab: '2',
+          description: 'Members of your operations team - such as an Office Manager, HR manager, Payroll Specialist or Bookkeeper- can be added to the Employer Portal to assist you with managing CalSavers.' },
+
+        { label: 'How to register or request an exemption', category: 'Video', tab: '3' },
+        { label: 'How to set up payroll schedules', category: 'Video', tab: '3' },
+        { label: 'How to add employees with a file upload', category: 'Video', tab: '3' },
+        { label: 'How to add employees with a manual upload', category: 'Video', tab: '3' },
+        { label: 'Identifying eligible employees', category: 'Video', tab: '3' },
+        { label: 'Process contributions file upload', category: 'Video', tab: '3' },
+        { label: 'Submit employee contributions manually', category: 'Video', tab: '3' },
+        { label: 'Learn about payroll integration options', category: 'Video', tab: '3' },
+        { label: 'How to set up payroll integrations', category: 'Video', tab: '3' },
+
+        { label: 'CalSavers Employer Overview Recorded Webinar', category: 'Webinar', tab: '4' },
+        { label: 'CalSavers Employer Overview', category: 'Webinar', tab: '4',
+          description: 'Attend a live webinar to learn about the CalSavers program, what employees can expect, and key employer responsibilities and deadlines.' },
+        { label: 'Calsavers Employee Webinar', category: 'Webinar', tab: '4' },
+        { label: 'Employee Overview Live Webinar', category: 'Webinar', tab: '4',
+          description: 'Your employees can attend a live webinar to learn more about the Calsavers program.' },
+
+        { label: 'Employer FAQs', category: 'FAQ', href: 'https://www.calsavers.com/home/frequently-asked-questions.html?language=en#',
+          description: 'For more information about running CalSavers visit our FAQ page.' }
+      ];
+
+      var input   = document.getElementById('cs-htr-search-input');
+      var results  = document.getElementById('cs-htr-search-results');
+      if (!input || !results) return;
+
+      function clearResults() {
+        results.innerHTML = '';
+        results.classList.remove('is-open');
+      }
+
+      function goToEntry(entry) {
+        if (entry.href) {
+          window.open(entry.href, '_blank', 'noopener');
+          return;
+        }
+        var tabBtn = document.querySelector('.cs-htr__tab[data-tab="' + entry.tab + '"]');
+        if (!tabBtn) return;
+        if (!tabBtn.classList.contains('is-active')) tabBtn.click();
+
+        var panel = tabBtn.parentElement.querySelector('.cs-htr__panel');
+        if (!panel) return;
+
+        window.requestAnimationFrame(function () {
+          var candidates = panel.querySelectorAll(
+            '.cs-printable-card__title, .cs-resource-card__label, .cs-htr__panel-subhead'
+          );
+          var match = null;
+          candidates.forEach(function (el) {
+            if (!match && el.textContent.trim() === entry.label) match = el;
+          });
+          if (!match) return;
+
+          var card = match.closest('.cs-printable-card, .cs-resource-card') || match;
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          card.classList.add('cs-htr-search__target-highlight');
+          setTimeout(function () {
+            card.classList.add('is-fading');
+            setTimeout(function () {
+              card.classList.remove('cs-htr-search__target-highlight', 'is-fading');
+            }, 800);
+          }, 2300);
+        });
+      }
+
+      function renderResults(query) {
+        var q = query.toLowerCase().trim();
+        if (!q) { clearResults(); return; }
+
+        var matches = SEARCH_INDEX
+          .filter(function (entry) {
+            if (entry.label.toLowerCase().indexOf(q) !== -1) return true;
+            return !!(entry.description && entry.description.toLowerCase().indexOf(q) !== -1);
+          })
+          .slice(0, 12);
+
+        results.innerHTML = '';
+
+        if (matches.length === 0) {
+          var empty = document.createElement('div');
+          empty.className = 'list-group-item cs-htr-search__empty';
+          empty.textContent = 'No matching resources, videos, or webinars.';
+          results.appendChild(empty);
+          results.classList.add('is-open');
+          return;
+        }
+
+        matches.forEach(function (entry) {
+          var item = document.createElement('button');
+          item.type = 'button';
+          item.className = 'list-group-item list-group-item-action d-flex justify-content-between align-items-center gap-3 cs-htr-search__result';
+          item.setAttribute('role', 'option');
+
+          var label = document.createElement('span');
+          label.className = 'cs-htr-search__result-label';
+          label.textContent = entry.label;
+
+          var badge = document.createElement('span');
+          badge.className = 'cs-htr-search__result-badge';
+          badge.textContent = entry.category;
+
+          item.appendChild(label);
+          item.appendChild(badge);
+
+          item.addEventListener('mousedown', function (e) {
+            // mousedown so it fires before the input's blur clears the list
+            e.preventDefault();
+            goToEntry(entry);
+            input.value = entry.label;
+            clearResults();
+          });
+
+          results.appendChild(item);
+        });
+
+        results.classList.add('is-open');
+      }
+
+      input.addEventListener('input', function () { renderResults(input.value); });
+      input.addEventListener('focus', function () { if (input.value) renderResults(input.value); });
+      input.addEventListener('blur', function () { setTimeout(clearResults, 120); });
     })();
   </script>
 
