@@ -1188,7 +1188,7 @@
         select.textContent = '';
         var placeholder = document.createElement('option');
         placeholder.value = '';
-        placeholder.textContent = 'Choose an area';
+        placeholder.textContent = isRegion ? 'Choose an area' : 'Choose a language';
         placeholder.selected = true;
         placeholder.disabled = true;
         placeholder.hidden = true;
