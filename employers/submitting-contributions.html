@@ -55,6 +55,19 @@
       transition: all 0.5s;
     }
     .link-primary:hover::before, .link-primary:focus::before { width: 100%; }
+
+    /* Numbered lists — custom left-aligned counter instead of the native
+       ::marker, whose right/end alignment within its box is inconsistent
+       across browsers and reads as right-aligned (mirrors
+       add-employee-information.html). */
+    ol { list-style: none; counter-reset: cs-ol; }
+    ol > li { counter-increment: cs-ol; position: relative; padding-left: 1.5em; padding-top: 0.25rem; padding-bottom: 0.25rem; }
+    ol > li::before {
+      content: counter(cs-ol) ".";
+      position: absolute;
+      left: 0;
+      text-align: left;
+    }
     section a.link-primary::after, section a.link-primary:after,
     .link-primary::after, .link-primary:after {
       content: "›";
@@ -113,7 +126,7 @@
        Checklist with gold checkmarks (ported verbatim from
        add-employee-information.html's .cs-bullets / .cs-bullets--gold)
        ===================================================================== */
-    .cs-bullets__item { display: flex; align-items: flex-start; gap: 0.75rem; }
+    .cs-bullets__item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.25rem 0; }
     .cs-bullets__item + .cs-bullets__item { margin-top: 0.5rem; }
     .cs-bullets__icon { flex-shrink: 0; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; color: #00594f; margin-top: 2px; }
     .cs-bullets__title { color: #000; font-size: 1rem; }
@@ -558,7 +571,7 @@
     <h1>Submitting Contributions</h1>
     <div class="hero-underline"></div>
     <p class="cs-pi-hero__lede">
-      To complete the CalSavers onboarding process, you'll need to submit your first payroll contributions for participating employees. Contributions are deposited into each employee's CalSavers IRA based on their individual elections.
+      You’ll submit payroll contributions for participating employees each pay period. Contributions are deposited into each employee’s CalSavers IRA based on their individual elections.
     </p>
     <p class="cs-pi-hero__lede">
       You can submit contributions in one of two ways, depending on your preference:
@@ -669,7 +682,7 @@
             </svg>
           </div>
           <div class="elig-card-body">
-            <h2>Manual Upload</h2>
+            <h2>Manual Entry Option</h2>
             <p>
               Log in to the CalSavers Portal each pay period to enter employee contribution information by the scheduled due date.
             </p>
@@ -710,7 +723,7 @@
             </ul>
 
             <button type="button" class="link-arrow mt-3" onclick="goToTab(2)">
-              <span>Go to Manual Upload Instructions</span>
+              <span>Go to Manual Entry Instructions</span>
               <span class="arrow-wrapper" aria-hidden="true">
                 <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
                   <path d="M1 8h14" stroke="#00594F" stroke-width="2" stroke-linecap="round"/>
@@ -807,7 +820,7 @@
             </span>
             <span class="cs-pi-tab__labels">
               <span class="cs-pi-tab__eyebrow">Option 2</span>
-              <span class="cs-pi-tab__title">Manual Upload</span>
+              <span class="cs-pi-tab__title">Manual Entry</span>
             </span>
           </button>
         </div>
@@ -876,12 +889,11 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
-                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
+                                    <ol class="text-secondary w-100 mb-0 ps-3">
                                       <li>Log in to the Employer Portal.</li>
-                                      <li>From your Dashboard, locate Step 4 – Send Employee Contributions.</li>
-                                      <li>Click Send Contributions to open the Contribution page.</li>
+                                      <li>From your Dashboard, click Send Contributions.</li>
                                       <li>Under Upcoming Contributions, click Send Contributions and a new window will open.</li>
-                                    </ul>
+                                    </ol>
                                     <a class="btn btn-primary d-inline-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" data-name="Button">
                                       <span class="fw-semibold text-center text-nowrap">Log In</span>
                                     </a>
@@ -929,12 +941,12 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
-                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
-                                      <li>Select the appropriate pay schedule (if applicable).</li>
+                                    <ol class="text-secondary w-100 mb-0 ps-3">
+                                      <li>Select the appropriate pay schedule: (if more than one).</li>
                                       <li>Enter the pay date for the payroll you are reporting.</li>
                                       <li>Select Upload File as your entry method.</li>
                                       <li>Click Next.</li>
-                                    </ul>
+                                    </ol>
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -1051,7 +1063,7 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
-                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
+                                    <ol class="text-secondary w-100 mb-0 ps-3">
                                       <li>Review the contribution summary to confirm the total amount is correct.</li>
                                       <li>Add or update your payment method for sending contributions, if needed.
                                         <ul class="mb-0" style="list-style: square; color:rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;">
@@ -1075,7 +1087,7 @@
                                       <li>Click Save, then check the box "I agree to send this amount to CalSavers."</li>
                                       <li>For optional review, you can click "Show all employee contribution amounts" to confirm details.</li>
                                       <li>Select Send Payment to finish.</li>
-                                    </ul>
+                                    </ol>
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -1100,7 +1112,7 @@
                 <div class="d-flex flex-column gap-3 align-items-start flex-shrink-0 w-100">
                   <h4 class="fw-semibold text-dark mb-0">Ongoing Responsibilities</h4>
                   <ul class="cs-pi-panel-body w-100 mb-0 ps-3" style="list-style: disc;">
-                    <li>Contributions must be sent within <strong class="text-dark">7 days</strong> of taking money from your employees' paychecks.</li>
+                    <li>Submit contributions within <strong class="text-dark">7 days</strong> of deducting them from an employee’s pay.</li>
                     <li>Submit contributions <strong class="text-dark">every pay period</strong> for participating employees.</li>
                     <li>Before each payroll, review your employee's participation status and contribution rate in the <strong class="text-dark">Employer Portal.</strong></li>
                   </ul>
@@ -1123,7 +1135,7 @@
             <!-- Detailed instructions (accordions collapsed by default) -->
             <div>
               <div class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100" data-name="Group">
-                <h3 class="mb-0">Manual Upload</h3>
+                <h3 class="mb-0">Manual Entry</h3>
 
                 <!-- Video -->
                 <div class="row g-4 align-items-center w-100">
@@ -1170,12 +1182,11 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
-                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
+                                    <ol class="text-secondary w-100 mb-0 ps-3">
                                       <li>Log in to the Employer Portal.</li>
-                                      <li>From your Dashboard, locate Step 4 – Send Employee Contributions.</li>
-                                      <li>Click Send Contributions to open the Contribution page.</li>
+                                      <li>From your Dashboard, click Send Contributions.</li>
                                       <li>Under Upcoming Contributions, click Send Contributions and a new window will open.</li>
-                                    </ul>
+                                    </ol>
                                     <a class="btn btn-primary d-inline-flex gap-2 align-items-center justify-content-center px-3 py-2 rounded flex-shrink-0 text-decoration-none" href="https://employer.calsavers.com/californiaertpl/login/login.cs" target="_blank" rel="noopener" data-name="Button">
                                       <span class="fw-semibold text-center text-nowrap">Log In</span>
                                     </a>
@@ -1223,12 +1234,12 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
-                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
-                                      <li>Choose the appropriate pay schedule (if applicable).</li>
+                                    <ol class="text-secondary w-100 mb-0 ps-3">
+                                      <li>Select the appropriate pay schedule: (if more than one).</li>
                                       <li>Enter the pay date for the payroll you are reporting.</li>
                                       <li>Select Add Manually as your entry method.</li>
                                       <li>Click Next.</li>
-                                    </ul>
+                                    </ol>
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -1322,7 +1333,7 @@
                               <div class="row g-4 align-items-start w-100">
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column align-items-start" data-name="Text">
-                                    <ul class="text-secondary w-100 mb-0 ps-3" style="list-style: disc;">
+                                    <ol class="text-secondary w-100 mb-0 ps-3">
                                       <li>Review the contribution summary to confirm the total amount is correct.</li>
                                       <li>Add or update your payment method for sending contributions, if needed.
                                         <ul class="mb-0" style="list-style: square; color:rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;">
@@ -1346,7 +1357,7 @@
                                       <li>Click Save, then check the box "I agree to send this amount to CalSavers."</li>
                                       <li>For optional review, you can click "Show all employee contribution amounts" to confirm details.</li>
                                       <li>Select Send Payment to finish.</li>
-                                    </ul>
+                                    </ol>
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -1371,7 +1382,7 @@
                 <div class="d-flex flex-column gap-3 align-items-start flex-shrink-0 w-100">
                   <h4 class="fw-semibold text-dark mb-0">Ongoing Responsibilities</h4>
                   <ul class="cs-pi-panel-body w-100 mb-0 ps-3" style="list-style: disc;">
-                    <li>Contributions must be sent within <strong class="text-dark">7 days</strong> of taking money from your employees' paychecks.</li>
+                    <li>Submit contributions within <strong class="text-dark">7 days</strong> of deducting them from an employee’s pay.</li>
                     <li>Submit contributions <strong class="text-dark">every pay period</strong> for participating employees.</li>
                     <li>Before each payroll, review your employee's participation status and contribution rate in the <strong class="text-dark">Employer Portal.</strong></li>
                   </ul>

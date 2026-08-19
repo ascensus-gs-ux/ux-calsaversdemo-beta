@@ -88,6 +88,7 @@
       display: flex;
       align-items: flex-start;
       gap: 0.75rem;
+      padding: 0.25rem 0;
     }
 
     .cs-bullets__icon {
@@ -107,7 +108,19 @@
        Employee Eligibility and Requirements
        ===================================================================== */
     .cs-eligibility { border-top: 1px solid #c3c3c3; padding: 3rem 0; }
-    .cs-eligibility__body { color: #6b6b6b; line-height: 1.6; }
+    .cs-eligibility__body { color: #6b6b6b; line-height: 1.6; list-style-type: disc; }
+
+    /* Numbered lists — custom left-aligned counter instead of the native
+       ::marker, whose right/end alignment within its box is inconsistent
+       across browsers and reads as right-aligned. */
+    ol { list-style: none; counter-reset: cs-ol; }
+    ol > li { counter-increment: cs-ol; position: relative; padding-left: 1.5em; padding-top: 0.25rem; padding-bottom: 0.25rem; }
+    ol > li::before {
+      content: counter(cs-ol) ".";
+      position: absolute;
+      left: 0;
+      text-align: left;
+    }
 
     /* =====================================================================
        Hero — Add Employee Information
@@ -571,11 +584,12 @@
             <li>Receive California wages.</li>
             <li>Are 18 years of age or older.</li>
             <li>Have a valid Social Security Number (SSN) or Individual Taxpayer Identification Number (ITIN).</li>
+            <li>Have been employed for at least 30 days; no minimum number of hours required.</li>
           </ul>
         </div>
 
         <div class="col-lg-6">
-          <p class="fw-semibold mb-3" style="color: #000000;">You will need the following information all your eligible employees:</p>
+          <p class="fw-semibold mb-3" style="color: #000000;">You’ll need the following information for all eligible employees:</p>
 
           <ul class="cs-bullets cs-bullets--gold list-unstyled mb-0" style="padding: 0">
             <li class="cs-bullets__item">
@@ -748,7 +762,7 @@
             </span>
             <span class="cs-pi-tab__labels">
               <span class="cs-pi-tab__eyebrow">Option 2</span>
-              <span class="cs-pi-tab__title">Manual Upload Instructions</span>
+              <span class="cs-pi-tab__title">Manual Entry Instructions</span>
             </span>
           </button>
         </div>
@@ -769,12 +783,11 @@
 
             <div data-name="Group" class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100">
               <div class="d-flex flex-column flex-shrink-0" data-name="StepText">
-                <span class="cs-pi-tab__eyebrow mb-1">Get Started</span>
                 <h3 class="mb-0">Set Up Pay Schedules</h3>
               </div>
 
                 <p class="cs-pi-panel-body mb-0 w-100">
-                  If you have separate schedules for hourly and salaried employees, you will need a schedule for each group. If everyone is paid on the same day, only one schedule is needed.
+                 Create a pay schedule for your employees. If employees have different schedules, such as hourly and salaried employees, create a schedule for each group.
                 </p>
 
                 <div class="row g-4 align-items-center w-100">
@@ -1119,7 +1132,7 @@
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
                                     <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>Choose the pay schedule group and pay schedule from the dropdown menus.</li>
+                                      <li>Select the desired pay schedule group and pay schedule from the dropdown menus.</li>
                                       <li>Click Next.</li>
                                       <li>Review the on-screen upload instructions.</li>
                                     </ol>
@@ -1148,7 +1161,7 @@
                                 <p class="fw-medium text-center text-white w-100 mb-0">3</p>
                               </div>
                               <div class="d-flex flex-fill align-items-center" data-name="Text Container">
-                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Download &amp; Prepare Template</p>
+                                <p class="fw-semibold w-100 mb-0" style="color: #00594f;">Download Template</p>
                               </div>
                             </div>
                             <div class="overflow-hidden flex-shrink-0 position-relative" style="width: 24px; height: 24px;" data-name="chevron-up">
@@ -1168,19 +1181,10 @@
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
                                     <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>Download the template to access the Excel file.</li>
-                                      <li>Within the file, review the "Formatting Examples" tab for required field guidance. See additional <a href="#" class="fw-semibold text-decoration-underline" style="color: #00594f;">Tips for using the file upload template</a>.</li>
+                                      <li>Download the template and open the Excel file.</li>
+                                      <li>For guidance on required fields, review “formatting examples” tab. For detailed instructions, see <a href="#" class="fw-semibold text-decoration-underline" style="color: #00594f;">tips for using the file upload template</a>.</li>
                                     </ol>
                                     <a href="#" class="btn-white-outline">Download Excel Template</a>
-                                    <div class="cs-pi-warning w-100">
-                                      <span class="cs-pi-warning__icon" aria-hidden="true">
-                                        <img src="../src/assets/alert-triangle.svg" alt="" width="20" height="20">
-                                      </span>
-                                      <p class="cs-pi-warning__text">
-                                        <strong>Warning!</strong> Do not modify the Excel file's formatting (columns, widths, or structure), as changes may cause errors when uploading, and cause processing delays.
-                                        <a href="#" class="fw-semibold text-decoration-underline" style="color: #00594f;">Tips for using the file upload template</a>.
-                                      </p>
-                                    </div>
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -1226,12 +1230,20 @@
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
                                     <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>Go to the "Payroll Census" tab in the Excel file.</li>
-                                      <li>Complete all fields marked with an asterisk (*) without modifying the original formatting of the structure.</li>
-                                      <li>Click Enable Editing and carefully enter employee details for this payroll group.</li>
-                                      <li>Add valid email addresses when available.</li>
+                                      <li>Go to the "Payroll Census" tab.</li>
+                                      <li>Select <strong>Enable Editing</strong> and enter your employee information.</li>
+                                      <li>Complete all required fields marked with an asterisk (*).<br /><i>include an email address, if available.</i></li>
                                       <li>Save your completed file.</li>
                                     </ol>
+                                    <div class="cs-pi-warning w-100">
+                                      <span class="cs-pi-warning__icon" aria-hidden="true">
+                                        <img src="../src/assets/alert-triangle.svg" alt="" width="20" height="20">
+                                      </span>
+                                      <p class="cs-pi-warning__text">
+                                        <strong>Warning!</strong> Do not modify the Excel file's formatting (columns, widths, or structure), as changes may cause errors when uploading, and cause processing delays.
+                                        <a href="#" class="fw-semibold text-decoration-underline" style="color: #00594f;">Tips for using the file upload template</a>.
+                                      </p>
+                                    </div>
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -1354,10 +1366,14 @@
                 <div class="w-100">
                   <p class="fw-semibold mb-2" style="color: #000000;">What Happens Next:</p>
                   <p class="cs-pi-panel-body mb-3">
-                    After you have added your employee information, CalSavers will then notify your employees about the program by sending a welcome packet (either by email or mail), initiating the 30-day decision window. Your employees may make changes to the account defaults or opt out of the program during this time.
+                    After you add your employee information, CalSavers will send your employees a welcome packet by email or mail, initiating their 30-day decision period. During this time, employees can register and customize their account settings or opt out.
                   </p>
                   <p class="cs-pi-panel-body mb-0">
-                    During this period while you wait on employees to enroll, there are a <a href="https://employer.calsavers.com/home/help-center/enrollment.html" target="_blank" class="fw-semibold text-decoration-underline" style="color: #00594f;">few tasks</a> you can complete.
+                   While you wait, you should: 
+                    <ul class="mb-0 mt-1" style="color: #6b6b6b;">
+                      <li>Prepare your payroll system for <a href="../employers/setting-up-deductions.html" target="_blank" class="link-primary fw-semibold">CalSavers deductions</a>.</li>
+                      <li>Consider <a href="../employers/employee-enrollment-period.html" target="_blank" class="link-primary fw-semibold">notifying employees about CalSavers</a> so they can expect communication from the program.</li>
+                    </ul>
                   </p>
                 </div>
               </div>
@@ -1370,7 +1386,7 @@
             <div data-name="Group" class="d-flex flex-column gap-5 align-items-start flex-shrink-0 w-100">
               <div class="d-flex flex-column flex-shrink-0" data-name="StepText">
                 <span class="cs-pi-tab__eyebrow mb-1">Recommended for Less Than 10 Employees</span>
-                <h3 class="mb-0">Instructions for Manual Upload</h3>
+                <h3 class="mb-0">Instructions for Manual Entry</h3>
               </div>
 
                 <div class="row g-4 align-items-center w-100">
@@ -1471,9 +1487,8 @@
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
                                     <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>Choose the pay schedule group and pay schedule from the dropdown menus.</li>
+                                      <li>Select the desired pay schedule group and pay schedule from the dropdown menus.</li>
                                       <li>Click Next.</li>
-                                      <li>Review the on-screen upload instructions.</li>
                                     </ol>
                                   </div>
                                 </div>
@@ -1520,15 +1535,22 @@
                                 <div class="col-lg-6">
                                   <div class="d-flex flex-fill flex-column gap-3 align-items-start" data-name="Text">
                                     <ol class="text-secondary w-100 mb-0 ps-3">
-                                      <li>Enter details for each eligible employee in this payroll group.</li>
-                                      <li>Include an email address when available to reduce paper notices.</li>
-                                      <li>Repeat until all employees are added.</li>
-                                      <li>Carefully review all information for accuracy.</li>
-                                      <li>Click Finish and submit.</li>
-                                      <li>Do not navigate away before submitting to avoid losing your work.</li>
-                                      <li>Confirm employees are on the correct pay schedule.</li>
-                                      <li>(Optional) Download the list for your records.</li>
+                                      <li>Enter the required information for each eligible employee.</li>
+                                      <li>Include an email address, if available.</li>
+                                      <li>Review all information for this payroll group for accuracy and completeness.</li>
+                                      <li>Click Finish and Submit.</li>
                                     </ol>
+                                    <p class="cs-pi-panel-body mb-0 w-100">
+                                    Optional: Download a copy of the employee list for your records.
+                                    </p>
+                                    <div class="cs-pi-warning w-100">
+                                      <span class="cs-pi-warning__icon" aria-hidden="true">
+                                        <img src="../src/assets/alert-triangle.svg" alt="" width="20" height="20">
+                                      </span>
+                                      <p class="cs-pi-warning__text">
+                                        <strong>Warning!</strong> To avoid losing your work, do not navigate from this screen until it’s submitted.
+                                      </p>
+                                    </div>
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -1549,13 +1571,17 @@
 
                 <hr class="section-hr w-100">
 
-                <div class="w-100">
+                  <div class="w-100">
                   <p class="fw-semibold mb-2" style="color: #000000;">What Happens Next:</p>
                   <p class="cs-pi-panel-body mb-3">
-                    After you have added your employee information, CalSavers will then notify your employees about the program by sending a welcome packet (either by email or mail), initiating the 30-day decision window. Your employees may make changes to the account defaults or opt out of the program during this time.
+                    After you add your employee information, CalSavers will send your employees a welcome packet by email or mail, initiating their 30-day decision period. During this time, employees can register and customize their account settings or opt out.
                   </p>
                   <p class="cs-pi-panel-body mb-0">
-                    During this period while you wait on employees to enroll, there are a <a href="https://employer.calsavers.com/home/help-center/enrollment.html" target="_blank" class="fw-semibold text-decoration-underline" style="color: #00594f;">few tasks</a> you can complete.
+                   While you wait, you should: 
+                    <ul class="mb-0 mt-1" style="color: #6b6b6b;">
+                      <li>Prepare your payroll system for <a href="../employers/setting-up-deductions.html" target="_blank" class="link-primary fw-semibold">CalSavers deductions</a>.</li>
+                      <li>Consider <a href="../employers/employee-enrollment-period.html" target="_blank" class="link-primary fw-semibold">notifying employees about CalSavers</a> so they can expect communication from the program.</li>
+                    </ul>
                   </p>
                 </div>
               </div>
