@@ -270,6 +270,18 @@
       list-style-type: disc;
     }
 
+    /* Numbered lists — custom left-aligned counter instead of the native
+       ::marker, whose right/end alignment within its box is inconsistent
+       across browsers and reads as right-aligned. */
+    ol.cs-htr__panel-body { list-style: none; counter-reset: cs-ol; }
+    ol.cs-htr__panel-body > li { counter-increment: cs-ol; position: relative; padding-left: 1.5em; }
+    ol.cs-htr__panel-body > li::before {
+      content: counter(cs-ol) ".";
+      position: absolute;
+      left: 0;
+      text-align: left;
+    }
+
     /* Buttons inherit the brand stylesheet's .btn / .btn-primary / .btn-secondary rules.
        Only the icon size is overridden here so the play SVGs don't stretch to 100%. */
     .cs-htr__panel .btn svg {
