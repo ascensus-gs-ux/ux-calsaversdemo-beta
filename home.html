@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CalSavers</title>
+
+  <!-- Preview only: on CalSavers.com these are already loaded by the page template -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.unite529.com/jcdn/modules/templates-cau/css/google-font.css">
+  <link rel="stylesheet" href="https://cdn.unite529.com/jcdn/modules/templates-cau/css/styles.css">
+
+  <style>
+    /* =====================================================================
+       PAGE-LEVEL OVERRIDES
+       ===================================================================== */
+
+    /* CalSavers styles.css sets "section ul { padding: 1.25rem; padding-top: 0 }",
+       which adds stray right/bottom padding to every list. Keep only the
+       left indent (bullets); .list-unstyled still removes that. */
+    section ul {
+      padding-right: 0;
+      padding-bottom: 0;
+    }
+
+    /* =====================================================================
+       HERO (video background) — hero-section custom CSS only
+       Figma: CalSavers Public Web › Version 1 - Umbrella › Hero (5217:44325)
+       Reuses from CalSavers styles.css: Poppins body font, .btn-primary colors.
+       Reuses from Bootstrap 4: grid, .card, spacing, flex, .list-unstyled.
+       ===================================================================== */
+
+    .cs-home-hero {
+      position: relative;
+      overflow: hidden;              /* no horizontal scroll from video/overlays */
+      background-color: #00594f;     /* fallback before poster/video paints */
+      padding-top: 7.5rem;           /* 120px */
+      padding-bottom: 7.5rem;
+    }
+
+    /* ---- Video background ---- */
+    .cs-home-hero__media {
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background-size: cover;        /* poster also set here for reduced-motion users */
+      background-position: center;
+    }
+    .cs-home-hero__video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* ---- Gradient stack over the video ---- */
+    .cs-home-hero__media::after {
+      content: "";
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background:
+        linear-gradient(132deg, rgba(59, 148, 166, 0.70) -8%, rgba(0, 89, 79, 0.70) 20.91%, rgba(30, 119, 123, 0.21) 81.04%),
+        linear-gradient(121deg, rgba(0, 89, 79, 0.30) 3.53%, rgba(59, 148, 166, 0.00) 72.47%, rgba(133, 107, 38, 0.30) 96.37%);
+      pointer-events: none;
+    }
+
+    .cs-home-hero > .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* CalSavers styles.css sets "section svg, section img { width: 100% }" —
+       let hero icons use their own width/height attributes instead */
+    .cs-home-hero img {
+      width: auto;
+      max-width: none;
+    }
+
+    /* ---- Intro copy ---- */
+    .cs-home-hero__title {
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-size: 3rem;               /* 48px */
+      line-height: 1.27;             /* 61px */
+      color: #ffffff;                /* overrides brand gold h1 */
+      margin-bottom: 1rem;
+    }
+    .cs-home-hero__lead {
+      font-weight: 500;
+      font-size: 1.25rem;            /* 20px */
+      line-height: 1.6;              /* 32px */
+      letter-spacing: 1px;
+      color: #ffffff;                /* overrides brand body gray */
+      margin-bottom: 0;
+    }
+    /* "State of California," — CalSavers .link-primary (animated center-out
+       underline on hover), white variant like the brand footer's, keeping
+       Figma's bold + underlined resting state. */
+    .cs-home-hero__lead a.link-primary {
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    .cs-home-hero__lead a.link-primary:hover,
+    .cs-home-hero__lead a.link-primary:focus {
+      color: #ffffff;
+      font-weight: 700;              /* brand hover sets 600; keep width stable */
+      text-decoration: none;         /* hand off to the animated underline */
+    }
+    .cs-home-hero__lead a.link-primary::after {
+      background: #ffffff;           /* brand underline is green */
+    }
+    .cs-home-hero__lead a.link-primary:focus::after {
+      width: 100%;                   /* keyboard users get the same underline */
+    }
+
+    /* ---- Grid: Figma uses 16px gutters and a 2/5 – 3/5 split ---- */
+    .cs-home-hero__row,
+    .cs-home-hero__cards {           /* 16px gutters (Bootstrap 4 default is 30px) */
+      margin-right: -0.5rem;
+      margin-left: -0.5rem;
+    }
+    .cs-home-hero__row > [class*="col-"],
+    .cs-home-hero__cards > [class*="col-"] {
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+    }
+    @media (min-width: 992px) {
+      .cs-home-hero__intro { flex: 0 0 40%; max-width: 40%; }
+      .cs-home-hero__aside { flex: 0 0 60%; max-width: 60%; }
+    }
+
+    /* ---- Cards ---- */
+
+    .cs-home-hero__card {
+      border: 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);   /* Figma "Card Dropshadow" */
+      letter-spacing: 1px;
+    }
+    .cs-home-hero__card .card-body {
+      padding: 1.5rem;               /* 24px */
+    }
+
+    /* Card icons (circle background + border are built into the SVGs) */
+    .cs-home-hero__icon-wrap {
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+    .cs-home-hero__icon {
+      display: block;
+      width: 50px;
+      height: 50px;
+      margin: 0;                     /* pin to the left edge in every browser */
+      float: none;
+    }
+
+    .cs-home-hero__card-title {
+      font-weight: 500;
+      font-size: 1.25rem;            /* 20px */
+      line-height: 1.6;              /* 32px */
+      color: #000000;
+      margin-bottom: 0.25rem;
+    }
+    .cs-home-hero__eyebrow {
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #80641f;                /* Text/Gold */
+      margin-bottom: 1rem;
+    }
+    .cs-home-hero__list li {
+      display: flex;
+      align-items: flex-start;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #000000;
+    }
+    .cs-home-hero__list li + li {
+      margin-top: 0.25rem;
+    }
+    .cs-home-hero__list img {
+      flex-shrink: 0;
+      margin-right: 1rem;
+    }
+
+    /* Button: color comes from CalSavers .btn-primary; size/type per Figma */
+    .cs-home-hero__btn,
+    .cs-trust__btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.5;
+      letter-spacing: 1px;
+    }
+    .cs-home-hero__btn img,
+    .cs-trust__btn img {
+      margin-left: 0.5rem;
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 991.98px) {
+      .cs-home-hero {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+      .cs-home-hero__title { font-size: 2.25rem; line-height: 1.25; }
+    }
+    @media (max-width: 575.98px) {
+      .cs-home-hero__title { font-size: 2rem; }
+      .cs-home-hero__lead { font-size: 1.125rem; line-height: 1.6; }
+    }
+
+    /* Respect reduced motion: hide video, show poster (set on .cs-home-hero__media) */
+    @media (prefers-reduced-motion: reduce) {
+      .cs-home-hero__video { display: none; }
+    }
+
+    /* =====================================================================
+       PROGRAM BENEFITS
+       Figma: Version 1 - Umbrella › Section (5217:44414)
+       Brand styles.css makes h2/h3 gold and body copy gray — reset to Figma black.
+       ===================================================================== */
+    .cs-benefits {
+      border-top: 1px solid rgba(0, 89, 79, 0.5);
+      border-bottom: 1px solid rgba(0, 89, 79, 0.5);
+      padding-top: 5rem;             /* 80px */
+      padding-bottom: 5rem;
+    }
+    .cs-benefits__header {
+      max-width: 992px;
+      margin-bottom: 2.5rem;         /* 40px to benefits row */
+    }
+    .cs-benefits__eyebrow {
+      font-weight: 600;
+      font-size: 0.875rem;           /* 14px */
+      line-height: 1.5;              /* 21px */
+      letter-spacing: 1.5px;
+      color: #80641f;                /* Text/Gold */
+      margin-bottom: 0.5rem;
+    }
+    .cs-benefits__title {
+      font-weight: 500;
+      font-size: 2.125rem;           /* 34px */
+      line-height: 1.41;             /* 48px */
+      letter-spacing: 0.6px;
+      color: #000;
+      margin-bottom: 1rem;
+    }
+    .cs-benefits__intro,
+    .cs-benefits__desc {
+      font-size: 1rem;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      color: #000;
+      margin-bottom: 0;
+    }
+    .cs-benefits__icon {
+      display: block;
+      width: 32px;                   /* defeat brand "section img { width: 100% }" */
+      height: 32px;
+      margin-bottom: 0.375rem;       /* 6px */
+    }
+    .cs-benefits__item-title {
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      color: #000;
+      margin-bottom: 0.375rem;
+    }
+
+    /* Desktop: 3 columns, 32px each side of a #D3D3D3 vertical divider */
+    @media (min-width: 992px) {
+      .cs-benefits__row { margin-right: -2rem; margin-left: -2rem; }
+      .cs-benefits__row > [class*="col-"] { padding-right: 2rem; padding-left: 2rem; }
+      .cs-benefits__row > [class*="col-"] + [class*="col-"] { border-left: 1px solid #d3d3d3; }
+    }
+    @media (max-width: 575.98px) {
+      .cs-benefits { padding-top: 3rem; padding-bottom: 3rem; }
+      .cs-benefits__title { font-size: 1.625rem; line-height: 1.3; }
+    }
+
+    /* =====================================================================
+       BACKED BY THE STATE OF CALIFORNIA
+       Figma: Version 1 - Umbrella › Section (5217:44469) › ACTBanner
+       Gradient stops match CalSavers .card-savers (#337b73) / .card-employers teal.
+       Button reuses .btn-primary + shared sizing (.cs-trust__btn, see hero).
+       ===================================================================== */
+    .cs-trust {
+      background-image: linear-gradient(180deg, #337b73 0%, #3b94a6 100%);
+      border-top: 1px solid rgba(0, 89, 79, 0.5);
+      border-bottom: 1px solid rgba(0, 89, 79, 0.5);
+      padding-top: 5rem;             /* 80px */
+      padding-bottom: 5rem;
+    }
+    .cs-trust__card {
+      background-color: #e5eeed;     /* Green 10% */
+      border: 1px solid rgba(0, 89, 79, 0.5);
+      border-radius: 16px;
+    }
+    .cs-trust__card .card-body {
+      padding: 1.5rem 2.5rem;        /* 24px 40px */
+    }
+    .cs-trust__seal {
+      flex-shrink: 0;
+      width: 166px;                  /* defeat brand "section img { width: 100% }" */
+      height: 166px;
+    }
+    .cs-trust__btn {
+      white-space: nowrap;
+    }
+    .cs-trust__btn img {
+      width: 16px;                   /* defeat brand "section img { width: 100% }" */
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .cs-trust__title {
+      font-weight: 500;
+      font-size: 1.25rem;            /* 20px */
+      line-height: 1.6;              /* 32px */
+      letter-spacing: 1px;
+      color: #000;                   /* brand h2 is gold */
+      margin-bottom: 0.5rem;
+    }
+    .cs-trust__text {
+      font-size: 1rem;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      color: #000;
+      margin-bottom: 0;
+    }
+
+    /* Desktop: seal | content | CTA in one row */
+    .cs-trust__cta { width: 100%; }
+    @media (min-width: 992px) {
+      .cs-trust__seal { margin-right: 1.5rem; }   /* 24px */
+      .cs-trust__cta  { width: auto; margin-left: 3rem; }   /* 48px */
+      .cs-trust__btn  { width: auto; }            /* undo .btn-block on desktop */
+    }
+
+    /* Tablet + mobile: vertical, centered, full-width CTA */
+    @media (max-width: 991.98px) {
+      .cs-trust { padding-top: 3rem; padding-bottom: 3rem; }
+      .cs-trust__card .card-body { padding: 1.5rem; }
+      .cs-trust__seal { width: 120px; height: 120px; margin-bottom: 1rem; }
+      .cs-trust__content { margin-bottom: 1.5rem; }
+      .cs-trust__btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====================================================================
+       HERO
+       ==================================================================== -->
+  <section class="cs-home-hero" aria-labelledby="cs-home-hero-title">
+
+    <!-- Decorative video background (autoplays muted on loop under the gradient stack) -->
+    <div class="cs-home-hero__media" style="background-image: url('src/assets/hero/calsavers-hero-poster.jpg');" aria-hidden="true">
+      <video class="cs-home-hero__video"
+             autoplay muted loop playsinline
+             disablepictureinpicture disableremoteplayback
+             preload="auto"
+             poster="src/assets/hero/calsavers-hero-poster.jpg"
+             tabindex="-1">
+        <source src="src/assets/CalSavers-Hero-Video.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="container">
+      <div class="row align-items-center cs-home-hero__row">
+
+        <!-- Intro copy (2 of 5 Figma columns) -->
+        <div class="col-12 cs-home-hero__intro mb-5 mb-lg-0">
+          <h1 id="cs-home-hero-title" class="cs-home-hero__title">California's Trusted Retirement Savings Program</h1>
+          <p class="cs-home-hero__lead">
+            Created by the <a href="https://www.treasurer.ca.gov/calsavers" target="_blank" rel="noopener" class="link-primary">State of California,<span class="sr-only"> (opens in a new tab)</span></a> CalSavers makes retirement savings more accessible for workers, self-employed individuals, and participating employers.
+          </p>
+        </div>
+
+        <!-- Cards (3 of 5 Figma columns) -->
+        <div class="col-12 cs-home-hero__aside">
+          <div class="row cs-home-hero__cards">
+
+            <!-- Saver card -->
+            <div class="col-md-6 d-flex mb-3 mb-md-0">
+              <article class="card cs-home-hero__card w-100" aria-labelledby="cs-hero-savers-title">
+                <div class="card-body d-flex flex-column">
+                  <div class="cs-home-hero__icon-wrap">
+                    <img class="cs-home-hero__icon" src="src/assets/Employee-Icon.svg" width="50" height="50" alt="">
+                  </div>
+                  <h2 id="cs-hero-savers-title" class="cs-home-hero__card-title">CalSavers for Savers</h2>
+                  <p class="cs-home-hero__eyebrow">Learn more about:</p>
+                  <ul class="list-unstyled cs-home-hero__list mb-0">
+                    <li><img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">Enrollment, Eligibility &amp; Opting Out</li>
+                    <li><img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">Contributions, Investments &amp; Account Management</li>
+                    <li><img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">Resources, Tools &amp; Support</li>
+                  </ul>
+                  <div class="mt-auto pt-4">
+                    <a href="https://saver.calsavers.com/" class="btn btn-primary cs-home-hero__btn">
+                      Go To Saver Site
+                      <img src="src/assets/hero/icon-arrow-right.svg" width="16" height="15" alt="">
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Employer card -->
+            <div class="col-md-6 d-flex">
+              <article class="card cs-home-hero__card w-100" aria-labelledby="cs-hero-employers-title">
+                <div class="card-body d-flex flex-column">
+                  <div class="cs-home-hero__icon-wrap">
+                    <img class="cs-home-hero__icon" src="src/assets/EmployerIcon.svg" width="50" height="50" alt="">
+                  </div>
+                  <h2 id="cs-hero-employers-title" class="cs-home-hero__card-title">CalSavers for Employers</h2>
+                  <p class="cs-home-hero__eyebrow">Learn more about:</p>
+                  <ul class="list-unstyled cs-home-hero__list mb-0">
+                    <li><img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">Registration, Requirements &amp; Compliance</li>
+                    <li><img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">Payroll Setup &amp; Program Administration</li>
+                    <li><img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">Resources, Tools &amp; Support</li>
+                  </ul>
+                  <div class="mt-auto pt-4">
+                    <a href="https://employer.calsavers.com/" class="btn btn-primary cs-home-hero__btn">
+                      Go To Employer Site
+                      <img src="src/assets/hero/icon-arrow-right.svg" width="16" height="15" alt="">
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PROGRAM BENEFITS
+       ==================================================================== -->
+  <section class="cs-benefits" aria-labelledby="cs-benefits-title">
+    <div class="container">
+
+      <header class="cs-benefits__header text-center mx-auto">
+        <p class="cs-benefits__eyebrow text-uppercase">Program Benefits</p>
+        <h2 id="cs-benefits-title" class="cs-benefits__title">Discover the Value of CalSavers</h2>
+        <p class="cs-benefits__intro">Whether you’re a Saver or Employer, CalSavers makes retirement savings more accessible through a simple, flexible program supported by educational resources, tools, and ongoing assistance.</p>
+      </header>
+
+      <div class="row cs-benefits__row">
+
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+          <img class="cs-benefits__icon" src="src/assets/benefits/icon-multiple-users.svg" width="32" height="32" alt="">
+          <h3 class="cs-benefits__item-title">Accessible</h3>
+          <p class="cs-benefits__desc">CalSavers provides an easy way to participate in retirement savings, whether through an employer or independently.</p>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+          <img class="cs-benefits__icon" src="src/assets/benefits/icon-data-transfer.svg" width="32" height="32" alt="">
+          <h3 class="cs-benefits__item-title">Flexible</h3>
+          <p class="cs-benefits__desc">Savers can adjust their deduction choices any time, while employers can facilitate participation with limited ongoing responsibilities.</p>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <img class="cs-benefits__icon" src="src/assets/Help-Wheel.svg" width="32" height="32" alt="">
+          <h3 class="cs-benefits__item-title">Guidance &amp; Support</h3>
+          <p class="cs-benefits__desc">Access educational resources, tools, and support designed to help participants and employers navigate the program with confidence.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       BACKED BY THE STATE OF CALIFORNIA
+       ==================================================================== -->
+  <section class="cs-trust" aria-labelledby="cs-trust-title">
+    <div class="container">
+      <div class="card cs-trust__card">
+        <div class="card-body d-flex flex-column flex-lg-row align-items-center text-center text-lg-left">
+
+          <img class="cs-trust__seal" src="src/assets/trust/ca-state-seal.svg" width="166" height="166"
+               alt="The Great Seal of the State of California" loading="lazy">
+
+          <div class="cs-trust__content flex-grow-1">
+            <h2 id="cs-trust-title" class="cs-trust__title">CalSavers Is Backed By the State of California</h2>
+            <p class="cs-trust__text">Created by the State of California, CalSavers provides a trusted way to help more Californians save for retirement</p>
+          </div>
+
+          <div class="cs-trust__cta flex-shrink-0">
+            <a href="https://www.treasurer.ca.gov/calsavers" target="_blank" rel="noopener"
+               class="btn btn-primary btn-block cs-trust__btn">
+              Learn More
+              <img src="src/assets/trust/icon-external-link.svg" width="16" height="16" alt="">
+              <span class="sr-only">(opens in a new tab)</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero video: make it behave like a looping GIF.
+       Some browsers/CMSs drop the `muted` attribute or skip autoplay; this
+       forces muted playback and retries when the tab becomes visible or the
+       visitor first interacts with the page. -->
+  <script>
+    (function () {
+      var video = document.querySelector('.cs-home-hero__video');
+      if (!video) return;
+
+      video.muted = true;
+      video.defaultMuted = true;
+      video.setAttribute('muted', '');
+      video.loop = true;
+      video.playsInline = true;
+
+      function play() {
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (!video.paused) return;
+        var p = video.play();
+        if (p && typeof p.catch === 'function') p.catch(function () {});
+      }
+
+      // Safety net in case `loop` is ignored
+      video.addEventListener('ended', function () {
+        video.currentTime = 0;
+        play();
+      });
+
+      video.addEventListener('canplay', play);
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) play();
+      });
+      ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(function (evt) {
+        window.addEventListener(evt, play, { once: true, passive: true });
+      });
+
+      play();
+    })();
+  </script>
+
+</body>
+</html>

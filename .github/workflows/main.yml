@@ -40,9 +40,10 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Copy standalone employer pages into build output
+      - name: Copy standalone pages into build output
         run: |
           cp employer-overview.html dist/
+          cp home.html dist/
           mkdir -p dist/src/assets
           cp -r src/assets/. dist/src/assets/
           cp -r employers dist/
