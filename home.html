@@ -215,9 +215,48 @@
       .cs-home-hero__lead { font-size: 1.125rem; line-height: 1.6; }
     }
 
-    /* Respect reduced motion: hide video, show poster (set on .cs-home-hero__media) */
+    /* ---- Pause/play control (discreet, bottom-right) ---- */
+    .cs-home-hero__toggle {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.3);
+      color: #ffffff;
+      opacity: 0.7;
+      cursor: pointer;
+      transition: opacity 0.2s ease, background-color 0.2s ease;
+    }
+    .cs-home-hero__toggle:hover,
+    .cs-home-hero__toggle:focus {
+      opacity: 1;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .cs-home-hero__toggle:focus { outline: none; }
+    .cs-home-hero__toggle:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+    }
+    .cs-home-hero__toggle svg {
+      width: 12px;                   /* defeat brand "section svg { width: 100% }" */
+      height: 12px;
+    }
+    .cs-home-hero__toggle-play { display: none; }
+    .cs-home-hero__toggle.is-paused .cs-home-hero__toggle-pause { display: none; }
+    .cs-home-hero__toggle.is-paused .cs-home-hero__toggle-play { display: block; margin-left: 2px; }
+
+    /* Respect reduced motion: hide video + its control, show poster (set on .cs-home-hero__media) */
     @media (prefers-reduced-motion: reduce) {
-      .cs-home-hero__video { display: none; }
+      .cs-home-hero__video,
+      .cs-home-hero__toggle { display: none; }
     }
 
     /* =====================================================================
@@ -442,6 +481,17 @@
 
       </div>
     </div>
+
+    <!-- Pause/play control for the background video (WCAG 2.2.2) -->
+    <button type="button" class="cs-home-hero__toggle" aria-label="Pause background video">
+      <svg class="cs-home-hero__toggle-pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+        <rect x="2" y="1" width="3" height="10" rx="0.75" fill="currentColor"/>
+        <rect x="7" y="1" width="3" height="10" rx="0.75" fill="currentColor"/>
+      </svg>
+      <svg class="cs-home-hero__toggle-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+        <path d="M3 1.5v9a.5.5 0 0 0 .77.42l7-4.5a.5.5 0 0 0 0-.84l-7-4.5A.5.5 0 0 0 3 1.5z" fill="currentColor"/>
+      </svg>
+    </button>
   </section>
 
   <!-- ====================================================================
@@ -525,11 +575,36 @@
       video.loop = true;
       video.playsInline = true;
 
+      var toggle = document.querySelector('.cs-home-hero__toggle');
+      var userPaused = false;        // a visitor's pause always wins over autoplay retries
+
       function play() {
+        if (userPaused) return;
         if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         if (!video.paused) return;
         var p = video.play();
         if (p && typeof p.catch === 'function') p.catch(function () {});
+      }
+
+      function syncToggle() {
+        if (!toggle) return;
+        var paused = video.paused;
+        toggle.classList.toggle('is-paused', paused);
+        toggle.setAttribute('aria-label', paused ? 'Play background video' : 'Pause background video');
+      }
+      video.addEventListener('play', syncToggle);
+      video.addEventListener('pause', syncToggle);
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          if (video.paused) {
+            userPaused = false;
+            play();
+          } else {
+            userPaused = true;
+            video.pause();
+          }
+        });
       }
 
       // Safety net in case `loop` is ignored
@@ -547,6 +622,7 @@
       });
 
       play();
+      syncToggle();
     })();
   </script>
 
