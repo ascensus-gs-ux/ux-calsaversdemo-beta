@@ -276,8 +276,10 @@
 
     /* Desktop: 3 columns, 32px each side of a #D3D3D3 vertical divider */
     @media (min-width: 992px) {
-      .cs-benefits__row { margin-right: -2rem; margin-left: -2rem; }
+      /* Keep Bootstrap's row margins (no overflow at 992px); widen only the inner gaps */
       .cs-benefits__row > [class*="col-"] { padding-right: 2rem; padding-left: 2rem; }
+      .cs-benefits__row > [class*="col-"]:first-child { padding-left: 15px; }
+      .cs-benefits__row > [class*="col-"]:last-child { padding-right: 15px; }
       .cs-benefits__row > [class*="col-"] + [class*="col-"] { border-left: 1px solid #d3d3d3; }
     }
     @media (max-width: 575.98px) {
@@ -456,19 +458,19 @@
 
       <div class="row cs-benefits__row">
 
-        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="col-12 col-lg-4 mb-4 mb-lg-0">
           <img class="cs-benefits__icon" src="src/assets/benefits/icon-multiple-users.svg" width="32" height="32" alt="">
           <h3 class="cs-benefits__item-title">Accessible</h3>
           <p class="cs-benefits__desc">CalSavers provides an easy way to participate in retirement savings, whether through an employer or independently.</p>
         </div>
 
-        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="col-12 col-lg-4 mb-4 mb-lg-0">
           <img class="cs-benefits__icon" src="src/assets/benefits/icon-data-transfer.svg" width="32" height="32" alt="">
           <h3 class="cs-benefits__item-title">Flexible</h3>
           <p class="cs-benefits__desc">Savers can adjust their deduction choices any time, while employers can facilitate participation with limited ongoing responsibilities.</p>
         </div>
 
-        <div class="col-md-6 col-lg-4">
+        <div class="col-12 col-lg-4">
           <img class="cs-benefits__icon" src="src/assets/Help-Wheel.svg" width="32" height="32" alt="">
           <h3 class="cs-benefits__item-title">Guidance &amp; Support</h3>
           <p class="cs-benefits__desc">Access educational resources, tools, and support designed to help participants and employers navigate the program with confidence.</p>
