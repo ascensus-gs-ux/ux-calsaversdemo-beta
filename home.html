@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="https://cdn.unite529.com/jcdn/modules/templates-cau/css/google-font.css">
   <link rel="stylesheet" href="https://cdn.unite529.com/jcdn/modules/templates-cau/css/styles.css">
 
+  <!-- DEMO ONLY (GitHub Pages): CalSavers Font Awesome, used by the footer's social icons.
+       Already loaded by the CalSavers site template in production — remove when embedding. -->
+  <link rel="stylesheet" href="https://cdn.unite529.com/jcdn/modules/module-common-bootstrapv4/css/fontawesome-all.css">
+  <!-- /DEMO ONLY -->
+
   <style>
     /* =====================================================================
        PAGE-LEVEL OVERRIDES
@@ -548,6 +553,92 @@
 <body>
 
   <!-- ====================================================================
+       DEMO ONLY (GitHub Pages): CalSavers.com global header
+       Snapshot of the live calsavers.com header (2026-11-11). In production the
+       CalSavers site template supplies the header — remove this block when embedding.
+       Changes from live: promo banner omitted; logo/English link to home.html;
+       relative links made absolute; setCookie() handlers removed (live-site JS).
+       ==================================================================== -->
+  <a class="sr-only sr-only-focusable" href="#accessible-main">Skip to main content</a>
+
+  <div class="container nav-header">
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+      <a href="home.html" style="text-decoration: none;"><img alt="calsavers logo" class="calsavers-nav-logo" src="https://cdn.unite529.com/jcdn/files/CAU/images/logo_seal_combo_web.png"></a>
+      <!-- Live slogan "Your Money. Your Future." intentionally removed for this design -->
+    </div>
+  </div>
+
+  <nav class="navbar navbar-nav navbar-expand-lg navbar-light">
+    <div class="container flex-row-reverse pr-0">
+      <div id="navbarLanguage">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown languages">
+            <button aria-expanded="false" aria-haspopup="true" class="dropdown-toggle language-picker pr-0" data-toggle="dropdown" id="dropdownLangMenu" type="button" aria-label="Toggle navigation">
+              English
+            </button>
+            <div class="dropdown-menu dropdown-menu-right mx-0" aria-labelledby="dropdownLangMenu">
+              <a class="select-lang dropdown-item" role="menuitem" lang-abbr="en" href="home.html" aria-label="switch to English">English</a>
+              <a class="select-lang dropdown-item" role="menuitem" lang-abbr="es" href="https://www.calsavers.com/home.html?language=es" aria-label="switch to Spanish">Español</a>
+              <a class="select-lang dropdown-item" role="menuitem" lang-abbr="zh" href="https://www.calsavers.com/home.html?language=zh" aria-label="switch to Chinese">中文</a>
+              <a class="dropdown-item" role="menuitem" lang-abbr="fil" title="switch to Filipino" href="https://www.calsavers.com/home/filipino.html" aria-label="switch to Filipino">Filipino</a>
+              <a class="dropdown-item" role="menuitem" lang-abbr="ko" title="switch to Korean" href="https://www.calsavers.com/home/korean.html" aria-label="switch to Korean">한국어</a>
+              <a class="dropdown-item" role="menuitem" lang-abbr="vi" title="switch to Vietnamese" href="https://www.calsavers.com/home/vietnamese.html" aria-label="switch to Vietnamese">tiếng việt</a>
+              <a class="dropdown-item" role="menuitem" lang-abbr="zh" title="switch to Chinese" href="https://www.calsavers.com/home/chinese.html" aria-label="switch to Chinese">中文</a>
+              <a class="dropdown-item" role="menuitem" lang-abbr="am" title="switch to Armenian" href="https://www.calsavers.com/home/armenian.html" aria-label="switch to Armenian">հայերեն</a>
+              <a class="dropdown-item" role="menuitem" lang-abbr="ru" title="switch to Russian" href="https://www.calsavers.com/home/russian.html" aria-label="switch to Russian">ру́сский</a>
+              <a class="dropdown-item" role="menuitem" lang-abbr="ja" title="switch to Japanese" href="https://www.calsavers.com/home/japanese.html" aria-label="switch to Japanese">日本語</a>
+              <a class="dropdown-item" role="menuitem" lang-abbr="pa" title="switch to Punjabi" href="https://www.calsavers.com/home/punjabi.html" aria-label="switch to Punjabi">ਪੰਜਾਬੀ</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav cau2">
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="https://employer.calsavers.com/?language=en">Employers</a>
+            <button class="dropdown-toggle" aria-label="open dropdown menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+            <div class="dropdown-menu emp">
+              <a href="https://employer.calsavers.com?language=en" class="dropdown-item">Getting Started</a>
+              <a href="https://employer.calsavers.com/home/employers/resources.html?language=en" class="dropdown-item">Resources</a>
+              <a href="https://employer.calsavers.com/home/help-center/payroll.html?language=en" class="dropdown-item" target="_self">Payroll Providers</a>
+            </div>
+          </li><li class="nav-item dropdown">
+            <a class="nav-link" href="https://saver.calsavers.com/?language=en">Savers</a>
+            <button class="dropdown-toggle" aria-label="open dropdown menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+            <div class="dropdown-menu sav">
+              <a href="https://saver.calsavers.com/home/savers/program-details.html?language=en" class="dropdown-item">Program Details</a>
+              <a href="https://saver.calsavers.com/home/savers/contributions.html?language=en" class="dropdown-item">Contributions</a>
+              <a href="https://saver.calsavers.com/home/savers/investments.html?language=en" class="dropdown-item">Investments</a>
+              <a href="https://saver.calsavers.com/home/savers/beneficiaries.html?language=en" class="dropdown-item">Beneficiaries</a>
+              <a href="https://saver.calsavers.com/home/savers/withdrawals.html?language=en" class="dropdown-item">Withdrawals</a>
+              <a href="https://saver.calsavers.com/home/savers/calculator.html?language=en" class="dropdown-item">Calculator</a>
+              <a href="https://saver.calsavers.com/home/savers/price--performance.html?language=en" class="dropdown-item">Price &amp; Performance</a>
+              <a href="https://saver.calsavers.com/home/savers/webinar.html?language=en" class="dropdown-item">Webinars</a>
+              <a href="https://saver.calsavers.com/home/savers/forms.html?language=en" class="dropdown-item">Forms</a>
+              <a href="https://saver.calsavers.com/home/savers/financial-wellness.html?language=en" class="dropdown-item">Financial Education</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="https://www.calsavers.com/home/about.html">About</a>
+            <button class="dropdown-toggle" aria-label="open dropdown menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+            <div class="dropdown-menu about"></div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.calsavers.com/home/frequently-asked-questions.html">Help Center</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- /DEMO ONLY: global header -->
+
+  <!-- DEMO ONLY: skip-link target. In production the template provides #accessible-main. -->
+  <main id="accessible-main">
+
+  <!-- ====================================================================
        HERO
        ==================================================================== -->
   <section class="cs-home-hero" aria-labelledby="cs-home-hero-title">
@@ -909,6 +1000,55 @@
       </div>
     </div>
   </section>
+
+  </main>
+  <!-- /DEMO ONLY: skip-link target -->
+
+  <!-- ====================================================================
+       DEMO ONLY (GitHub Pages): CalSavers.com global footer
+       Snapshot of the live calsavers.com footer (2026-11-11). In production the
+       CalSavers site template supplies the footer — remove this block when embedding.
+       Changes from live: old-homepage eligibility modal + tab styles and the
+       leaving-site disclaimer modal (needs live-site JS) omitted.
+       ==================================================================== -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <p class="mb-1"><a class="link-primary" href="tel:18556506916">Employer Assistance: 855-650-6916</a></p>
+          <p class="mb-1"><a class="link-primary" href="tel:18556506918">Employee Assistance: 855-650-6918</a></p>
+          <p class="mb-1"><a class="link-primary" href="mailto:clientservices@calsavers.com">clientservices@calsavers.com</a></p>
+          <p class="mb-1"><a class="link-primary" href="https://www.treasurer.ca.gov/calsavers/" rel="nofollow noopener" target="_blank">treasurer.ca.gov/calsavers/</a></p>
+          <div class="mt-3 d-flex align-items-center"><a aria-label="visit CalSavers Twitter page" class="link-primary icon news-disclaimer d-inline-flex" href="https://twitter.com/CalSavers" rel="nofollow noopener" target="_blank"><img alt="xlogofooter.png" src="https://cdn.unite529.com/jcdn/files/CAER/images/xlogofooter.png"> </a> <a aria-label="visit CalSavers Facebook page" class="link-primary icon news-disclaimer" href="https://www.facebook.com/CalSavers/" rel="nofollow noopener" target="_blank"><i class="fab fa-facebook-square"></i> </a> <a aria-label="visit CalSavers LinkedIn page" class="link-primary icon news-disclaimer" href="https://www.linkedin.com/company/calsavers" rel="nofollow noopener" target="_blank"> <i class="fab fa-linkedin"></i> </a></div>
+        </div>
+        <div class="col-12 col-md-6 d-flex justify-content-md-end">
+          <p class="mb-1"><img alt="CA state seal" class="brand my-2 my-lg-4" src="https://cdn.unite529.com/jcdn/files/CAU/images/ca-seal-white.png" style="max-width: 140px;"></p>
+        </div>
+        <div class="col-12">
+          <div class="footer-nav d-print-none mt-3"><a aria-label="switch to English" class="link-primary" href="home.html" rel="nofollow">English</a> <span aria-hidden="true">|</span> <a aria-label="switch to Spanish" class="link-primary" href="https://www.calsavers.com/home.html?language=es" rel="nofollow">Espa&ntilde;ol</a> <span aria-hidden="true">|</span> <a aria-label="switch to Filipino" class="link-primary" href="https://www.calsavers.com/home/filipino.html" rel="nofollow">Filipino</a> <span aria-hidden="true">|</span> <a aria-label="switch to Korean" class="link-primary" href="https://www.calsavers.com/home/korean.html" rel="nofollow">한국어</a> <span aria-hidden="true">|</span> <a aria-label="switch to Vietnamese" class="link-primary" href="https://www.calsavers.com/home/vietnamese.html" rel="nofollow">Tiếng Việt</a> <span aria-hidden="true">|</span> <a aria-label="switch to Chinese" class="link-primary" href="https://www.calsavers.com/home/chinese.html" rel="nofollow">中文</a> <span aria-hidden="true">|</span> <a aria-label="switch to armenian" class="link-primary" href="https://www.calsavers.com/home/armenian.html" rel="nofollow">հայերեն</a> <span aria-hidden="true">|</span> <a aria-label="switch to russian" class="link-primary" href="https://www.calsavers.com/home/russian.html" rel="nofollow">ру́сский</a> <span aria-hidden="true">|</span> <a aria-label="switch to japanese" class="link-primary" href="https://www.calsavers.com/home/japanese.html" rel="nofollow">日本語</a> <span aria-hidden="true">|</span> <a aria-label="switch to punjabi" class="link-primary" href="https://www.calsavers.com/home/punjabi.html" rel="nofollow">ਪੰਜਾਬੀ</a></div>
+          <div class="footer-nav d-print-none">Copyright &copy; 2026&nbsp;<span aria-hidden="true">|</span> <a class="link-primary" href="https://cdn.unite529.com/jcdn/files/CAU/pdfs/en_US/terms.pdf" rel="nofollow noopener" target="_blank">Terms of Use</a> <span aria-hidden="true">|</span> <a class="link-primary" href="https://cdn.unite529.com/jcdn/files/CAU/pdfs/en_US/privacy.pdf" rel="nofollow noopener" target="_blank">Privacy</a> <span aria-hidden="true">|</span> <a class="link-primary" href="http://www.ascensus529.com/home/infosec.html?language=en" rel="nofollow noopener" target="_blank">Security</a><span aria-hidden="true">|</span> <a class="link-primary" href="https://www.calsavers.com/home/sitemap.html">Sitemap</a><span aria-hidden="true">|</span> <a class="link-primary" href="https://www.calsavers.com/home/frequently-asked-questions.html"> Help Center</a><span aria-hidden="true">|</span> <a class="link-primary" href="https://cdn.unite529.com/jcdn/files/CAU/pdfs/en_US/CalSavvy_AI_System_Card.pdf" target="_blank" rel="noopener" title="CalSavvy AI System Card"> AI System Card for CalSavvy</a></div>
+          <div class="disclaimer">
+            <p>The CalSavers Retirement Savings Program (&ldquo;CalSavers&rdquo; or the &ldquo;Program&rdquo;) is an automatic enrollment payroll deduction IRA overseen by the CalSavers Retirement Savings Board (&ldquo;Board&rdquo;). Ascensus College Savings Recordkeeping Services, LLC (&ldquo;ACSR&rdquo;) is the program administrator. ACSR and its affiliates are responsible for day-to-day program operations. Participants saving through CalSavers beneficially own and have control over their IRAs, as provided in the Program Disclosure Booklet available at saver.calsavers.com. CalSavers is not sponsored by the employer, and therefore the employer is not responsible for the Program or liable as a Program sponsor. Employers are not permitted to endorse the Program or encourage or advise employees on whether to participate, how much (if any) to contribute or provide investment help.</p>
+            <p>CalSavers offers investment options selected by the Board. For more information on CalSavers&rsquo; investment options go to saver.calsavers.com. Account balances in CalSavers will vary with market conditions. Investments in CalSavers are not guaranteed or insured by the Board, the State of California, the Federal Deposit Insurance Corporation, or any other organization.</p>
+            <p>CalSavers is a completely voluntary retirement program. Savers may opt out at any time or reduce or increase the amount of payroll contributions. If a saver opts out they can later opt back into CalSavers.</p>
+            <p>Saving through an IRA may not be appropriate for all individuals. Employer facilitation of CalSavers should not be considered an endorsement or recommendation by a participating employer, IRAs, or the investment options offered through CalSavers. IRAs are not exclusive to CalSavers and can be obtained outside of the Program and contributed to outside of payroll deduction. Contributing to a CalSavers IRA through payroll deduction may offer some tax benefits and consequences. However, not everyone is eligible to contribute to a Roth IRA and savers should consult a tax or financial advisor if they have questions related to taxes or investments. Employers do not provide financial advice and employees should not contact an employer for financial advice. Employers should refer all questions about the Program to CalSavers. Employers are not liable for decisions employees make pursuant to Section 100034 of the California Government Code.</p>
+          </div>
+        </div>
+        <style type="text/css">
+          #mob-login-btn, .nav-buttons { display: none; }
+          .navbar-nav .nav-item:nth-child(3) > button { display: none; }
+          .dropdown-menu.about { display: none !important; }
+        </style>
+      </div>
+    </div>
+  </footer>
+  <!-- /DEMO ONLY: global footer -->
+
+  <!-- DEMO ONLY: jQuery + Bootstrap 4 JS for the header navbar (mobile menu + dropdowns).
+       The CalSavers site template already loads these in production — remove when embedding. -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- /DEMO ONLY -->
 
   <!-- Hero video: make it behave like a looping GIF.
        Some browsers/CMSs drop the `muted` attribute or skip autoplay; this
