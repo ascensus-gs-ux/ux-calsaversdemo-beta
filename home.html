@@ -337,7 +337,8 @@
     /* ---- Toggle ---- */
     .cs-glance__toggle {
       position: relative;
-      display: inline-flex;
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;   /* both options match the longer label */
       padding: 4px;
       margin-bottom: 1rem;           /* 16px to card */
       background-color: #ffffff;
@@ -347,8 +348,9 @@
     .cs-glance__tab {
       position: relative;
       z-index: 1;                    /* above the sliding indicator */
-      width: 214px;
+      min-width: 214px;
       min-height: 56px;
+      white-space: nowrap;
       padding: 1rem;
       border: 1px solid transparent;
       border-radius: 4px;
@@ -469,10 +471,13 @@
       .cs-glance { padding-top: 3rem; padding-bottom: 3rem; }
       .cs-glance__card .card-body { padding: 2rem; }
     }
+    @media (max-width: 767.98px) {
+      .cs-glance__tab { white-space: normal; }   /* long label wraps on small screens */
+    }
     @media (max-width: 575.98px) {
       .cs-glance__title { font-size: 1.625rem; line-height: 1.3; }
       .cs-glance__toggle { display: flex; width: 100%; }
-      .cs-glance__tab { flex: 1 1 0; width: auto; padding: 1rem 0.5rem; }
+      .cs-glance__tab { flex: 1 1 0; min-width: 0; padding: 1rem 0.5rem; white-space: normal; }
       .cs-glance__card .card-body { padding: 1.5rem; }
       .cs-glance__card-title { font-size: 1.5rem; }
     }
@@ -677,7 +682,7 @@
                   <div class="cs-home-hero__icon-wrap">
                     <img class="cs-home-hero__icon" src="src/assets/Employee-Icon.svg" width="50" height="50" alt="">
                   </div>
-                  <h2 id="cs-hero-savers-title" class="cs-home-hero__card-title">I am a Saver</h2>
+                  <h2 id="cs-hero-savers-title" class="cs-home-hero__card-title">I'm Saving with CalSavers</h2>
                   <p class="cs-home-hero__eyebrow">Learn more about:</p>
                   <ul class="list-unstyled cs-home-hero__list mb-0">
                     <li><img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">Enrollment, Eligibility &amp; Opting Out</li>
@@ -750,14 +755,13 @@
 
       <header class="cs-glance__header text-center mx-auto">
         <p class="cs-glance__eyebrow text-uppercase">CalSavers at a Glance</p>
-        <h2 id="cs-glance-title" class="cs-glance__title">Find CalSavers Support That's Right for You</h2>
-        <p class="cs-glance__intro">First, toggle to your experience to access information, tools, resources, and support tailored to your needs.</p>
+        <h2 id="cs-glance-title" class="cs-glance__title">Find the Support That's Right for You</h2>
       </header>
 
       <div class="text-center">
         <div class="cs-glance__toggle" role="tablist" aria-label="Choose your experience">
           <button type="button" class="cs-glance__tab is-active" role="tab" id="cs-glance-tab-savers"
-                  aria-selected="true" aria-controls="cs-glance-panel-savers">I am a Saver</button>
+                  aria-selected="true" aria-controls="cs-glance-panel-savers">I'm Saving with CalSavers</button>
           <button type="button" class="cs-glance__tab" role="tab" id="cs-glance-tab-employers"
                   aria-selected="false" aria-controls="cs-glance-panel-employers" tabindex="-1">I am an Employer</button>
         </div>
@@ -774,8 +778,8 @@
                 <div class="d-flex align-items-start flex-grow-1">
                   <img class="cs-glance__badge" src="src/assets/Employee-Icon.svg" width="50" height="50" alt="">
                   <div>
-                    <h3 class="cs-glance__card-title">CalSavers for Savers</h3>
-                    <p class="cs-glance__text">Everything savers need to understand, manage, and make the most of their CalSavers account.</p>
+                    <h3 class="cs-glance__card-title">Saving with CalSavers</h3>
+                    <p class="cs-glance__text">Explore how CalSavers works, manage your account, and find resources to help you save for retirement.</p>
                   </div>
                 </div>
                 <div class="flex-shrink-0 mt-3 mt-md-0 ml-md-3">
@@ -794,17 +798,17 @@
                     <li>
                       <img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">
                       <div>
-                        <h4 class="cs-glance__item-title">Program Eligibility</h4>
-                        <p class="cs-glance__item-text">Learn who can participate in CalSavers, including employees, self-employed individuals, and others who may be eligible to save through the program.</p>
-                        <a href="https://saver.calsavers.com/home/savers/program-details.html#:~:text=Eligibility" class="link-primary cs-link">Learn More<span class="sr-only"> about Program Eligibility</span></a>
+                        <h4 class="cs-glance__item-title">Participation Eligibility</h4>
+                        <p class="cs-glance__item-text">Learn who can participate in CalSavers and what income limits may apply.</p>
+                        <a href="https://saver.calsavers.com/home/savers/program-details.html#:~:text=Eligibility" class="link-primary cs-link">Learn More<span class="sr-only"> about Participation Eligibility</span></a>
                       </div>
                     </li>
                     <li>
                       <img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">
                       <div>
-                        <h4 class="cs-glance__item-title">Learn About the Saver Match Benefit</h4>
-                        <p class="cs-glance__item-text">Discover how the Saver Match works, eligibility requirements, and how qualifying contributions may help boost your retirement savings.</p>
-                        <a href="https://saver.calsavers.com/home/savers/contributions.html" class="link-primary cs-link">Learn More<span class="sr-only"> about Learn About the Saver Match Benefit</span></a>
+                        <h4 class="cs-glance__item-title">Learn About the Saver Match</h4>
+                        <p class="cs-glance__item-text">You may qualify for extra money toward your retirement savings. Learn how the Saver Match works, who qualifies, and how much you can get.</p>
+                        <a href="https://saver.calsavers.com/home/savers/contributions.html" class="link-primary cs-link">Learn More<span class="sr-only"> about Learn About the Saver Match</span></a>
                       </div>
                     </li>
                     <li>
@@ -839,7 +843,7 @@
                       <img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">
                       <div>
                         <h4 class="cs-glance__item-title">Saver Support</h4>
-                        <p class="cs-glance__item-text">Get answers to common questions and connect with support resources for assistance with your account, participation options, and program information.</p>
+                        <p class="cs-glance__item-text">Find answers to common questions and get help with your CalSavers account.</p>
                         <a href="https://www.calsavers.com/home/frequently-asked-questions.html" class="link-primary cs-link">Learn More<span class="sr-only"> about Saver Support</span></a>
                       </div>
                     </li>
@@ -868,7 +872,7 @@
                   <img class="cs-glance__badge" src="src/assets/EmployerIcon.svg" width="50" height="50" alt="">
                   <div>
                     <h3 class="cs-glance__card-title">CalSavers for Employers</h3>
-                    <p class="cs-glance__text">Employers can get access to everything employers need to register, manage participation, and support the program.</p>
+                    <p class="cs-glance__text">Find everything you need to register your business, manage your CalSavers account, and meet state requirements.</p>
                   </div>
                 </div>
                 <div class="flex-shrink-0 mt-3 mt-md-0 ml-md-3">
@@ -887,25 +891,25 @@
                     <li>
                       <img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">
                       <div>
-                        <h4 class="cs-glance__item-title">How to Register or Request Exemption</h4>
+                        <h4 class="cs-glance__item-title">How to Register or Request an Exemption</h4>
                         <p class="cs-glance__item-text">Find step-by-step guidance to register your business, determine eligibility, or request an exemption if your business qualifies.</p>
-                        <a href="https://employer.calsavers.com/home/help-center/registration.html" class="link-primary cs-link">Learn More<span class="sr-only"> about How to Register or Request Exemption</span></a>
+                        <a href="https://employer.calsavers.com/home/help-center/registration.html" class="link-primary cs-link">Learn More<span class="sr-only"> about How to Register or Request an Exemption</span></a>
                       </div>
                     </li>
                     <li>
                       <img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">
                       <div>
                         <h4 class="cs-glance__item-title">Payroll Automation Setup Guides</h4>
-                        <p class="cs-glance__item-text">Access payroll integration instructions and setup resources to help streamline employee contribution processing.</p>
+                        <p class="cs-glance__item-text">Learn how to connect your payroll system with CalSavers to simplify employee contributions and reduce manual processing.</p>
                         <a href="https://employer.calsavers.com/home/help-center/payroll.html" class="link-primary cs-link">Learn More<span class="sr-only"> about Payroll Automation Setup Guides</span></a>
                       </div>
                     </li>
                     <li>
                       <img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">
                       <div>
-                        <h4 class="cs-glance__item-title">Guides On How to Run CalSavers</h4>
-                        <p class="cs-glance__item-text">Explore practical guidance covering employer responsibilities, key processes, timelines, and ongoing program administration.</p>
-                        <a href="https://employer.calsavers.com/" class="link-primary cs-link">Learn More<span class="sr-only"> about Guides On How to Run CalSavers</span></a>
+                        <h4 class="cs-glance__item-title">Managing Your CalSavers Account</h4>
+                        <p class="cs-glance__item-text">Find step-by-step guidance on adding employees, submitting contributions, and managing your ongoing responsibilities.</p>
+                        <a href="https://employer.calsavers.com/" class="link-primary cs-link">Learn More<span class="sr-only"> about Managing Your CalSavers Account</span></a>
                       </div>
                     </li>
                   </ul>
@@ -916,7 +920,7 @@
                       <img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">
                       <div>
                         <h4 class="cs-glance__item-title">Resources, Instructional Videos, &amp; Webinars</h4>
-                        <p class="cs-glance__item-text">Connect with support resources, browse educational resources, training materials, videos, and webinars to help you navigate the program with confidence.</p>
+                        <p class="cs-glance__item-text">Explore quick instructional videos, webinars, and our library of resources to help you navigate the program with confidence.</p>
                         <a href="https://employer.calsavers.com/home/employers/resources.html" class="link-primary cs-link">Learn More<span class="sr-only"> about Resources, Instructional Videos, &amp; Webinars</span></a>
                       </div>
                     </li>
@@ -924,16 +928,16 @@
                       <img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">
                       <div>
                         <h4 class="cs-glance__item-title">Frequently Asked Questions</h4>
-                        <p class="cs-glance__item-text">Get answers to common questions and connect with resources when you need additional assistance.</p>
+                        <p class="cs-glance__item-text">Find answers to common questions about registration, employee participation, contributions, and more.</p>
                         <a href="https://www.calsavers.com/home/frequently-asked-questions.html?language=en#" class="link-primary cs-link">Learn More<span class="sr-only"> about Frequently Asked Questions</span></a>
                       </div>
                     </li>
                     <li>
                       <img src="src/assets/hero/icon-check.svg" width="14" height="21" alt="">
                       <div>
-                        <h4 class="cs-glance__item-title">Meet One-on-One with a Representative</h4>
-                        <p class="cs-glance__item-text">Sign up for virtual or in-person sessions to discuss program activities, assist with account setup, and answer questions.</p>
-                        <a href="https://employer.calsavers.com/home/employers/resources.html#cs-rep-meet" class="link-primary cs-link">Learn More<span class="sr-only"> about Meet One-on-One with a Representative</span></a>
+                        <h4 class="cs-glance__item-title">Schedule a One-on-One Meeting</h4>
+                        <p class="cs-glance__item-text">Connect with a CalSavers representative for personalized guidance on registration, account setup, and ongoing responsibilities.</p>
+                        <a href="https://employer.calsavers.com/home/employers/resources.html#cs-rep-meet" class="link-primary cs-link">Learn More<span class="sr-only"> about Schedule a One-on-One Meeting</span></a>
                       </div>
                     </li>
                   </ul>
